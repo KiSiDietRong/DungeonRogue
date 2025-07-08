@@ -267,6 +267,7 @@ RectTransform:
   - {fileID: 560819765}
   - {fileID: 1766031590}
   - {fileID: 1743985528}
+  - {fileID: 748547244}
   m_Father: {fileID: 62279886}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -430,6 +431,278 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148069735}
+  m_CullTransparentMesh: 1
+--- !u!1 &162640944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 162640945}
+  - component: {fileID: 162640947}
+  - component: {fileID: 162640946}
+  m_Layer: 5
+  m_Name: RarityText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &162640945
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162640944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1528454055}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 297, y: 66}
+  m_SizeDelta: {x: 255.43, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &162640946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162640944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "Huy\u1EC1n tho\u1EA1i"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 4
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &162640947
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 162640944}
+  m_CullTransparentMesh: 1
+--- !u!1 &184482377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 184482378}
+  - component: {fileID: 184482380}
+  - component: {fileID: 184482379}
+  m_Layer: 5
+  m_Name: RarityText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &184482378
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184482377}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 219764315}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 297, y: 66}
+  m_SizeDelta: {x: 255.43, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &184482379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184482377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "Huy\u1EC1n tho\u1EA1i"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 4
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &184482380
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184482377}
   m_CullTransparentMesh: 1
 --- !u!1 &192576941
 GameObject:
@@ -615,6 +888,7 @@ RectTransform:
   - {fileID: 1232228237}
   - {fileID: 649371039}
   - {fileID: 569855174}
+  - {fileID: 184482378}
   m_Father: {fileID: 62279886}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -703,6 +977,142 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219764314}
+  m_CullTransparentMesh: 1
+--- !u!1 &245694371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 245694372}
+  - component: {fileID: 245694374}
+  - component: {fileID: 245694373}
+  m_Layer: 5
+  m_Name: RarityText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &245694372
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245694371}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6171486082783899254}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 297, y: 66}
+  m_SizeDelta: {x: 255.43, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &245694373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245694371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "Huy\u1EC1n tho\u1EA1i"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 4
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &245694374
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245694371}
   m_CullTransparentMesh: 1
 --- !u!1 &256571613
 GameObject:
@@ -1400,8 +1810,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 103.279785, y: -7}
-  m_SizeDelta: {x: -569.5891, y: -1}
+  m_AnchoredPosition: {x: 103.279785, y: -164.75}
+  m_SizeDelta: {x: -569.5891, y: 9.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &485909990
 MonoBehaviour:
@@ -1458,7 +1868,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1884,8 +2294,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 103.279785, y: -7}
-  m_SizeDelta: {x: -569.5891, y: -1}
+  m_AnchoredPosition: {x: 103.279785, y: -164.75}
+  m_SizeDelta: {x: -569.5891, y: 9.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &569855175
 MonoBehaviour:
@@ -1942,7 +2352,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2281,6 +2691,142 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 678212993}
   m_CullTransparentMesh: 1
+--- !u!1 &748547243
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748547244}
+  - component: {fileID: 748547246}
+  - component: {fileID: 748547245}
+  m_Layer: 5
+  m_Name: RarityText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &748547244
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748547243}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 133992635}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 297, y: 66}
+  m_SizeDelta: {x: 255.43, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &748547245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748547243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "Huy\u1EC1n tho\u1EA1i"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 4
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &748547246
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748547243}
+  m_CullTransparentMesh: 1
 --- !u!1 &854587354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2577,54 +3123,257 @@ MonoBehaviour:
       n\u0103ng\_trong m\u1ED7i ph\xF2ng s\u1EBD c\u1EA5p m\u1ED9t\_L\xE1 ch\u1EAFn\_trong\_5
       gi\xE2y\_"
     type: 0
+    rarityType: 2
+    rarity: "Huy\u1EC1n tho\u1EA1i"
+    cost: 300
   - relicName: Bone Plate
     icon: {fileID: 7014766379041316662, guid: a6a106fc78e0dfc4bb598a9a6695de69, type: 3}
     effectDescription: "Nh\u1EADn \u0111\u01B0\u1EE3c\_15\_Gi\xE1p\_. M\u1ED7i khi
       b\u1EA1n \u0111\xE1nh b\u1EA1i m\u1ED9t k\u1EBB \u0111\u1ECBch, b\u1EA1n nh\u1EADn
       \u0111\u01B0\u1EE3c\_1\_Gi\xE1p"
     type: 1
+    rarityType: 0
+    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    cost: 75
   - relicName: Conduit Spike
     icon: {fileID: -7607162871873315079, guid: 98ce4268ac19f454a91279213e947fa7, type: 3}
     effectDescription: "\u0110\xF2n \u0111\xE1nh th\u1EE9 3\_c\u1EE7a b\u1EA1n\_gi\u1EA3i
       ph\xF3ng\_Chain\_Lightning\_, g\xE2y s\xE1t th\u01B0\u01A1ng l\xEAn t\u1EDBi\_2\_k\u1EBB
       \u0111\u1ECBch kh\xE1c"
     type: 2
+    rarityType: 0
+    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    cost: 150
   - relicName: Discount Card
     icon: {fileID: -658063317407866722, guid: f28cf7f9468270941b2fd00a9176897d, type: 3}
     effectDescription: "Mua\_v\u1EADt ph\u1EA9m\_gi\xE1 r\u1EBB h\u01A1n\_"
     type: 3
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 0
   - relicName: Doom Shell
     icon: {fileID: -913084555821057342, guid: 82b8b993b4040b942b8b96f2f81dcace, type: 3}
     effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_l\u01B0\u1EDBt\_s\u1EBD
       g\xE2y\_S\xE1t th\u01B0\u01A1ng\_l\xEAn k\u1EBB \u0111\u1ECBch xung quanh b\u1EA1n"
     type: 4
+    rarityType: 2
+    rarity: "Huy\u1EC1n tho\u1EA1i"
+    cost: 300
   - relicName: Empowered Bangle
     icon: {fileID: -3698961639503882510, guid: 50bb98e0193f05746af053a79ae0883e, type: 3}
     effectDescription: "L\u1EA7n \u0111\u1EA7u ti\xEAn b\u1EA1n s\u1EED d\u1EE5ng\_k\u1EF9
       n\u0103ng\_trong m\u1ED7i ph\xF2ng s\u1EBD g\xE2y th\xEAm S\xE1t\_th\u01B0\u01A1ng"
     type: 5
+    rarityType: 0
+    rarity: "Th\xF4ng  th\u01B0\u1EDDng"
+    cost: 150
   - relicName: Fury Charm
     icon: {fileID: 1678440030561490276, guid: 8676a3df80041144693df458fcc45da3, type: 3}
     effectDescription: "C\xE1c \u0111\xF2n t\u1EA5n c\xF4ng c\u1EE7a b\u1EA1n g\xE2y\_th\xEAm
       s\xE1t th\u01B0\u01A1ng\_l\xEAn\_k\u1EBB \u0111\u1ECBch\_\u0111ang b\u1ECB
       \u0111\u1ED1t ch\xE1y"
     type: 6
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 150
   - relicName: Glacial Light
     icon: {fileID: 5814666659209945660, guid: 6183945788bed114785490a52883d573, type: 3}
     effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o k\u1EBB \u0111\u1ECBch b\u1ECB\_\u0111\xF3ng
       b\u0103ng,\_ch\xFAng c\u0169ng b\u1ECB\_thi\xEAu \u0111\u1ED1t"
     type: 7
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 225
   - relicName: Razor Claw
     icon: {fileID: 921490273531421432, guid: 73879a06919eba945853424257b5e630, type: 3}
     effectDescription: "\u0110\xF2n ch\xED m\u1EA1ng\_c\u1EE7a b\u1EA1n\_gi\u1EDD
       \u0111\xE2y g\xE2y\_g\u1EA5p \u0111\xF4i s\xE1t th\u01B0\u01A1ng"
     type: 8
+    rarityType: 2
+    rarity: "Huy\u1EC1n tho\u1EA1i"
+    cost: 300
   - relicName: Spirit Shelter
     icon: {fileID: 3238346730402424435, guid: 1fed53e21bc020448a66781c4d30ec35, type: 3}
     effectDescription: "Khi\_ch\u1EBFt l\u1EA7n \u0111\u1EA7u\_, b\u1EA1n\_s\u1EBD
       h\u1ED3i sinh\_v\u1EDBi\_\u0111\u1EA7y HP\_v\xE0 di v\u1EADt n\xE0y s\u1EBD
       bi\u1EBFn m\u1EA5t"
     type: 9
+    rarityType: 2
+    rarity: "Huy\u1EC1n tho\u1EA1i"
+    cost: 300
+  - relicName: Archangel's Scythe
+    icon: {fileID: -7935739384863357725, guid: 4f0f0680e3d8ceb4e81383b513f791ed, type: 3}
+    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_h\u1ED3i m\xE1u\_,
+      k\u1EBB \u0111\u1ECBch g\u1EA7n \u0111\xF3 s\u1EBD ph\u1EA3i ch\u1ECBu\_s\xE1t
+      th\u01B0\u01A1ng"
+    type: 10
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 225
+  - relicName: Arctic Axe
+    icon: {fileID: -5499760515462716765, guid: c7fbe689d80f66844a76fea5d84a67cb, type: 3}
+    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_\u0111\xF3ng b\u0103ng\_m\u1ED9t
+      k\u1EBB \u0111\u1ECBch, n\xF3 s\u1EBD ph\u1EA3i ch\u1ECBu\_s\xE1t th\u01B0\u01A1ng\_m\u1ED7i
+      gi\xE2y"
+    type: 11
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 225
+  - relicName: Bitter Chisel
+    icon: {fileID: -6783193674918568518, guid: d970ddb9e3cade24cbbaf4ce51ea6aa2, type: 3}
+    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_\u0111\xE1nh b\u1EA1i\_m\u1ED9t
+      k\u1EBB th\xF9\_b\u1ECB \u0111\xF3ng b\u0103ng\_, b\u1EA1n\_s\u1EBD h\u1ED3i
+      ph\u1EE5c"
+    type: 12
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 225
+  - relicName: Chilling Wind
+    icon: {fileID: -1848560284133838252, guid: 86ee0c8d82776254e8bc0e2a20f0e5d5, type: 3}
+    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_\u0111\xE1nh b\u1EA1i\_m\u1ED9t
+      k\u1EBB \u0111\u1ECBch\_b\u1ECB \u0111\xF3ng b\u0103ng\_, n\xF3 s\u1EBD t\u1EA1o
+      ra m\u1ED9t\_v\u1EE5 n\u1ED5\_nh\u1ECF \u0111\xF3ng\_b\u0103ng\_nh\u1EEFng
+      k\u1EBB \u0111\u1ECBch kh\xE1c \u1EDF g\u1EA7n \u0111\xF3"
+    type: 14
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 150
+  - relicName: Cryo Freeze
+    icon: {fileID: 7370428913947006554, guid: dae86f8b96451c3459c761b22bddc1f8, type: 3}
+    effectDescription: "K\u1EBB \u0111\u1ECBch b\u1ECB \u0111\xF3ng b\u0103ng l\xE2u
+      h\u01A1n 50%"
+    type: 13
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 200
+  - relicName: Daze Claw
+    icon: {fileID: 4655904553945650273, guid: ea75fe271c29417448a544761e48dff3, type: 3}
+    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_g\xE2y s\xE1t th\u01B0\u01A1ng
+      ch\xED m\u1EA1ng\_, b\u1EA1n\_s\u1EBD g\xE2y th\xEAm cho\xE1ng"
+    type: 15
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 150
+  - relicName: Fiery Imbuement
+    icon: {fileID: 6276922996011518803, guid: a15f4e21e1b7ae04a8fc5fe3523ba07a, type: 3}
+    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n s\u1EED d\u1EE5ng m\u1ED9t\_K\u1EF9
+      n\u0103ng\_, \u0111\xF2n t\u1EA5n c\xF4ng\_b\u1EB1ng V\u0169 kh\xED\_c\u1EE7a
+      b\u1EA1n s\u1EBD th\xEAm hi\u1EC7u\_\u1EE9ng \u0110\u1ED1t ch\xE1y"
+    type: 16
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 225
+  - relicName: Frost Needle
+    icon: {fileID: 8883991513827065806, guid: 10042771b39cc2745ba47e12f88c64ec, type: 3}
+    effectDescription: "B\u1EA1n ch\u1EAFc ch\u1EAFn c\xF3\_\u0111\xF2n ch\xED m\u1EA1ng\_khi
+      g\xE2y s\xE1t th\u01B0\u01A1ng l\xEAn\_k\u1EBB \u0111\u1ECBch\_b\u1ECB \u0111\xF3ng
+      b\u0103ng"
+    type: 17
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 150
+  - relicName: Giant Mace
+    icon: {fileID: -8290962017994717108, guid: b7fe4333df1fe25479e4c4297ff48d1d, type: 3}
+    effectDescription: "B\u1EA1n g\xE2y th\xEAm\_s\xE1t th\u01B0\u01A1ng\_l\xEAn\_k\u1EBB
+      \u0111\u1ECBch\_b\u1ECB cho\xE1ng"
+    type: 18
+    rarityType: 0
+    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    cost: 75
+  - relicName: Gilded Remains
+    icon: {fileID: -4224242357412051818, guid: 328b9f991c37d5c4fa9f768d83630321, type: 3}
+    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_\u0111\xE1nh b\u1EA1i\_m\u1ED9t
+      k\u1EBB th\xF9\_b\u1ECB nhi\u1EC5m \u0111\u1ED9c\_, n\xF3 s\u1EBD r\u01A1i
+      ra\_V\xE0ng"
+    type: 19
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 150
+  - relicName: Harvest Scythe
+    icon: {fileID: -8022921408323888430, guid: 66f5349ba325f9f4b819c6a8a68b756e, type: 3}
+    effectDescription: "K\u1EF9 n\u0103ng\_c\u1EE7a b\u1EA1n\_g\xE2y th\xEAm\_s\xE1t
+      th\u01B0\u01A1ng\_l\xEAn k\u1EBB \u0111\u1ECBch b\u1ECB nhi\u1EC5m \u0111\u1ED9c"
+    type: 20
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 300
+  - relicName: Hunter Grasp
+    icon: {fileID: -6429728037839298435, guid: 70c1cb4d22d4ce347b337a03a013691b, type: 3}
+    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_\u0111\xE1nh b\u1EA1i\_m\u1ED9t
+      k\u1EBB \u0111\u1ECBch\_b\u1ECB nhi\u1EC5m \u0111\u1ED9c\_, nh\u1EADn th\xEAm\_s\xE1t
+      th\u01B0\u01A1ng\_trong\_3 gi\xE2y"
+    type: 21
+    rarityType: 1
+    rarity: "S\u1EED thi"
+    cost: 150
+  - relicName: Impact Charm
+    icon: {fileID: 4055647755703962533, guid: ed7a6f911637da042b397e82bfd00993, type: 3}
+    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_l\xE0m cho\xE1ng\_k\u1EBB
+      \u0111\u1ECBch, g\xE2y s\xE1t\_th\u01B0\u01A1ng di\u1EC7n r\u1ED9ng\_xung quanh
+      n\xF3"
+    type: 22
+    rarityType: 0
+    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    cost: 75
+  - relicName: Infernal Scale
+    icon: {fileID: -7600948579495523585, guid: 1944eecddda2ac24fbc02782bbb1ec4b, type: 3}
+    effectDescription: "Hi\u1EC7u \u1EE9ng \u0110\u1ED1t ch\xE1y\_c\u1EE7a b\u1EA1n\_g\xE2y\_th\xEAm
+      s\xE1t th\u01B0\u01A1ng"
+    type: 23
+    rarityType: 0
+    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    cost: 75
+  - relicName: Juicy Opal
+    icon: {fileID: -3732437063118705323, guid: fc14f59deeec0df438f62a0cfa4c2d1b, type: 3}
+    effectDescription: "Kh\u1EA3 n\u0103ng h\u1ED3i HP\_c\u1EE7a b\u1EA1n\_\u0111\u01B0\u1EE3c\_t\u0103ng
+      l\xEAn"
+    type: 24
+    rarityType: 0
+    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    cost: 150
+  - relicName: Recovery Ring
+    icon: {fileID: -2429760598099442887, guid: bb0b1a821f5b72740acc6cbd4cb2456e, type: 3}
+    effectDescription: "M\u1ED7i khi b\u1EA1n v\xE0o m\u1ED9t c\u0103n ph\xF2ng m\u1EDBi,
+      b\u1EA1n s\u1EBD h\u1ED3i 1 HP"
+    type: 25
+    rarityType: 0
+    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    cost: 150
+  - relicName: Rejuvenation Glove
+    icon: {fileID: -1270157414733624082, guid: ceef07dcab37f03458f66df4bd075f96, type: 3}
+    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_g\xE2y s\xE1t th\u01B0\u01A1ng
+      ch\xED m\u1EA1ng\_, b\u1EA1n\_s\u1EBD h\u1ED3i m\xE1u"
+    type: 26
+    rarityType: 0
+    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    cost: 75
+  - relicName: Titan's Wargear
+    icon: {fileID: -8020860552624406238, guid: 58bfc456186491042a563e98a3185fda, type: 3}
+    effectDescription: "C\u1EE9 m\u1ED7i\_4\_k\u1EBB \u0111\u1ECBch b\u1EA1n\_\u0111\xE1nh
+      b\u1EA1i\_b\u1EB1ng\_v\u0169 kh\xED\_c\u1EE7a m\xECnh ,\_s\xE1t th\u01B0\u01A1ng
+      v\u0169 kh\xED s\u1EBD t\u0103ng v\u0129nh vi\u1EC5n"
+    type: 27
+    rarityType: 2
+    rarity: "Huy\u1EC3n tho\u1EA1i"
+    cost: 300
+  - relicName: Traumatic Blow
+    icon: {fileID: 4797422397178903023, guid: 4ac0c2f8395d96f4691318ced2b59555, type: 3}
+    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_l\xE0m cho\xE1ng\_m\u1ED9t
+      k\u1EBB \u0111\u1ECBch kh\xF4ng ph\u1EA3i Boss v\xE0 c\xF3\_HP d\u01B0\u1EDBi
+      20%\_, ch\xFAng s\u1EBD b\u1ECB\_\u0111\xE1nh b\u1EA1i ngay l\u1EADp t\u1EE9c"
+    type: 28
+    rarityType: 2
+    rarity: "Huy\u1EC3n tho\u1EA1i"
+    cost: 300
+  - relicName: Volt Claw
+    icon: {fileID: -3768042465453161151, guid: 2e2fb34d65507124f973769964612d52, type: 3}
+    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n g\xE2y s\xE1t th\u01B0\u01A1ng
+      ch\xED m\u1EA1ng, b\u1EA1n tri\u1EC7u h\u1ED3i m\u1ED9t\_Tia\_s\xE9t\_g\xE2y
+      s\xE1t th\u01B0\u01A1ng l\xEAn k\u1EBB \u0111\u1ECBch"
+    type: 29
+    rarityType: 0
+    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    cost: 150
   relicButtons:
   - {fileID: 419050322020960137}
   - {fileID: 1528454056}
@@ -2644,6 +3393,9 @@ MonoBehaviour:
   - {fileID: 876111997}
   - {fileID: 192576943}
   canvasUI: {fileID: 1422250297}
+  chanceCommon: 80
+  chanceEpic: 18
+  chanceLegendary: 2
 --- !u!4 &1130926238
 Transform:
   m_ObjectHideFlags: 0
@@ -3433,6 +4185,7 @@ RectTransform:
   - {fileID: 148069736}
   - {fileID: 542013905}
   - {fileID: 485909989}
+  - {fileID: 162640945}
   m_Father: {fileID: 62279886}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4334,8 +5087,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 103.279785, y: -7}
-  m_SizeDelta: {x: -569.5891, y: -1}
+  m_AnchoredPosition: {x: 103.279785, y: -164.75}
+  m_SizeDelta: {x: -569.5891, y: 9.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1743985529
 MonoBehaviour:
@@ -4392,7 +5145,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5362,7 +6115,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5439,6 +6192,7 @@ RectTransform:
   - {fileID: 1211633742}
   - {fileID: 1476787199}
   - {fileID: 7347740976188618659}
+  - {fileID: 245694372}
   m_Father: {fileID: 62279886}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -5462,8 +6216,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 103.279785, y: -7}
-  m_SizeDelta: {x: -569.5891, y: -1}
+  m_AnchoredPosition: {x: 103.279785, y: -164.75}
+  m_SizeDelta: {x: -569.5891, y: 9.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
