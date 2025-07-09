@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LoginUI : MonoBehaviour
 {
@@ -28,8 +29,14 @@ public class LoginUI : MonoBehaviour
 
         if (result == "Login Success!")
         {
-            // Chuyển cảnh hoặc vào game
-            SceneManager.LoadScene("MainScene");
+            // Gọi coroutine để đợi 3 giây trước khi chuyển scene
+            StartCoroutine(LoadSceneAfterDelay("MainMenu", 3f));
         }
+    }
+
+    private IEnumerator LoadSceneAfterDelay(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
     }
 }
