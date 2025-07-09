@@ -27,41 +27,271 @@ public class InventoryManager : MonoBehaviour
     [Range(0, 100)] public int chanceLegendary = 6;
 
     private int selectedRelicIndex = 0;
+    private int activeRelicCount = 0;
     private bool canvasActive = false;
     private bool relicSelected = false;
+    private bool inventoryOnlyView = false;
+    private bool isPickingRelic = false;
     private HashSet<Relic> usedRelics = new HashSet<Relic>();
 
-    void Awake()
-    {
-        Instance = this;
-    }
+    private bool waitingForReplace = false;
+    private int selectedReplaceIndex = 0;
+    private bool clickOnce = false;
+    private bool relicConfirming = false;
+    private bool relicLocked = false;
+    private bool pendingRelicChoose = false;
+    private Relic relicToReplace;
+
+    void Awake() => Instance = this;
 
     void Update()
     {
-        if (!canvasActive || relicSelected) return;
+        if (waitingForReplace)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                waitingForReplace = false;
+                relicSelected = false;
+                relicConfirming = false;
+                pendingRelicChoose = false;
+                relicLocked = false;
+                RestoreAllRelicsAlpha();
+                SelectRelic(selectedRelicIndex);
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            SelectRelic((selectedRelicIndex - 1 + 4) % 4);
+                for (int i = 0; i < inventorySlots.Length; i++)
+                    inventorySlots[i].transform.DOScale(Vector3.one, 0.2f);
+                return;
+            }
+            HandleReplaceInput();
+            return;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+
+        if (!isPickingRelic && !relicConfirming && !pendingRelicChoose && !waitingForReplace && Input.GetKeyDown(KeyCode.Tab))
         {
-            SelectRelic((selectedRelicIndex + 1) % 4);
+            ToggleInventoryOnlyUI();
+            return;
+        }
+
+        if (!canvasActive) return;
+        if (inventoryOnlyView) return;
+        if (relicSelected) return;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (inventoryOnlyView)
+            {
+                inventoryOnlyView = false;
+                canvasUI.SetActive(true);
+                relicSelected = false;
+                relicConfirming = true;
+                pendingRelicChoose = true;
+                relicLocked = true;
+                RestoreAllRelicsAlpha();
+                SelectRelic(selectedRelicIndex);
+                return;
+            }
+
+            if (relicConfirming || pendingRelicChoose)
+            {
+                relicConfirming = false;
+                relicLocked = false;
+                pendingRelicChoose = false;
+                relicSelected = false;
+                RestoreAllRelicsAlpha();
+                SelectRelic(selectedRelicIndex);
+                return;
+            }
+        }
+
+        if (!relicConfirming && !relicLocked)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+                SelectRelic((selectedRelicIndex - 1 + activeRelicCount) % activeRelicCount);
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+                SelectRelic((selectedRelicIndex + 1) % activeRelicCount);
+        }
+
+        if (!relicConfirming && !relicLocked && Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePos = Input.mousePosition;
+            for (int i = 0; i < activeRelicCount; i++)
+            {
+                if (RectTransformUtility.RectangleContainsScreenPoint(relicButtons[i].GetComponent<RectTransform>(), mousePos))
+                {
+                    SelectRelic(i);
+                    relicConfirming = true;
+                    relicLocked = true;
+                    FadeOtherRelics(i);
+                    pendingRelicChoose = true;
+                    return;
+                }
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            OnRelicChosen(selectedRelicIndex);
+            if (relicConfirming && pendingRelicChoose)
+            {
+                HandleRelicSelection(currentRelicChoices[selectedRelicIndex]);
+                pendingRelicChoose = false;
+            }
+            else if (!relicConfirming)
+            {
+                relicConfirming = true;
+                relicLocked = true;
+                FadeOtherRelics(selectedRelicIndex);
+                pendingRelicChoose = true;
+            }
         }
+
+        if (relicConfirming && pendingRelicChoose && Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePos = Input.mousePosition;
+            for (int i = 0; i < activeRelicCount; i++)
+            {
+                if (RectTransformUtility.RectangleContainsScreenPoint(relicButtons[i].GetComponent<RectTransform>(), mousePos))
+                {
+                    if (i == selectedRelicIndex)
+                    {
+                        HandleRelicSelection(currentRelicChoices[i]);
+                        pendingRelicChoose = false;
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    void HandleRelicSelection(Relic relic)
+    {
+        if (playerInventory.Count < inventorySlots.Length)
+        {
+            playerInventory.Add(relic);
+            usedRelics.Add(relic);
+            UpdateInventoryUI();
+            ApplyRelicEffect(relic);
+            relicSelected = true;
+            StartCoroutine(CloseCanvasAfterDelay(1f));
+        }
+        else
+        {
+            relicToReplace = relic;
+            relicSelected = true;
+            relicConfirming = false;
+            pendingRelicChoose = false;
+            relicLocked = false;
+            waitingForReplace = true;
+            selectedReplaceIndex = 0;
+            ChangeReplaceSelection(0);
+        }
+    }
+
+    void HandleReplaceInput()
+    {
+        int columns = 4;
+        int rows = 3;
+        int totalSlots = columns * rows;
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            ChangeReplaceSelection((selectedReplaceIndex % columns == 0) ? selectedReplaceIndex + (columns - 1) : selectedReplaceIndex - 1);
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            ChangeReplaceSelection((selectedReplaceIndex % columns == columns - 1) ? selectedReplaceIndex - (columns - 1) : selectedReplaceIndex + 1);
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            ChangeReplaceSelection((selectedReplaceIndex - columns + totalSlots) % totalSlots);
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            ChangeReplaceSelection((selectedReplaceIndex + columns) % totalSlots);
+        }
+        else if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePos = Input.mousePosition;
+            for (int i = 0; i < inventorySlots.Length; i++)
+            {
+                if (RectTransformUtility.RectangleContainsScreenPoint(inventorySlots[i].rectTransform, mousePos))
+                {
+                    if (i == selectedReplaceIndex && (clickOnce || relicConfirming))
+                    {
+                        ReplaceSlotConfirmed();
+                    }
+                    else
+                    {
+                        ChangeReplaceSelection(i);
+                        clickOnce = true;
+                    }
+                    return;
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+        {
+            ReplaceSlotConfirmed();
+        }
+    }
+
+    void ChangeReplaceSelection(int index)
+    {
+        inventorySlots[selectedReplaceIndex].transform.DOScale(Vector3.one, 0.2f);
+        selectedReplaceIndex = index;
+        inventorySlots[selectedReplaceIndex].transform.DOScale(Vector3.one * 1.2f, 0.2f);
+        clickOnce = false;
+    }
+
+    void ReplaceSlotConfirmed()
+    {
+        if (selectedReplaceIndex >= 0 && selectedReplaceIndex < playerInventory.Count)
+        {
+            playerInventory[selectedReplaceIndex] = relicToReplace;
+        }
+        else
+        {
+            playerInventory.Add(relicToReplace);
+        }
+        usedRelics.Add(relicToReplace);
+        UpdateInventoryUI();
+        ApplyRelicEffect(relicToReplace);
+        waitingForReplace = false;
+        clickOnce = false;
+        isPickingRelic = false;
+        relicSelected = false;
+        relicConfirming = false;
+        pendingRelicChoose = false;
+        StartCoroutine(CloseCanvasAfterDelay(1f));
     }
 
     public void OpenCanvas()
     {
         canvasUI.SetActive(true);
         canvasActive = true;
+        isPickingRelic = true;
         relicSelected = false;
+        inventoryOnlyView = false;
+        relicConfirming = false;
+        relicLocked = false;
+        pendingRelicChoose = false;
         ShowRandomRelics();
         UpdateInventoryUI();
         SelectRelic(0);
+    }
+
+    public void ToggleInventoryOnlyUI()
+    {
+        bool active = !canvasUI.activeSelf;
+        canvasUI.SetActive(active);
+        canvasActive = active;
+        inventoryOnlyView = active;
+        relicSelected = false;
+        UpdateInventoryUI();
+
+        foreach (var btn in relicButtons)
+        {
+            btn.gameObject.SetActive(false);
+        }
     }
 
     public bool IsCanvasActive()
@@ -88,39 +318,73 @@ public class InventoryManager : MonoBehaviour
         }
 
         List<Relic> selected = new List<Relic>();
-        int maxToSelect = 4;
+        Relic highRarityRelic = null;
 
-        while (selected.Count < maxToSelect)
+        int totalAvailableRelics = commons.Count + epics.Count + legendaries.Count;
+
+        int roll = Random.Range(0, 100);
+        
+        if (roll < chanceLegendary && legendaries.Count > 0)
         {
-            int roll = Random.Range(0, 100);
-            List<Relic> pool = null;
-
-            if (roll < chanceLegendary && legendaries.Count > 0)
-                pool = legendaries;
-            else if (roll < (chanceLegendary + chanceEpic) && epics.Count > 0)
-                pool = epics;
-            else if (commons.Count > 0)
-                pool = commons;
-
-            if (pool != null)
-            {
-                Relic r = pool[Random.Range(0, pool.Count)];
-                if (!selected.Contains(r))
-                    selected.Add(r);
-            }
-
-            if (commons.Count + epics.Count + legendaries.Count <= selected.Count)
-                break;
+            highRarityRelic = legendaries[Random.Range(0, legendaries.Count)];
+            legendaries.Remove(highRarityRelic);
+        }
+        else if (roll < (chanceLegendary + chanceEpic) && epics.Count > 0)
+        {
+            highRarityRelic = epics[Random.Range(0, epics.Count)];
+            epics.Remove(highRarityRelic);
         }
 
-        selected.Sort((a, b) => a.rarityType.CompareTo(b.rarityType));
+        int targetSlots = totalAvailableRelics >= 3 ? 3 : totalAvailableRelics;
+        if (highRarityRelic != null)
+            targetSlots = Mathf.Min(4, totalAvailableRelics);
 
-        bool hasLegendary = selected.Exists(r => r.rarityType == Rarity.Legendary);
-        int buttonsToShow = hasLegendary ? 4 : 3;
+        int commonSlots = Mathf.Min(3, commons.Count);
+        while (selected.Count < commonSlots && commons.Count > 0)
+        {
+            Relic r = commons[Random.Range(0, commons.Count)];
+            selected.Add(r);
+            commons.Remove(r);
+        }
+
+        while (selected.Count < targetSlots && (epics.Count > 0 || legendaries.Count > 0))
+        {
+            int subRoll = Random.Range(0, 100);
+            if (subRoll < chanceLegendary && legendaries.Count > 0)
+            {
+                Relic r = legendaries[Random.Range(0, legendaries.Count)];
+                selected.Add(r);
+                legendaries.Remove(r);
+            }
+            else if (epics.Count > 0)
+            {
+                Relic r = epics[Random.Range(0, epics.Count)];
+                selected.Add(r);
+                epics.Remove(r);
+            }
+            else if (legendaries.Count > 0)
+            {
+                Relic r = legendaries[Random.Range(0, legendaries.Count)];
+                selected.Add(r);
+                legendaries.Remove(r);
+            }
+        }
+
+        if (highRarityRelic != null && selected.Count >= 3)
+        {
+            selected.Add(highRarityRelic);
+        }
+        else if (highRarityRelic != null && selected.Count < 3)
+        {
+            selected.Add(highRarityRelic);
+        }
+
+        int buttonsToShow = selected.Count >= 3 ? (highRarityRelic != null ? 4 : 3) : selected.Count;
+        activeRelicCount = buttonsToShow;
 
         for (int i = 0; i < relicButtons.Length; i++)
         {
-            if (i < buttonsToShow && i < selected.Count)
+            if (i < activeRelicCount && i < selected.Count)
             {
                 var relic = selected[i];
                 currentRelicChoices[i] = relic;
@@ -142,19 +406,27 @@ public class InventoryManager : MonoBehaviour
                 relicButtons[i].gameObject.SetActive(true);
                 relicButtons[i].interactable = true;
                 relicButtons[i].transform.localScale = Vector3.one;
+
+                CanvasGroup cg = relicButtons[i].GetComponent<CanvasGroup>();
+                if (cg == null) cg = relicButtons[i].gameObject.AddComponent<CanvasGroup>();
+                cg.alpha = 1f;
             }
             else
             {
                 relicButtons[i].gameObject.SetActive(false);
+                currentRelicChoices[i] = null;
             }
         }
     }
 
     void SelectRelic(int index)
     {
+        if (index < 0 || index >= activeRelicCount)
+            return;
+
         selectedRelicIndex = index;
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < relicButtons.Length; i++)
         {
             relicButtons[i].transform.DOScale(Vector3.one, 0.2f);
         }
@@ -162,37 +434,56 @@ public class InventoryManager : MonoBehaviour
         relicButtons[selectedRelicIndex].transform.DOScale(Vector3.one * 1.1f, 0.2f);
     }
 
-    void OnRelicChosen(int index)
+    void FadeOtherRelics(int exceptIndex)
     {
-        if (playerInventory.Count >= inventorySlots.Length)
+        for (int i = 0; i < activeRelicCount; i++)
         {
-            Debug.Log("Inventory full!");
-            return;
+            if (i != exceptIndex)
+            {
+                CanvasGroup cg = relicButtons[i].GetComponent<CanvasGroup>();
+                if (cg == null)
+                {
+                    cg = relicButtons[i].gameObject.AddComponent<CanvasGroup>();
+                }
+                cg.alpha = 0.3f;
+            }
         }
+    }
 
-        Relic chosen = currentRelicChoices[index];
-        playerInventory.Add(chosen);
-        usedRelics.Add(chosen);
-        UpdateInventoryUI();
-
-        relicSelected = true;
-
-        ApplyRelicEffect(chosen);
-
-        StartCoroutine(CloseCanvasAfterDelay(1f));
+    void RestoreAllRelicsAlpha()
+    {
+        for (int i = 0; i < activeRelicCount; i++)
+        {
+            CanvasGroup cg = relicButtons[i].GetComponent<CanvasGroup>();
+            if (cg != null)
+            {
+                cg.alpha = 1f;
+            }
+        }
     }
 
     IEnumerator CloseCanvasAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+        CloseCanvasImmediate();
+    }
+
+    void CloseCanvasImmediate()
+    {
         canvasUI.SetActive(false);
         canvasActive = false;
+        isPickingRelic = false;
+        relicSelected = false;
+        relicConfirming = false;
+        pendingRelicChoose = false;
     }
 
     void UpdateInventoryUI()
     {
         for (int i = 0; i < inventorySlots.Length; i++)
         {
+            inventorySlots[i].transform.DOScale(Vector3.one, 0.1f);
+
             if (i < playerInventory.Count)
             {
                 inventorySlots[i].sprite = playerInventory[i].icon;
@@ -209,39 +500,6 @@ public class InventoryManager : MonoBehaviour
     void ApplyRelicEffect(Relic relic)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        switch (relic.type)
-        {
-            case RelicType.BobsContainmentField:
-                Debug.Log("Lần đầu tiên sử dụng Kỹ năng trong mỗi phòng sẽ cấp một Lá chắn trong 5 giây");
-                break;
-            case RelicType.BonePlate:
-                Debug.Log("Nhận được 15 Giáp. Mỗi khi bạn đánh bại một kẻ địch, bạn nhận được 1 Giáp");
-                break;
-            case RelicType.ConduitSpike:
-                Debug.Log("Đòn đánh thứ 3 của bạn giải phóng Chain Lightning, gây sát thương lên tới 2 kẻ địch khác");
-                break;
-            case RelicType.DiscountCard:
-                Debug.Log("Mua vật phẩm giá rẻ hơn");
-                break;
-            case RelicType.DoomShell:
-                Debug.Log("Bất cứ khi nào bạn lướt sẽ gây Sát thương lên kẻ địch xung quanh bạn");
-                break;
-            case RelicType.EmpoweredBangle:
-                Debug.Log("Lần đầu tiên bạn sử dụng kỹ năng trong mỗi phòng sẽ gây thêm Sát thương");
-                break;
-            case RelicType.FuryCharm:
-                Debug.Log("Các đòn tấn công của bạn gây thêm sát thương lên kẻ địch đang bị đốt cháy");
-                break;
-            case RelicType.GlacialLight:
-                Debug.Log("Bất cứ khi nào kẻ địch bị đóng băng, chúng cũng bị thiêu đốt");
-                break;
-            case RelicType.RazorClaw:
-                Debug.Log("Đòn chí mạng của bạn giờ đây gây gấp đôi sát thương");
-                break;
-            case RelicType.SpiritShelter:
-                Debug.Log("Khi chết lần đầu, bạn sẽ hồi sinh với đầy HP và di vật này sẽ biến mất");
-                break;
-        }
+        Debug.Log($"Apply effect of relic: {relic.relicName}");
     }
 }

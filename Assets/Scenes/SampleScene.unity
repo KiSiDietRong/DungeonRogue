@@ -119,6 +119,131 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &5922942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5922943}
+  - component: {fileID: 5922945}
+  - component: {fileID: 5922944}
+  m_Layer: 0
+  m_Name: Capsule (12)
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5922943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5922942}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 452629222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &5922944
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5922942}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
+--- !u!212 &5922945
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5922942}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &15860424
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,10 +614,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Huy\u1EC1n tho\u1EA1i"
+  m_text: Legendary
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -625,10 +750,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Huy\u1EC1n tho\u1EA1i"
+  m_text: Legendary
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1035,10 +1160,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Huy\u1EC1n tho\u1EA1i"
+  m_text: Legendary
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1339,6 +1464,131 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279364353}
   m_CullTransparentMesh: 1
+--- !u!1 &308906562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 308906563}
+  - component: {fileID: 308906565}
+  - component: {fileID: 308906564}
+  m_Layer: 0
+  m_Name: Capsule (9)
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &308906563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308906562}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 452629222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &308906564
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308906562}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
+--- !u!212 &308906565
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308906562}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &327380989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1533,7 +1783,7 @@ Transform:
   m_GameObject: {fileID: 362039471}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: -2.5, z: 0}
+  m_LocalPosition: {x: -6, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1658,7 +1908,7 @@ Transform:
   m_GameObject: {fileID: 370203947}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: -3, y: 3, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1739,6 +1989,131 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 376311946}
   m_CullTransparentMesh: 1
+--- !u!1 &406547155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 406547156}
+  - component: {fileID: 406547158}
+  - component: {fileID: 406547157}
+  m_Layer: 0
+  m_Name: Capsule (6)
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &406547156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406547155}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 452629222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &406547157
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406547155}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
+--- !u!212 &406547158
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406547155}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &452629221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,6 +2149,15 @@ Transform:
   - {fileID: 1412239081}
   - {fileID: 1661824207}
   - {fileID: 362039474}
+  - {fileID: 406547156}
+  - {fileID: 964030145}
+  - {fileID: 1097028066}
+  - {fileID: 308906563}
+  - {fileID: 1322116178}
+  - {fileID: 1537501509}
+  - {fileID: 5922943}
+  - {fileID: 1237493574}
+  - {fileID: 1357427340}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &485909988
@@ -1810,8 +2194,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 103.279785, y: -164.75}
-  m_SizeDelta: {x: -569.5891, y: 9.5}
+  m_AnchoredPosition: {x: 103.279785, y: -169.75}
+  m_SizeDelta: {x: -569.5891, y: -0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &485909990
 MonoBehaviour:
@@ -2106,7 +2490,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: relic 2
+  m_text: Bob's Containment Field
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2133,8 +2517,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2294,8 +2678,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 103.279785, y: -164.75}
-  m_SizeDelta: {x: -569.5891, y: 9.5}
+  m_AnchoredPosition: {x: 103.279785, y: -169.75}
+  m_SizeDelta: {x: -569.5891, y: -0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &569855175
 MonoBehaviour:
@@ -2537,7 +2921,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: relic 4
+  m_text: Bob's Containment Field
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2564,8 +2948,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2748,10 +3132,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Huy\u1EC1n tho\u1EA1i"
+  m_text: Legendary
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2981,6 +3365,131 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876111995}
   m_CullTransparentMesh: 1
+--- !u!1 &964030144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 964030145}
+  - component: {fileID: 964030147}
+  - component: {fileID: 964030146}
+  m_Layer: 0
+  m_Name: Capsule (7)
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &964030145
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964030144}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 452629222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &964030146
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964030144}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
+--- !u!212 &964030147
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964030144}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1004563820
 GameObject:
   m_ObjectHideFlags: 0
@@ -3087,6 +3596,131 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040871423}
   m_CullTransparentMesh: 1
+--- !u!1 &1097028065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1097028066}
+  - component: {fileID: 1097028068}
+  - component: {fileID: 1097028067}
+  m_Layer: 0
+  m_Name: Capsule (8)
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1097028066
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097028065}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 452629222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1097028067
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097028065}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
+--- !u!212 &1097028068
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097028065}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1130926236
 GameObject:
   m_ObjectHideFlags: 0
@@ -3119,260 +3753,221 @@ MonoBehaviour:
   allRelics:
   - relicName: Bob's Containment Field
     icon: {fileID: 6604111219391129832, guid: 0aeef440d50423d458d502a7604fd597, type: 3}
-    effectDescription: "L\u1EA7n \u0111\u1EA7u ti\xEAn s\u1EED d\u1EE5ng\_K\u1EF9
-      n\u0103ng\_trong m\u1ED7i ph\xF2ng s\u1EBD c\u1EA5p m\u1ED9t\_L\xE1 ch\u1EAFn\_trong\_5
-      gi\xE2y\_"
+    effectDescription: Your first Skill use in each room grants a Shield for 5s that
     type: 0
     rarityType: 2
-    rarity: "Huy\u1EC1n tho\u1EA1i"
+    rarity: Legendary
     cost: 300
   - relicName: Bone Plate
     icon: {fileID: 7014766379041316662, guid: a6a106fc78e0dfc4bb598a9a6695de69, type: 3}
-    effectDescription: "Nh\u1EADn \u0111\u01B0\u1EE3c\_15\_Gi\xE1p\_. M\u1ED7i khi
-      b\u1EA1n \u0111\xE1nh b\u1EA1i m\u1ED9t k\u1EBB \u0111\u1ECBch, b\u1EA1n nh\u1EADn
-      \u0111\u01B0\u1EE3c\_1\_Gi\xE1p"
+    effectDescription: Gain 15 Armor. Whenever you Defeat an enemy, you gain 1 Armor
     type: 1
     rarityType: 0
-    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    rarity: Common
     cost: 75
   - relicName: Conduit Spike
     icon: {fileID: -7607162871873315079, guid: 98ce4268ac19f454a91279213e947fa7, type: 3}
-    effectDescription: "\u0110\xF2n \u0111\xE1nh th\u1EE9 3\_c\u1EE7a b\u1EA1n\_gi\u1EA3i
-      ph\xF3ng\_Chain\_Lightning\_, g\xE2y s\xE1t th\u01B0\u01A1ng l\xEAn t\u1EDBi\_2\_k\u1EBB
-      \u0111\u1ECBch kh\xE1c"
+    effectDescription: Your 3rd Hit releases Chain Lightning, damaging up to 2 additional
+      enemies
     type: 2
     rarityType: 0
-    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    rarity: Common
     cost: 150
   - relicName: Discount Card
     icon: {fileID: -658063317407866722, guid: f28cf7f9468270941b2fd00a9176897d, type: 3}
-    effectDescription: "Mua\_v\u1EADt ph\u1EA9m\_gi\xE1 r\u1EBB h\u01A1n\_"
+    effectDescription: Shop items Cost Less gold
     type: 3
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 0
   - relicName: Doom Shell
     icon: {fileID: -913084555821057342, guid: 82b8b993b4040b942b8b96f2f81dcace, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_l\u01B0\u1EDBt\_s\u1EBD
-      g\xE2y\_S\xE1t th\u01B0\u01A1ng\_l\xEAn k\u1EBB \u0111\u1ECBch xung quanh b\u1EA1n"
+    effectDescription: Whenever you Roll, summon the Doom Shell to deal Damage to
+      enemies around you
     type: 4
     rarityType: 2
-    rarity: "Huy\u1EC1n tho\u1EA1i"
+    rarity: Legendary
     cost: 300
   - relicName: Empowered Bangle
     icon: {fileID: -3698961639503882510, guid: 50bb98e0193f05746af053a79ae0883e, type: 3}
-    effectDescription: "L\u1EA7n \u0111\u1EA7u ti\xEAn b\u1EA1n s\u1EED d\u1EE5ng\_k\u1EF9
-      n\u0103ng\_trong m\u1ED7i ph\xF2ng s\u1EBD g\xE2y th\xEAm S\xE1t\_th\u01B0\u01A1ng"
+    effectDescription: Your first Skill use in each room deals bonus Damage
     type: 5
     rarityType: 0
-    rarity: "Th\xF4ng  th\u01B0\u1EDDng"
+    rarity: Common
     cost: 150
   - relicName: Fury Charm
     icon: {fileID: 1678440030561490276, guid: 8676a3df80041144693df458fcc45da3, type: 3}
-    effectDescription: "C\xE1c \u0111\xF2n t\u1EA5n c\xF4ng c\u1EE7a b\u1EA1n g\xE2y\_th\xEAm
-      s\xE1t th\u01B0\u01A1ng\_l\xEAn\_k\u1EBB \u0111\u1ECBch\_\u0111ang b\u1ECB
-      \u0111\u1ED1t ch\xE1y"
+    effectDescription: Your attacks deal Bonus Damage against Burning enemies
     type: 6
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 150
   - relicName: Glacial Light
     icon: {fileID: 5814666659209945660, guid: 6183945788bed114785490a52883d573, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o k\u1EBB \u0111\u1ECBch b\u1ECB\_\u0111\xF3ng
-      b\u0103ng,\_ch\xFAng c\u0169ng b\u1ECB\_thi\xEAu \u0111\u1ED1t"
+    effectDescription: Whenever an enemy is Frozen, they are also Burned
     type: 7
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 225
   - relicName: Razor Claw
     icon: {fileID: 921490273531421432, guid: 73879a06919eba945853424257b5e630, type: 3}
-    effectDescription: "\u0110\xF2n ch\xED m\u1EA1ng\_c\u1EE7a b\u1EA1n\_gi\u1EDD
-      \u0111\xE2y g\xE2y\_g\u1EA5p \u0111\xF4i s\xE1t th\u01B0\u01A1ng"
+    effectDescription: Your Crits now deal Double Damage
     type: 8
     rarityType: 2
-    rarity: "Huy\u1EC1n tho\u1EA1i"
+    rarity: Legendary
     cost: 300
   - relicName: Spirit Shelter
     icon: {fileID: 3238346730402424435, guid: 1fed53e21bc020448a66781c4d30ec35, type: 3}
-    effectDescription: "Khi\_ch\u1EBFt l\u1EA7n \u0111\u1EA7u\_, b\u1EA1n\_s\u1EBD
-      h\u1ED3i sinh\_v\u1EDBi\_\u0111\u1EA7y HP\_v\xE0 di v\u1EADt n\xE0y s\u1EBD
-      bi\u1EBFn m\u1EA5t"
+    effectDescription: Upon Death, you Revive with Full HP and this relic is destroyed
     type: 9
     rarityType: 2
-    rarity: "Huy\u1EC1n tho\u1EA1i"
+    rarity: Legendary
     cost: 300
   - relicName: Archangel's Scythe
     icon: {fileID: -7935739384863357725, guid: 4f0f0680e3d8ceb4e81383b513f791ed, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_h\u1ED3i m\xE1u\_,
-      k\u1EBB \u0111\u1ECBch g\u1EA7n \u0111\xF3 s\u1EBD ph\u1EA3i ch\u1ECBu\_s\xE1t
-      th\u01B0\u01A1ng"
+    effectDescription: Whenever you Heal, nearby enemies take Damage
     type: 10
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 225
   - relicName: Arctic Axe
     icon: {fileID: -5499760515462716765, guid: c7fbe689d80f66844a76fea5d84a67cb, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_\u0111\xF3ng b\u0103ng\_m\u1ED9t
-      k\u1EBB \u0111\u1ECBch, n\xF3 s\u1EBD ph\u1EA3i ch\u1ECBu\_s\xE1t th\u01B0\u01A1ng\_m\u1ED7i
-      gi\xE2y"
+    effectDescription: Whenever you Freeze an enemy, it takes Damage every second
     type: 11
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 225
   - relicName: Bitter Chisel
     icon: {fileID: -6783193674918568518, guid: d970ddb9e3cade24cbbaf4ce51ea6aa2, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_\u0111\xE1nh b\u1EA1i\_m\u1ED9t
-      k\u1EBB th\xF9\_b\u1ECB \u0111\xF3ng b\u0103ng\_, b\u1EA1n\_s\u1EBD h\u1ED3i
-      ph\u1EE5c"
+    effectDescription: Whenever you Defeat a Frozen enemy, you Heal
     type: 12
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 225
   - relicName: Chilling Wind
     icon: {fileID: -1848560284133838252, guid: 86ee0c8d82776254e8bc0e2a20f0e5d5, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_\u0111\xE1nh b\u1EA1i\_m\u1ED9t
-      k\u1EBB \u0111\u1ECBch\_b\u1ECB \u0111\xF3ng b\u0103ng\_, n\xF3 s\u1EBD t\u1EA1o
-      ra m\u1ED9t\_v\u1EE5 n\u1ED5\_nh\u1ECF \u0111\xF3ng\_b\u0103ng\_nh\u1EEFng
-      k\u1EBB \u0111\u1ECBch kh\xE1c \u1EDF g\u1EA7n \u0111\xF3"
+    effectDescription: Whenever you Defeat a Frozen enemy, it creates a small Ice
+      Nova that Freezes other nearby enemies
     type: 14
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 150
   - relicName: Cryo Freeze
     icon: {fileID: 7370428913947006554, guid: dae86f8b96451c3459c761b22bddc1f8, type: 3}
-    effectDescription: "K\u1EBB \u0111\u1ECBch b\u1ECB \u0111\xF3ng b\u0103ng l\xE2u
-      h\u01A1n 50%"
+    effectDescription: Enemies are Frozen 50% longer
     type: 13
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 200
   - relicName: Daze Claw
     icon: {fileID: 4655904553945650273, guid: ea75fe271c29417448a544761e48dff3, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_g\xE2y s\xE1t th\u01B0\u01A1ng
-      ch\xED m\u1EA1ng\_, b\u1EA1n\_s\u1EBD g\xE2y th\xEAm cho\xE1ng"
+    effectDescription: Whenever you Crit, you deal bonus Stun
     type: 15
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 150
   - relicName: Fiery Imbuement
     icon: {fileID: 6276922996011518803, guid: a15f4e21e1b7ae04a8fc5fe3523ba07a, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n s\u1EED d\u1EE5ng m\u1ED9t\_K\u1EF9
-      n\u0103ng\_, \u0111\xF2n t\u1EA5n c\xF4ng\_b\u1EB1ng V\u0169 kh\xED\_c\u1EE7a
-      b\u1EA1n s\u1EBD th\xEAm hi\u1EC7u\_\u1EE9ng \u0110\u1ED1t ch\xE1y"
+    effectDescription: Whenever you use a Skill, your Weapon attacks add Burn
     type: 16
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 225
   - relicName: Frost Needle
     icon: {fileID: 8883991513827065806, guid: 10042771b39cc2745ba47e12f88c64ec, type: 3}
-    effectDescription: "B\u1EA1n ch\u1EAFc ch\u1EAFn c\xF3\_\u0111\xF2n ch\xED m\u1EA1ng\_khi
-      g\xE2y s\xE1t th\u01B0\u01A1ng l\xEAn\_k\u1EBB \u0111\u1ECBch\_b\u1ECB \u0111\xF3ng
-      b\u0103ng"
+    effectDescription: You have a guaranteed Crit against Frozen enemies
     type: 17
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 150
   - relicName: Giant Mace
     icon: {fileID: -8290962017994717108, guid: b7fe4333df1fe25479e4c4297ff48d1d, type: 3}
-    effectDescription: "B\u1EA1n g\xE2y th\xEAm\_s\xE1t th\u01B0\u01A1ng\_l\xEAn\_k\u1EBB
-      \u0111\u1ECBch\_b\u1ECB cho\xE1ng"
+    effectDescription: You deal bonus Damage against Stunned enemies
     type: 18
     rarityType: 0
-    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    rarity: Common
     cost: 75
   - relicName: Gilded Remains
     icon: {fileID: -4224242357412051818, guid: 328b9f991c37d5c4fa9f768d83630321, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_\u0111\xE1nh b\u1EA1i\_m\u1ED9t
-      k\u1EBB th\xF9\_b\u1ECB nhi\u1EC5m \u0111\u1ED9c\_, n\xF3 s\u1EBD r\u01A1i
-      ra\_V\xE0ng"
+    effectDescription: Whenever you Defeat a Poisoned enemy, it drops Gold
     type: 19
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 150
   - relicName: Harvest Scythe
     icon: {fileID: -8022921408323888430, guid: 66f5349ba325f9f4b819c6a8a68b756e, type: 3}
-    effectDescription: "K\u1EF9 n\u0103ng\_c\u1EE7a b\u1EA1n\_g\xE2y th\xEAm\_s\xE1t
-      th\u01B0\u01A1ng\_l\xEAn k\u1EBB \u0111\u1ECBch b\u1ECB nhi\u1EC5m \u0111\u1ED9c"
+    effectDescription: Your Skills deal bonus Damage against enemies with Status
+      Ailments
     type: 20
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 300
   - relicName: Hunter Grasp
     icon: {fileID: -6429728037839298435, guid: 70c1cb4d22d4ce347b337a03a013691b, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_\u0111\xE1nh b\u1EA1i\_m\u1ED9t
-      k\u1EBB \u0111\u1ECBch\_b\u1ECB nhi\u1EC5m \u0111\u1ED9c\_, nh\u1EADn th\xEAm\_s\xE1t
-      th\u01B0\u01A1ng\_trong\_3 gi\xE2y"
+    effectDescription: Whenever you Defeat a Poisoned enemy, gain Bonus Damage for
+      3s
     type: 21
     rarityType: 1
-    rarity: "S\u1EED thi"
+    rarity: Epic
     cost: 150
   - relicName: Impact Charm
     icon: {fileID: 4055647755703962533, guid: ed7a6f911637da042b397e82bfd00993, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_l\xE0m cho\xE1ng\_k\u1EBB
-      \u0111\u1ECBch, g\xE2y s\xE1t\_th\u01B0\u01A1ng di\u1EC7n r\u1ED9ng\_xung quanh
-      n\xF3"
+    effectDescription: Whenever you Stun an enemy, deal AoE Damage around it
     type: 22
     rarityType: 0
-    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    rarity: Common
     cost: 75
   - relicName: Infernal Scale
     icon: {fileID: -7600948579495523585, guid: 1944eecddda2ac24fbc02782bbb1ec4b, type: 3}
-    effectDescription: "Hi\u1EC7u \u1EE9ng \u0110\u1ED1t ch\xE1y\_c\u1EE7a b\u1EA1n\_g\xE2y\_th\xEAm
-      s\xE1t th\u01B0\u01A1ng"
+    effectDescription: Your Burning effects deal Bonus Damage
     type: 23
     rarityType: 0
-    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    rarity: Common
     cost: 75
   - relicName: Juicy Opal
     icon: {fileID: -3732437063118705323, guid: fc14f59deeec0df438f62a0cfa4c2d1b, type: 3}
-    effectDescription: "Kh\u1EA3 n\u0103ng h\u1ED3i HP\_c\u1EE7a b\u1EA1n\_\u0111\u01B0\u1EE3c\_t\u0103ng
-      l\xEAn"
+    effectDescription: Your Healing is Increased
     type: 24
     rarityType: 0
-    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    rarity: Common
     cost: 150
   - relicName: Recovery Ring
     icon: {fileID: -2429760598099442887, guid: bb0b1a821f5b72740acc6cbd4cb2456e, type: 3}
-    effectDescription: "M\u1ED7i khi b\u1EA1n v\xE0o m\u1ED9t c\u0103n ph\xF2ng m\u1EDBi,
-      b\u1EA1n s\u1EBD h\u1ED3i 1 HP"
+    effectDescription: Whenever you enter a new room, you Heal 1 HP
     type: 25
     rarityType: 0
-    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    rarity: Common
     cost: 150
   - relicName: Rejuvenation Glove
     icon: {fileID: -1270157414733624082, guid: ceef07dcab37f03458f66df4bd075f96, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_g\xE2y s\xE1t th\u01B0\u01A1ng
-      ch\xED m\u1EA1ng\_, b\u1EA1n\_s\u1EBD h\u1ED3i m\xE1u"
+    effectDescription: Whenever you Crit, you Heal
     type: 26
     rarityType: 0
-    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    rarity: Common
     cost: 75
   - relicName: Titan's Wargear
     icon: {fileID: -8020860552624406238, guid: 58bfc456186491042a563e98a3185fda, type: 3}
-    effectDescription: "C\u1EE9 m\u1ED7i\_4\_k\u1EBB \u0111\u1ECBch b\u1EA1n\_\u0111\xE1nh
-      b\u1EA1i\_b\u1EB1ng\_v\u0169 kh\xED\_c\u1EE7a m\xECnh ,\_s\xE1t th\u01B0\u01A1ng
-      v\u0169 kh\xED s\u1EBD t\u0103ng v\u0129nh vi\u1EC5n"
+    effectDescription: Every 4 enemies you Defeat with your Weapon, permanently increase
+      Weapon Damage
     type: 27
     rarityType: 2
-    rarity: "Huy\u1EC3n tho\u1EA1i"
+    rarity: Legendary
     cost: 300
   - relicName: Traumatic Blow
     icon: {fileID: 4797422397178903023, guid: 4ac0c2f8395d96f4691318ced2b59555, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n\_l\xE0m cho\xE1ng\_m\u1ED9t
-      k\u1EBB \u0111\u1ECBch kh\xF4ng ph\u1EA3i Boss v\xE0 c\xF3\_HP d\u01B0\u1EDBi
-      20%\_, ch\xFAng s\u1EBD b\u1ECB\_\u0111\xE1nh b\u1EA1i ngay l\u1EADp t\u1EE9c"
+    effectDescription: Whenever you Stun a non-Boss enemy below 20% HP, they are
+      Instantly Defeated
     type: 28
     rarityType: 2
-    rarity: "Huy\u1EC3n tho\u1EA1i"
+    rarity: Legendary
     cost: 300
   - relicName: Volt Claw
     icon: {fileID: -3768042465453161151, guid: 2e2fb34d65507124f973769964612d52, type: 3}
-    effectDescription: "B\u1EA5t c\u1EE9 khi n\xE0o b\u1EA1n g\xE2y s\xE1t th\u01B0\u01A1ng
-      ch\xED m\u1EA1ng, b\u1EA1n tri\u1EC7u h\u1ED3i m\u1ED9t\_Tia\_s\xE9t\_g\xE2y
-      s\xE1t th\u01B0\u01A1ng l\xEAn k\u1EBB \u0111\u1ECBch"
+    effectDescription: Whenever you Crit, you conjure a Lightning Bolt that damages
+      enemies
     type: 29
     rarityType: 0
-    rarity: "Th\xF4ng th\u01B0\u1EDDng"
+    rarity: Common
     cost: 150
   relicButtons:
   - {fileID: 419050322020960137}
@@ -3393,9 +3988,9 @@ MonoBehaviour:
   - {fileID: 876111997}
   - {fileID: 192576943}
   canvasUI: {fileID: 1422250297}
-  chanceCommon: 80
-  chanceEpic: 18
-  chanceLegendary: 2
+  chanceCommon: 50
+  chanceEpic: 30
+  chanceLegendary: 20
 --- !u!4 &1130926238
 Transform:
   m_ObjectHideFlags: 0
@@ -3636,6 +4231,131 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232228236}
   m_CullTransparentMesh: 1
+--- !u!1 &1237493573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1237493574}
+  - component: {fileID: 1237493576}
+  - component: {fileID: 1237493575}
+  m_Layer: 0
+  m_Name: Capsule (13)
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1237493574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237493573}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3, y: -3, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 452629222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1237493575
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237493573}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
+--- !u!212 &1237493576
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237493573}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1265130626
 GameObject:
   m_ObjectHideFlags: 0
@@ -3786,6 +4506,256 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1295823190}
   m_CullTransparentMesh: 1
+--- !u!1 &1322116177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1322116178}
+  - component: {fileID: 1322116180}
+  - component: {fileID: 1322116179}
+  m_Layer: 0
+  m_Name: Capsule (10)
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1322116178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322116177}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6, y: -3, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 452629222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1322116179
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322116177}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
+--- !u!212 &1322116180
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322116177}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1 &1357427339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1357427340}
+  - component: {fileID: 1357427342}
+  - component: {fileID: 1357427341}
+  m_Layer: 0
+  m_Name: Capsule (14)
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1357427340
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357427339}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 6, y: -3, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 452629222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1357427341
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357427339}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
+--- !u!212 &1357427342
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357427339}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1412239078
 GameObject:
   m_ObjectHideFlags: 0
@@ -3905,7 +4875,7 @@ Transform:
   m_GameObject: {fileID: 1412239078}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: -2.5, z: 0}
+  m_LocalPosition: {x: 3, y: 3, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4072,7 +5042,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: relic 1
+  m_text: Bob's Containment Field
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4099,8 +5069,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4275,6 +5245,131 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1528454054}
   m_CullTransparentMesh: 1
+--- !u!1 &1537501508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1537501509}
+  - component: {fileID: 1537501511}
+  - component: {fileID: 1537501510}
+  m_Layer: 0
+  m_Name: Capsule (11)
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1537501509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537501508}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3, y: -3, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 452629222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1537501510
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537501508}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1, y: 2}
+  m_Direction: 0
+--- !u!212 &1537501511
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537501508}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1619729771
 GameObject:
   m_ObjectHideFlags: 0
@@ -4450,7 +5545,7 @@ Transform:
   m_GameObject: {fileID: 1633857277}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4697,7 +5792,7 @@ Transform:
   m_GameObject: {fileID: 1661824204}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.5, z: 0}
+  m_LocalPosition: {x: 6, y: 3, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4935,7 +6030,7 @@ Transform:
   m_GameObject: {fileID: 1729540315}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3, y: 2.5, z: 0}
+  m_LocalPosition: {x: -6, y: 3, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5087,8 +6182,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 103.279785, y: -164.75}
-  m_SizeDelta: {x: -569.5891, y: 9.5}
+  m_AnchoredPosition: {x: 103.279785, y: -169.75}
+  m_SizeDelta: {x: -569.5891, y: -0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1743985529
 MonoBehaviour:
@@ -5305,7 +6400,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: relic 3
+  m_text: Bob's Containment Field
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5332,8 +6427,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5878,7 +6973,7 @@ Transform:
   m_GameObject: {fileID: 1941896519}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6216,8 +7311,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 103.279785, y: -164.75}
-  m_SizeDelta: {x: -569.5891, y: 9.5}
+  m_AnchoredPosition: {x: 103.279785, y: -169.75}
+  m_SizeDelta: {x: -569.5891, y: -0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
