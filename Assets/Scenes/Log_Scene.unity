@@ -2085,10 +2085,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 159264957}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1524733765}
+        m_TargetAssemblyTypeName: DotweenUI, Assembly-CSharp
+        m_MethodName: OnReturnFromLogin
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2568,10 +2568,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 501339582}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1524733765}
+        m_TargetAssemblyTypeName: DotweenUI, Assembly-CSharp
+        m_MethodName: OnReturnFromSignIn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3373,10 +3373,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 159264957}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1524733765}
+        m_TargetAssemblyTypeName: DotweenUI, Assembly-CSharp
+        m_MethodName: OnLoginPressed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4637,6 +4637,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1524733765}
+        m_TargetAssemblyTypeName: DotweenUI, Assembly-CSharp
+        m_MethodName: OnConfirmLogin
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1420482284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4830,6 +4842,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508577474}
   m_CullTransparentMesh: 1
+--- !u!1 &1524733764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1524733766}
+  - component: {fileID: 1524733765}
+  m_Layer: 0
+  m_Name: Dotween
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1524733765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524733764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 465b74f2710368742bb496c01aaa7d63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logo: {fileID: 1965284511}
+  signInButton: {fileID: 1653242041}
+  loginButton: {fileID: 1160601384}
+  settingsButton: {fileID: 1163862962}
+  signInPanel: {fileID: 501339582}
+  loginPanel: {fileID: 159264957}
+  signInPanelElements:
+  - {fileID: 1039047813}
+  - {fileID: 1344370800}
+  - {fileID: 1699462086}
+  - {fileID: 1108745357}
+  - {fileID: 1068199728}
+  - {fileID: 1207506772}
+  - {fileID: 1727887702}
+  loginPanelElements:
+  - {fileID: 921537514}
+  - {fileID: 1420482282}
+  - {fileID: 644436865}
+  - {fileID: 1065009959}
+  - {fileID: 1487411699}
+  - {fileID: 995753489}
+  - {fileID: 385587845}
+  logoDropDuration: 1.2
+  buttonPopDuration: 0.5
+  delayBetweenButtons: 0.2
+  panelPopDuration: 0.3
+--- !u!4 &1524733766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524733764}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.5871615, y: -4.570153, z: -0.10805499}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1525950052
 GameObject:
   m_ObjectHideFlags: 0
@@ -5373,10 +5455,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 501339582}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1524733765}
+        m_TargetAssemblyTypeName: DotweenUI, Assembly-CSharp
+        m_MethodName: OnSignInPressed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5456,7 +5538,7 @@ MonoBehaviour:
   sfxSource: {fileID: 1896533487}
   logSceneMusic: {fileID: 8300000, guid: ece52e3ca77ac9744aa837b0eb74db94, type: 3}
   mainMenuMusic: {fileID: 8300000, guid: ece52e3ca77ac9744aa837b0eb74db94, type: 3}
-  gameplayMusic: {fileID: 0}
+  lobbyMusic: {fileID: 8300000, guid: c06a7f0990607894395c036525c984cc, type: 3}
   musicVolume: 0.3
   sfxVolume: 0.5
 --- !u!4 &1679174491
@@ -5633,7 +5715,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -6851,3 +6933,4 @@ SceneRoots:
   - {fileID: 183787072}
   - {fileID: 1679174491}
   - {fileID: 970641392}
+  - {fileID: 1524733766}
