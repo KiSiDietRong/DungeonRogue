@@ -1,16 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ActiveWeapon : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public IWeapon CurrentActiveWeapon { get; private set; }
+    private GameObject currentWeaponObj;
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            Attack();
+        }
+    }
+    public void SetActiveWeapon(GameObject newWeaponPrefab)
+    {
+        if (currentWeaponObj != null)
+            Destroy(currentWeaponObj);
+
+        currentWeaponObj = Instantiate(newWeaponPrefab, transform);
+        CurrentActiveWeapon = currentWeaponObj.GetComponent<IWeapon>();
+    }
+
+    public void Attack()
+    {
+        if (CurrentActiveWeapon != null)
+            CurrentActiveWeapon.Attack();
     }
 }

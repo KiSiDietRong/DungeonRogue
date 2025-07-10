@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Sword : MonoBehaviour
+public class Sword : MonoBehaviour, IWeapon
 {
     [SerializeField] private GameObject slashAnimPrefab;
     [SerializeField] private Transform slashAnimSpawnPoint;
@@ -20,13 +20,8 @@ public class Sword : MonoBehaviour
     void Update()
     {
         MouseFollowWithOffset();
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Attack();
-        }
     }
-    private void Attack()
+    public void Attack()
     {
         myAnimator.SetTrigger("Attack");
 
