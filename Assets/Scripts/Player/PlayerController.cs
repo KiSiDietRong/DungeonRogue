@@ -4,25 +4,29 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float dashSpeed = 9f;
+    [SerializeField] private float dashMultiplier = 2f;
+    [SerializeField] private float dashDuration = 0.2f;
+    [SerializeField] private float dashCooldown = 0.25f;
     [SerializeField] private TrailRenderer myTrailRenderer;
+
     public Rigidbody2D rb;
     public Animator animator;
 
     private Vector2 movement;
     private Vector2 lastMoveDir;
 
+    private bool isDashing = false;
+    private bool canDash = true;
+    private float baseMoveSpeed;
+
     public bool FacingLeft { get { return facingLeft; } set { facingLeft = value; } }
     private bool facingLeft = false;
-    private bool isDashing = false;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-    }
-    private void Start()
-    {
-        
+        baseMoveSpeed = moveSpeed;
     }
 
     void Update()
@@ -30,18 +34,18 @@ public class PlayerController : MonoBehaviour
         HandleInput();
         UpdateFacingDirection();
         UpdateAnimator();
+
+        if (Input.GetKeyDown(KeyCode.Space) && canDash && movement != Vector2.zero)
+        {
+            StartCoroutine(Dash());
+        }
     }
+
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
     }
-    private void UpdateFacingDirection()
-    {
-        if (movement.x < 0)
-            facingLeft = true;
-        else if (movement.x > 0)
-            facingLeft = false;
-    }
+
     private void HandleInput()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -50,6 +54,15 @@ public class PlayerController : MonoBehaviour
         if (movement != Vector2.zero)
             lastMoveDir = movement;
     }
+
+    private void UpdateFacingDirection()
+    {
+        if (movement.x < 0)
+            facingLeft = true;
+        else if (movement.x > 0)
+            facingLeft = false;
+    }
+
     private void UpdateAnimator()
     {
         animator.SetFloat("moveX", movement.x);
@@ -58,24 +71,23 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("lastMoveY", lastMoveDir.y);
         animator.SetBool("isMoving", movement != Vector2.zero);
     }
-    private void Dash()
+
+    private IEnumerator Dash()
     {
-        if (!isDashing)
-        {
-            isDashing = true;
-            moveSpeed *= dashSpeed;
-            myTrailRenderer.emitting = true;
-            StartCoroutine(EndDashRoutine());
-        }
-    }
-    private IEnumerator EndDashRoutine()
-    {
-        float dashTime = .2f;
-        float dashCD = .25f;
-        yield return new WaitForSeconds(dashTime);
-        moveSpeed /= dashSpeed;
+        isDashing = true;
+        canDash = false;
+
+        float originalSpeed = moveSpeed;
+        moveSpeed = baseMoveSpeed * dashMultiplier;
+        myTrailRenderer.emitting = true;
+
+        yield return new WaitForSeconds(dashDuration);
+
+        moveSpeed = baseMoveSpeed;
         myTrailRenderer.emitting = false;
-        yield return new WaitForSeconds(dashCD);
         isDashing = false;
+
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
     }
 }

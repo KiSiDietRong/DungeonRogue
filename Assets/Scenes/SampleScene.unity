@@ -175,9 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  dashMultiplier: 1.8
-  dashDuration: 0.2
-  dashCooldown: 0.25
+  dashSpeed: 9
   myTrailRenderer: {fileID: 530235608}
   rb: {fileID: 198862924}
   animator: {fileID: 198862922}
@@ -324,6 +322,7 @@ Transform:
   m_Children:
   - {fileID: 1549596508}
   - {fileID: 1243564225}
+  - {fileID: 530235607}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
@@ -488,12 +487,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 530235606}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.376, y: -0.394, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1549596508}
+  m_Father: {fileID: 198862927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &530235608
 TrailRenderer:
@@ -540,7 +539,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Time: 0.5
+  m_Time: 0.15
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -627,7 +626,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_MaskInteraction: 0
   m_Autodestruct: 0
-  m_Emitting: 1
+  m_Emitting: 0
   m_ApplyActiveColorSpace: 1
 --- !u!1 &619394800
 GameObject:
@@ -729,7 +728,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1243564225
 Transform:
   m_ObjectHideFlags: 0
@@ -955,7 +954,6 @@ Transform:
   m_Children:
   - {fileID: 1261092810}
   - {fileID: 1614042718}
-  - {fileID: 530235607}
   m_Father: {fileID: 198862927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1549596509
