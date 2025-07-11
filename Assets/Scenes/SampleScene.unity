@@ -862,7 +862,7 @@ Transform:
   m_GameObject: {fileID: 605136912}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.14, y: -1.0630414, z: 0}
+  m_LocalPosition: {x: 4.14, y: -5.6000004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1122,7 +1122,7 @@ Transform:
   m_GameObject: {fileID: 800894829}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.26, y: -1.0630414, z: 0}
+  m_LocalPosition: {x: -1.26, y: -5.6000004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1382,7 +1382,7 @@ Transform:
   m_GameObject: {fileID: 1073097459}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.56, y: -1.0630414, z: 0}
+  m_LocalPosition: {x: -6.56, y: -5.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1484,6 +1484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1549596508}
   - component: {fileID: 1549596509}
+  - component: {fileID: 1549596510}
   m_Layer: 0
   m_Name: ActiveWeapon
   m_TagString: Untagged
@@ -1516,6 +1517,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4aaaf378f5e0d6a43a636b845c34dac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1549596510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549596507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c12bc28af68766c4d91fdcc74ea1cd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1713812576

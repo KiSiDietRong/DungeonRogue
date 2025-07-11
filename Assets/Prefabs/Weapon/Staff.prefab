@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4882231770124395944}
   - component: {fileID: 8914973624470933567}
   - component: {fileID: 7945978135754631174}
+  - component: {fileID: 6436562867866221540}
   m_Layer: 0
   m_Name: Staff
   m_TagString: Untagged
@@ -100,3 +101,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76996bc391c671d45811c56641ae686a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &6436562867866221540
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7652181508068198463}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92e59e29e88237947b41a24be5bd0f64, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
