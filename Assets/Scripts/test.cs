@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class test : MonoBehaviour
 {
@@ -7,10 +8,17 @@ public class test : MonoBehaviour
     public float dashDuration = 0.2f;
     public GameObject bulletPrefab;
     public Transform firePoint;
+    public float maxHealth = 100f;
+    private float currentHealth;
 
     private Vector2 moveInput;
     public Vector2 lastMoveDirection { get; private set; } = Vector2.down;
     private bool isDashing = false;
+
+    void Start()
+    {
+        currentHealth = maxHealth;
+    }
 
     void Update()
     {
@@ -39,7 +47,6 @@ public class test : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && !isDashing)
         {
-            // Dash theo hướng vừa di chuyển, không dùng chuột nữa
             if (lastMoveDirection != Vector2.zero)
                 StartCoroutine(Dash(lastMoveDirection));
         }
@@ -50,7 +57,7 @@ public class test : MonoBehaviour
         }
     }
 
-    System.Collections.IEnumerator Dash(Vector2 direction)
+    IEnumerator Dash(Vector2 direction)
     {
         isDashing = true;
         float elapsed = 0f;
@@ -72,5 +79,14 @@ public class test : MonoBehaviour
 
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         bullet.GetComponent<bullet>().Initialize(shootDirection);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Debug.Log("Player died!");
+        }
     }
 }
