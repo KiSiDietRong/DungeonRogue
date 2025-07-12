@@ -5,15 +5,21 @@ public class Staff : MonoBehaviour, IWeapon
     private PlayerController playerController;
     private ActiveWeapon activeWeapon;
 
-    void Awake()
+    [SerializeField] private GameObject magicPrefab;
+    [SerializeField] private Transform magicSpawnPoint;
+
+    readonly int ATTACK_HASH = Animator.StringToHash("Attack");
+    private Animator myAnimator;
+    private void Awake()
     {
         playerController = GetComponentInParent<PlayerController>();
         activeWeapon = GetComponentInParent<ActiveWeapon>();
+        myAnimator = GetComponent<Animator>();
     }
-
     public void Attack()
     {
-        Debug.Log("Staff Attack");
+        myAnimator.SetTrigger(ATTACK_HASH);
+        GameObject newArrow = Instantiate(magicPrefab, magicSpawnPoint.position, activeWeapon.transform.rotation);
     }
 
     void Update()
