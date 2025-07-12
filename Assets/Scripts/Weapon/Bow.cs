@@ -2,24 +2,23 @@ using UnityEngine;
 
 public class Bow : MonoBehaviour, IWeapon
 {
+    [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private Transform arrowSpawnPoint;
+
+    private PlayerController playerController;
+    private ActiveWeapon activeWeapon;
+
+    readonly int FIRE_HASH = Animator.StringToHash("Fire");
+    private Animator myAnimator;
+    private void Awake()
+    {
+        playerController = GetComponentInParent<PlayerController>();
+        activeWeapon = GetComponentInParent<ActiveWeapon>();
+        myAnimator = GetComponent<Animator>();
+    }
     public void Attack()
-    {
-        Debug.Log("Staff Attack");
-    }
-
-    private void Update()
-    {
-        MouseFollowWithOffset();
-    }
-
-    private void MouseFollowWithOffset()
-    {
-        Vector3 mousePos = Input.mousePosition;
-        Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        Vector3 dir = worldMousePos - transform.position;
-        dir.z = 0f;
-
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+    { 
+        myAnimator.SetTrigger(FIRE_HASH);
+        GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position,activeWeapon.transform.rotation);
     }
 }
