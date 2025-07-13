@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76996bc391c671d45811c56641ae686a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponInfo: {fileID: 11400000, guid: e81da1eadf58a834482ce51b43904fdd, type: 2}
   magicPrefab: {fileID: 844441348703016923, guid: bb60657bd16edd24fb1d77952a10fb62, type: 3}
   magicSpawnPoint: {fileID: 8167725749763943459}
 --- !u!95 &6436562867866221540

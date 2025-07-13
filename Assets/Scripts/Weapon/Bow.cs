@@ -4,6 +4,7 @@ public class Bow : MonoBehaviour, IWeapon
 {
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform arrowSpawnPoint;
+    [SerializeField] private WeaponInfo weaponInfo;
 
     private PlayerController playerController;
     private ActiveWeapon activeWeapon;
@@ -20,5 +21,9 @@ public class Bow : MonoBehaviour, IWeapon
     { 
         myAnimator.SetTrigger(FIRE_HASH);
         GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position,activeWeapon.transform.rotation);
+    }
+    public WeaponInfo GetWeaponInfo()
+    {
+        return weaponInfo;
     }
 }

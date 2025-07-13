@@ -5,6 +5,7 @@ public class Sword : MonoBehaviour, IWeapon
     [SerializeField] private GameObject slashAnimPrefab;
     [SerializeField] private Transform slashAnimSpawnPoint;
     [SerializeField] private Transform weaponCollder;
+    [SerializeField] private WeaponInfo weaponInfo;
 
     private GameObject slashAnim;
     private Animator myAnimator;
@@ -36,6 +37,10 @@ public class Sword : MonoBehaviour, IWeapon
         {
             sr.flipX = (mousePos.x < playerScreenPos.x);
         }
+    }
+    public WeaponInfo GetWeaponInfo()
+    {
+        return weaponInfo;
     }
     public void SwingUpFlipAnimEvent()
     {

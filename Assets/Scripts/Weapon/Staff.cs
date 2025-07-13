@@ -5,6 +5,7 @@ public class Staff : MonoBehaviour, IWeapon
     private PlayerController playerController;
     private ActiveWeapon activeWeapon;
 
+    [SerializeField] private WeaponInfo weaponInfo;
     [SerializeField] private GameObject magicPrefab;
     [SerializeField] private Transform magicSpawnPoint;
 
@@ -21,7 +22,10 @@ public class Staff : MonoBehaviour, IWeapon
         myAnimator.SetTrigger(ATTACK_HASH);
         GameObject newArrow = Instantiate(magicPrefab, magicSpawnPoint.position, activeWeapon.transform.rotation);
     }
-
+    public WeaponInfo GetWeaponInfo() 
+    {
+        return weaponInfo;
+    }
     void Update()
     {
         MouseFollowWithOffset();

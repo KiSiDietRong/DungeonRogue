@@ -212,6 +212,7 @@ MonoBehaviour:
   slashAnimPrefab: {fileID: 763077826371275025, guid: 51b344ae8b96ada41a2881d5f4af5975, type: 3}
   slashAnimSpawnPoint: {fileID: 2810524425740753438}
   weaponCollder: {fileID: 5158058698644584019}
+  weaponInfo: {fileID: 11400000, guid: 737e2d706e3fe804587b1babb5fb11ea, type: 2}
 --- !u!1 &8285793668310420230
 GameObject:
   m_ObjectHideFlags: 0

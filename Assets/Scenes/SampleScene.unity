@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  dashMultiplier: 2
+  dashSpeed: 10
   dashDuration: 0.2
   dashCooldown: 0.25
   myTrailRenderer: {fileID: 530235608}
