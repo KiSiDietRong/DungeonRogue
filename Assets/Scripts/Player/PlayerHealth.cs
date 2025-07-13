@@ -22,7 +22,6 @@ public class PlayerHealth : MonoBehaviour
     }
     public void TakeDamage(int damageAmount, Transform hitTransform)
     {
-
         canTakeDamage = false;
         currentHealth -= damageAmount;
     }

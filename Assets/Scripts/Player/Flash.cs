@@ -1,16 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Flash : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private Material whiteFlashMat;
+    [SerializeField] private float restoreDefaultMatTime = .2f;
+
+    private Material defaultMat;
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        defaultMat = spriteRenderer.material;
     }
 
-    // Update is called once per frame
-    void Update()
+    public float GetRestoreMatTime()
     {
-        
+        return restoreDefaultMatTime;
+    }
+
+    public IEnumerator FlashRoutine()
+    {
+        spriteRenderer.material = whiteFlashMat;
+        yield return new WaitForSeconds(restoreDefaultMatTime);
+        spriteRenderer.material = defaultMat;
     }
 }
