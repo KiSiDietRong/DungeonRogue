@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float dashMultiplier = 2f;
+    [SerializeField] private float moveSpeed = 5f;          
+    [SerializeField] private float dashSpeed = 10f;        
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 0.25f;
     [SerializeField] private TrailRenderer myTrailRenderer;
@@ -77,8 +77,7 @@ public class PlayerController : MonoBehaviour
         isDashing = true;
         canDash = false;
 
-        float originalSpeed = moveSpeed;
-        moveSpeed = baseMoveSpeed * dashMultiplier;
+        moveSpeed = dashSpeed;
         myTrailRenderer.emitting = true;
 
         yield return new WaitForSeconds(dashDuration);
