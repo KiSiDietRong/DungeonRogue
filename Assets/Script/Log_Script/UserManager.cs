@@ -16,6 +16,9 @@ public class UserManager : MonoBehaviour
     // Hàm đăng ký
     public string Register(string username, string password)
     {
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            return "Please enter username and password.";
+
         if (username.Length > 12)
             return "Username can long than 12 sentences.";
 
@@ -27,17 +30,20 @@ public class UserManager : MonoBehaviour
         return "Register Success!";
     }
 
-    // Hàm đăng nhập
     public string Login(string username, string password)
     {
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            return "Please enter username and password.";
+
         if (userDatabase.ContainsKey(username))
         {
             if (userDatabase[username] == password)
                 return "Login Success!";
             else
-                return "Wrong password.";
+                return "Incorrect username or password.";
         }
-        return "Invalid account.";
+
+        return "Incorrect username or password.";
     }
 
     private void SaveUsers()

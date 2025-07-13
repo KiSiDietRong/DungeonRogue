@@ -12,8 +12,8 @@ public class LoginUI : MonoBehaviour
 
     public void OnRegisterClick()
     {
-        string username = usernameInput.text;
-        string password = passwordInput.text;
+        string username = usernameInput.text.Trim();
+        string password = passwordInput.text.Trim();
 
         string result = userManager.Register(username, password);
         messageText.text = result;
@@ -21,8 +21,14 @@ public class LoginUI : MonoBehaviour
 
     public void OnLoginClick()
     {
-        string username = usernameInput.text;
-        string password = passwordInput.text;
+        string username = usernameInput.text.Trim();
+        string password = passwordInput.text.Trim();
+
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+        {
+            messageText.text = "Please enter username and password.";
+            return;
+        }
 
         string result = userManager.Login(username, password);
         messageText.text = result;
@@ -31,6 +37,11 @@ public class LoginUI : MonoBehaviour
         {
             // Gọi coroutine để đợi 3 giây trước khi chuyển scene
             StartCoroutine(LoadSceneAfterDelay("MainMenu", 3f));
+        }
+        else
+        {
+            // Không chuyển scene nếu đăng nhập sai
+            Debug.Log("Login failed: " + result);
         }
     }
 
