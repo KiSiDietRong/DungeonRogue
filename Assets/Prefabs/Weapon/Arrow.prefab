@@ -199,7 +199,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Time: 0.12
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -284,3 +284,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 22
+  weaponInfo: {fileID: 11400000, guid: 37e51db6e8fde594d9c66cc20c3c70ec, type: 2}

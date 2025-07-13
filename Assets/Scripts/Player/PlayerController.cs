@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D rb;
     public Animator animator;
-
+    private Knockback Knockback;
     private Vector2 movement;
     private Vector2 lastMoveDir;
 
@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Knockback = GetComponent<Knockback>();
         baseMoveSpeed = moveSpeed;
     }
 
