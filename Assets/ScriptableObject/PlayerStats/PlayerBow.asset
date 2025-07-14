@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerBow
   m_EditorClassIdentifier: 
   className: Bow
-  maxHealth: 100
+  maxHealth: 10
   skillDamage: 0
   moveSpeed: 20

@@ -370,6 +370,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockbackThrustAmount: 10
   damageRecoveryTime: 1
+  hpSlider: {fileID: 1728594052}
+  hpText: {fileID: 1686339070}
   characterStat: {fileID: 0}
 --- !u!1 &212485079
 GameObject:

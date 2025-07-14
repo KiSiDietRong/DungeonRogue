@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerStaff
   m_EditorClassIdentifier: 
   className: Staff
-  maxHealth: 100
+  maxHealth: 20
   skillDamage: 0
   moveSpeed: 5
