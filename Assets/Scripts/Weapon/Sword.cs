@@ -25,7 +25,7 @@ public class Sword : MonoBehaviour, IWeapon
     public void Attack()
     {
         myAnimator.SetTrigger("Attack");
-
+        weaponCollder.gameObject.SetActive(true);
         slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
         slashAnim.transform.parent = this.transform.parent;
 
@@ -37,6 +37,10 @@ public class Sword : MonoBehaviour, IWeapon
         {
             sr.flipX = (mousePos.x < playerScreenPos.x);
         }
+    }
+    public void DoneAttackingAnimEvent()
+    {
+        weaponCollder.gameObject.SetActive(false);
     }
     public WeaponInfo GetWeaponInfo()
     {
