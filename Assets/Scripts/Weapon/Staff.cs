@@ -11,21 +11,30 @@ public class Staff : MonoBehaviour, IWeapon
 
     readonly int ATTACK_HASH = Animator.StringToHash("Attack");
     private Animator myAnimator;
+
     private void Awake()
     {
         playerController = GetComponentInParent<PlayerController>();
         activeWeapon = GetComponentInParent<ActiveWeapon>();
         myAnimator = GetComponent<Animator>();
     }
+
     public void Attack()
     {
         myAnimator.SetTrigger(ATTACK_HASH);
         GameObject newArrow = Instantiate(magicPrefab, magicSpawnPoint.position, activeWeapon.transform.rotation);
+        Projectile projectile = newArrow.GetComponent<Projectile>();
+        if (projectile != null)
+        {
+            projectile.UpdateWeaponInfo(weaponInfo);
+        }
     }
-    public WeaponInfo GetWeaponInfo() 
+
+    public WeaponInfo GetWeaponInfo()
     {
         return weaponInfo;
     }
+
     void Update()
     {
         MouseFollowWithOffset();

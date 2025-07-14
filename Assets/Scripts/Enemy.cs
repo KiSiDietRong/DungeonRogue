@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Enemy : MonoBehaviour
 {
@@ -6,8 +7,8 @@ public class Enemy : MonoBehaviour
     public float maxHP = 100f;
     public float damage = 10f;
     public float moveSpeed = 3f;
-    public float attackRange = 1f;
-    public float chaseRange = 2f;
+    public float attackRange = 2f;
+    public float chaseRange = 4f;
     public float attackCooldown = 1f;
 
     [Header("References")]
@@ -15,7 +16,14 @@ public class Enemy : MonoBehaviour
     private GameObject player;
     private float currentHP;
     private bool isDead = false;
+    private bool isAttacking = false;
     private float lastAttackTime;
+    private Knockback knockback;
+
+    private bool isPatrolling = false;
+    private Vector2 patrolDirection = Vector2.left;
+    private float patrolSpeed = 1f;
+    private float patrolInterval = 1f;
 
     private static readonly int Idle = Animator.StringToHash("Idle");
     private static readonly int Walk = Animator.StringToHash("Walk");
@@ -31,32 +39,40 @@ public class Enemy : MonoBehaviour
         {
             animator = GetComponent<Animator>();
         }
+        knockback = GetComponent<Knockback>();
+
+        StartCoroutine(CheckForPlayerAndStartPatrolLoop());
     }
 
     void Update()
     {
-        if (isDead || player == null) return;
+        if (isDead || player == null || isAttacking || knockback.GettingKnockedBack || isPatrolling) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
         if (distanceToPlayer <= attackRange)
         {
-            animator.SetTrigger(Attack);
             FlipTowardsPlayer();
-            if (Time.time >= lastAttackTime + attackCooldown)
+
+            if (!isAttacking && Time.time >= lastAttackTime + attackCooldown)
             {
-                AttackPlayer();
+                isAttacking = true;
                 lastAttackTime = Time.time;
+                StartCoroutine(AttackPlayer());
             }
         }
         else if (distanceToPlayer <= chaseRange)
         {
+            isPatrolling = false;
+            animator.ResetTrigger(Idle);
+            animator.ResetTrigger(Hurt);
             animator.SetTrigger(Walk);
             FlipTowardsPlayer();
             MoveTowardsPlayer();
         }
         else
         {
+            animator.ResetTrigger(Walk);
             animator.SetTrigger(Idle);
         }
     }
@@ -78,25 +94,83 @@ public class Enemy : MonoBehaviour
         );
     }
 
-    void AttackPlayer()
+    IEnumerator AttackPlayer()
     {
-        var playerScript = player.GetComponent<test>();
-        if (playerScript != null)
+        isAttacking = true;
+        animator.SetTrigger(Attack);
+
+        AnimatorStateInfo stateInfo;
+        float timeout = 1f;
+        while (timeout > 0f)
         {
-            Debug.Log($"Enemy attacks player for {damage} damage!");
+            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.IsName("Attack")) break;
+            timeout -= Time.deltaTime;
+            yield return null;
         }
+
+        stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        float attackAnimLength = stateInfo.length;
+        yield return new WaitForSeconds(attackAnimLength * 0.5f);
+
+        var playerScript = player.GetComponent<PlayerHealth>();
+        if (playerScript != null && !playerScript.GetComponent<Knockback>().GettingKnockedBack)
+        {
+            playerScript.TakeDamage((int)damage, transform);
+        }
+
+        yield return new WaitForSeconds(attackAnimLength * 0.5f);
+
+        animator.SetTrigger(Idle);
+
+        float remainingCooldown = Mathf.Max(0f, attackCooldown - attackAnimLength);
+        if (remainingCooldown > 0f)
+        {
+            yield return new WaitForSeconds(remainingCooldown);
+        }
+
+        isAttacking = false;
     }
 
     public void TakeDamage(float damage)
     {
-        if (isDead) return;
+        if (isDead || knockback.GettingKnockedBack) return;
 
         currentHP -= damage;
         animator.SetTrigger(Hurt);
 
+        if (isPatrolling)
+        {
+            isPatrolling = false;
+            StopCoroutine(PatrolRoutine());
+        }
+
         if (currentHP <= 0)
         {
             DieEnemy();
+        }
+        else
+        {
+            StartCoroutine(RecoverFromHurt());
+        }
+    }
+
+    IEnumerator RecoverFromHurt()
+    {
+        yield return new WaitForSeconds(0.3f);
+
+        if (isDead) yield break;
+
+        float distance = Vector2.Distance(transform.position, player.transform.position);
+        if (distance <= chaseRange)
+        {
+            animator.ResetTrigger(Hurt);
+            animator.SetTrigger(Walk);
+        }
+        else
+        {
+            animator.ResetTrigger(Hurt);
+            animator.SetTrigger(Idle);
         }
     }
 
@@ -114,8 +188,82 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            float bulletDamage = other.GetComponent<bullet>().damage;
-            TakeDamage(bulletDamage);
+            Projectile projectile = other.GetComponent<Projectile>();
+            if (projectile != null && projectile.GetWeaponInfo() != null)
+            {
+                TakeDamage(projectile.GetWeaponInfo().weaponDamage);
+
+                if (knockback != null)
+                {
+                    knockback.GetKnockedBack(other.transform, 0.2f);
+                }
+
+                Destroy(other.gameObject);
+            }
         }
+    }
+
+    IEnumerator CheckForPlayerAndStartPatrolLoop()
+    {
+        while (!isDead)
+        {
+            yield return new WaitForSeconds(2f);
+
+            if (player == null || isAttacking || knockback.GettingKnockedBack || isDead) continue;
+
+            float distance = Vector2.Distance(transform.position, player.transform.position);
+
+            if (distance > chaseRange && !isPatrolling)
+            {
+                StartCoroutine(PatrolRoutine());
+            }
+        }
+    }
+
+    IEnumerator PatrolRoutine()
+    {
+        isPatrolling = true;
+        while (isPatrolling)
+        {
+            if (player == null || isDead) yield break;
+
+            float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+            if (distanceToPlayer <= chaseRange)
+            {
+                isPatrolling = false;
+                yield break;
+            }
+
+            animator.ResetTrigger(Hurt);
+            animator.ResetTrigger(Idle);
+            animator.SetTrigger(Walk);
+
+            Flip(patrolDirection.x);
+
+            Vector3 startPos = transform.position;
+            Vector3 targetPos = startPos + (Vector3)patrolDirection;
+
+            float elapsed = 0f;
+            while (elapsed < patrolInterval)
+            {
+                transform.position = Vector3.Lerp(startPos, targetPos, elapsed / patrolInterval);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+            transform.position = targetPos;
+
+            patrolDirection *= -1;
+            yield return null;
+        }
+    }
+
+    void Flip(float directionX)
+    {
+        float scaleX = Mathf.Abs(transform.localScale.x);
+        transform.localScale = new Vector3(
+            directionX > 0 ? scaleX : -scaleX,
+            transform.localScale.y,
+            transform.localScale.z
+        );
     }
 }

@@ -11,17 +11,25 @@ public class Bow : MonoBehaviour, IWeapon
 
     readonly int FIRE_HASH = Animator.StringToHash("Fire");
     private Animator myAnimator;
+
     private void Awake()
     {
         playerController = GetComponentInParent<PlayerController>();
         activeWeapon = GetComponentInParent<ActiveWeapon>();
         myAnimator = GetComponent<Animator>();
     }
+
     public void Attack()
-    { 
+    {
         myAnimator.SetTrigger(FIRE_HASH);
-        GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position,activeWeapon.transform.rotation);
+        GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, activeWeapon.transform.rotation);
+        Projectile projectile = newArrow.GetComponent<Projectile>();
+        if (projectile != null)
+        {
+            projectile.UpdateWeaponInfo(weaponInfo);
+        }
     }
+
     public WeaponInfo GetWeaponInfo()
     {
         return weaponInfo;
