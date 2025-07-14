@@ -205,6 +205,7 @@ MonoBehaviour:
   attackRange: 2
   chaseRange: 4
   attackCooldown: 2
+  damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
   animator: {fileID: 3382630074565521606}
 --- !u!114 &7893103319017565078
 MonoBehaviour:

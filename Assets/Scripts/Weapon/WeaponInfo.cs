@@ -9,4 +9,5 @@ public class WeaponInfo : ScriptableObject
     public float weaponCooldown;
     public int weaponDamage;
     public float weaponRange;
+    [Range(0f, 1f)] public float criticalChance = 0.1f;
 }

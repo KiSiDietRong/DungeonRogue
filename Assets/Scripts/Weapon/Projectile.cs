@@ -44,11 +44,6 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (enemy != null && weaponInfo != null)
-            {
-                enemy.TakeDamage(weaponInfo.weaponDamage);
-            }
             Destroy(gameObject);
         }
     }

@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     public float chaseRange = 4f;
     public float attackCooldown = 1f;
 
+    public GameObject damagePopupPrefab;
+
     [Header("References")]
     public Animator animator;
     private GameObject player;
@@ -35,12 +37,8 @@ public class Enemy : MonoBehaviour
     {
         currentHP = maxHP;
         player = GameObject.FindGameObjectWithTag("Player");
-        if (animator == null)
-        {
-            animator = GetComponent<Animator>();
-        }
+        if (animator == null) animator = GetComponent<Animator>();
         knockback = GetComponent<Knockback>();
-
         StartCoroutine(CheckForPlayerAndStartPatrolLoop());
     }
 
@@ -53,7 +51,6 @@ public class Enemy : MonoBehaviour
         if (distanceToPlayer <= attackRange)
         {
             FlipTowardsPlayer();
-
             if (!isAttacking && Time.time >= lastAttackTime + attackCooldown)
             {
                 isAttacking = true;
@@ -120,21 +117,28 @@ public class Enemy : MonoBehaviour
         }
 
         yield return new WaitForSeconds(attackAnimLength * 0.5f);
-
         animator.SetTrigger(Idle);
 
         float remainingCooldown = Mathf.Max(0f, attackCooldown - attackAnimLength);
-        if (remainingCooldown > 0f)
-        {
-            yield return new WaitForSeconds(remainingCooldown);
-        }
+        if (remainingCooldown > 0f) yield return new WaitForSeconds(remainingCooldown);
 
         isAttacking = false;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Vector3 hitPosition, bool isCritical)
     {
         if (isDead || knockback.GettingKnockedBack) return;
+
+        if (damagePopupPrefab != null)
+        {
+            Vector3 spawnPos = hitPosition + Vector3.up * 0.3f;
+            GameObject popup = Instantiate(damagePopupPrefab, spawnPos, Quaternion.identity);
+            DamagePopup popupScript = popup.GetComponent<DamagePopup>();
+            if (popupScript != null)
+            {
+                popupScript.Setup((int)damage, isCritical);
+            }
+        }
 
         currentHP -= damage;
         animator.SetTrigger(Hurt);
@@ -145,14 +149,14 @@ public class Enemy : MonoBehaviour
             StopCoroutine(PatrolRoutine());
         }
 
-        if (currentHP <= 0)
-        {
-            DieEnemy();
-        }
-        else
-        {
-            StartCoroutine(RecoverFromHurt());
-        }
+        if (currentHP <= 0) DieEnemy();
+        else StartCoroutine(RecoverFromHurt());
+    }
+
+    // Optional fallback for old method calls
+    public void TakeDamage(float damage)
+    {
+        TakeDamage(damage, transform.position, false);
     }
 
     IEnumerator RecoverFromHurt()
@@ -191,7 +195,9 @@ public class Enemy : MonoBehaviour
             Projectile projectile = other.GetComponent<Projectile>();
             if (projectile != null && projectile.GetWeaponInfo() != null)
             {
-                TakeDamage(projectile.GetWeaponInfo().weaponDamage);
+                bool isCritical = Random.value <= projectile.GetWeaponInfo().criticalChance;
+                float finalDamage = projectile.GetWeaponInfo().weaponDamage * (isCritical ? 2f : 1f);
+                TakeDamage(finalDamage, other.transform.position, isCritical);
 
                 if (knockback != null)
                 {
@@ -212,7 +218,6 @@ public class Enemy : MonoBehaviour
             if (player == null || isAttacking || knockback.GettingKnockedBack || isDead) continue;
 
             float distance = Vector2.Distance(transform.position, player.transform.position);
-
             if (distance > chaseRange && !isPatrolling)
             {
                 StartCoroutine(PatrolRoutine());
