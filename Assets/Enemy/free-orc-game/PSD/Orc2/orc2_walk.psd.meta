@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      orc2_walk_0: 6592146344152623798
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
