@@ -3,21 +3,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;          
-    [SerializeField] private float dashSpeed = 10f;        
+    public CharacterStatSO characterStat;
+    [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float dashDuration = 0.2f;
     [SerializeField] private float dashCooldown = 0.25f;
     [SerializeField] private TrailRenderer myTrailRenderer;
 
     public Rigidbody2D rb;
     public Animator animator;
+
     private Knockback Knockback;
     private Vector2 movement;
     private Vector2 lastMoveDir;
 
     private bool isDashing = false;
     private bool canDash = true;
+
     private float baseMoveSpeed;
+    private float moveSpeed = 5f;
 
     public bool FacingLeft { get { return facingLeft; } set { facingLeft = value; } }
     private bool facingLeft = false;
@@ -27,7 +30,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         Knockback = GetComponent<Knockback>();
-        baseMoveSpeed = moveSpeed;
     }
 
     void Update()
@@ -89,5 +91,12 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
+    }
+
+    public void InitFromStats(CharacterStatSO stats)
+    {
+        characterStat = stats;
+        baseMoveSpeed = characterStat.moveSpeed;
+        moveSpeed = baseMoveSpeed;
     }
 }
