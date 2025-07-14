@@ -440,6 +440,7 @@ GameObject:
   - component: {fileID: 769653926}
   - component: {fileID: 769653930}
   - component: {fileID: 769653929}
+  - component: {fileID: 769653931}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -551,6 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2a8ef391f22fa4884e7228330069e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!50 &769653930
 Rigidbody2D:
   serializedVersion: 5
@@ -578,6 +580,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &769653931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769653925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dcdec8f39566c24599b3f4a1a69653b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillSlot1: {fileID: 11400000, guid: 2c4ca07da58cc894e96e408bdf432dfb, type: 2}
+  skillSlot2: {fileID: 11400000, guid: c83a151fdd934ff4a8515d5784a5eade, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

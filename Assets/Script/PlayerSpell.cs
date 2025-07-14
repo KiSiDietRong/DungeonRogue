@@ -16,7 +16,7 @@ public class PlayerSpell : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && Time.time >= nextFireTime) // Left click
+        if (Input.GetKeyDown(KeyCode.Alpha1) && Time.time >= nextFireTime) 
         {
             CastFireball();
             nextFireTime = Time.time + fireRate;

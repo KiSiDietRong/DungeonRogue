@@ -1,14 +1,14 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 8f;
     public int damage = 20;
-    public float lifetime = 2f;
+    public float lifetime = 3f;
 
     private Vector2 direction;
 
-    private void Start()
+    void Start()
     {
         Destroy(gameObject, lifetime);
     }
@@ -17,17 +17,16 @@ public class Fireball : MonoBehaviour
     {
         direction = dir.normalized;
 
-        // Rotate to face movement direction (optional)
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
-    private void Update()
+    void Update()
     {
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
@@ -37,7 +36,8 @@ public class Fireball : MonoBehaviour
                 enemy.TakeDamage(damage);
             }
 
-            Destroy(gameObject);
+            Destroy(gameObject); // Chỉ huỷ khi trúng Enemy
         }
+        // Nếu không phải Enemy → không làm gì → Fireball bay tiếp
     }
 }
