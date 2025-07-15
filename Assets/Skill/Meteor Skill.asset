@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0182515e6cc0d7409305623344d89cd, type: 3}
-  m_Name: New Meteor Skill
+  m_Name: Meteor Skill
   m_EditorClassIdentifier: 
   skillName: Meteor
   icon: {fileID: 0}

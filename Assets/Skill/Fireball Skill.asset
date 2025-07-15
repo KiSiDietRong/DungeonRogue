@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4865117c5f5db2049a0453d825b0668f, type: 3}
-  m_Name: New Fireball Skill
+  m_Name: Fireball Skill
   m_EditorClassIdentifier: 
   skillName: FireBall
   icon: {fileID: 0}
