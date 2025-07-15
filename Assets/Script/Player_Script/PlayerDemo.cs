@@ -12,6 +12,9 @@ public class PlayerDemo : MonoBehaviour
     private Transform portalTransform;
     private bool isEnteringPortal = false;
 
+    private bool nearNPC = false;
+    private DialogueNPC currentNPC;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,6 +33,11 @@ public class PlayerDemo : MonoBehaviour
         if (nearPortal && Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(MoveToPortalAndEnter());
+        }
+
+        if (nearNPC && Input.GetKeyDown(KeyCode.F))
+        {
+            currentNPC.StartDialogue();
         }
     }
 
@@ -66,5 +74,11 @@ public class PlayerDemo : MonoBehaviour
     {
         nearPortal = value;
         portalTransform = portal;
+    }
+
+    public void SetNearNPC(bool value, DialogueNPC npc)
+    {
+        nearNPC = value;
+        currentNPC = value ? npc : null;
     }
 }
