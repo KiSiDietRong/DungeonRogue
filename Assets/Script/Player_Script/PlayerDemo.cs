@@ -15,6 +15,8 @@ public class PlayerDemo : MonoBehaviour
     private bool nearNPC = false;
     private DialogueNPC currentNPC;
 
+    public bool hasOrb = false; // <--- THÊM BIẾN NÀY
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,12 +26,10 @@ public class PlayerDemo : MonoBehaviour
     {
         if (isEnteringPortal) return;
 
-        // Nhận input từ bàn phím
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
-        moveInput.Normalize(); // Đảm bảo tốc độ không tăng khi đi chéo
+        moveInput.Normalize();
 
-        // Nếu đang gần cổng và nhấn phím E
         if (nearPortal && Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(MoveToPortalAndEnter());
@@ -44,32 +44,24 @@ public class PlayerDemo : MonoBehaviour
     void FixedUpdate()
     {
         if (isEnteringPortal) return;
-
         rb.MovePosition(rb.position + moveInput * moveSpeed * Time.fixedDeltaTime);
     }
 
     private IEnumerator MoveToPortalAndEnter()
     {
         isEnteringPortal = true;
-
-        // Xác định vị trí trung tâm trước cổng (Z không cần vì 2D)
         Vector3 portalPosition = new Vector3(portalTransform.position.x, portalTransform.position.y - 1f, 0);
 
-        // Di chuyển đến trước cổng (xấp xỉ)
         while (Vector2.Distance(transform.position, portalPosition) > 0.05f)
         {
             transform.position = Vector2.MoveTowards(transform.position, portalPosition, moveSpeed * Time.deltaTime);
             yield return null;
         }
 
-        // Đợi 1 giây rồi vào cổng
         yield return new WaitForSeconds(1f);
-
-        // Load scene mới (đảm bảo đã thêm scene trong Build Settings)
         SceneManager.LoadScene("Game");
     }
 
-    // Gọi từ Portal khi chạm trigger
     public void SetNearPortal(bool value, Transform portal)
     {
         nearPortal = value;
@@ -80,5 +72,11 @@ public class PlayerDemo : MonoBehaviour
     {
         nearNPC = value;
         currentNPC = value ? npc : null;
+    }
+
+    // Getter cho DialogueNPC gọi
+    public bool HasOrb()
+    {
+        return hasOrb;
     }
 }
