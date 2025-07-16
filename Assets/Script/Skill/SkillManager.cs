@@ -2,8 +2,8 @@
 
 public class PlayerSkillManager : MonoBehaviour
 {
-    public Skill skillSlot1; // Dùng phím Q
-    public Skill skillSlot2; // Dùng phím E
+    public SkillState skillSlot1; // Dùng phím Q
+    public SkillState skillSlot2; // Dùng phím E
 
     private Camera mainCamera;
 
@@ -27,14 +27,14 @@ public class PlayerSkillManager : MonoBehaviour
         }
     }
 
-    void CastSkill(Skill skill)
+    void CastSkill(SkillState skillState)
     {
-        if (skill != null && skill.IsReady())
+        if (skillState != null && skillState.IsReady())
         {
             Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0f;
 
-            skill.Use(gameObject, mousePos);
+            skillState.Use(gameObject, mousePos);
         }
     }
 }

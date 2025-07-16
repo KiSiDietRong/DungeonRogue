@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 769653931}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -592,8 +592,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dcdec8f39566c24599b3f4a1a69653b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillSlot1: {fileID: 11400000, guid: 2c4ca07da58cc894e96e408bdf432dfb, type: 2}
-  skillSlot2: {fileID: 11400000, guid: c83a151fdd934ff4a8515d5784a5eade, type: 2}
+  skillSlot1:
+    skill: {fileID: 11400000, guid: 2c4ca07da58cc894e96e408bdf432dfb, type: 2}
+    lastUseTime: -999
+  skillSlot2:
+    skill: {fileID: 11400000, guid: b4d6820fb0250d44d904cbec45f02ac3, type: 2}
+    lastUseTime: -999
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
