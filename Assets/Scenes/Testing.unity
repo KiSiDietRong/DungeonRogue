@@ -596,7 +596,7 @@ MonoBehaviour:
     skill: {fileID: 11400000, guid: 2c4ca07da58cc894e96e408bdf432dfb, type: 2}
     lastUseTime: -999
   skillSlot2:
-    skill: {fileID: 11400000, guid: b4d6820fb0250d44d904cbec45f02ac3, type: 2}
+    skill: {fileID: 11400000, guid: 5bf526e5b62a287468954ff1c5bb94a1, type: 2}
     lastUseTime: -999
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

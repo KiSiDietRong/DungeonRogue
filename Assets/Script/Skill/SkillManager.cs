@@ -16,13 +16,13 @@ public class PlayerSkillManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("địt mẹ mày");
+         
             CastSkill(skillSlot1);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("địt mẹ mày");
+          
             CastSkill(skillSlot2);
         }
     }
