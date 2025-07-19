@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerDemo : MonoBehaviour
 {
@@ -14,12 +15,15 @@ public class PlayerDemo : MonoBehaviour
 
     private bool nearNPC = false;
     private DialogueNPC currentNPC;
+    private INPCInteractable currentNPCs;
 
     public bool hasOrb = false; // <--- THÊM BIẾN NÀY
-
+    public int Gold = 500;
+    public Text goldText;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        UpdateGoldUI();
     }
 
     void Update()
@@ -37,7 +41,7 @@ public class PlayerDemo : MonoBehaviour
 
         if (nearNPC && Input.GetKeyDown(KeyCode.F))
         {
-            currentNPC.StartDialogue();
+            currentNPCs.StartDialogue();
         }
     }
 
@@ -68,15 +72,20 @@ public class PlayerDemo : MonoBehaviour
         portalTransform = portal;
     }
 
-    public void SetNearNPC(bool value, DialogueNPC npc)
+    public void SetNearNPC(bool value, INPCInteractable npc)
     {
         nearNPC = value;
-        currentNPC = value ? npc : null;
+        currentNPCs = value ? npc : null;
     }
 
     // Getter cho DialogueNPC gọi
     public bool HasOrb()
     {
         return hasOrb;
+    }
+    public void UpdateGoldUI()
+    {
+        if (goldText != null)
+            goldText.text = $"Gold: {Gold}";
     }
 }

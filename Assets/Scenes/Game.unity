@@ -12514,7 +12514,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 280327018}
   transitionPanel: {fileID: 21153957}
   transitionDuration: 1
-  shopMapPrefab: {fileID: 4318669839243886471, guid: e3d7be07c656e704298ca38358d0b81b, type: 3}
+  shopMapPrefab: {fileID: 1751750577042436229, guid: e3d7be07c656e704298ca38358d0b81b, type: 3}
 --- !u!4 &1703754984
 Transform:
   m_ObjectHideFlags: 0
@@ -12968,6 +12968,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  hasOrb: 0
+  Gold: 500
+  goldText: {fileID: 0}
 --- !u!50 &2126416379
 Rigidbody2D:
   serializedVersion: 5

@@ -28,16 +28,28 @@ public class ShopRandom : MonoBehaviour
             {
                 int randIndex = Random.Range(0, relicPrefabs.Count);
                 prefabToSpawn = relicPrefabs[randIndex];
-                Debug.Log($"Slot {i}: Spawned RELIC {prefabToSpawn.name}");
             }
             else
             {
                 int randIndex = Random.Range(0, skillPrefabs.Count);
                 prefabToSpawn = skillPrefabs[randIndex];
-                Debug.Log($"Slot {i}: Spawned SKILL {prefabToSpawn.name}");
             }
 
             Instantiate(prefabToSpawn, itemSlots[i].position, Quaternion.identity, itemSlots[i]);
         }
+    }
+
+    public void RerollItems()
+    {
+        foreach (Transform slot in itemSlots)
+        {
+            for (int i = slot.childCount - 1; i >= 0; i--)
+            {
+                Destroy(slot.GetChild(i).gameObject);
+            }
+        }
+
+        // Spawn lại
+        SpawnShopItems();
     }
 }

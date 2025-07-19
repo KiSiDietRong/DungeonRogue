@@ -1,81 +1,81 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueNPC : MonoBehaviour, INPCInteractable
+public class ShopNPC : MonoBehaviour, INPCInteractable
 {
-    public string[] initialDialogue;      // Ví dụ: ["Xin chào người chơi"]
-    public string[] option1Dialogue;      // "Bạn là ai?"
-    public string[] orbHaveDialogue;      // Khi có orb
-    public string[] orbNotHaveDialogue;   // Khi không có orb
-
-    private string[] currentDialogue;
-    private int currentLineIndex = 0;
+    public string[] greetingDialogue;
+    public string[] aboutShopDialogue;
+    public string[] rerollDialogue;
 
     public GameObject dialogueUI;
     public Text dialogueText;
-
     public GameObject pressFText;
     public GameObject choicePanel;
     public Button button1;
     public Button button2;
 
+    public ShopRandom shopRandom; // Script spawn item
     private PlayerDemo player;
     private bool isTalking = false;
     private bool isTyping = false;
     private Coroutine typingCoroutine;
 
+    private string[] currentDialogue;
+    private int currentLineIndex = 0;
+    private int rerollCount = 0;
     public float typingSpeed = 0.05f;
+
+    void Start()
+    {
+
+    }
 
     void Update()
     {
         if (isTalking && Input.GetKeyDown(KeyCode.Space))
         {
             if (isTyping)
-            {
                 SkipTyping();
-            }
             else
-            {
                 ShowNextLine();
-            }
         }
     }
 
     public void StartDialogue()
     {
-        if (initialDialogue.Length == 0) return;
-
         isTalking = true;
         currentLineIndex = 0;
-        currentDialogue = initialDialogue;
-
+        currentDialogue = greetingDialogue;
         dialogueUI.SetActive(true);
         StartTyping(currentDialogue[currentLineIndex]);
+
+        // Gán sự kiện ở đây nếu cần đảm bảo chắc chắn không trùng
+        button1.onClick.RemoveAllListeners();
+        button2.onClick.RemoveAllListeners();
+        button1.onClick.AddListener(OnChooseOption1);
+        button2.onClick.AddListener(OnChooseOption2);
     }
 
-    private void ShowNextLine()
+
+    void ShowNextLine()
     {
         currentLineIndex++;
-
         if (currentLineIndex < currentDialogue.Length)
         {
             StartTyping(currentDialogue[currentLineIndex]);
         }
         else
         {
-            if (currentDialogue == initialDialogue)
-            {
+            if (currentDialogue == greetingDialogue)
                 ShowChoices();
-            }
             else
-            {
                 EndDialogue();
-            }
         }
     }
 
-    private void StartTyping(string line)
+    void StartTyping(string line)
     {
         if (typingCoroutine != null)
             StopCoroutine(typingCoroutine);
@@ -83,7 +83,7 @@ public class DialogueNPC : MonoBehaviour, INPCInteractable
         typingCoroutine = StartCoroutine(TypeLine(line));
     }
 
-    private IEnumerator TypeLine(string line)
+    IEnumerator TypeLine(string line)
     {
         isTyping = true;
         dialogueText.text = "";
@@ -97,7 +97,7 @@ public class DialogueNPC : MonoBehaviour, INPCInteractable
         isTyping = false;
     }
 
-    private void SkipTyping()
+    void SkipTyping()
     {
         if (typingCoroutine != null)
             StopCoroutine(typingCoroutine);
@@ -106,23 +106,28 @@ public class DialogueNPC : MonoBehaviour, INPCInteractable
         isTyping = false;
     }
 
-    private void EndDialogue()
-    {
-        isTalking = false;
-        dialogueUI.SetActive(false);
-        choicePanel.SetActive(false);
-        dialogueText.text = "";
-    }
-
-    private void ShowChoices()
+    void ShowChoices()
     {
         choicePanel.SetActive(true);
+        button1.GetComponentInChildren<Text>().text = "What do you selling in here ?";
+        UpdateRerollButtonUI(); // ← GỌI ở đây
     }
 
+    void UpdateRerollButtonUI()
+    {
+        Transform titleText = button2.transform.Find("Text_Title");
+        Transform costText = button2.transform.Find("Text_Cost");
+
+        if (titleText != null)
+            titleText.GetComponent<Text>().text = "Reroll Shop For";
+
+        if (costText != null)
+            costText.GetComponent<Text>().text = $"{GetCurrentRerollPrice()}g";
+    }
     public void OnChooseOption1()
     {
         choicePanel.SetActive(false);
-        currentDialogue = option1Dialogue;
+        currentDialogue = aboutShopDialogue;
         currentLineIndex = 0;
         StartTyping(currentDialogue[currentLineIndex]);
     }
@@ -131,17 +136,44 @@ public class DialogueNPC : MonoBehaviour, INPCInteractable
     {
         choicePanel.SetActive(false);
 
-        if (player != null && player.HasOrb())
+        int cost = GetCurrentRerollPrice();
+
+        Debug.Log($"[Before Reroll] Player Gold: {player.Gold}, Cost: {cost}");
+
+        if (player.Gold >= cost)
         {
-            currentDialogue = orbHaveDialogue;
+            player.Gold -= cost;
+            player.UpdateGoldUI();
+
+            rerollCount++;
+            shopRandom.RerollItems();
+
+            currentDialogue = rerollDialogue;
+            UpdateRerollButtonUI();
+
+            Debug.Log($"[After Reroll] Player Gold: {player.Gold}");
         }
         else
         {
-            currentDialogue = orbNotHaveDialogue;
+            currentDialogue = new string[] { "You don't have enough gold, Adventure" };
         }
 
         currentLineIndex = 0;
         StartTyping(currentDialogue[currentLineIndex]);
+    }
+
+
+    int GetCurrentRerollPrice()
+    {
+        return 100 + rerollCount * 50;
+    }
+
+    void EndDialogue()
+    {
+        isTalking = false;
+        dialogueUI.SetActive(false);
+        choicePanel.SetActive(false);
+        dialogueText.text = "";
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
