@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      blink5_0: 7153327312102314526
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
