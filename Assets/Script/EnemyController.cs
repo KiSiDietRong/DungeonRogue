@@ -4,8 +4,11 @@ public class EnemyController : MonoBehaviour
 {
     public int maxHP = 50;
     private int currentHP;
+
     public float moveSpeed = 2f;
     private Transform target;
+
+    public bool isPulledByBlackHole = false; // ✅ Bị hút bởi black hole
 
     void Start()
     {
@@ -15,6 +18,9 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        if (isPulledByBlackHole)
+            return; // ✅ Không di chuyển nếu đang bị hút
+
         if (target != null)
         {
             Vector3 dir = (target.position - transform.position).normalized;
@@ -26,7 +32,7 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         currentHP -= dmg;
-        Debug.Log(currentHP + "Mau Enemy");
+        Debug.Log(currentHP + " Máu Enemy");
         if (currentHP <= 0)
         {
             Die();
