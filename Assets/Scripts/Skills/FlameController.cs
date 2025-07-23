@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class FlameController : MonoBehaviour
 {
@@ -34,7 +34,7 @@ public class FlameController : MonoBehaviour
     {
         if (Time.time >= nextTick && other.CompareTag("Enemy"))
         {
-            var enemy = other.GetComponent<EnemyController>();
+            var enemy = other.GetComponent<Enemy>();
             if (enemy != null)
                 enemy.TakeDamage(damage);
 

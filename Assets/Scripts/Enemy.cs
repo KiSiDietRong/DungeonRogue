@@ -27,6 +27,10 @@ public class Enemy : MonoBehaviour
     private float patrolSpeed = 1f;
     private float patrolInterval = 1f;
 
+    private bool beingPulled = false;
+    private Vector2 pullTarget;
+    private float pullSpeed = 5f;
+
     private static readonly int Idle = Animator.StringToHash("Idle");
     private static readonly int Walk = Animator.StringToHash("Walk");
     private static readonly int Attack = Animator.StringToHash("Attack");
@@ -44,7 +48,16 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (isDead || player == null || isAttacking || knockback.GettingKnockedBack || isPatrolling) return;
+        if (isDead || knockback.GettingKnockedBack) return;
+
+        if (beingPulled)
+        {
+            Vector2 dir = (pullTarget - (Vector2)transform.position).normalized;
+            transform.position += (Vector3)(dir * pullSpeed * Time.deltaTime);
+            return;
+        }
+
+        if (player == null || isAttacking || isPatrolling) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
@@ -153,7 +166,6 @@ public class Enemy : MonoBehaviour
         else StartCoroutine(RecoverFromHurt());
     }
 
-    // Optional fallback for old method calls
     public void TakeDamage(float damage)
     {
         TakeDamage(damage, transform.position, false);
@@ -181,6 +193,7 @@ public class Enemy : MonoBehaviour
     void DieEnemy()
     {
         isDead = true;
+        beingPulled = false;
         animator.SetTrigger(Die);
         Collider2D collider = GetComponent<Collider2D>();
         if (collider != null) collider.enabled = false;
@@ -270,5 +283,17 @@ public class Enemy : MonoBehaviour
             transform.localScale.y,
             transform.localScale.z
         );
+    }
+
+    // Public method để BlackHole gọi
+    public void PullTowards(Vector2 center)
+    {
+        pullTarget = center;
+        beingPulled = true;
+    }
+
+    public void StopPull()
+    {
+        beingPulled = false;
     }
 }

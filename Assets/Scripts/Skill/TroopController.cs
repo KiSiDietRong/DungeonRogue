@@ -39,7 +39,7 @@ public class AllyController : MonoBehaviour
                 // Attack
                 if (Time.time >= lastAttackTime + attackCooldown)
                 {
-                    EnemyController enemy = targetEnemy.GetComponent<EnemyController>();
+                    Enemy enemy = targetEnemy.GetComponent<Enemy>();
                     if (enemy != null)
                     {
                         enemy.TakeDamage(damage);

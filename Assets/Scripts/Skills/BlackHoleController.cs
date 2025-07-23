@@ -26,27 +26,24 @@ public class BlackHoleController : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (var hit in hits)
         {
-            EnemyController enemy = hit.GetComponent<EnemyController>();
-            if (enemy != null)
+            Enemy enemy = hit.GetComponent<Enemy>();
+            if (enemy != null && enemy.moveSpeed > 0)
             {
-                enemy.isPulledByBlackHole = true;
-
-                Vector3 dir = (transform.position - enemy.transform.position).normalized;
-                enemy.transform.position += dir * pullForce * Time.deltaTime;
+                enemy.PullTowards(transform.position);
             }
         }
     }
 
     void OnDestroy()
     {
-        // Khi hố đen biến mất, enemy trở lại bình thường
+        // Ngừng hút enemy trong vùng khi Black Hole biến mất
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (var hit in hits)
         {
-            EnemyController enemy = hit.GetComponent<EnemyController>();
+            Enemy enemy = hit.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.isPulledByBlackHole = false;
+                enemy.StopPull();
             }
         }
     }

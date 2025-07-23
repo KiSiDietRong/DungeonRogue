@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
@@ -32,20 +32,20 @@ public class Meteor : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, damageRadius, enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {
-            EnemyController e = enemy.GetComponent<EnemyController>();
+            Enemy e = enemy.GetComponent<Enemy>();
             if (e != null)
             {
                 e.TakeDamage(damage);
             }
         }
 
-        // FX nổ (nếu có)
+        // FX n? (n?u c�)
         if (explosionEffect != null)
         {
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
         }
 
-        // Dù trúng hay không, vẫn tự huỷ
+        // D� tr�ng hay kh�ng, v?n t? hu?
         Destroy(gameObject);
     }
 

@@ -1,9 +1,9 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 
-public class PlayerSkillManager : MonoBehaviour
+public class SkillManager : MonoBehaviour
 {
-    public SkillState skillSlot1; // DÃ¹ng phÃ­m Q
-    public SkillState skillSlot2; // DÃ¹ng phÃ­m E
+    public SkillState skillSlot1; // Dùng phím Q
+    public SkillState skillSlot2; // Dùng phím E
 
     private Camera mainCamera;
 
@@ -16,13 +16,13 @@ public class PlayerSkillManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-         
+
             CastSkill(skillSlot1);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-          
+
             CastSkill(skillSlot2);
         }
     }

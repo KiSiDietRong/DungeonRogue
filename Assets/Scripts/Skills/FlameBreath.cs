@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Skills/FlamethrowerSkill")]
 public class FlameBreath : Skill
