@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿// PlayerDemo.cs
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,9 +18,10 @@ public class PlayerDemo : MonoBehaviour
     private DialogueNPC currentNPC;
     private INPCInteractable currentNPCs;
 
-    public bool hasOrb = false; // <--- THÊM BIẾN NÀY
+    public bool hasOrb = false;
     public int Gold = 500;
     public Text goldText;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,18 +32,47 @@ public class PlayerDemo : MonoBehaviour
     {
         if (isEnteringPortal) return;
 
-        moveInput.x = Input.GetAxisRaw("Horizontal");
-        moveInput.y = Input.GetAxisRaw("Vertical");
+        moveInput = Vector2.zero;
+        if (Input.GetKey(KeyManager.Instance.GetKey("MoveUp"))) moveInput.y += 1;
+        if (Input.GetKey(KeyManager.Instance.GetKey("MoveDown"))) moveInput.y -= 1;
+        if (Input.GetKey(KeyManager.Instance.GetKey("MoveLeft"))) moveInput.x -= 1;
+        if (Input.GetKey(KeyManager.Instance.GetKey("MoveRight"))) moveInput.x += 1;
         moveInput.Normalize();
 
-        if (nearPortal && Input.GetKeyDown(KeyCode.E))
+        // Portal sử dụng phím Interact (F)
+        if (nearPortal && Input.GetKeyDown(KeyManager.Instance.GetKey("Interact")))
         {
             StartCoroutine(MoveToPortalAndEnter());
         }
 
-        if (nearNPC && Input.GetKeyDown(KeyCode.F))
+        if (nearNPC && Input.GetKeyDown(KeyManager.Instance.GetKey("Interact")))
         {
             currentNPCs.StartDialogue();
+        }
+
+        if (Input.GetKeyDown(KeyManager.Instance.GetKey("Skill1")))
+        {
+            Debug.Log("Skill 1 dùng");
+        }
+
+        if (Input.GetKeyDown(KeyManager.Instance.GetKey("Skill2")))
+        {
+            Debug.Log("Skill 2 dùng");
+        }
+
+        if (Input.GetKeyDown(KeyManager.Instance.GetKey("Attack")))
+        {
+            Debug.Log("Tấn công");
+        }
+
+        if (Input.GetKeyDown(KeyManager.Instance.GetKey("Dash")))
+        {
+            Debug.Log("Dash / né tránh");
+        }
+
+        if (Input.GetKeyDown(KeyManager.Instance.GetKey("Inventory")))
+        {
+            Debug.Log("Inventory mở (Tab)");
         }
     }
 
@@ -78,7 +109,6 @@ public class PlayerDemo : MonoBehaviour
         currentNPCs = value ? npc : null;
     }
 
-    // Getter cho DialogueNPC gọi
     public bool HasOrb()
     {
         return hasOrb;
