@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ClassChanger : MonoBehaviour
 {
+    public CharacterStatSO characterStat;
     public GameObject weaponPrefab;
 
     private bool playerInZone;
@@ -10,19 +11,32 @@ public class ClassChanger : MonoBehaviour
     {
         if (playerInZone && Input.GetKeyDown(KeyCode.E))
         {
-            var player = GameObject.FindGameObjectWithTag("Player");
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null) return;
+
+            var controller = player.GetComponent<PlayerController>();
+            if (controller != null)
+                controller.InitFromStats(characterStat);
+
+            var health = player.GetComponent<PlayerHealth>();
+            if (health != null)
+                health.InitFromStats(characterStat);
+
             var activeWeapon = player.GetComponentInChildren<ActiveWeapon>();
-            activeWeapon.SetActiveWeapon(weaponPrefab);
+            if (activeWeapon != null)
+                activeWeapon.SetActiveWeapon(weaponPrefab);
+
+            Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
             playerInZone = true;
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
             playerInZone = false;
