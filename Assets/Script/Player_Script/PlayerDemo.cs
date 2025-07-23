@@ -32,12 +32,12 @@ public class PlayerDemo : MonoBehaviour
     {
         if (isEnteringPortal) return;
 
-        moveInput = Vector2.zero;
-        if (Input.GetKey(KeyManager.Instance.GetKey("MoveUp"))) moveInput.y += 1;
-        if (Input.GetKey(KeyManager.Instance.GetKey("MoveDown"))) moveInput.y -= 1;
-        if (Input.GetKey(KeyManager.Instance.GetKey("MoveLeft"))) moveInput.x -= 1;
-        if (Input.GetKey(KeyManager.Instance.GetKey("MoveRight"))) moveInput.x += 1;
-        moveInput.Normalize();
+        //moveInput = Vector2.zero;
+        //if (Input.GetKey(KeyManager.Instance.GetKey("MoveUp"))) moveInput.y += 1;
+        //if (Input.GetKey(KeyManager.Instance.GetKey("MoveDown"))) moveInput.y -= 1;
+        //if (Input.GetKey(KeyManager.Instance.GetKey("MoveLeft"))) moveInput.x -= 1;
+        //if (Input.GetKey(KeyManager.Instance.GetKey("MoveRight"))) moveInput.x += 1;
+        //moveInput.Normalize();
 
         // Portal sử dụng phím Interact (F)
         if (nearPortal && Input.GetKeyDown(KeyManager.Instance.GetKey("Interact")))
