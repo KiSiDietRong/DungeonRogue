@@ -33,6 +33,9 @@ public class Enemy : MonoBehaviour
     private static readonly int Hurt = Animator.StringToHash("Hurt");
     private static readonly int Die = Animator.StringToHash("Die");
 
+    public delegate void EnemyDeathHandler(Enemy enemy);
+    public static event EnemyDeathHandler OnEnemyDeath;
+
     void Start()
     {
         currentHP = maxHP;
@@ -153,7 +156,6 @@ public class Enemy : MonoBehaviour
         else StartCoroutine(RecoverFromHurt());
     }
 
-    // Optional fallback for old method calls
     public void TakeDamage(float damage)
     {
         TakeDamage(damage, transform.position, false);
@@ -185,6 +187,7 @@ public class Enemy : MonoBehaviour
         Collider2D collider = GetComponent<Collider2D>();
         if (collider != null) collider.enabled = false;
         float dieAnimationLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        OnEnemyDeath?.Invoke(this);
         Destroy(gameObject, dieAnimationLength);
     }
 
@@ -192,20 +195,12 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            Projectile projectile = other.GetComponent<Projectile>();
-            if (projectile != null && projectile.GetWeaponInfo() != null)
+            if (knockback != null)
             {
-                bool isCritical = Random.value <= projectile.GetWeaponInfo().criticalChance;
-                float finalDamage = projectile.GetWeaponInfo().weaponDamage * (isCritical ? 2f : 1f);
-                TakeDamage(finalDamage, other.transform.position, isCritical);
-
-                if (knockback != null)
-                {
-                    knockback.GetKnockedBack(other.transform, 0.2f);
-                }
-
-                Destroy(other.gameObject);
+                knockback.GetKnockedBack(other.transform, 0.2f);
             }
+
+            Destroy(other.gameObject);
         }
     }
 

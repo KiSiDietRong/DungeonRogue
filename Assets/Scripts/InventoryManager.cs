@@ -16,7 +16,7 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Inventory")]
     public Image[] inventorySlots;
-    private List<Relic> playerInventory = new List<Relic>();
+    public List<Relic> playerInventory = new List<Relic>();
 
     [Header("UI Panel")]
     public GameObject canvasUI;
@@ -42,7 +42,16 @@ public class InventoryManager : MonoBehaviour
     private bool pendingRelicChoose = false;
     private Relic relicToReplace;
 
-    void Awake() => Instance = this;
+    void Awake()
+    {
+        Instance = this;
+        Enemy.OnEnemyDeath += HandleEnemyDeath;
+    }
+
+    void OnDestroy()
+    {
+        Enemy.OnEnemyDeath -= HandleEnemyDeath;
+    }
 
     void Update()
     {
@@ -255,6 +264,7 @@ public class InventoryManager : MonoBehaviour
         usedRelics.Add(relicToReplace);
         UpdateInventoryUI();
         ApplyRelicEffect(relicToReplace);
+        UpdateArmorTextVisibility();
         waitingForReplace = false;
         clickOnce = false;
         isPickingRelic = false;
@@ -287,6 +297,7 @@ public class InventoryManager : MonoBehaviour
         inventoryOnlyView = active;
         relicSelected = false;
         UpdateInventoryUI();
+        UpdateArmorTextVisibility();
 
         foreach (var btn in relicButtons)
         {
@@ -323,7 +334,7 @@ public class InventoryManager : MonoBehaviour
         int totalAvailableRelics = commons.Count + epics.Count + legendaries.Count;
 
         int roll = Random.Range(0, 100);
-        
+
         if (roll < chanceLegendary && legendaries.Count > 0)
         {
             highRarityRelic = legendaries[Random.Range(0, legendaries.Count)];
@@ -500,6 +511,65 @@ public class InventoryManager : MonoBehaviour
     void ApplyRelicEffect(Relic relic)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log($"Apply effect of relic: {relic.relicName}");
+        PlayerHealth health = player.GetComponent<PlayerHealth>();
+
+        switch (relic.type)
+        {
+            case RelicType.BonePlate:
+                if (health != null)
+                {
+                    health.AddArmor(15f);
+                    health.SetArmorTextActive(true);
+                }
+                break;
+            case RelicType.ConduitSpike:
+                Debug.Log("Conduit Spike equipped: Every 3rd attack will deal 4-10 damage to 2 nearest enemies.");
+                break;
+            case RelicType.DoomShell:
+                Debug.Log("Doom Shell equipped: Dash deals 5-10 damage to enemies in range.");
+                break;
+            case RelicType.RazorClaw:
+                Debug.Log("Razor Claw equipped: Critical hits deal double damage.");
+                break;
+            case RelicType.SpiritShelter:
+                Debug.Log("Spirit Shelter equipped: Revive with full HP on first death, then relic is removed.");
+                break;
+        }
+    }
+
+    void HandleEnemyDeath(Enemy enemy)
+    {
+        if (playerInventory.Exists(relic => relic.type == RelicType.BonePlate))
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            PlayerHealth health = player.GetComponent<PlayerHealth>();
+            if (health != null)
+            {
+                health.AddArmor(1f);
+            }
+        }
+    }
+
+    void UpdateArmorTextVisibility()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerHealth health = player.GetComponent<PlayerHealth>();
+        if (health != null)
+        {
+            bool hasBonePlate = playerInventory.Exists(relic => relic.type == RelicType.BonePlate);
+            health.SetArmorTextActive(hasBonePlate);
+        }
+    }
+
+    public void RemoveRelic(RelicType relicType)
+    {
+        Relic relicToRemove = playerInventory.Find(relic => relic.type == relicType);
+        if (relicToRemove != null)
+        {
+            playerInventory.Remove(relicToRemove);
+            UpdateInventoryUI();
+            UpdateArmorTextVisibility();
+            Debug.Log($"Removed relic: {relicToRemove.relicName}");
+        }
     }
 }

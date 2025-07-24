@@ -73,7 +73,7 @@ public class EnemySpawner : MonoBehaviour
         if (player != null)
         {
             Vector2 offset = Vector2.down;
-            var playerScript = player.GetComponent<test>();
+            var playerScript = player.GetComponent<PlayerController>();
             if (playerScript != null && playerScript.lastMoveDirection != Vector2.zero)
                 offset = playerScript.lastMoveDirection.normalized;
 

@@ -166,5 +166,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ff7b92daf925a4f841db689d230cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 12
+  moveSpeed: 22
   weaponInfo: {fileID: 11400000, guid: e81da1eadf58a834482ce51b43904fdd, type: 2}

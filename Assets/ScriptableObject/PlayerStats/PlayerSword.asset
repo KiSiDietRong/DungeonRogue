@@ -15,4 +15,4 @@ MonoBehaviour:
   className: Sword
   maxHealth: 30
   skillDamage: 0
-  moveSpeed: 1
+  moveSpeed: 5
