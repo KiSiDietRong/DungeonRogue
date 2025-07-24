@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 82b8b993b4040b942b8b96f2f81dcace
+guid: 0aeef440d50423d458d502a7604fd597
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -913084555821057342
-    second: Doom Shell_0
+      213: 6604111219391129832
+    second: Bob's Containment Field_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Doom Shell_0
+      name: Bob's Containment Field_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2caf3682f621453f0800000000000000
-      internalID: -913084555821057342
+      spriteID: 8e8eaf8f92486ab50800000000000000
+      internalID: 6604111219391129832
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Doom Shell_0: -913084555821057342
+      Bob's Containment Field_0: 6604111219391129832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

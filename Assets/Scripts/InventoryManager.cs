@@ -42,6 +42,8 @@ public class InventoryManager : MonoBehaviour
     private bool pendingRelicChoose = false;
     private Relic relicToReplace;
 
+    private int titansWargearKillCount = 0; // Đếm số kẻ địch bị tiêu diệt cho Titan's Wargear
+
     void Awake()
     {
         Instance = this;
@@ -534,6 +536,21 @@ public class InventoryManager : MonoBehaviour
             case RelicType.SpiritShelter:
                 Debug.Log("Spirit Shelter equipped: Revive with full HP on first death, then relic is removed.");
                 break;
+            case RelicType.RejuvenationGlove:
+                Debug.Log("Rejuvenation Glove equipped: Critical hits heal 1 HP, up to max health.");
+                break;
+            case RelicType.JuicyOpal:
+                Debug.Log("Juicy Opal equipped: Increases healing amount by 1 HP.");
+                break;
+            case RelicType.VoltClaw:
+                Debug.Log("VoltClaw equipped: Critical hits deal additional 3-15 lightning damage to the enemy.");
+                break;
+            case RelicType.ArchangelsScythe:
+                Debug.Log("ArchangelsScythe equipped: Healing HP deals damage to nearby enemies equal to 4x the healed amount.");
+                break;
+            case RelicType.TitansWargear:
+                Debug.Log("Titan's Wargear equipped: Every 4 enemies killed increases weapon damage by 1.");
+                break;
         }
     }
 
@@ -547,6 +564,26 @@ public class InventoryManager : MonoBehaviour
             {
                 health.AddArmor(1f);
             }
+        }
+
+        if (playerInventory.Exists(relic => relic.type == RelicType.TitansWargear))
+        {
+            titansWargearKillCount++;
+            if (titansWargearKillCount >= 4)
+            {
+                // Tìm tất cả WeaponInfo trong scene hoặc từ một danh sách được quản lý
+                foreach (var projectile in FindObjectsOfType<Projectile>())
+                {
+                    WeaponInfo weaponInfo = projectile.GetWeaponInfo();
+                    if (weaponInfo != null)
+                    {
+                        weaponInfo.weaponDamage += 1;
+                        Debug.Log($"Titan's Wargear triggered: Increased {weaponInfo.name} damage to {weaponInfo.weaponDamage}.");
+                    }
+                }
+                titansWargearKillCount = 0; // Reset bộ đếm
+            }
+            Debug.Log($"Titan's Wargear: {titansWargearKillCount}/4 enemies killed.");
         }
     }
 
@@ -567,9 +604,14 @@ public class InventoryManager : MonoBehaviour
         if (relicToRemove != null)
         {
             playerInventory.Remove(relicToRemove);
+            usedRelics.Add(relicToRemove);
             UpdateInventoryUI();
             UpdateArmorTextVisibility();
             Debug.Log($"Removed relic: {relicToRemove.relicName}");
+            if (relicType == RelicType.TitansWargear)
+            {
+                titansWargearKillCount = 0; // Reset bộ đếm khi gỡ Titan's Wargear
+            }
         }
     }
 }

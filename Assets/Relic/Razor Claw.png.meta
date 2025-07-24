@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8676a3df80041144693df458fcc45da3
+guid: 73879a06919eba945853424257b5e630
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1678440030561490276
-    second: Fury Charm_0
+      213: 921490273531421432
+    second: Razor Claw_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fury Charm_0
+      name: Razor Claw_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
-        height: 64
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 465d966a0540b4710800000000000000
-      internalID: 1678440030561490276
+      spriteID: 8f261d1858ac9cc00800000000000000
+      internalID: 921490273531421432
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Fury Charm_0: 1678440030561490276
+      Razor Claw_0: 921490273531421432
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

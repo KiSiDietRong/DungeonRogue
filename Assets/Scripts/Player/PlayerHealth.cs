@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI armorText;
+    [SerializeField] private float archangelScytheRadius = 5f;
 
     private int currentHealth;
     private float armor;
@@ -97,6 +98,36 @@ public class PlayerHealth : MonoBehaviour
 
         yield return new WaitForSeconds(damageRecoveryTime);
         canTakeDamage = true;
+    }
+
+    public void Heal(int amount)
+    {
+        int totalHeal = amount;
+        if (inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.JuicyOpal))
+        {
+            totalHeal += 1;
+        }
+        currentHealth = Mathf.Min(currentHealth + totalHeal, maxHealth);
+
+        if (inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.ArchangelsScythe))
+        {
+            float scytheDamage = totalHeal * 4f;
+            Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, archangelScytheRadius);
+            foreach (Collider2D enemyCollider in nearbyEnemies)
+            {
+                if (enemyCollider.CompareTag("Enemy"))
+                {
+                    Enemy enemy = enemyCollider.GetComponent<Enemy>();
+                    if (enemy != null)
+                    {
+                        enemy.TakeDamage(scytheDamage, enemy.transform.position, false);
+                        Debug.Log($"ArchangelsScythe triggered: Dealt {scytheDamage} damage to {enemyCollider.name}.");
+                    }
+                }
+            }
+        }
+
+        UpdateHealthUI();
     }
 
     public void AddArmor(float amount)

@@ -10,10 +10,10 @@ public class Enemy : MonoBehaviour
     public float attackRange = 2f;
     public float chaseRange = 4f;
     public float attackCooldown = 1f;
-
-    public GameObject damagePopupPrefab;
+    [SerializeField] private float popupOffsetRadius = 0.5f; // Bán kính lệch vị trí tối đa cho DamagePopup
 
     [Header("References")]
+    public GameObject damagePopupPrefab;
     public Animator animator;
     private GameObject player;
     private float currentHP;
@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     private bool isAttacking = false;
     private float lastAttackTime;
     private Knockback knockback;
+    public string lastDamageSource = ""; // Theo dõi nguồn sát thương cuối cùng
 
     private bool isPatrolling = false;
     private Vector2 patrolDirection = Vector2.left;
@@ -132,10 +133,15 @@ public class Enemy : MonoBehaviour
     {
         if (isDead || knockback.GettingKnockedBack) return;
 
+        currentHP -= damage;
+
+        // Tạo DamagePopup với vị trí lệch ngẫu nhiên
         if (damagePopupPrefab != null)
         {
-            Vector3 spawnPos = hitPosition + Vector3.up * 0.3f;
-            GameObject popup = Instantiate(damagePopupPrefab, spawnPos, Quaternion.identity);
+            // Tính vị trí lệch ngẫu nhiên trong vòng tròn bán kính popupOffsetRadius
+            Vector2 offset = Random.insideUnitCircle * popupOffsetRadius;
+            Vector3 popupPosition = hitPosition + new Vector3(offset.x, offset.y + 0.3f, 0f); // Giữ offset Y 0.3f
+            GameObject popup = Instantiate(damagePopupPrefab, popupPosition, Quaternion.identity);
             DamagePopup popupScript = popup.GetComponent<DamagePopup>();
             if (popupScript != null)
             {
@@ -143,7 +149,6 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        currentHP -= damage;
         animator.SetTrigger(Hurt);
 
         if (isPatrolling)
@@ -199,7 +204,7 @@ public class Enemy : MonoBehaviour
             {
                 knockback.GetKnockedBack(other.transform, 0.2f);
             }
-
+            lastDamageSource = "Projectile"; // Đánh dấu nguồn sát thương là Projectile
             Destroy(other.gameObject);
         }
     }

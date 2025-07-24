@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6183945788bed114785490a52883d573
+guid: 8676a3df80041144693df458fcc45da3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5814666659209945660
-    second: Glacial Light_0
+      213: 1678440030561490276
+    second: Fury Charm_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Glacial Light_0
+      name: Fury Charm_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
-        height: 60
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c322485e488d1b050800000000000000
-      internalID: 5814666659209945660
+      spriteID: 465d966a0540b4710800000000000000
+      internalID: 1678440030561490276
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Glacial Light_0: 5814666659209945660
+      Fury Charm_0: 1678440030561490276
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
