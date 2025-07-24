@@ -1,11 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Meteor : MonoBehaviour
 {
     public float speed = 10f;
     public float damageRadius = 2f;
     public int damage = 50;
-    public LayerMask enemyLayer;
+    public string targetTag = "Enemy"; // Tag mục tiêu
     public GameObject explosionEffect;
 
     private Vector3 targetPosition;
@@ -28,24 +28,27 @@ public class Meteor : MonoBehaviour
 
     void Explode()
     {
-        // Damage AOE
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, damageRadius, enemyLayer);
-        foreach (Collider2D enemy in hitEnemies)
+        // Lấy toàn bộ Collider2D trong bán kính, không dùng layer
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, damageRadius);
+        foreach (Collider2D hit in hits)
         {
-            Enemy e = enemy.GetComponent<Enemy>();
-            if (e != null)
+            if (hit.CompareTag(targetTag))
             {
-                e.TakeDamage(damage);
+                Enemy e = hit.GetComponent<Enemy>();
+                if (e != null)
+                {
+                    e.TakeDamage(damage);
+                }
             }
         }
 
-        // FX n? (n?u c�)
+        // FX nổ (nếu có)
         if (explosionEffect != null)
         {
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
         }
 
-        // D� tr�ng hay kh�ng, v?n t? hu?
+        // Tự hủy dù trúng hay không
         Destroy(gameObject);
     }
 
