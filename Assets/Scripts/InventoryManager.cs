@@ -22,9 +22,9 @@ public class InventoryManager : MonoBehaviour
     public GameObject canvasUI;
 
     [Header("Rarity Spawn Chances (0-100)")]
-    [Range(0, 100)] public int chanceCommon = 70;
-    [Range(0, 100)] public int chanceEpic = 24;
-    [Range(0, 100)] public int chanceLegendary = 6;
+    [Range(0, 100)] public int chanceCommon = 50;
+    [Range(0, 100)] public int chanceEpic = 30;
+    [Range(0, 100)] public int chanceLegendary = 20;
 
     private int selectedRelicIndex = 0;
     private int activeRelicCount = 0;
@@ -550,6 +550,18 @@ public class InventoryManager : MonoBehaviour
                 break;
             case RelicType.TitansWargear:
                 Debug.Log("Titan's Wargear equipped: Every 4 enemies killed increases weapon damage by 1.");
+                break;
+            case RelicType.DazeClaw:
+                Debug.Log("DazeClaw equipped: Critical hits stun enemies for 1 second.");
+                break;
+            case RelicType.GiantMace:
+                Debug.Log("GiantMace equipped: Deal 50% more damage to stunned enemies.");
+                break;
+            case RelicType.ImpactCharm:
+                Debug.Log("ImpactCharm equipped: Whenever you stun an enemy, deal 15 AOE damage around it.");
+                break;
+            case RelicType.TraumaticBlow:
+                Debug.Log("Traumatic Blow equipped: Instantly defeat enemies with less than 20% HP when stunned.");
                 break;
         }
     }

@@ -205,8 +205,11 @@ MonoBehaviour:
   attackRange: 2
   chaseRange: 4
   attackCooldown: 2
+  popupOffsetRadius: 0.5
   damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
   animator: {fileID: 2067383000380332031}
+  stunEffect: {fileID: 6961230244420276688, guid: 1ee5dd2a91761e443bcc9e8d2a87a103, type: 3}
+  lastDamageSource: 
 --- !u!114 &5947038029117559644
 MonoBehaviour:
   m_ObjectHideFlags: 0

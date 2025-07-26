@@ -61,6 +61,15 @@ public class Projectile : MonoBehaviour
                 float damageMultiplier = isCritical ?
                     (inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.RazorClaw) ? 4f : 2f) : 1f;
                 float finalDamage = weaponInfo.weaponDamage * damageMultiplier;
+
+                // Tăng 50% sát thương nếu kẻ địch bị choáng và có GiantMace
+                bool isStunned = enemy.IsStunned;
+                if (isStunned && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.GiantMace))
+                {
+                    finalDamage *= 1.5f;
+                    Debug.Log($"GiantMace triggered: Increased damage by 50% to {finalDamage} on stunned enemy {other.name}.");
+                }
+
                 enemy.TakeDamage(finalDamage, transform.position, isCritical);
 
                 // Hồi HP nếu có RejuvenationGlove và đòn đánh là chí mạng
@@ -82,7 +91,14 @@ public class Projectile : MonoBehaviour
                     Debug.Log($"VoltClaw triggered: Dealt {lightningDamage} lightning damage to {other.name}.");
                 }
 
-                Debug.Log($"Projectile dealt {finalDamage} damage to {other.name} (Critical: {isCritical}, RazorClaw: {damageMultiplier == 4f})");
+                // Làm choáng kẻ địch nếu có DazeClaw và đòn đánh là chí mạng
+                if (isCritical && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.DazeClaw))
+                {
+                    enemy.Stun(1f);
+                    Debug.Log($"DazeClaw triggered: Stunned {other.name} for 1 second.");
+                }
+
+                Debug.Log($"Projectile dealt {finalDamage} damage to {other.name} (Critical: {isCritical}, RazorClaw: {damageMultiplier == 4f}, GiantMace: {isStunned && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.GiantMace)})");
             }
             Destroy(gameObject);
         }
