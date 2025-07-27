@@ -12,6 +12,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI armorText;
     [SerializeField] private float archangelScytheRadius = 5f;
+    [SerializeField] private GameObject healEffectPrefab; // Prefab cho hiệu ứng Heal
 
     private int currentHealth;
     private float armor;
@@ -108,6 +109,21 @@ public class PlayerHealth : MonoBehaviour
             totalHeal += 1;
         }
         currentHealth = Mathf.Min(currentHealth + totalHeal, maxHealth);
+
+        // Tạo hiệu ứng Heal
+        if (healEffectPrefab != null)
+        {
+            Vector3 spawnPosition = transform.position + Vector3.up * 0.5f; // Offset để hiệu ứng xuất hiện phía trên người chơi
+            GameObject healEffect = Instantiate(healEffectPrefab, spawnPosition, Quaternion.identity);
+            Animator healAnimator = healEffect.GetComponent<Animator>();
+            if (healAnimator != null)
+            {
+                // Đảm bảo animation được phát (nếu cần)
+                healAnimator.Play("Heal", -1, 0f);
+            }
+            Destroy(healEffect, 1f); // Hủy sau 1 giây
+            Debug.Log("Heal effect instantiated and will be destroyed after 1 second.");
+        }
 
         if (inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.ArchangelsScythe))
         {
