@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bfae6abf3f5d2641831d4b4acc86c61, type: 3}
-  m_Name: New Black Hole Skill
+  m_Script: {fileID: 11500000, guid: 62089d65bb08ae74a93d66ebbc150c9d, type: 3}
+  m_Name: New Poison Bullet Skill
   m_EditorClassIdentifier: 
   skillName: New Skill
   icon: {fileID: 0}
   cooldown: 2
-  blackHolePrefab: {fileID: 6605300842755207369, guid: 41fa4567fd9871249b28f6f207c7b215, type: 3}
+  poisonBulletPrefab: {fileID: 8866844907286518760, guid: 1f6c51be53235f949ad3f6642f49ed0c, type: 3}

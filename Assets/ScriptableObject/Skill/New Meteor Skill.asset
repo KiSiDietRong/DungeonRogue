@@ -15,5 +15,5 @@ MonoBehaviour:
   skillName: New Skill
   icon: {fileID: 0}
   cooldown: 2
-  meteorPrefab: {fileID: 0}
+  meteorPrefab: {fileID: 7107698544903805615, guid: 8400f73018eeca24b92657da9d997915, type: 3}
   spawnHeight: 10
