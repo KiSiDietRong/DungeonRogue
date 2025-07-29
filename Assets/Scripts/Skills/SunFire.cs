@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public class PoisonBullet : MonoBehaviour
+public class SunFire : MonoBehaviour
 {
-    public float speed = 6f;
-    public int instantDamage = 10;
-    public int dotDamage = 3;
-    public float dotDuration = 4f;
-    public float lifetime = 4f;
+    public float speed = 8f;
+    public int instantDamage = 20;
+    public int dotDamage = 5;
+    public float dotDuration = 3f;
+    public float lifetime = 3f;
 
     private Vector2 direction;
 
