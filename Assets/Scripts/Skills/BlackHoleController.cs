@@ -26,8 +26,8 @@ public class BlackHoleController : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (var hit in hits)
         {
-            Enemy enemy = hit.GetComponent<Enemy>();
-            if (enemy != null && enemy.moveSpeed > 0)
+            EnemyBlackHolePull enemy = hit.GetComponent<EnemyBlackHolePull>();
+            if (enemy != null )
             {
                 enemy.PullTowards(transform.position);
             }
@@ -40,7 +40,7 @@ public class BlackHoleController : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (var hit in hits)
         {
-            Enemy enemy = hit.GetComponent<Enemy>();
+            EnemyBlackHolePull enemy = hit.GetComponent<EnemyBlackHolePull>();
             if (enemy != null)
             {
                 enemy.StopPull();

@@ -27,9 +27,7 @@ public class Enemy : MonoBehaviour
     private float patrolSpeed = 1f;
     private float patrolInterval = 1f;
 
-    private bool beingPulled = false;
-    private Vector2 pullTarget;
-    private float pullSpeed = 5f;
+
 
     private static readonly int Idle = Animator.StringToHash("Idle");
     private static readonly int Walk = Animator.StringToHash("Walk");
@@ -50,12 +48,7 @@ public class Enemy : MonoBehaviour
     {
         if (isDead || knockback.GettingKnockedBack) return;
 
-        if (beingPulled)
-        {
-            Vector2 dir = (pullTarget - (Vector2)transform.position).normalized;
-            transform.position += (Vector3)(dir * pullSpeed * Time.deltaTime);
-            return;
-        }
+      
 
         if (player == null || isAttacking || isPatrolling) return;
 
@@ -193,7 +186,6 @@ public class Enemy : MonoBehaviour
     void DieEnemy()
     {
         isDead = true;
-        beingPulled = false;
         animator.SetTrigger(Die);
         Collider2D collider = GetComponent<Collider2D>();
         if (collider != null) collider.enabled = false;
@@ -285,15 +277,5 @@ public class Enemy : MonoBehaviour
         );
     }
 
-    // Public method để BlackHole gọi
-    public void PullTowards(Vector2 center)
-    {
-        pullTarget = center;
-        beingPulled = true;
-    }
-
-    public void StopPull()
-    {
-        beingPulled = false;
-    }
+    
 }
