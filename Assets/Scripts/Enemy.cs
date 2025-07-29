@@ -10,32 +10,37 @@ public class Enemy : MonoBehaviour
     public float attackRange = 2f;
     public float chaseRange = 4f;
     public float attackCooldown = 1f;
-
-    public GameObject damagePopupPrefab;
+    [SerializeField] private float popupOffsetRadius = 0.5f;
 
     [Header("References")]
+    public GameObject damagePopupPrefab;
     public Animator animator;
+    [SerializeField] private ParticleSystem stunEffect;
     private GameObject player;
     private float currentHP;
     private bool isDead = false;
     private bool isAttacking = false;
+    private bool isStunned = false;
     private float lastAttackTime;
     private Knockback knockback;
+    public string lastDamageSource = "";
 
     private bool isPatrolling = false;
     private Vector2 patrolDirection = Vector2.left;
     private float patrolSpeed = 1f;
     private float patrolInterval = 1f;
 
-    private bool beingPulled = false;
-    private Vector2 pullTarget;
-    private float pullSpeed = 5f;
-
     private static readonly int Idle = Animator.StringToHash("Idle");
     private static readonly int Walk = Animator.StringToHash("Walk");
     private static readonly int Attack = Animator.StringToHash("Attack");
     private static readonly int Hurt = Animator.StringToHash("Hurt");
     private static readonly int Die = Animator.StringToHash("Die");
+
+    public delegate void EnemyDeathHandler(Enemy enemy);
+    public static event EnemyDeathHandler OnEnemyDeath;
+
+    // Getter để truy cập trạng thái isStunned
+    public bool IsStunned => isStunned;
 
     void Start()
     {
@@ -48,16 +53,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (isDead || knockback.GettingKnockedBack) return;
-
-        if (beingPulled)
-        {
-            Vector2 dir = (pullTarget - (Vector2)transform.position).normalized;
-            transform.position += (Vector3)(dir * pullSpeed * Time.deltaTime);
-            return;
-        }
-
-        if (player == null || isAttacking || isPatrolling) return;
+        if (isDead || player == null || isAttacking || knockback.GettingKnockedBack || isPatrolling || isStunned) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
@@ -123,10 +119,13 @@ public class Enemy : MonoBehaviour
         float attackAnimLength = stateInfo.length;
         yield return new WaitForSeconds(attackAnimLength * 0.5f);
 
-        var playerScript = player.GetComponent<PlayerHealth>();
-        if (playerScript != null && !playerScript.GetComponent<Knockback>().GettingKnockedBack)
+        if (!isStunned && !isDead)
         {
-            playerScript.TakeDamage((int)damage, transform);
+            var playerScript = player.GetComponent<PlayerHealth>();
+            if (playerScript != null && !playerScript.GetComponent<Knockback>().GettingKnockedBack)
+            {
+                playerScript.TakeDamage((int)damage, transform);
+            }
         }
 
         yield return new WaitForSeconds(attackAnimLength * 0.5f);
@@ -142,10 +141,13 @@ public class Enemy : MonoBehaviour
     {
         if (isDead || knockback.GettingKnockedBack) return;
 
+        currentHP -= damage;
+
         if (damagePopupPrefab != null)
         {
-            Vector3 spawnPos = hitPosition + Vector3.up * 0.3f;
-            GameObject popup = Instantiate(damagePopupPrefab, spawnPos, Quaternion.identity);
+            Vector2 offset = Random.insideUnitCircle * popupOffsetRadius;
+            Vector3 popupPosition = transform.position + new Vector3(offset.x, offset.y + 0.3f, 0f);
+            GameObject popup = Instantiate(damagePopupPrefab, popupPosition, Quaternion.identity);
             DamagePopup popupScript = popup.GetComponent<DamagePopup>();
             if (popupScript != null)
             {
@@ -153,7 +155,6 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        currentHP -= damage;
         animator.SetTrigger(Hurt);
 
         if (isPatrolling)
@@ -171,11 +172,85 @@ public class Enemy : MonoBehaviour
         TakeDamage(damage, transform.position, false);
     }
 
+    public void Stun(float duration)
+    {
+        if (!isDead && !isStunned)
+        {
+            // Kiểm tra Traumatic Blow trước khi làm choáng
+            InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
+            if (inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.TraumaticBlow) && currentHP <= maxHP * 0.2f)
+            {
+                Debug.Log($"Traumatic Blow triggered: Instantly defeated {gameObject.name} with HP {currentHP}/{maxHP} (<20%).");
+                DieEnemy();
+                return;
+            }
+
+            StartCoroutine(StunEnemy(duration));
+        }
+    }
+
+    IEnumerator StunEnemy(float duration)
+    {
+        isStunned = true;
+        animator.SetTrigger(Idle);
+        Debug.Log($"{gameObject.name} is stunned for {duration} seconds.");
+
+        // Kiểm tra ImpactCharm và gây sát thương diện rộng
+        InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
+        if (inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.ImpactCharm))
+        {
+            float aoeRadius = 2f;
+            float aoeDamage = 15f;
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, aoeRadius);
+            foreach (Collider2D hitEnemy in hitEnemies)
+            {
+                if (hitEnemy.CompareTag("Enemy"))
+                {
+                    Enemy enemy = hitEnemy.GetComponent<Enemy>();
+                    if (enemy != null && enemy != this && !enemy.isDead)
+                    {
+                        enemy.TakeDamage(aoeDamage, transform.position, false);
+                        Debug.Log($"ImpactCharm triggered: Dealt {aoeDamage} AOE damage to {enemy.gameObject.name} around stunned enemy {gameObject.name}.");
+                    }
+                }
+            }
+        }
+
+        ParticleSystem stunInstance = null;
+        if (stunEffect != null)
+        {
+            stunInstance = Instantiate(stunEffect, transform.position + Vector3.up * 0.5f, Quaternion.identity, transform);
+            stunInstance.Play();
+        }
+
+        yield return new WaitForSeconds(duration);
+
+        if (stunInstance != null)
+        {
+            stunInstance.Stop();
+            Destroy(stunInstance.gameObject);
+        }
+
+        isStunned = false;
+        if (!isDead)
+        {
+            float distance = Vector2.Distance(transform.position, player.transform.position);
+            if (distance <= chaseRange)
+            {
+                animator.SetTrigger(Walk);
+            }
+            else
+            {
+                animator.SetTrigger(Idle);
+            }
+        }
+    }
+
     IEnumerator RecoverFromHurt()
     {
         yield return new WaitForSeconds(0.3f);
 
-        if (isDead) yield break;
+        if (isDead || isStunned) yield break;
 
         float distance = Vector2.Distance(transform.position, player.transform.position);
         if (distance <= chaseRange)
@@ -193,11 +268,11 @@ public class Enemy : MonoBehaviour
     void DieEnemy()
     {
         isDead = true;
-        beingPulled = false;
         animator.SetTrigger(Die);
         Collider2D collider = GetComponent<Collider2D>();
         if (collider != null) collider.enabled = false;
         float dieAnimationLength = animator.GetCurrentAnimatorStateInfo(0).length;
+        OnEnemyDeath?.Invoke(this);
         Destroy(gameObject, dieAnimationLength);
     }
 
@@ -205,20 +280,12 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Bullet"))
         {
-            Projectile projectile = other.GetComponent<Projectile>();
-            if (projectile != null && projectile.GetWeaponInfo() != null)
+            if (knockback != null)
             {
-                bool isCritical = Random.value <= projectile.GetWeaponInfo().criticalChance;
-                float finalDamage = projectile.GetWeaponInfo().weaponDamage * (isCritical ? 2f : 1f);
-                TakeDamage(finalDamage, other.transform.position, isCritical);
-
-                if (knockback != null)
-                {
-                    knockback.GetKnockedBack(other.transform, 0.2f);
-                }
-
-                Destroy(other.gameObject);
+                knockback.GetKnockedBack(other.transform, 0.2f);
             }
+            lastDamageSource = "Projectile";
+            Destroy(other.gameObject);
         }
     }
 
@@ -228,7 +295,7 @@ public class Enemy : MonoBehaviour
         {
             yield return new WaitForSeconds(2f);
 
-            if (player == null || isAttacking || knockback.GettingKnockedBack || isDead) continue;
+            if (player == null || isAttacking || knockback.GettingKnockedBack || isDead || isStunned) continue;
 
             float distance = Vector2.Distance(transform.position, player.transform.position);
             if (distance > chaseRange && !isPatrolling)
@@ -243,7 +310,7 @@ public class Enemy : MonoBehaviour
         isPatrolling = true;
         while (isPatrolling)
         {
-            if (player == null || isDead) yield break;
+            if (player == null || isDead || isStunned) yield break;
 
             float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
             if (distanceToPlayer <= chaseRange)
@@ -283,17 +350,5 @@ public class Enemy : MonoBehaviour
             transform.localScale.y,
             transform.localScale.z
         );
-    }
-
-    // Public method để BlackHole gọi
-    public void PullTowards(Vector2 center)
-    {
-        pullTarget = center;
-        beingPulled = true;
-    }
-
-    public void StopPull()
-    {
-        beingPulled = false;
     }
 }

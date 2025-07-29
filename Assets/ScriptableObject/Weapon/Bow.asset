@@ -16,3 +16,4 @@ MonoBehaviour:
   weaponCooldown: 0.2
   weaponDamage: 10
   weaponRange: 5
+  criticalChance: 1
