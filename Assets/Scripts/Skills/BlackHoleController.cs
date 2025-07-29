@@ -29,7 +29,7 @@ public class BlackHoleController : MonoBehaviour
             Enemy enemy = hit.GetComponent<Enemy>();
             if (enemy != null && enemy.moveSpeed > 0)
             {
-                enemy.PullTowards(transform.position);
+                //enemy.PullTowards(transform.position);
             }
         }
     }
@@ -43,7 +43,7 @@ public class BlackHoleController : MonoBehaviour
             Enemy enemy = hit.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.StopPull();
+                //enemy.StopPull();
             }
         }
     }
