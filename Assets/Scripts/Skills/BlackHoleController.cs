@@ -29,7 +29,7 @@ public class BlackHoleController : MonoBehaviour
             EnemyBlackHolePull enemy = hit.GetComponent<EnemyBlackHolePull>();
             if (enemy != null )
             {
-                //enemy.PullTowards(transform.position);
+                enemy.PullTowards(transform.position);
             }
         }
     }
