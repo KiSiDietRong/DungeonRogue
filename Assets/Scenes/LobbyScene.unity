@@ -2994,7 +2994,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -3
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.125, y: 0.0625, z: 0}
   m_MaxChunkCount: 16
@@ -20895,6 +20895,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803132133}
   m_CullTransparentMesh: 1
+--- !u!1001 &805189060
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3150735824842693671, guid: 2890df78f3c08c846ac994579d554493, type: 3}
+      propertyPath: m_Name
+      value: InventoryManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431630993183564870, guid: 2890df78f3c08c846ac994579d554493, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 190.4427
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431630993183564870, guid: 2890df78f3c08c846ac994579d554493, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 402.3982
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431630993183564870, guid: 2890df78f3c08c846ac994579d554493, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.418182
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431630993183564870, guid: 2890df78f3c08c846ac994579d554493, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431630993183564870, guid: 2890df78f3c08c846ac994579d554493, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431630993183564870, guid: 2890df78f3c08c846ac994579d554493, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431630993183564870, guid: 2890df78f3c08c846ac994579d554493, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431630993183564870, guid: 2890df78f3c08c846ac994579d554493, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431630993183564870, guid: 2890df78f3c08c846ac994579d554493, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431630993183564870, guid: 2890df78f3c08c846ac994579d554493, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2890df78f3c08c846ac994579d554493, type: 3}
 --- !u!1 &849908345
 GameObject:
   m_ObjectHideFlags: 0
@@ -23320,9 +23377,9 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 1.3125, y: 3.5625, z: 0}
+  m_ChunkCullingBounds: {x: 1.34375, y: 3.5625, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -23363,6 +23420,16 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 2
       m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 6, y: -7, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -24091,8 +24158,8 @@ Tilemap:
   - first: {x: -17, y: 7, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 3
-      m_TileSpriteIndex: 3
+      m_TileIndex: 17
+      m_TileSpriteIndex: 17
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -24102,11 +24169,11 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 6ecbbdb8299355b449fc0c5c9e135bbb, type: 2}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 367a60ebb985a4e4fbf8091e1ee42db4, type: 2}
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 5a71fb03c14a037478b0e4843f83136c, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 1749216e83109564cb02e782e0ba01f8, type: 2}
@@ -24134,16 +24201,16 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 70c5f573bbc28bc48b59382abdb0358d, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 80897084540b45b409c47a483af13450, type: 2}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: c98805103ca7d6941a7f2c248ab2e9b2, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -37777645, guid: b631ed305dfd43c488e0f8edf5c829bc, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -1237704566, guid: b631ed305dfd43c488e0f8edf5c829bc, type: 3}
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: -1607882866, guid: b631ed305dfd43c488e0f8edf5c829bc, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -892691430, guid: b631ed305dfd43c488e0f8edf5c829bc, type: 3}
@@ -24171,10 +24238,10 @@ Tilemap:
     m_Data: {fileID: -1301881515, guid: b631ed305dfd43c488e0f8edf5c829bc, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -604045147, guid: b631ed305dfd43c488e0f8edf5c829bc, type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: -1706695883, guid: b631ed305dfd43c488e0f8edf5c829bc, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 76
+  - m_RefCount: 77
     m_Data:
       e00: 1
       e01: 0
@@ -24193,7 +24260,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 76
+  - m_RefCount: 77
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -25894,7 +25961,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.125, y: 0.3125, z: 0}
   m_MaxChunkCount: 16
@@ -36610,7 +36677,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.41568628, g: 0.050980393, b: 0.6784314, a: 1}
+      maxColor: {r: 0.41568628, g: 0.050980393, b: 0.6784314, a: 0.1764706}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -41152,7 +41219,7 @@ Transform:
   m_GameObject: {fileID: 1684343096}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -8.101142, y: 0.5548729, z: 0.069061644}
+  m_LocalPosition: {x: -12.7, y: -1.8, z: 0.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46388,7 +46455,7 @@ Transform:
   m_GameObject: {fileID: 1760055399}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -31.801142, y: 2.0148728, z: 0.069061644}
+  m_LocalPosition: {x: -29.56, y: 2.0148728, z: 0.069061644}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46500,7 +46567,7 @@ Transform:
   m_GameObject: {fileID: 1784434369}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.55, y: -3.51, z: 0}
+  m_LocalPosition: {x: -15.66, y: -2.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47046,7 +47113,7 @@ Transform:
   m_GameObject: {fileID: 1850103047}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.5, y: 3.82, z: 0}
+  m_LocalPosition: {x: 4.54, y: 0.99, z: 0}
   m_LocalScale: {x: 0.0811, y: 0.0811, z: 0.0811}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48402,3 +48469,4 @@ SceneRoots:
   - {fileID: 1608873342}
   - {fileID: 1946168628}
   - {fileID: 213762422}
+  - {fileID: 805189060}
