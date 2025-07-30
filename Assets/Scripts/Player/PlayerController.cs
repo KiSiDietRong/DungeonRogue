@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Stats & Dash")]
     public CharacterStatSO characterStat;
     [SerializeField] private float dashSpeed = 10f;
     [SerializeField] private float dashDuration = 0.2f;
@@ -10,23 +13,35 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TrailRenderer myTrailRenderer;
     [SerializeField] private float doomShellRadius = 2f;
 
+    [Header("Components")]
     public Rigidbody2D rb;
     public Animator animator;
-
     private Knockback Knockback;
+    private InventoryManager inventoryManager;
+
+    [Header("Movement")]
     private Vector2 movement;
     private Vector2 lastMoveDir;
-    private InventoryManager inventoryManager;
+    private bool facingLeft = false;
+    public bool FacingLeft { get => facingLeft; set => facingLeft = value; }
+    private float baseMoveSpeed;
+    private float moveSpeed = 5f;
 
     private bool isDashing = false;
     private bool canDash = true;
 
-    private float baseMoveSpeed;
-    private float moveSpeed = 5f;
+    [Header("Portal & NPC")]
+    private bool nearPortal = false;
+    private Transform portalTransform;
+    private bool isEnteringPortal = false;
 
-    public bool FacingLeft { get { return facingLeft; } set { facingLeft = value; } }
-    private bool facingLeft = false;
-    internal Vector2 lastMoveDirection;
+    private bool nearNPC = false;
+    private INPCInteractable currentNPCs;
+
+    [Header("Currency & Items")]
+    public bool hasOrb = false;
+    public int Gold = 500;
+    public Text goldText;
 
     void Awake()
     {
@@ -38,24 +53,55 @@ public class PlayerController : MonoBehaviour
         if (characterStat == null)
         {
             baseMoveSpeed = 5f;
-            moveSpeed = baseMoveSpeed;
         }
+        else
+        {
+            baseMoveSpeed = characterStat.moveSpeed;
+        }
+
+        moveSpeed = baseMoveSpeed;
+        UpdateGoldUI();
     }
 
     void Update()
     {
+        if (isEnteringPortal) return;
+
         HandleInput();
         UpdateFacingDirection();
         UpdateAnimator();
 
-        if (Input.GetKeyDown(KeyCode.Space) && canDash && movement != Vector2.zero)
+        if (Input.GetKeyDown(KeyManager.Instance.GetKey("Dash")) && canDash && movement != Vector2.zero)
         {
             StartCoroutine(Dash());
         }
+
+        if (nearPortal && Input.GetKeyDown(KeyManager.Instance.GetKey("Interact")))
+        {
+            StartCoroutine(MoveToPortalAndEnter());
+        }
+
+        if (nearNPC && Input.GetKeyDown(KeyManager.Instance.GetKey("Interact")))
+        {
+            currentNPCs.StartDialogue();
+        }
+
+        if (Input.GetKeyDown(KeyManager.Instance.GetKey("Skill1")))
+            Debug.Log("Skill 1 dùng");
+
+        if (Input.GetKeyDown(KeyManager.Instance.GetKey("Skill2")))
+            Debug.Log("Skill 2 dùng");
+
+        if (Input.GetKeyDown(KeyManager.Instance.GetKey("Attack")))
+            Debug.Log("Tấn công");
+
+        if (Input.GetKeyDown(KeyManager.Instance.GetKey("Inventory")))
+            Debug.Log("Inventory mở (Tab)");
     }
 
     void FixedUpdate()
     {
+        if (isEnteringPortal) return;
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
     }
 
@@ -94,7 +140,7 @@ public class PlayerController : MonoBehaviour
         moveSpeed = dashSpeed;
         myTrailRenderer.emitting = true;
 
-        if (inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.DoomShell))
+        if (inventoryManager != null && inventoryManager.playerInventory.Exists(r => r.type == RelicType.DoomShell))
         {
             ApplyDoomShellEffect();
         }
@@ -126,11 +172,42 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void InitFromStats(CharacterStatSO stats)
+    private IEnumerator MoveToPortalAndEnter()
     {
-        characterStat = stats;
-        baseMoveSpeed = characterStat.moveSpeed;
-        moveSpeed = baseMoveSpeed;
+        isEnteringPortal = true;
+        Vector3 portalPosition = new Vector3(portalTransform.position.x, portalTransform.position.y - 1f, 0);
+
+        while (Vector2.Distance(transform.position, portalPosition) > 0.05f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, portalPosition, moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Game");
+    }
+
+    public void SetNearPortal(bool value, Transform portal)
+    {
+        nearPortal = value;
+        portalTransform = portal;
+    }
+
+    public void SetNearNPC(bool value, INPCInteractable npc)
+    {
+        nearNPC = value;
+        currentNPCs = value ? npc : null;
+    }
+
+    public void UpdateGoldUI()
+    {
+        if (goldText != null)
+            goldText.text = $"Gold: {Gold}";
+    }
+
+    public bool HasOrb()
+    {
+        return hasOrb;
     }
 
     void OnDrawGizmosSelected()
