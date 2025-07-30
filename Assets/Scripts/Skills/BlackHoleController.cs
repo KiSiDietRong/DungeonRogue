@@ -27,10 +27,10 @@ public class BlackHoleController : MonoBehaviour
         foreach (var hit in hits)
         {
             Enemy enemy = hit.GetComponent<Enemy>();
-            if (enemy != null && enemy.moveSpeed > 0)
-            {
-                enemy.PullTowards(transform.position);
-            }
+            //if (enemy != null && enemy.moveSpeed > 0)
+            //{
+            //    enemy.PullTowards(transform.position);
+            //}
         }
     }
 
@@ -41,10 +41,10 @@ public class BlackHoleController : MonoBehaviour
         foreach (var hit in hits)
         {
             Enemy enemy = hit.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.StopPull();
-            }
+            //if (enemy != null)
+            //{
+            //    enemy.StopPull();
+            //}
         }
     }
 
