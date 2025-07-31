@@ -17,7 +17,7 @@ public class ShopNPC : MonoBehaviour, INPCInteractable
     public Button button2;
 
     public ShopRandom shopRandom; // Script spawn item
-    private PlayerDemo player;
+    private PlayerController player;
     private bool isTalking = false;
     private bool isTyping = false;
     private Coroutine typingCoroutine;
@@ -180,7 +180,7 @@ public class ShopNPC : MonoBehaviour, INPCInteractable
     {
         if (collision.CompareTag("Player"))
         {
-            player = collision.GetComponent<PlayerDemo>();
+            player = collision.GetComponent<PlayerController>();
             if (player != null)
             {
                 player.SetNearNPC(true, this);

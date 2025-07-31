@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: be63e1307e33ed74ba9bc927364b1dff
+guid: 357a5d8d3e514f2489f6fb238d2e0edd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3834944250797671356
-    second: FB003_0
+      213: -2917000182891882972
+    second: FB001_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FB003_0
+      name: FB001_0
       rect:
         serializedVersion: 2
-        x: 17
+        x: 20
         y: 8
-        width: 37
+        width: 34
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cb3c83a4a75783530800000000000000
-      internalID: 3834944250797671356
+      spriteID: 426daf0e9cbb487d0800000000000000
+      internalID: -2917000182891882972
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      FB003_0: 3834944250797671356
+      FB001_0: -2917000182891882972
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
