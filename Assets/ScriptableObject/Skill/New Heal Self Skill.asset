@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed9cf700631bfe4292e78006a218513, type: 3}
-  m_Name: New Summon Ally Skill
+  m_Script: {fileID: 11500000, guid: f2ab9f7f7ba7ec947934cea8290d0a4f, type: 3}
+  m_Name: New Heal Self Skill
   m_EditorClassIdentifier: 
   skillName: New Skill
   icon: {fileID: 0}
-  cooldown: 2
-  allyPrefab: {fileID: 5308686346303129901, guid: 5e61c435ab705934ba1f1581b8c063c5, type: 3}
+  cooldown: 45
+  healAmount: 30

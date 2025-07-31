@@ -6,14 +6,15 @@ public class allyController : MonoBehaviour
     public float attackRange = 1f;
     public int damage = 20;
     public float attackCooldown = 1f;
-    public LayerMask enemyLayer;
+    public float TimeAvalable = 10f;
+    public string enemyTag = "Enemy"; // <-- dùng tag thay vì layer
 
     private Transform targetEnemy;
     private float lastAttackTime = 0f;
 
     void Start()
     {
-        Destroy(gameObject, 5f); // Tồn tại đúng 5 giây rồi tự hủy
+        Destroy(gameObject, TimeAvalable); // Tự hủy sau 5 giây
     }
 
     void Update()
@@ -46,18 +47,18 @@ public class allyController : MonoBehaviour
 
     void FindClosestEnemy()
     {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, 10f, enemyLayer);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); // <-- Tìm bằng tag
 
         float closestDistance = Mathf.Infinity;
         Transform closestEnemy = null;
 
-        foreach (var enemyCollider in enemies)
+        foreach (var enemyObj in enemies)
         {
-            float dist = Vector2.Distance(transform.position, enemyCollider.transform.position);
+            float dist = Vector2.Distance(transform.position, enemyObj.transform.position);
             if (dist < closestDistance)
             {
                 closestDistance = dist;
-                closestEnemy = enemyCollider.transform;
+                closestEnemy = enemyObj.transform;
             }
         }
 
