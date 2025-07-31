@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class PlayerController : MonoBehaviour
     private bool nearNPC = false;
     private DialogueNPC currentNPC;
     private INPCInteractable currentNPCs;
+
+    public bool hasOrb = false;
+    public int Gold = 500;
+    public Text goldText;
 
     private float baseMoveSpeed;
     private float moveSpeed = 5f;
@@ -105,6 +110,16 @@ public class PlayerController : MonoBehaviour
     {
         nearNPC = value;
         currentNPCs = value ? npc : null;
+    }
+
+    public bool HasOrb()
+    {
+        return hasOrb;
+    }
+    public void UpdateGoldUI()
+    {
+        if (goldText != null)
+            goldText.text = $"Gold: {Gold}";
     }
 
     private void HandleInput()
