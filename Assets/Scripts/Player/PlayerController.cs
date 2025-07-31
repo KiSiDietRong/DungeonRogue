@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +22,14 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private bool canDash = true;
 
+    private bool nearPortal = false;
+    private Transform portalTransform;
+    private bool isEnteringPortal = false;
+
+    private bool nearNPC = false;
+    private DialogueNPC currentNPC;
+    private INPCInteractable currentNPCs;
+
     private float baseMoveSpeed;
     private float moveSpeed = 5f;
 
@@ -40,6 +49,8 @@ public class PlayerController : MonoBehaviour
             baseMoveSpeed = 5f;
             moveSpeed = baseMoveSpeed;
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
@@ -52,11 +63,48 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+
+        if (nearPortal && Input.GetKeyDown(KeyCode.F))
+        {
+            StartCoroutine(MoveToPortalAndEnter());
+        }
+
+        if (nearNPC && Input.GetKeyDown(KeyCode.F))
+        {
+            currentNPCs.StartDialogue();
+        }
     }
 
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+    }
+
+    private IEnumerator MoveToPortalAndEnter()
+    {
+        isEnteringPortal = true;
+        Vector3 portalPosition = new Vector3(portalTransform.position.x, portalTransform.position.y - 1f, 0);
+
+        while (Vector2.Distance(transform.position, portalPosition) > 0.05f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, portalPosition, moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("Game");
+    }
+
+    public void SetNearPortal(bool value, Transform portal)
+    {
+        nearPortal = value;
+        portalTransform = portal;
+    }
+
+    public void SetNearNPC(bool value, INPCInteractable npc)
+    {
+        nearNPC = value;
+        currentNPCs = value ? npc : null;
     }
 
     private void HandleInput()

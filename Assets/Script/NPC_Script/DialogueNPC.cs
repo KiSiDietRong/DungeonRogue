@@ -20,7 +20,7 @@ public class DialogueNPC : MonoBehaviour, INPCInteractable
     public Button button1;
     public Button button2;
 
-    private PlayerDemo player;
+    private PlayerController player;
     private bool isTalking = false;
     private bool isTyping = false;
     private Coroutine typingCoroutine;
@@ -131,14 +131,14 @@ public class DialogueNPC : MonoBehaviour, INPCInteractable
     {
         choicePanel.SetActive(false);
 
-        if (player != null && player.HasOrb())
-        {
-            currentDialogue = orbHaveDialogue;
-        }
-        else
-        {
-            currentDialogue = orbNotHaveDialogue;
-        }
+        //if (player != null && player.HasOrb())
+        //{
+        //    currentDialogue = orbHaveDialogue;
+        //}
+        //else
+        //{
+        //    currentDialogue = orbNotHaveDialogue;
+        //}
 
         currentLineIndex = 0;
         StartTyping(currentDialogue[currentLineIndex]);
@@ -148,7 +148,7 @@ public class DialogueNPC : MonoBehaviour, INPCInteractable
     {
         if (collision.CompareTag("Player"))
         {
-            player = collision.GetComponent<PlayerDemo>();
+            player = collision.GetComponent<PlayerController>();
             if (player != null)
             {
                 player.SetNearNPC(true, this);
