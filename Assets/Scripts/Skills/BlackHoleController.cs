@@ -43,7 +43,7 @@ public class BlackHoleController : MonoBehaviour
             EnemyBlackHolePull enemy = hit.GetComponent<EnemyBlackHolePull>();
             if (enemy != null)
             {
-                //enemy.StopPull();
+                enemy.StopPull();
             }
         }
     }

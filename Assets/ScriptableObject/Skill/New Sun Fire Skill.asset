@@ -15,4 +15,4 @@ MonoBehaviour:
   skillName: New Skill
   icon: {fileID: 0}
   cooldown: 2
-  SunFirePrefab: {fileID: 0}
+  SunFirePrefab: {fileID: 5886329066044875530, guid: 7ae8c9a49c63781438829b08ff431716, type: 3}

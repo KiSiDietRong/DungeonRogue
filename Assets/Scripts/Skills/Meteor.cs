@@ -7,6 +7,7 @@ public class Meteor : MonoBehaviour
     public int damage = 50;
     public string targetTag = "Enemy"; // Tag mục tiêu
     public GameObject explosionEffect;
+    
 
     private Vector3 targetPosition;
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2703925274492515207}
   - component: {fileID: 4581344776953626706}
   - component: {fileID: 2366035688191330554}
+  - component: {fileID: 444394520360853518}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.452617, y: -2.6654189, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 7.605393, y: 7.605393, z: 7.605393}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -1012258747, guid: 0e9ed5642a7325c4c94c27fd98c9543f, type: 3}
   m_Color: {r: 1, g: 0.38299012, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -166,7 +167,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  damageRadius: 2
+  damageRadius: 1.5
   damage: 50
   targetTag: Enemy
-  explosionEffect: {fileID: 0}
+  explosionEffect: {fileID: 5161864677671082622, guid: 6a4750932fa31e848bde14c5fb4a42f6, type: 3}
+--- !u!95 &444394520360853518
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7107698544903805615}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 925bcd45fc7a8ad48aad1d45659e3493, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
