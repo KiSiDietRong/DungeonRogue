@@ -15,8 +15,8 @@ public class ClassChanger : MonoBehaviour
             if (player == null) return;
 
             var controller = player.GetComponent<PlayerController>();
-            if (controller != null)
-                controller.InitFromStats(characterStat);
+            //if (controller != null)
+            //    controller.InitFromStats(characterStat);
 
             var health = player.GetComponent<PlayerHealth>();
             //if (health != null)
