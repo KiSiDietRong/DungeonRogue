@@ -97,8 +97,6 @@ public class Projectile : MonoBehaviour
                     enemy.Stun(1f);
                     Debug.Log($"DazeClaw triggered: Stunned {other.name} for 1 second.");
                 }
-
-                Debug.Log($"Projectile dealt {finalDamage} damage to {other.name} (Critical: {isCritical}, RazorClaw: {damageMultiplier == 4f}, GiantMace: {isStunned && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.GiantMace)})");
             }
             Destroy(gameObject);
         }

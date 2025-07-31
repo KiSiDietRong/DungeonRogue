@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner Instance;
+
     [Header("Enemy Settings")]
     public GameObject[] enemyPrefabs;
     public int enemiesPerTurn = 5;
@@ -17,6 +19,11 @@ public class EnemySpawner : MonoBehaviour
     private List<GameObject> currentEnemies = new List<GameObject>();
     private bool isSpawning = false;
     private int currentTurn = 0;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -87,6 +94,12 @@ public class EnemySpawner : MonoBehaviour
         float x = Random.Range(-maxX, maxX);
         float y = Random.Range(-maxY, maxY);
         return new Vector2(x, y);
+    }
+
+    public bool AllEnemiesCleared()
+    {
+        // Chỉ trả về true khi không còn enemy sống
+        return currentEnemies.TrueForAll(e => e == null);
     }
 
     void OnDrawGizmos()

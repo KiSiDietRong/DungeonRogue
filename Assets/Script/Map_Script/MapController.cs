@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class MapController : MonoBehaviour
 {
+    public static MapController Instance;
+
     [Header("Map Sảnh Chờ")]
     public GameObject lobbyMap;
 
-    [Header("List Prefabs Map Chiến Đấu")]
+    [Header("List Prefabs Map Chiến Đấu (theo thứ tự)")]
     public List<GameObject> battleMapPrefabs;
 
     [Header("Prefab Map Miniboss")]
@@ -30,6 +32,19 @@ public class MapController : MonoBehaviour
 
     private bool isLoading = false;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         // Không làm gì ở Start
@@ -39,26 +54,26 @@ public class MapController : MonoBehaviour
     {
         Debug.Log("Khởi động chuỗi battle...");
 
-        // KHÔNG ẩn lobbyMap ở đây nữa
-        GenerateRandomMapSequence();
+        GenerateSequentialMapSequence();
         LoadNextMap();
     }
 
-    void GenerateRandomMapSequence()
+    /// <summary>
+    /// Tạo queue map theo đúng thứ tự từ battleMapPrefabs, sau đó là miniboss và shop
+    /// </summary>
+    void GenerateSequentialMapSequence()
     {
-        List<GameObject> tempList = new List<GameObject>(battleMapPrefabs);
-
-        for (int i = 0; i < 5; i++)
+        // Thêm các map chiến đấu theo thứ tự
+        foreach (var map in battleMapPrefabs)
         {
-            int randIndex = Random.Range(0, tempList.Count);
-            mapQueue.Enqueue(tempList[randIndex]);
-            tempList.RemoveAt(randIndex);
+            mapQueue.Enqueue(map);
         }
 
-        mapQueue.Enqueue(minibossMapPrefab); // map thứ 6
-        mapQueue.Enqueue(shopMapPrefab);     // map thứ 7
+        // Cuối cùng thêm miniboss và shop
+        mapQueue.Enqueue(minibossMapPrefab); // map thứ n+1
+        mapQueue.Enqueue(shopMapPrefab);     // map thứ n+2
 
-        Debug.Log("Đã tạo queue map gồm 5 map chiến đấu + miniboss + shop.");
+        Debug.Log("Đã tạo queue map theo thứ tự: các map chiến đấu → miniboss → shop.");
     }
 
     public void LoadNextMap()
@@ -77,11 +92,11 @@ public class MapController : MonoBehaviour
         transitionPanel.gameObject.SetActive(true);
         transitionPanel.anchoredPosition = new Vector2(-screenWidth, 0);
 
-        // Slide vào giữa
+        // Slide panel vào giữa
         yield return transitionPanel.DOAnchorPos(Vector2.zero, transitionDuration)
             .SetEase(Ease.InOutQuad).WaitForCompletion();
 
-        // ✅ ẨN MAP SẢNH NGAY SAU KHI PANEL CHE TOÀN MÀN HÌNH
+        // Ẩn lobby nếu đang hiển thị
         if (lobbyMap != null && lobbyMap.activeSelf)
         {
             lobbyMap.SetActive(false);
@@ -95,7 +110,7 @@ public class MapController : MonoBehaviour
             Debug.Log("Map cũ đã bị xoá.");
         }
 
-        // Load map mới
+        // Load map mới từ queue
         if (mapQueue.Count > 0)
         {
             GameObject nextMap = mapQueue.Dequeue();
@@ -105,7 +120,7 @@ public class MapController : MonoBehaviour
         }
         else
         {
-            Debug.Log("🎉 Tất cả map đã được load xong (bao gồm miniboss).");
+            Debug.Log("🎉 Tất cả map đã được load xong (bao gồm miniboss và shop).");
         }
 
         // Slide panel ra bên phải
@@ -115,10 +130,20 @@ public class MapController : MonoBehaviour
 
         // Tắt panel
         transitionPanel.gameObject.SetActive(false);
+        isLoading = false; // Reset trạng thái
+        yield break;
+    }
 
-        // Đợi 5s rồi load tiếp
-        yield return new WaitForSeconds(5f);
-        isLoading = false;
-        LoadNextMap();
+    public void TryLoadNextMapIfEnemiesCleared()
+    {
+        if (EnemySpawner.Instance.AllEnemiesCleared())
+        {
+            Debug.Log("Tất cả enemy đã bị tiêu diệt, tiến hành load map mới.");
+            LoadNextMap();
+        }
+        else
+        {
+            Debug.Log("Chưa tiêu diệt hết enemy, không load map.");
+        }
     }
 }
