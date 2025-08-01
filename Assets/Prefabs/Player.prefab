@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 5047106027558754053}
   - component: {fileID: 1271208192290154615}
   - component: {fileID: 3494647126101521790}
+  - component: {fileID: 7942451001291477639}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -485,3 +486,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whiteFlashMat: {fileID: 2100000, guid: b9c421ebee8041a478752d13f84bd90a, type: 2}
   restoreDefaultMatTime: 0.2
+--- !u!114 &7942451001291477639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3308409861397390488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770eb915ef1c535428ffa69d35dfeb3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillSlot1:
+    skill: {fileID: 11400000, guid: 67ee89cf31d01244f80c6aaabdfcb4eb, type: 2}
+    lastUseTime: -999
+  skillSlot2:
+    skill: {fileID: 11400000, guid: ed2b4a9084a0f9d4a9f63b234ff35cdc, type: 2}
+    lastUseTime: -999
