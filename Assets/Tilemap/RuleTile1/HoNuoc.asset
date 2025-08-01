@@ -190,9 +190,11 @@ MonoBehaviour:
   - m_Id: 12
     m_Sprites:
     - {fileID: -865071447, guid: c00209286f029d64d9076cfb852a2eef, type: 3}
-    - {fileID: 190172086, guid: c00209286f029d64d9076cfb852a2eef, type: 3}
     - {fileID: -1141187255, guid: c00209286f029d64d9076cfb852a2eef, type: 3}
-    - {fileID: 1669370573, guid: c00209286f029d64d9076cfb852a2eef, type: 3}
+    - {fileID: -865071447, guid: c00209286f029d64d9076cfb852a2eef, type: 3}
+    - {fileID: 190172086, guid: c00209286f029d64d9076cfb852a2eef, type: 3}
+    - {fileID: -865071447, guid: c00209286f029d64d9076cfb852a2eef, type: 3}
+    - {fileID: 190172086, guid: c00209286f029d64d9076cfb852a2eef, type: 3}
     m_GameObject: {fileID: 0}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1

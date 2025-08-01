@@ -1,10 +1,20 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 22f;
     [SerializeField] private WeaponInfo weaponInfo;
     private Vector3 startPosition;
+    private InventoryManager inventoryManager;
+
+    private void Awake()
+    {
+        inventoryManager = FindObjectOfType<InventoryManager>();
+        if (inventoryManager == null)
+        {
+            Debug.LogError("InventoryManager not found in scene!");
+        }
+    }
 
     private void Start()
     {
@@ -17,9 +27,9 @@ public class Projectile : MonoBehaviour
         DetectFireDistance();
     }
 
-    public void UpdateWeaponInfo(WeaponInfo weaponInfo)
+    public void UpdateWeaponInfo(WeaponInfo info)
     {
-        this.weaponInfo = weaponInfo;
+        weaponInfo = info;
     }
 
     public WeaponInfo GetWeaponInfo()
@@ -44,6 +54,50 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null && weaponInfo != null)
+            {
+                bool isCritical = Random.value <= weaponInfo.criticalChance;
+                float damageMultiplier = isCritical ?
+                    (inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.RazorClaw) ? 4f : 2f) : 1f;
+                float finalDamage = weaponInfo.weaponDamage * damageMultiplier;
+
+                // Tăng 50% sát thương nếu kẻ địch bị choáng và có GiantMace
+                bool isStunned = enemy.IsStunned;
+                if (isStunned && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.GiantMace))
+                {
+                    finalDamage *= 1.5f;
+                    Debug.Log($"GiantMace triggered: Increased damage by 50% to {finalDamage} on stunned enemy {other.name}.");
+                }
+
+                enemy.TakeDamage(finalDamage, transform.position, isCritical);
+
+                // Hồi HP nếu có RejuvenationGlove và đòn đánh là chí mạng
+                if (isCritical && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.RejuvenationGlove))
+                {
+                    PlayerHealth playerHealth = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerHealth>();
+                    if (playerHealth != null)
+                    {
+                        playerHealth.Heal(1);
+                        Debug.Log("Rejuvenation Glove triggered: Player healed 1 HP on critical hit.");
+                    }
+                }
+
+                // Gây sát thương sét ngẫu nhiên từ 3-15 nếu có VoltClaw và đòn đánh là chí mạng
+                if (isCritical && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.VoltClaw))
+                {
+                    float lightningDamage = Random.Range(3f, 15f);
+                    enemy.TakeDamage(lightningDamage, transform.position, false);
+                    Debug.Log($"VoltClaw triggered: Dealt {lightningDamage} lightning damage to {other.name}.");
+                }
+
+                // Làm choáng kẻ địch nếu có DazeClaw và đòn đánh là chí mạng
+                if (isCritical && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.DazeClaw))
+                {
+                    enemy.Stun(1f);
+                    Debug.Log($"DazeClaw triggered: Stunned {other.name} for 1 second.");
+                }
+            }
             Destroy(gameObject);
         }
     }

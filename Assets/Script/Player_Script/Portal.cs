@@ -6,7 +6,7 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerDemo>().SetNearPortal(true, transform);
+            other.GetComponent<PlayerController>().SetNearPortal(true, transform);
         }
     }
 
@@ -14,7 +14,7 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerDemo>().SetNearPortal(false, null);
+            other.GetComponent<PlayerController>().SetNearPortal(false, null);
         }
     }
 }

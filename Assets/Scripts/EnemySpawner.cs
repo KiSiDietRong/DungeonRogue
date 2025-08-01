@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner Instance;
+
     [Header("Enemy Settings")]
     public GameObject[] enemyPrefabs;
     public int enemiesPerTurn = 5;
@@ -10,13 +12,17 @@ public class EnemySpawner : MonoBehaviour
     public GameObject itemPrefab;
     public int maxTurns = 2;
 
-    [Header("Spawn Area Boundaries")]
-    public float maxX = 8f;
-    public float maxY = 4f;
+    [Header("Spawn Points")]
+    public Transform[] spawnPoints; // các điểm spawn cố định
 
     private List<GameObject> currentEnemies = new List<GameObject>();
     private bool isSpawning = false;
     private int currentTurn = 0;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -24,6 +30,13 @@ public class EnemySpawner : MonoBehaviour
         {
             return;
         }
+
+        if (spawnPoints == null || spawnPoints.Length == 0)
+        {
+            Debug.LogWarning("Chưa thiết lập spawnPoints cho EnemySpawner");
+            return;
+        }
+
         SpawnNewTurn();
     }
 
@@ -52,11 +65,24 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject currentEnemyPrefab = enemyPrefabs[currentTurn % enemyPrefabs.Length];
 
+        // Tạo bản sao danh sách spawn points để tránh trùng lặp
+        List<Transform> availableSpawnPoints = new List<Transform>(spawnPoints);
+
         for (int i = 0; i < enemiesPerTurn; i++)
         {
-            Vector2 spawnPos = GetRandomSpawnPosition();
-            GameObject enemy = Instantiate(currentEnemyPrefab, spawnPos, Quaternion.identity);
+            if (availableSpawnPoints.Count == 0)
+            {
+                Debug.LogWarning("Không còn đủ vị trí spawn cho số lượng enemy yêu cầu.");
+                break;
+            }
+
+            int randomIndex = Random.Range(0, availableSpawnPoints.Count);
+            Transform spawnPoint = availableSpawnPoints[randomIndex];
+
+            GameObject enemy = Instantiate(currentEnemyPrefab, spawnPoint.position, Quaternion.identity);
             currentEnemies.Add(enemy);
+
+            availableSpawnPoints.RemoveAt(randomIndex); // tránh trùng lặp
         }
 
         isSpawning = false;
@@ -65,15 +91,13 @@ public class EnemySpawner : MonoBehaviour
     void SpawnItem()
     {
         if (itemPrefab == null)
-        {
             return;
-        }
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             Vector2 offset = Vector2.down;
-            var playerScript = player.GetComponent<test>();
+            var playerScript = player.GetComponent<PlayerController>();
             if (playerScript != null && playerScript.lastMoveDirection != Vector2.zero)
                 offset = playerScript.lastMoveDirection.normalized;
 
@@ -82,23 +106,21 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    Vector2 GetRandomSpawnPosition()
+    public bool AllEnemiesCleared()
     {
-        float x = Random.Range(-maxX, maxX);
-        float y = Random.Range(-maxY, maxY);
-        return new Vector2(x, y);
+        return currentEnemies.TrueForAll(e => e == null);
     }
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Vector3 topLeft = new Vector3(-maxX, maxY, 0);
-        Vector3 topRight = new Vector3(maxX, maxY, 0);
-        Vector3 bottomLeft = new Vector3(-maxX, -maxY, 0);
-        Vector3 bottomRight = new Vector3(maxX, -maxY, 0);
-        Gizmos.DrawLine(topLeft, topRight);
-        Gizmos.DrawLine(topRight, bottomRight);
-        Gizmos.DrawLine(bottomRight, bottomLeft);
-        Gizmos.DrawLine(bottomLeft, topLeft);
+        Gizmos.color = Color.green;
+        if (spawnPoints != null)
+        {
+            foreach (var point in spawnPoints)
+            {
+                if (point != null)
+                    Gizmos.DrawSphere(point.position, 0.2f);
+            }
+        }
     }
 }

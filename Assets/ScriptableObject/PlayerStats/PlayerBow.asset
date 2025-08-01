@@ -15,4 +15,4 @@ MonoBehaviour:
   className: Bow
   maxHealth: 10
   skillDamage: 0
-  moveSpeed: 20
+  moveSpeed: 5

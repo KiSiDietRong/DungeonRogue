@@ -16,15 +16,15 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Inventory")]
     public Image[] inventorySlots;
-    private List<Relic> playerInventory = new List<Relic>();
+    public List<Relic> playerInventory = new List<Relic>();
 
     [Header("UI Panel")]
     public GameObject canvasUI;
 
     [Header("Rarity Spawn Chances (0-100)")]
-    [Range(0, 100)] public int chanceCommon = 70;
-    [Range(0, 100)] public int chanceEpic = 24;
-    [Range(0, 100)] public int chanceLegendary = 6;
+    [Range(0, 100)] public int chanceCommon = 50;
+    [Range(0, 100)] public int chanceEpic = 30;
+    [Range(0, 100)] public int chanceLegendary = 20;
 
     private int selectedRelicIndex = 0;
     private int activeRelicCount = 0;
@@ -42,7 +42,18 @@ public class InventoryManager : MonoBehaviour
     private bool pendingRelicChoose = false;
     private Relic relicToReplace;
 
-    void Awake() => Instance = this;
+    private int titansWargearKillCount = 0; // Đếm số kẻ địch bị tiêu diệt cho Titan's Wargear
+
+    void Awake()
+    {
+        Instance = this;
+        Enemy.OnEnemyDeath += HandleEnemyDeath;
+    }
+
+    void OnDestroy()
+    {
+        Enemy.OnEnemyDeath -= HandleEnemyDeath;
+    }
 
     void Update()
     {
@@ -255,6 +266,7 @@ public class InventoryManager : MonoBehaviour
         usedRelics.Add(relicToReplace);
         UpdateInventoryUI();
         ApplyRelicEffect(relicToReplace);
+        UpdateArmorTextVisibility();
         waitingForReplace = false;
         clickOnce = false;
         isPickingRelic = false;
@@ -287,6 +299,7 @@ public class InventoryManager : MonoBehaviour
         inventoryOnlyView = active;
         relicSelected = false;
         UpdateInventoryUI();
+        UpdateArmorTextVisibility();
 
         foreach (var btn in relicButtons)
         {
@@ -323,7 +336,7 @@ public class InventoryManager : MonoBehaviour
         int totalAvailableRelics = commons.Count + epics.Count + legendaries.Count;
 
         int roll = Random.Range(0, 100);
-        
+
         if (roll < chanceLegendary && legendaries.Count > 0)
         {
             highRarityRelic = legendaries[Random.Range(0, legendaries.Count)];
@@ -500,6 +513,117 @@ public class InventoryManager : MonoBehaviour
     void ApplyRelicEffect(Relic relic)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log($"Apply effect of relic: {relic.relicName}");
+        PlayerHealth health = player.GetComponent<PlayerHealth>();
+
+        switch (relic.type)
+        {
+            case RelicType.BonePlate:
+                if (health != null)
+                {
+                    health.AddArmor(15f);
+                    health.SetArmorTextActive(true);
+                }
+                break;
+            case RelicType.ConduitSpike:
+                Debug.Log("Conduit Spike equipped: Every 3rd attack will deal 4-10 damage to 2 nearest enemies.");
+                break;
+            case RelicType.DoomShell:
+                Debug.Log("Doom Shell equipped: Dash deals 5-10 damage to enemies in range.");
+                break;
+            case RelicType.RazorClaw:
+                Debug.Log("Razor Claw equipped: Critical hits deal double damage.");
+                break;
+            case RelicType.SpiritShelter:
+                Debug.Log("Spirit Shelter equipped: Revive with full HP on first death, then relic is removed.");
+                break;
+            case RelicType.RejuvenationGlove:
+                Debug.Log("Rejuvenation Glove equipped: Critical hits heal 1 HP, up to max health.");
+                break;
+            case RelicType.JuicyOpal:
+                Debug.Log("Juicy Opal equipped: Increases healing amount by 1 HP.");
+                break;
+            case RelicType.VoltClaw:
+                Debug.Log("VoltClaw equipped: Critical hits deal additional 3-15 lightning damage to the enemy.");
+                break;
+            case RelicType.ArchangelsScythe:
+                Debug.Log("ArchangelsScythe equipped: Healing HP deals damage to nearby enemies equal to 4x the healed amount.");
+                break;
+            case RelicType.TitansWargear:
+                Debug.Log("Titan's Wargear equipped: Every 4 enemies killed increases weapon damage by 1.");
+                break;
+            case RelicType.DazeClaw:
+                Debug.Log("DazeClaw equipped: Critical hits stun enemies for 1 second.");
+                break;
+            case RelicType.GiantMace:
+                Debug.Log("GiantMace equipped: Deal 50% more damage to stunned enemies.");
+                break;
+            case RelicType.ImpactCharm:
+                Debug.Log("ImpactCharm equipped: Whenever you stun an enemy, deal 15 AOE damage around it.");
+                break;
+            case RelicType.TraumaticBlow:
+                Debug.Log("Traumatic Blow equipped: Instantly defeat enemies with less than 20% HP when stunned.");
+                break;
+        }
+    }
+
+    void HandleEnemyDeath(Enemy enemy)
+    {
+        if (playerInventory.Exists(relic => relic.type == RelicType.BonePlate))
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            PlayerHealth health = player.GetComponent<PlayerHealth>();
+            if (health != null)
+            {
+                health.AddArmor(1f);
+            }
+        }
+
+        if (playerInventory.Exists(relic => relic.type == RelicType.TitansWargear))
+        {
+            titansWargearKillCount++;
+            if (titansWargearKillCount >= 4)
+            {
+                // Tìm tất cả WeaponInfo trong scene hoặc từ một danh sách được quản lý
+                foreach (var projectile in FindObjectsOfType<Projectile>())
+                {
+                    WeaponInfo weaponInfo = projectile.GetWeaponInfo();
+                    if (weaponInfo != null)
+                    {
+                        weaponInfo.weaponDamage += 1;
+                        Debug.Log($"Titan's Wargear triggered: Increased {weaponInfo.name} damage to {weaponInfo.weaponDamage}.");
+                    }
+                }
+                titansWargearKillCount = 0; // Reset bộ đếm
+            }
+            Debug.Log($"Titan's Wargear: {titansWargearKillCount}/4 enemies killed.");
+        }
+    }
+
+    void UpdateArmorTextVisibility()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerHealth health = player.GetComponent<PlayerHealth>();
+        if (health != null)
+        {
+            bool hasBonePlate = playerInventory.Exists(relic => relic.type == RelicType.BonePlate);
+            health.SetArmorTextActive(hasBonePlate);
+        }
+    }
+
+    public void RemoveRelic(RelicType relicType)
+    {
+        Relic relicToRemove = playerInventory.Find(relic => relic.type == relicType);
+        if (relicToRemove != null)
+        {
+            playerInventory.Remove(relicToRemove);
+            usedRelics.Add(relicToRemove);
+            UpdateInventoryUI();
+            UpdateArmorTextVisibility();
+            Debug.Log($"Removed relic: {relicToRemove.relicName}");
+            if (relicType == RelicType.TitansWargear)
+            {
+                titansWargearKillCount = 0; // Reset bộ đếm khi gỡ Titan's Wargear
+            }
+        }
     }
 }

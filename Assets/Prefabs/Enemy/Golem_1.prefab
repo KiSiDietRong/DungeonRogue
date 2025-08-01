@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 3641206842415056288, guid: e1aa1315acd8d7a4c943d3100a84c3b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -205,8 +205,11 @@ MonoBehaviour:
   attackRange: 2
   chaseRange: 4
   attackCooldown: 2
+  popupOffsetRadius: 0.5
   damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
   animator: {fileID: 1951241495650203127}
+  stunEffect: {fileID: 6961230244420276688, guid: 1ee5dd2a91761e443bcc9e8d2a87a103, type: 3}
+  lastDamageSource: 
 --- !u!114 &4714918500486867268
 MonoBehaviour:
   m_ObjectHideFlags: 0
