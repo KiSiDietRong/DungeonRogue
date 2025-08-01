@@ -30,9 +30,11 @@ public class DotweenUI : MonoBehaviour
     private Vector3 loginOriginalScale;
     private Vector3 settingsOriginalScale;
 
-    // Scale gốc của các phần tử panel
     private Vector3[] signInElementScales;
     private Vector3[] loginElementScales;
+
+    // Thêm tham chiếu đến LoginUI để gọi hàm đăng nhập
+    [SerializeField] private LoginUI loginUI;
 
     void Start()
     {
@@ -48,7 +50,6 @@ public class DotweenUI : MonoBehaviour
         loginButton.localScale = Vector3.zero;
         settingsButton.localScale = Vector3.zero;
 
-        // Lưu scale gốc của các phần tử panel
         signInElementScales = new Vector3[signInPanelElements.Length];
         for (int i = 0; i < signInPanelElements.Length; i++)
         {
@@ -107,14 +108,11 @@ public class DotweenUI : MonoBehaviour
         HidePanel(loginPanel, loginPanelElements);
     }
 
+    // Hàm này được gọi từ button Confirm trong Unity Inspector
     public void OnConfirmLogin()
     {
-        Invoke("LoadNextScene", 3f);
-    }
-
-    void LoadNextScene()
-    {
-        SceneManager.LoadScene("MainMenu"); // Thay đổi theo tên scene của bạn
+        // Gọi hàm đăng nhập từ LoginUI thay vì chuyển scene trực tiếp
+        loginUI.OnLoginClick();
     }
 
     void ShowPanel(GameObject panel, RectTransform[] elements, Vector3[] originalScales)
