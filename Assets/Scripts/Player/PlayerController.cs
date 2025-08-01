@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour
     private bool facingLeft = false;
     internal Vector2 lastMoveDirection;
 
+    public bool hasOrb = false;
+    public int Gold = 500;
+    public Text goldText;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -200,5 +203,10 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, doomShellRadius);
+    }
+    public void UpdateGoldUI()
+    {
+        if (goldText != null)
+            goldText.text = $"Gold: {Gold}";
     }
 }

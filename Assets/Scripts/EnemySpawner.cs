@@ -98,8 +98,8 @@ public class EnemySpawner : MonoBehaviour
         {
             Vector2 offset = Vector2.down;
             var playerScript = player.GetComponent<PlayerController>();
-            if (playerScript != null && playerScript.lastMoveDirection != Vector2.zero)
-                offset = playerScript.lastMoveDirection.normalized;
+            //if (playerScript != null && playerScript.lastMoveDirection != Vector2.zero)
+            //    offset = playerScript.lastMoveDirection.normalized;
 
             Vector3 spawnPos = player.transform.position + (Vector3)(offset * 2f);
             Instantiate(itemPrefab, spawnPos, Quaternion.identity);
