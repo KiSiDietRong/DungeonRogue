@@ -16,8 +16,8 @@ public class MapController : MonoBehaviour
     [Header("Prefab Map Miniboss")]
     public GameObject minibossMapPrefab;
 
-    [Header("Vị trí spawn map")]
-    public Transform spawnPoint;
+    [Header("Vị trí spawn map (tự động tìm theo tên 'SpawnPoint')")]
+    private Transform spawnPoint;
 
     [Header("Transition Settings")]
     public RectTransform transitionPanel;
@@ -42,12 +42,20 @@ public class MapController : MonoBehaviour
         else
         {
             Destroy(gameObject);
+            return;
         }
-    }
 
-    void Start()
-    {
-        // Không làm gì ở Start
+        // Tìm SpawnPoint trong scene
+        GameObject found = GameObject.Find("SpawnPoint");
+        if (found != null)
+        {
+            spawnPoint = found.transform;
+            Debug.Log("Đã tìm thấy SpawnPoint.");
+        }
+        else
+        {
+            Debug.LogWarning("Không tìm thấy SpawnPoint! Hãy đảm bảo đã đặt tên đúng trong scene.");
+        }
     }
 
     public void StartBattleSequence()
@@ -58,20 +66,15 @@ public class MapController : MonoBehaviour
         LoadNextMap();
     }
 
-    /// <summary>
-    /// Tạo queue map theo đúng thứ tự từ battleMapPrefabs, sau đó là miniboss và shop
-    /// </summary>
     void GenerateSequentialMapSequence()
     {
-        // Thêm các map chiến đấu theo thứ tự
         foreach (var map in battleMapPrefabs)
         {
             mapQueue.Enqueue(map);
         }
 
-        // Cuối cùng thêm miniboss và shop
-        mapQueue.Enqueue(minibossMapPrefab); // map thứ n+1
-        mapQueue.Enqueue(shopMapPrefab);     // map thứ n+2
+        mapQueue.Enqueue(minibossMapPrefab);
+        mapQueue.Enqueue(shopMapPrefab);
 
         Debug.Log("Đã tạo queue map theo thứ tự: các map chiến đấu → miniboss → shop.");
     }
@@ -88,31 +91,32 @@ public class MapController : MonoBehaviour
     {
         float screenWidth = Screen.width;
 
-        // Bật panel và đưa nó ra trái
         transitionPanel.gameObject.SetActive(true);
         transitionPanel.anchoredPosition = new Vector2(-screenWidth, 0);
 
-        // Slide panel vào giữa
         yield return transitionPanel.DOAnchorPos(Vector2.zero, transitionDuration)
             .SetEase(Ease.InOutQuad).WaitForCompletion();
 
-        // Ẩn lobby nếu đang hiển thị
         if (lobbyMap != null && lobbyMap.activeSelf)
         {
             lobbyMap.SetActive(false);
             Debug.Log("Map sảnh đã được ẩn (sau khi panel che toàn màn hình).");
         }
 
-        // Xoá map cũ nếu có
         if (currentMapInstance != null)
         {
             Destroy(currentMapInstance);
             Debug.Log("Map cũ đã bị xoá.");
         }
 
-        // Load map mới từ queue
         if (mapQueue.Count > 0)
         {
+            if (spawnPoint == null)
+            {
+                Debug.LogError("SpawnPoint chưa được gán! Không thể load map.");
+                yield break;
+            }
+
             GameObject nextMap = mapQueue.Dequeue();
             currentMapInstance = Instantiate(nextMap, spawnPoint.position, Quaternion.identity);
             currentMapIndex++;
@@ -123,14 +127,12 @@ public class MapController : MonoBehaviour
             Debug.Log("🎉 Tất cả map đã được load xong (bao gồm miniboss và shop).");
         }
 
-        // Slide panel ra bên phải
         yield return new WaitForSeconds(0.2f);
         yield return transitionPanel.DOAnchorPos(new Vector2(screenWidth, 0), transitionDuration)
             .SetEase(Ease.InOutQuad).WaitForCompletion();
 
-        // Tắt panel
         transitionPanel.gameObject.SetActive(false);
-        isLoading = false; // Reset trạng thái
+        isLoading = false;
         yield break;
     }
 
