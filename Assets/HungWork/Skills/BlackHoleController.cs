@@ -5,6 +5,7 @@ public class BlackHoleController : MonoBehaviour
     public float pullForce = 5f;
     public float radius = 5f;
     public float duration = 3f;
+    public string enemyTag = "Enemy"; // <-- chỉ hút enemy có tag này
 
     private float timer;
 
@@ -22,28 +23,34 @@ public class BlackHoleController : MonoBehaviour
             return;
         }
 
-        // Hút enemy trong vùng ảnh hưởng
+        // Hút enemy trong vùng có tag đúng
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (var hit in hits)
         {
-            EnemyBlackHolePull enemy = hit.GetComponent<EnemyBlackHolePull>();
-            if (enemy != null )
+            if (hit.CompareTag(enemyTag))
             {
-                enemy.PullTowards(transform.position);
+                EnemyBlackHolePull enemy = hit.GetComponent<EnemyBlackHolePull>();
+                if (enemy != null)
+                {
+                    enemy.PullTowards(transform.position, pullForce);
+                }
             }
         }
     }
 
     void OnDestroy()
     {
-        // Ngừng hút enemy trong vùng khi Black Hole biến mất
+        // Dừng hút khi skill biến mất
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (var hit in hits)
         {
-            EnemyBlackHolePull enemy = hit.GetComponent<EnemyBlackHolePull>();
-            if (enemy != null)
+            if (hit.CompareTag(enemyTag))
             {
-                enemy.StopPull();
+                EnemyBlackHolePull enemy = hit.GetComponent<EnemyBlackHolePull>();
+                if (enemy != null)
+                {
+                    enemy.StopPull();
+                }
             }
         }
     }

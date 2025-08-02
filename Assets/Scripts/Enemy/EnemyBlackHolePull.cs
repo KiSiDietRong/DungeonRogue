@@ -1,29 +1,33 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyBlackHolePull : MonoBehaviour
 {
     private bool beingPulled = false;
     private Vector2 pullTarget;
     private float pullSpeed = 5f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private Rigidbody2D rb;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (beingPulled)
         {
-            Vector2 dir = (pullTarget - (Vector2)transform.position).normalized;
-            transform.position += (Vector3)(dir * pullSpeed * Time.deltaTime);
-            return;
+            Vector2 direction = (pullTarget - rb.position).normalized;
+            Vector2 newPosition = rb.position + direction * pullSpeed * Time.deltaTime;
+            rb.MovePosition(newPosition);
         }
     }
-    public void PullTowards(Vector2 center)
+
+    public void PullTowards(Vector2 center, float speed = 5f)
     {
         pullTarget = center;
+        pullSpeed = speed;
         beingPulled = true;
     }
 

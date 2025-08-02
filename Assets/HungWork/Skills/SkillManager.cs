@@ -1,9 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
-    public SkillState skillSlot1; // D�ng ph�m Q
-    public SkillState skillSlot2; // D�ng ph�m E
+    public SkillState skillSlot1; // Dùng phím Q
+    public SkillState skillSlot2; // Dùng phím E
+
+    public float maxCastDistance = 5f; // Khoảng cách tối đa tung chiêu
 
     private Camera mainCamera;
 
@@ -16,13 +18,11 @@ public class SkillManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-
             CastSkill(skillSlot1);
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-
             CastSkill(skillSlot2);
         }
     }
@@ -34,8 +34,23 @@ public class SkillManager : MonoBehaviour
             Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0f;
 
-            Debug.Log("Casting skill: " + skillState.skill.skillName);
-            skillState.Use(gameObject, mousePos);
+            Vector3 playerPos = transform.position;
+            Vector3 direction = mousePos - playerPos;
+            float distance = direction.magnitude;
+
+            Vector3 castPos;
+
+            if (distance <= maxCastDistance)
+            {
+                castPos = mousePos;
+            }
+            else
+            {
+                // Giới hạn tung chiêu tại rìa phạm vi
+                castPos = playerPos + direction.normalized * maxCastDistance;
+            }
+
+            skillState.Use(gameObject, castPos);
         }
     }
 }
