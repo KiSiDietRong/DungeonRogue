@@ -12,13 +12,14 @@ GameObject:
   - component: {fileID: 7539619892033292148}
   - component: {fileID: 5000483753497060900}
   - component: {fileID: 2956183833124646168}
+  - component: {fileID: 1244830112494643317}
   m_Layer: 0
   m_Name: WeaponCollider
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5158058698644584019
 Transform:
   m_ObjectHideFlags: 0
@@ -120,13 +121,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3436542031775708983}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77ff7b92daf925a4f841db689d230cf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 22
   weaponInfo: {fileID: 11400000, guid: 737e2d706e3fe804587b1babb5fb11ea, type: 2}
+--- !u!114 &1244830112494643317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3436542031775708983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba155c04b709f44f8b4c338df04c2d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5979997551160766206
 GameObject:
   m_ObjectHideFlags: 0
