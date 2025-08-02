@@ -15,6 +15,11 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawn Points")]
     public Transform[] spawnPoints; // các điểm spawn cố định
 
+    [Header("Reward Settings")]
+    public GameObject coinPrefab; // Prefab xu
+    public int rewardCoinAmount = 20; // Số lượng xu thưởng
+    public float rewardScatterRadius = 3f; // Bán kính tỏa xu
+
     private List<GameObject> currentEnemies = new List<GameObject>();
     private bool isSpawning = false;
     private int currentTurn = 0;
@@ -90,19 +95,33 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnItem()
     {
-        if (itemPrefab == null)
+        if (coinPrefab == null)
             return;
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            Vector2 offset = Vector2.down;
-            var playerScript = player.GetComponent<PlayerController>();
-            //if (playerScript != null && playerScript.lastMoveDirection != Vector2.zero)
-            //    offset = playerScript.lastMoveDirection.normalized;
+            Vector3 center = player.transform.position + Vector3.down * 1.5f;
 
-            Vector3 spawnPos = player.transform.position + (Vector3)(offset * 2f);
-            Instantiate(itemPrefab, spawnPos, Quaternion.identity);
+            for (int i = 0; i < rewardCoinAmount; i++)
+            {
+                // Random điểm trong vòng tròn
+                Vector2 randomOffset = Random.insideUnitCircle * rewardScatterRadius;
+                Vector3 spawnPos = center + (Vector3)randomOffset;
+
+                // Thêm một chút random xoay để tránh xu hướng chồng lên
+                Quaternion randomRot = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
+
+                GameObject coin = Instantiate(coinPrefab, spawnPos, randomRot);
+
+                // Optionally: Slight push to scatter
+                Rigidbody2D rb = coin.GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    Vector2 pushDir = randomOffset.normalized * Random.Range(0.5f, 1.5f);
+                    rb.linearVelocity = pushDir;
+                }
+            }
         }
     }
 

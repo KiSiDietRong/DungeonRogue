@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
     public void UpdateGoldUI()
     {
         if (goldText != null)
-            goldText.text = $"Gold: {Gold}";
+            goldText.text = $"{Gold}";
     }
 
     private void HandleInput()
