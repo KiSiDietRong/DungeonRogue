@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastMoveDir;
     private InventoryManager inventoryManager;
 
-    private bool isDashing = false;
+    public bool isDashing = false;
     private bool canDash = true;
 
     private bool nearPortal = false;

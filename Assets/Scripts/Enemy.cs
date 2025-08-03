@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float attackRange = 2f;
     public float chaseRange = 4f;
     public float attackCooldown = 1f;
+    public float attackTimeout = 1f;
     [SerializeField] private float popupOffsetRadius = 0.5f;
 
     [Header("References")]
@@ -53,26 +54,26 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (isDead || player == null || isAttacking || knockback.GettingKnockedBack || isPatrolling || isStunned) return;
+        if (isDead || player == null || knockback.GettingKnockedBack || isPatrolling || isStunned) return;
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
         if (distanceToPlayer <= attackRange)
         {
             FlipTowardsPlayer();
+
             if (!isAttacking && Time.time >= lastAttackTime + attackCooldown)
             {
-                isAttacking = true;
                 lastAttackTime = Time.time;
                 StartCoroutine(AttackPlayer());
             }
         }
         else if (distanceToPlayer <= chaseRange)
         {
-            isPatrolling = false;
             animator.ResetTrigger(Idle);
             animator.ResetTrigger(Hurt);
             animator.SetTrigger(Walk);
+
             FlipTowardsPlayer();
             MoveTowardsPlayer();
         }
@@ -85,6 +86,8 @@ public class Enemy : MonoBehaviour
 
     void MoveTowardsPlayer()
     {
+        if (isAttacking) return;
+
         Vector2 direction = (player.transform.position - transform.position).normalized;
         transform.Translate(direction * moveSpeed * Time.deltaTime);
     }
@@ -103,36 +106,47 @@ public class Enemy : MonoBehaviour
     IEnumerator AttackPlayer()
     {
         isAttacking = true;
+        animator.ResetTrigger(Idle);
         animator.SetTrigger(Attack);
 
-        AnimatorStateInfo stateInfo;
-        float timeout = 1f;
+        // Đợi animation "Attack" thực sự bắt đầu
+        float timeout = attackTimeout;
         while (timeout > 0f)
         {
-            stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
             if (stateInfo.IsName("Attack")) break;
             timeout -= Time.deltaTime;
             yield return null;
         }
 
-        stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-        float attackAnimLength = stateInfo.length;
-        yield return new WaitForSeconds(attackAnimLength * 0.5f);
+        AnimatorStateInfo attackState = animator.GetCurrentAnimatorStateInfo(0);
+        float attackAnimLength = attackState.length;
 
+        // Gây damage ở khoảng giữa animation
+        yield return new WaitForSeconds(attackAnimLength * 0.3f);
+
+        // ✅ Kiểm tra lại khoảng cách trước khi gây damage
         if (!isStunned && !isDead)
         {
-            var playerScript = player.GetComponent<PlayerHealth>();
-            if (playerScript != null && !playerScript.GetComponent<Knockback>().GettingKnockedBack)
+            float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+            if (distanceToPlayer <= attackRange)
             {
-                playerScript.TakeDamage((int)damage, transform);
+                var playerScript = player.GetComponent<PlayerHealth>();
+                if (playerScript != null)
+                {
+                    PlayerController pc = playerScript.GetComponent<PlayerController>();
+                    if (pc != null && !pc.isDashing && !playerScript.GetComponent<Knockback>().GettingKnockedBack)
+                    {
+                        playerScript.TakeDamage((int)damage, transform);
+                    }
+                }
             }
         }
 
-        yield return new WaitForSeconds(attackAnimLength * 0.5f);
+        animator.ResetTrigger(Attack);
         animator.SetTrigger(Idle);
 
-        float remainingCooldown = Mathf.Max(0f, attackCooldown - attackAnimLength);
-        if (remainingCooldown > 0f) yield return new WaitForSeconds(remainingCooldown);
+        yield return new WaitForSeconds(attackCooldown);
 
         isAttacking = false;
     }

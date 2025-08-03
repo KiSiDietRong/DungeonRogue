@@ -491,7 +491,7 @@ public class InventoryManager : MonoBehaviour
         pendingRelicChoose = false;
     }
 
-    void UpdateInventoryUI()
+    public void UpdateInventoryUI()
     {
         for (int i = 0; i < inventorySlots.Length; i++)
         {
@@ -510,7 +510,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    void ApplyRelicEffect(Relic relic)
+    public void ApplyRelicEffect(Relic relic)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerHealth health = player.GetComponent<PlayerHealth>();
@@ -599,7 +599,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    void UpdateArmorTextVisibility()
+    public void UpdateArmorTextVisibility()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerHealth health = player.GetComponent<PlayerHealth>();
@@ -625,5 +625,16 @@ public class InventoryManager : MonoBehaviour
                 titansWargearKillCount = 0; // Reset bộ đếm khi gỡ Titan's Wargear
             }
         }
+    }
+
+    public bool IsRelicUsed(Relic relic)
+    {
+        return usedRelics.Contains(relic);
+    }
+
+    public void AddUsedRelic(Relic relic)
+    {
+        if (!usedRelics.Contains(relic))
+            usedRelics.Add(relic);
     }
 }

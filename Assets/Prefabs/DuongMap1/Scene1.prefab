@@ -16798,6 +16798,9 @@ MonoBehaviour:
   - {fileID: 5139620347553141075}
   - {fileID: 918950552343593130}
   - {fileID: 6888602719241249637}
+  coinPrefab: {fileID: 6170564188838350909, guid: ed85c9782e587784a9c17897ccdef728, type: 3}
+  rewardCoinAmount: 20
+  rewardScatterRadius: 3
 --- !u!1 &5350869557740896981
 GameObject:
   m_ObjectHideFlags: 0
