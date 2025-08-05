@@ -16,4 +16,5 @@ MonoBehaviour:
   weaponCooldown: 0.2
   weaponDamage: 100
   weaponRange: 5
-  criticalChance: 0.05
+  criticalChance: 0.06
+  weaponSprite: {fileID: -7856493677412862020, guid: 4ab209ae9073f0b4f9f927e88de2a1ed, type: 3}

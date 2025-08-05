@@ -17,3 +17,4 @@ MonoBehaviour:
   weaponDamage: 18
   weaponRange: 2
   criticalChance: 0.02
+  weaponSprite: {fileID: 712035800519618848, guid: 838b7ccfcfab2824bbf3023a80fc2a39, type: 3}
