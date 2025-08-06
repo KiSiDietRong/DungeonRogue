@@ -19947,6 +19947,7 @@ MonoBehaviour:
   - {fileID: 3051674638947446957}
   - {fileID: 1697120488747756243}
   - {fileID: 6095972562075961485}
+  portalObject: {fileID: 509394736110465805}
   coinPrefab: {fileID: 6170564188838350909, guid: ed85c9782e587784a9c17897ccdef728, type: 3}
   rewardCoinAmount: 25
   rewardScatterRadius: 3

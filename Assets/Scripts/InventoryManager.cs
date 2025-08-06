@@ -391,7 +391,6 @@ public class InventoryManager : MonoBehaviour
         ShowRandomRelics();
         UpdateInventoryUI();
         SelectRelic(0);
-        Time.timeScale = 0f;
     }
 
     public void ToggleInventoryOnlyUI()
@@ -415,18 +414,6 @@ public class InventoryManager : MonoBehaviour
             foreach (var btn in relicButtons)
             {
                 btn.gameObject.SetActive(false);
-            }
-
-            if (active)
-            {
-                Time.timeScale = 0f; // Tạm dừng thời gian game
-            }
-            else
-            {
-                if (!canvasActive)
-                {
-                    Time.timeScale = 1f; // Khôi phục thời gian game
-                }
             }
         }
     }
@@ -601,7 +588,7 @@ public class InventoryManager : MonoBehaviour
 
     IEnumerator CloseCanvasAfterDelay(float delay)
     {
-        yield return new WaitForSecondsRealtime(delay);
+        yield return new WaitForSeconds(delay);
         CloseCanvasImmediate();
     }
 
@@ -615,10 +602,6 @@ public class InventoryManager : MonoBehaviour
         relicSelected = false;
         relicConfirming = false;
         pendingRelicChoose = false;
-        if (!inventoryCanvasActive)
-        {
-            Time.timeScale = 1f; // Khôi phục thời gian game
-        }
     }
 
     public void UpdateInventoryUI()

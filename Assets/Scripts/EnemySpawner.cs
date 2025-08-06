@@ -15,6 +15,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawn Points")]
     public Transform[] spawnPoints; // các điểm spawn cố định
 
+    [Header("Portal Settings")]
+    public GameObject portalObject;
+
     [Header("Reward Settings")]
     public GameObject coinPrefab; // Prefab xu
     public int rewardCoinAmount = 20; // Số lượng xu thưởng
@@ -61,6 +64,9 @@ public class EnemySpawner : MonoBehaviour
             {
                 SpawnItem();
                 SpawnCoin();
+
+                if (portalObject != null)
+                    portalObject.SetActive(true);
             }
         }
     }
@@ -68,6 +74,9 @@ public class EnemySpawner : MonoBehaviour
     void SpawnNewTurn()
     {
         isSpawning = true;
+
+        if (portalObject != null)
+            portalObject.SetActive(false);
 
         GameObject currentEnemyPrefab = enemyPrefabs[currentTurn % enemyPrefabs.Length];
 

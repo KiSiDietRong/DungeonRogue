@@ -17,25 +17,28 @@ public class Enemy : MonoBehaviour
     public GameObject damagePopupPrefab;
     public Animator animator;
     [SerializeField] private ParticleSystem stunEffect;
-    private GameObject player;
-    private float currentHP;
-    private bool isDead = false;
-    private bool isAttacking = false;
-    private bool isStunned = false;
-    private float lastAttackTime;
-    private Knockback knockback;
+    protected GameObject player;
+    protected float currentHP;
+    protected bool isDead = false;
+    protected bool isAttacking = false;
+    protected bool isStunned = false;
+    protected float lastAttackTime;
+    protected Knockback knockback;
     public string lastDamageSource = "";
 
     private bool isPatrolling = false;
-    private Vector2 patrolDirection = Vector2.left;
+    //private Vector2 patrolDirection = Vector2.left;
     private float patrolSpeed = 1f;
     private float patrolInterval = 1f;
+    private Vector2 patrolDirection;
+    private float patrolRange = 3f;
+    private Vector3 patrolStartPoint;
 
-    private static readonly int Idle = Animator.StringToHash("Idle");
-    private static readonly int Walk = Animator.StringToHash("Walk");
-    private static readonly int Attack = Animator.StringToHash("Attack");
-    private static readonly int Hurt = Animator.StringToHash("Hurt");
-    private static readonly int Die = Animator.StringToHash("Die");
+    protected static readonly int Idle = Animator.StringToHash("Idle");
+    protected static readonly int Walk = Animator.StringToHash("Walk");
+    protected static readonly int Attack = Animator.StringToHash("Attack");
+    protected static readonly int Hurt = Animator.StringToHash("Hurt");
+    protected static readonly int Die = Animator.StringToHash("Die");
 
     public delegate void EnemyDeathHandler(Enemy enemy);
     public static event EnemyDeathHandler OnEnemyDeath;
@@ -52,7 +55,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(CheckForPlayerAndStartPatrolLoop());
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (isDead || player == null || knockback.GettingKnockedBack || isPatrolling || isStunned) return;
 
@@ -84,7 +87,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void MoveTowardsPlayer()
+    protected virtual void MoveTowardsPlayer()
     {
         if (isAttacking) return;
 
@@ -92,7 +95,7 @@ public class Enemy : MonoBehaviour
         transform.Translate(direction * moveSpeed * Time.deltaTime);
     }
 
-    void FlipTowardsPlayer()
+    protected virtual void FlipTowardsPlayer()
     {
         Vector2 direction = (player.transform.position - transform.position).normalized;
         float scaleX = Mathf.Abs(transform.localScale.x);
@@ -103,7 +106,7 @@ public class Enemy : MonoBehaviour
         );
     }
 
-    IEnumerator AttackPlayer()
+    protected virtual IEnumerator AttackPlayer()
     {
         isAttacking = true;
         animator.ResetTrigger(Idle);
@@ -123,7 +126,7 @@ public class Enemy : MonoBehaviour
         float attackAnimLength = attackState.length;
 
         // Gây damage ở khoảng giữa animation
-        yield return new WaitForSeconds(attackAnimLength * 0.3f);
+        yield return new WaitForSeconds(attackAnimLength * 0.35f);
 
         // ✅ Kiểm tra lại khoảng cách trước khi gây damage
         if (!isStunned && !isDead)
@@ -279,7 +282,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void DieEnemy()
+    protected virtual void DieEnemy()
     {
         isDead = true;
         animator.SetTrigger(Die);
@@ -314,6 +317,7 @@ public class Enemy : MonoBehaviour
             float distance = Vector2.Distance(transform.position, player.transform.position);
             if (distance > chaseRange && !isPatrolling)
             {
+                patrolStartPoint = transform.position; // Ghi nhớ điểm bắt đầu
                 StartCoroutine(PatrolRoutine());
             }
         }
@@ -322,6 +326,7 @@ public class Enemy : MonoBehaviour
     IEnumerator PatrolRoutine()
     {
         isPatrolling = true;
+
         while (isPatrolling)
         {
             if (player == null || isDead || isStunned) yield break;
@@ -333,28 +338,45 @@ public class Enemy : MonoBehaviour
                 yield break;
             }
 
-            animator.ResetTrigger(Hurt);
+            // Tạo hướng ngẫu nhiên
+            patrolDirection = Random.insideUnitCircle.normalized;
+
+            // Xác định đích đến trong giới hạn patrolRange
+            Vector3 targetPosition = transform.position + (Vector3)(patrolDirection * patrolRange);
+
+            // Bật animation Walk
             animator.ResetTrigger(Idle);
             animator.SetTrigger(Walk);
 
-            Flip(patrolDirection.x);
-
-            Vector3 startPos = transform.position;
-            Vector3 targetPos = startPos + (Vector3)patrolDirection;
-
+            float moveDuration = 1.5f;
             float elapsed = 0f;
-            while (elapsed < patrolInterval)
+
+            while (elapsed < moveDuration)
             {
-                transform.position = Vector3.Lerp(startPos, targetPos, elapsed / patrolInterval);
+                // Nếu chạm vật cản thì quay hướng
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, patrolDirection, 0.2f, LayerMask.GetMask("Obstacle"));
+                if (hit.collider != null)
+                {
+                    patrolDirection *= -1;
+                    break;
+                }
+
+                transform.position = Vector3.MoveTowards(transform.position, targetPosition, patrolSpeed * Time.deltaTime);
+                Flip(patrolDirection.x);
+
                 elapsed += Time.deltaTime;
                 yield return null;
             }
-            transform.position = targetPos;
 
-            patrolDirection *= -1;
-            yield return null;
+            // Sau khi di chuyển xong: bật Idle khi đứng
+            animator.ResetTrigger(Walk);
+            animator.SetTrigger(Idle);
+
+            // Đợi trước khi đổi hướng tiếp
+            yield return new WaitForSeconds(1f);
         }
     }
+
 
     void Flip(float directionX)
     {

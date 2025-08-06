@@ -16788,6 +16788,10 @@ MonoBehaviour:
   - {fileID: 5829303203518999700}
   - {fileID: 775394986196673313}
   - {fileID: 4956937886053521102}
+  portalObject: {fileID: 3656341666734076886}
+  coinPrefab: {fileID: 0}
+  rewardCoinAmount: 20
+  rewardScatterRadius: 3
 --- !u!1 &8107729575070557444
 GameObject:
   m_ObjectHideFlags: 0
