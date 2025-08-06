@@ -5,7 +5,7 @@ using UnityEngine;
 public class UserManager : MonoBehaviour
 {
     private string savePath;
-    private Dictionary<string, string> userDatabase = new Dictionary<string, string>();
+    private Dictionary<string, UserData> userDatabase = new Dictionary<string, UserData>();
 
     private void Awake()
     {
@@ -25,7 +25,12 @@ public class UserManager : MonoBehaviour
         if (userDatabase.ContainsKey(username))
             return "Account already exist.";
 
-        userDatabase.Add(username, password);
+        userDatabase.Add(username, new UserData
+        {
+            username = username,
+            password = password,
+            hasLoggedIn = false
+        });
         SaveUsers();
         return "Register Success!";
     }
@@ -37,8 +42,13 @@ public class UserManager : MonoBehaviour
 
         if (userDatabase.ContainsKey(username))
         {
-            if (userDatabase[username] == password)
+            if (userDatabase[username].password == password)
+            {
+                // Lưu lại trạng thái đăng nhập
+                //userDatabase[username].hasLoggedIn = true;
+                //SaveUsers();
                 return "Login Success!";
+            }
             else
                 return "Incorrect username or password.";
         }
@@ -51,7 +61,7 @@ public class UserManager : MonoBehaviour
         List<UserData> userList = new List<UserData>();
         foreach (var pair in userDatabase)
         {
-            userList.Add(new UserData { username = pair.Key, password = pair.Value });
+            userList.Add(pair.Value);
         }
         string json = JsonUtility.ToJson(new UserListWrapper { users = userList }, true);
         Debug.Log("Save JSON: " + json);
@@ -70,14 +80,22 @@ public class UserManager : MonoBehaviour
         {
             foreach (var user in wrapper.users)
             {
-                userDatabase[user.username] = user.password;
+                userDatabase[user.username] = user;
             }
         }
     }
-}
 
-[System.Serializable]
-public class UserListWrapper
-{
-    public List<UserData> users = new List<UserData>();
+    public UserData GetUser(string username)
+    {
+        if (userDatabase.ContainsKey(username))
+        {
+            return userDatabase[username];
+        }
+        return null;
+    }
+
+    public void SaveUserDatabase()
+    {
+        SaveUsers();
+    }
 }
