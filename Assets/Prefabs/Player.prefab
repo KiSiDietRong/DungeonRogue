@@ -602,6 +602,7 @@ GameObject:
   - component: {fileID: 1271208192290154615}
   - component: {fileID: 3494647126101521790}
   - component: {fileID: 7942451001291477639}
+  - component: {fileID: 3448345429812892080}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -815,7 +816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0cd0c6b2547f5545bbe9fe08d08731a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 9999999
   knockbackThrustAmount: 0.2
   damageRecoveryTime: 1
   healthSlider: {fileID: 1308516933114445538}
@@ -864,11 +865,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillSlot1:
-    skill: {fileID: 11400000, guid: 67ee89cf31d01244f80c6aaabdfcb4eb, type: 2}
+    skill: {fileID: 0}
     lastUseTime: -999
   skillSlot2:
-    skill: {fileID: 11400000, guid: ed2b4a9084a0f9d4a9f63b234ff35cdc, type: 2}
+    skill: {fileID: 0}
     lastUseTime: -999
+  maxCastDistance: 5
+--- !u!114 &3448345429812892080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3308409861397390488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576b6595f664a7b42b78086b5eb1cce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponInfo: {fileID: 11400000, guid: 37e51db6e8fde594d9c66cc20c3c70ec, type: 2}
 --- !u!1 &5148724678657436998
 GameObject:
   m_ObjectHideFlags: 0
