@@ -879,11 +879,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 0a11b6ab-ef58-4083-a123-696b064c4b94
+  cloudProjectId: 9529b954-ad84-49ee-a6f4-29625127c00a
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: DungeonRogue
-  organizationId: letuanhung05
+  projectName: DR_Games 2025-07-07_22-08-48
+  organizationId: hnguyendac942
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

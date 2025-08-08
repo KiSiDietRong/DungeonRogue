@@ -14,6 +14,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float archangelScytheRadius = 5f;
     [SerializeField] private GameObject healEffectPrefab; // Prefab cho hiệu ứng Heal
 
+    public int CurrentHealth => currentHealth;
+    public int MaxHealth => maxHealth;
+
     private int currentHealth;
     private float armor;
     private bool canTakeDamage = true;
