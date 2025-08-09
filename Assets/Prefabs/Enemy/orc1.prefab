@@ -149,7 +149,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.14111061, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -159,7 +159,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8427788, y: 1.09375}
+  m_Size: {x: 1.1, y: 1.1}
   m_EdgeRadius: 0
 --- !u!50 &188398947896095573
 Rigidbody2D:
@@ -207,6 +207,7 @@ MonoBehaviour:
   chaseRange: 4
   attackCooldown: 1.1
   attackTimeout: 0.1175
+  slowTime: 3
   popupOffsetRadius: 0.5
   damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
   animator: {fileID: 2081532903909235807}
@@ -227,10 +228,11 @@ MonoBehaviour:
   maxHP: 100
   damage: 10
   moveSpeed: 3
-  attackRange: 2.1
+  attackRange: 1.5
   chaseRange: 4
   attackCooldown: 1.1
   attackTimeout: 0.1175
+  slowTime: 1
   popupOffsetRadius: 0.5
   damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
   animator: {fileID: 2081532903909235807}

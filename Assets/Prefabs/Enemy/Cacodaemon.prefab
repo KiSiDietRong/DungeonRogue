@@ -204,8 +204,8 @@ MonoBehaviour:
   maxHP: 100
   damage: 10
   moveSpeed: 3
-  attackRange: 4
-  chaseRange: 6
+  attackRange: 5
+  chaseRange: 5
   attackCooldown: 0.6
   attackTimeout: 0.5
   popupOffsetRadius: 0.5

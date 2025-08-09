@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public float chaseRange = 4f;
     public float attackCooldown = 1f;
     public float attackTimeout = 1f;
+    public float slowTime = 1f;
     [SerializeField] private float popupOffsetRadius = 0.5f;
 
     [Header("References")]
