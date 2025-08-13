@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1907772149226223927}
   - component: {fileID: 4258624817653172221}
   - component: {fileID: 2495972675353137241}
+  - component: {fileID: 1592752441578544177}
   - component: {fileID: -5247516880016664270}
   - component: {fileID: 4621764093667667217}
   m_Layer: 0
@@ -178,7 +179,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-5247516880016664270
+--- !u!114 &1592752441578544177
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,6 +187,33 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4548239822341538408}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ed35afb5dd7e9d4c9141b080fe8f12c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  damage: 10
+  moveSpeed: 3
+  attackRange: 1.2
+  chaseRange: 4
+  attackCooldown: 1.1
+  attackTimeout: 0.1175
+  slowTime: 1
+  popupOffsetRadius: 0.5
+  damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
+  animator: {fileID: 1907772149226223927}
+  stunEffect: {fileID: 0}
+  lastDamageSource: 
+  explosionRadius: 1.2
+  explosionDamage: 10
+--- !u!114 &-5247516880016664270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4548239822341538408}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90b7456d190254548a1fea5a9acdfb77, type: 3}
   m_Name: 
@@ -197,6 +225,7 @@ MonoBehaviour:
   chaseRange: 4
   attackCooldown: 1.1
   attackTimeout: 0.1175
+  slowTime: 1
   popupOffsetRadius: 0.5
   damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
   animator: {fileID: 1907772149226223927}

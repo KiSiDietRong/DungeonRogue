@@ -47,7 +47,12 @@ public class Enemy : MonoBehaviour
     // Getter để truy cập trạng thái isStunned
     public bool IsStunned => isStunned;
 
-    void Start()
+    protected void InvokeOnEnemyDeath()
+    {
+        OnEnemyDeath?.Invoke(this);
+    }
+
+    protected virtual void Start()
     {
         currentHP = maxHP;
         player = GameObject.FindGameObjectWithTag("Player");
