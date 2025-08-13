@@ -16,12 +16,14 @@ public class SkillManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        // Nút lăn chuột (Middle Mouse Button)
+        if (Input.GetMouseButtonDown(2)) // 2 = Middle mouse button
         {
             CastSkill(skillSlot1);
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        // Chuột phải
+        if (Input.GetMouseButtonDown(1)) // 1 = Right mouse button
         {
             CastSkill(skillSlot2);
         }
