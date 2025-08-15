@@ -15,8 +15,8 @@ MonoBehaviour:
   skillName: New Skill
   icon: {fileID: 0}
   cooldown: 2
-  slowZonePrefab: {fileID: 0}
-  zoneDuration: 5
-  damagePerSecond: 10
+  slowZonePrefab: {fileID: 6108163623151724668, guid: d82fd84d40d187447b859679b99861b3, type: 3}
   slowAmount: 0.5
+  slowDuration: 0.5
   zoneRadius: 3
+  zoneLifetime: 5

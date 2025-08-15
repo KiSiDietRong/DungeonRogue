@@ -34,8 +34,12 @@ public class PierceBulletController : MonoBehaviour
 
     void Update()
     {
-        // Di chuyển projectile
+        // Di chuyển
         transform.position += direction * speed * Time.deltaTime;
+
+        // Xoay sprite theo hướng bay
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
