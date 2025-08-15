@@ -100,6 +100,7 @@ public class InventoryManager : MonoBehaviour
             canvasUI.SetActive(false);
             canvasActive = false;
         }
+        UpdateShopPrices(); // Cập nhật giá shop ngay khi khởi tạo
     }
 
     void Update()
@@ -353,16 +354,25 @@ public class InventoryManager : MonoBehaviour
     {
         if (selectedReplaceIndex >= 0 && selectedReplaceIndex < playerInventory.Count)
         {
+            Relic oldRelic = playerInventory[selectedReplaceIndex];
             playerInventory[selectedReplaceIndex] = relicToReplace;
+            usedRelics.Add(relicToReplace);
+            UpdateInventoryUI();
+            ApplyRelicEffect(relicToReplace);
+            UpdateArmorTextVisibility();
+            if (oldRelic.type == RelicType.DiscountCard)
+            {
+                UpdateShopPrices(); // Cập nhật giá shop khi thay thế DiscountCard
+            }
         }
         else
         {
             playerInventory.Add(relicToReplace);
+            usedRelics.Add(relicToReplace);
+            UpdateInventoryUI();
+            ApplyRelicEffect(relicToReplace);
+            UpdateArmorTextVisibility();
         }
-        usedRelics.Add(relicToReplace);
-        UpdateInventoryUI();
-        ApplyRelicEffect(relicToReplace);
-        UpdateArmorTextVisibility();
         waitingForReplace = false;
         clickOnce = false;
         isPickingRelic = false;
@@ -788,6 +798,10 @@ public class InventoryManager : MonoBehaviour
             case RelicType.ConduitSpike:
                 Debug.Log("Conduit Spike equipped: Every 3rd attack will deal 4-10 damage to 2 nearest enemies.");
                 break;
+            case RelicType.DiscountCard:
+                Debug.Log("Discount Card equipped: Shop items are 25% cheaper.");
+                UpdateShopPrices(); // Cập nhật giá shop khi thêm DiscountCard
+                break;
             case RelicType.DoomShell:
                 Debug.Log("Doom Shell equipped: Dash deals 5-10 damage to enemies in range.");
                 break;
@@ -823,6 +837,9 @@ public class InventoryManager : MonoBehaviour
                 break;
             case RelicType.TraumaticBlow:
                 Debug.Log("Traumatic Blow equipped: Instantly defeat enemies with less than 20% HP when stunned.");
+                break;
+            case RelicType.RecoveryRing:
+                Debug.Log("Recovery Ring equipped: Heal 1 HP when entering a new battle map.");
                 break;
         }
         UpdateInventoryUI();
@@ -882,6 +899,10 @@ public class InventoryManager : MonoBehaviour
             usedRelics.Add(relicToRemove);
             UpdateInventoryUI();
             UpdateArmorTextVisibility();
+            if (relicType == RelicType.DiscountCard)
+            {
+                UpdateShopPrices(); // Cập nhật giá shop khi xóa DiscountCard
+            }
             Debug.Log($"Removed relic: {relicToRemove.relicName}");
             if (relicType == RelicType.TitansWargear)
             {
@@ -899,5 +920,26 @@ public class InventoryManager : MonoBehaviour
     {
         if (!usedRelics.Contains(relic))
             usedRelics.Add(relic);
+    }
+
+    public bool HasRecoveryRing()
+    {
+        return playerInventory.Exists(relic => relic.type == RelicType.RecoveryRing);
+    }
+
+    // Hàm cập nhật giá của tất cả vật phẩm trong shop
+    private void UpdateShopPrices()
+    {
+        ShopRelicDisplay[] shopDisplays = FindObjectsOfType<ShopRelicDisplay>();
+        if (shopDisplays.Length == 0)
+        {
+            Debug.LogWarning("No ShopRelicDisplay found in scene!");
+            return;
+        }
+        foreach (ShopRelicDisplay display in shopDisplays)
+        {
+            display.UpdateCostDisplay();
+        }
+        Debug.Log("Shop prices updated due to DiscountCard status change.");
     }
 }
