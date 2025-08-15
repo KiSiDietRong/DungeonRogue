@@ -15,7 +15,7 @@ MonoBehaviour:
   skillName: New Skill
   icon: {fileID: 0}
   cooldown: 2
-  fireballPrefab: {fileID: 0}
+  fireballPrefab: {fileID: 1780598333246159346, guid: 0110690ed53e01241810716f8b3b6d41, type: 3}
   fireballCount: 3
   orbitRadius: 2
   orbitSpeed: 180

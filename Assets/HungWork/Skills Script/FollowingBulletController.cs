@@ -54,7 +54,7 @@ public class FollowingBulletController : MonoBehaviour
             moveDirection = Vector3.Lerp(moveDirection, directionToTarget, Time.deltaTime * 5f).normalized;
 
             float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            transform.rotation = Quaternion.Euler(0, 0, angle+90);
         }
 
         transform.position += moveDirection * speed * Time.deltaTime;
