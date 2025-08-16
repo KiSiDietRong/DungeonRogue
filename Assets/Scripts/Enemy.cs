@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
 
     // Getter để truy cập trạng thái isStunned
     public bool IsStunned => isStunned;
+    public bool IsDead => isDead;
 
     protected void InvokeOnEnemyDeath()
     {
@@ -383,6 +384,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void Heal(float amount)
+    {
+        if (isDead) return;
+        currentHP = Mathf.Min(currentHP + amount, maxHP);
+        // Có thể thêm hiệu ứng hồi máu (particle, animation, popup)
+    }
 
     void Flip(float directionX)
     {

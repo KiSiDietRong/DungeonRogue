@@ -174,7 +174,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -206,8 +206,9 @@ MonoBehaviour:
   moveSpeed: 3
   attackRange: 5
   chaseRange: 5
-  attackCooldown: 0.6
+  attackCooldown: 2
   attackTimeout: 0.5
+  slowTime: 1
   popupOffsetRadius: 0.5
   damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
   animator: {fileID: 5249709892903727392}
@@ -235,6 +236,7 @@ MonoBehaviour:
   chaseRange: 4
   attackCooldown: 0.6
   attackTimeout: 0.5
+  slowTime: 1
   popupOffsetRadius: 0.5
   damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
   animator: {fileID: 5249709892903727392}

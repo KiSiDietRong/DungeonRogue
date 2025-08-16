@@ -12,7 +12,11 @@ public class EnemySpawnerCocoon : Enemy
 
     protected override void Start()
     {
-        base.Start(); // vẫn gọi Start của Enemy để setup máu, animator...
+        // ❌ Không gọi base.Start() để tránh PatrolLoop
+        currentHP = maxHP;
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (animator == null) animator = GetComponent<Animator>();
+        knockback = GetComponent<Knockback>();
 
         if (spawnPoint == null)
             spawnPoint = transform;
@@ -20,11 +24,13 @@ public class EnemySpawnerCocoon : Enemy
         StartCoroutine(SpawnLoop());
     }
 
-    // 🔹 Ghi đè Update để không di chuyển / tấn công
     protected override void Update()
     {
-        // Cocoon không di chuyển hoặc tấn công
-        // Có thể thêm animation Idle nếu muốn
+        // Chỉ Idle, không di chuyển hay tấn công
+        if (!isDead && animator != null)
+        {
+            animator.SetTrigger(Idle);
+        }
     }
 
     private IEnumerator SpawnLoop()
@@ -46,7 +52,7 @@ public class EnemySpawnerCocoon : Enemy
 
     protected override void DieEnemy()
     {
-        isSpawning = false; // ngừng spawn khi chết
+        isSpawning = false;
         base.DieEnemy();
     }
 

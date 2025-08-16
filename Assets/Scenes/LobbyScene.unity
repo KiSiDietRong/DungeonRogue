@@ -50543,6 +50543,10 @@ PrefabInstance:
       propertyPath: goldText
       value: 
       objectReference: {fileID: 463978387}
+    - target: {fileID: 8720703565809137646, guid: f445ffb615489cd4786c9486112bf04c, type: 3}
+      propertyPath: m_Mass
+      value: 9999
+      objectReference: {fileID: 0}
     - target: {fileID: 8726319067589930509, guid: f445ffb615489cd4786c9486112bf04c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
