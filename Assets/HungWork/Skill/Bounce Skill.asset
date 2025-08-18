@@ -9,10 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2ab9f7f7ba7ec947934cea8290d0a4f, type: 3}
-  m_Name: New Heal Self Skill
+  m_Script: {fileID: 11500000, guid: e28ad2017686160478efe0f9b9d510f2, type: 3}
+  m_Name: Bounce Skill
   m_EditorClassIdentifier: 
   skillName: New Skill
   icon: {fileID: 0}
-  cooldown: 45
-  healAmount: 30
+  cooldown: 2
+  bulletPrefab: {fileID: 3636076566325174800, guid: b4fcaf47ebf00af479439b396b164c55, type: 3}
+  speed: 10
+  damage: 15
+  maxBounces: 3
+  bounceRange: 5

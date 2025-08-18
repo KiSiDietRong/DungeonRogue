@@ -9,14 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e28ad2017686160478efe0f9b9d510f2, type: 3}
-  m_Name: New Bounce Skill
+  m_Script: {fileID: 11500000, guid: bd54992378c0ad9419677794f9819f1b, type: 3}
+  m_Name: Fire Breath Skill
   m_EditorClassIdentifier: 
   skillName: New Skill
   icon: {fileID: 0}
-  cooldown: 2
-  bulletPrefab: {fileID: 3636076566325174800, guid: b4fcaf47ebf00af479439b396b164c55, type: 3}
-  speed: 10
-  damage: 15
-  maxBounces: 3
-  bounceRange: 5
+  cooldown: 5
+  flamePrefab: {fileID: 1192623941287497063, guid: 28019f6265c85b64180a6f97442d77a9, type: 3}
+  duration: 3
+  damagePerSecond: 10
+  tickInterval: 0.5
+  coneAngle: 45
+  range: 3
+  targetTag: Enemy

@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e25e6a43cb91c14bbd1b3ea4e7c2693, type: 3}
-  m_Name: New Pierce Skill
+  m_Script: {fileID: 11500000, guid: 62089d65bb08ae74a93d66ebbc150c9d, type: 3}
+  m_Name: Poison Bullet Skill
   m_EditorClassIdentifier: 
   skillName: New Skill
   icon: {fileID: 0}
   cooldown: 2
-  projectilePrefab: {fileID: 854827241456912002, guid: e45fcdabf37fc474f94b3c3c712d0e83, type: 3}
-  projectileSpeed: 15
-  projectileDamage: 20
-  projectileLifeTime: 0.75
+  poisonBulletPrefab: {fileID: 8866844907286518760, guid: 1f6c51be53235f949ad3f6642f49ed0c, type: 3}

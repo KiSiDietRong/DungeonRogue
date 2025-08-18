@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62089d65bb08ae74a93d66ebbc150c9d, type: 3}
-  m_Name: New Poison Bullet Skill
+  m_Script: {fileID: 11500000, guid: f2ab9f7f7ba7ec947934cea8290d0a4f, type: 3}
+  m_Name: Heal Self Skill
   m_EditorClassIdentifier: 
   skillName: New Skill
   icon: {fileID: 0}
-  cooldown: 2
-  poisonBulletPrefab: {fileID: 8866844907286518760, guid: 1f6c51be53235f949ad3f6642f49ed0c, type: 3}
+  cooldown: 45
+  healAmount: 30

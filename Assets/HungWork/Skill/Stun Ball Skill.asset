@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bfae6abf3f5d2641831d4b4acc86c61, type: 3}
-  m_Name: New Black Hole Skill
+  m_Script: {fileID: 11500000, guid: 18d58ffd7a2b7e44b928a1e72ac57f43, type: 3}
+  m_Name: Stun Ball Skill
   m_EditorClassIdentifier: 
   skillName: New Skill
   icon: {fileID: 0}
   cooldown: 2
-  blackHolePrefab: {fileID: 6605300842755207369, guid: 41fa4567fd9871249b28f6f207c7b215, type: 3}
+  projectilePrefab: {fileID: 8996979003671956908, guid: e007f51f7629d264c8454b5d91dd3dd2, type: 3}
+  projectileSpeed: 10
+  stunDuration: 2
+  damage: 10

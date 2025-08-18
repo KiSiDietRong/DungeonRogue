@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a536bf875722c5440a9fb3f69e3d6994, type: 3}
-  m_Name: New Fireball Skill
+  m_Script: {fileID: 11500000, guid: 4bfae6abf3f5d2641831d4b4acc86c61, type: 3}
+  m_Name: Black Hole Skill
   m_EditorClassIdentifier: 
-  skillName: FireBall
+  skillName: New Skill
   icon: {fileID: 0}
   cooldown: 2
-  fireballPrefab: {fileID: 6098165078004752004, guid: c2c79a83dd990ac469d8da928b56845c, type: 3}
+  blackHolePrefab: {fileID: 6605300842755207369, guid: 41fa4567fd9871249b28f6f207c7b215, type: 3}
