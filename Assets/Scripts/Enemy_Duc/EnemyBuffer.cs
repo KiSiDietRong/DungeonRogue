@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class EnemyBuffer : Enemy
 {
@@ -7,6 +8,7 @@ public class EnemyBuffer : Enemy
     public Color buffColor = Color.red;
 
     private bool isBuffing = false;
+    private EnemyLineConnector lineConnector;
 
     protected override void Start()
     {
@@ -15,12 +17,16 @@ public class EnemyBuffer : Enemy
         if (animator == null) animator = GetComponent<Animator>();
         knockback = GetComponent<Knockback>();
 
+        lineConnector = GetComponent<EnemyLineConnector>();
+
         BuffAllEnemies();
     }
 
     private void BuffAllEnemies()
     {
         if (isBuffing) return;
+
+        List<Transform> buffedTargets = new List<Transform>();
 
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
         foreach (Enemy e in allEnemies)
@@ -35,7 +41,16 @@ public class EnemyBuffer : Enemy
                 // Đổi màu (nếu có SpriteRenderer)
                 SpriteRenderer sr = e.GetComponent<SpriteRenderer>();
                 if (sr != null) sr.color = buffColor;
+
+                // Thêm vào danh sách target để nối dây
+                buffedTargets.Add(e.transform);
             }
+        }
+
+        // Cập nhật line connector
+        if (lineConnector != null)
+        {
+            lineConnector.SetTargets(buffedTargets);
         }
 
         isBuffing = true;
@@ -72,6 +87,10 @@ public class EnemyBuffer : Enemy
     protected override void DieEnemy()
     {
         RemoveBuffFromAllEnemies();
+
+        // clear line khi chết
+        if (lineConnector != null) lineConnector.SetTargets(new List<Transform>());
+
         base.DieEnemy();
     }
 }

@@ -22948,7 +22948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 1017650365859696959, guid: 39ef23af8d8d4b24bbbe7d2d55d6f53d, type: 3}
-  enemiesPerTurn: 2
+  enemiesPerTurn: 1
   spawnDelay: 2
   itemPrefab: {fileID: 0}
   maxTurns: 1

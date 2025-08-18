@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyHealer : Enemy
 {
@@ -12,21 +13,22 @@ public class EnemyHealer : Enemy
     public GameObject healEffectPrefab;    // Prefab hiệu ứng hồi máu
     public Color healTextColor = Color.green; // Màu chữ hiển thị HP hồi
 
+    private EnemyLineConnector lineConnector;
+
     protected override void Start()
     {
-        // Không gọi base.Start() để tránh patrol / chase
         currentHP = maxHP;
         player = GameObject.FindGameObjectWithTag("Player");
         if (animator == null) animator = GetComponent<Animator>();
         knockback = GetComponent<Knockback>();
 
-        // Bắt đầu vòng lặp hồi máu
+        lineConnector = GetComponent<EnemyLineConnector>();
+
         StartCoroutine(HealLoop());
     }
 
     protected override void Update()
     {
-        // Chỉ idle
         if (!isDead && animator != null)
         {
             animator.ResetTrigger(Walk);
@@ -46,6 +48,7 @@ public class EnemyHealer : Enemy
     private void HealAllies()
     {
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
+        List<Transform> healedTargets = new List<Transform>();
 
         foreach (Enemy e in allEnemies)
         {
@@ -56,19 +59,25 @@ public class EnemyHealer : Enemy
                 {
                     e.Heal(healAmount);
 
-                    // Spawn hiệu ứng hồi máu
                     if (healEffectPrefab != null)
                     {
                         GameObject effect = Instantiate(healEffectPrefab, e.transform.position, Quaternion.identity);
-                        Destroy(effect, 1f); // Hủy sau 1 giây
+                        Destroy(effect, 1f);
                     }
 
-                    // Hiển thị số HP hồi (nếu có hệ thống DamagePopup)
                     DamagePopup.Create(e.transform.position + Vector3.up * 1.2f, $"+{healAmount}", healTextColor);
+
+                    healedTargets.Add(e.transform);
 
                     Debug.Log($"{gameObject.name} healed {e.gameObject.name} for {healAmount} HP");
                 }
             }
+        }
+
+        // cập nhật dây nối
+        if (lineConnector != null)
+        {
+            lineConnector.SetTargets(healedTargets);
         }
     }
 }
