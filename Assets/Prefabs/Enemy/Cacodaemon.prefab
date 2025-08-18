@@ -205,7 +205,7 @@ MonoBehaviour:
   damage: 10
   moveSpeed: 3
   attackRange: 5
-  chaseRange: 5
+  chaseRange: 6
   attackCooldown: 2
   attackTimeout: 0.5
   slowTime: 1

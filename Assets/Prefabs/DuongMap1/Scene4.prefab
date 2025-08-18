@@ -225,8 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 3882813494643140639, guid: 05dd5b4e6acadba4299bd57cc7e3bcdd, type: 3}
-  - {fileID: 5691807117817197662, guid: cf597133b60270c4598813929e123693, type: 3}
+  - {fileID: 4361069812288752118, guid: 4201bdeb2ebfac94eaa29393cd54145b, type: 3}
+  - {fileID: 7643097881682972804, guid: ec30c51fbb02fc94a8f1bd22f82762ba, type: 3}
   enemiesPerTurn: 8
   spawnDelay: 2
   itemPrefab: {fileID: 0}
