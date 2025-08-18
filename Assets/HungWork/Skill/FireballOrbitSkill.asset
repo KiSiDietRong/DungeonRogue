@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018da7618f5a11f448d03578f9c9db34, type: 3}
+  m_Name: FireballOrbitSkill
+  m_EditorClassIdentifier: 
+  skillName: New Skill
+  icon: {fileID: 0}
+  cooldown: 2
+  fireballPrefab: {fileID: 1780598333246159346, guid: 0110690ed53e01241810716f8b3b6d41, type: 3}
+  fireballCount: 3
+  orbitRadius: 2
+  orbitSpeed: 180
+  duration: 5
+  damage: 10
