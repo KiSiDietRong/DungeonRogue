@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd54992378c0ad9419677794f9819f1b, type: 3}
   m_Name: Fire Breath Skill
   m_EditorClassIdentifier: 
-  skillName: New Skill
+  skillName: FireBreath
   icon: {fileID: 0}
   cooldown: 5
   flamePrefab: {fileID: 1192623941287497063, guid: 28019f6265c85b64180a6f97442d77a9, type: 3}

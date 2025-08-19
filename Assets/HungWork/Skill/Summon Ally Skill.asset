@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed9cf700631bfe4292e78006a218513, type: 3}
   m_Name: Summon Ally Skill
   m_EditorClassIdentifier: 
-  skillName: New Skill
+  skillName: SummonAlly
   icon: {fileID: 0}
   cooldown: 2
   allyPrefab: {fileID: 5308686346303129901, guid: 5e61c435ab705934ba1f1581b8c063c5, type: 3}

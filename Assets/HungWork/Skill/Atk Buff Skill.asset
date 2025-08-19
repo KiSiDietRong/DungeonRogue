@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e402fe40b4caea047993ce08148b7116, type: 3}
   m_Name: Atk Buff Skill
   m_EditorClassIdentifier: 
-  skillName: New Skill
+  skillName: Atk Buff
   icon: {fileID: 0}
   cooldown: 2
   buffDuration: 5

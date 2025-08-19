@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e25e6a43cb91c14bbd1b3ea4e7c2693, type: 3}
   m_Name: Pierce Skill
   m_EditorClassIdentifier: 
-  skillName: New Skill
+  skillName: Pierce
   icon: {fileID: 0}
   cooldown: 2
   projectilePrefab: {fileID: 854827241456912002, guid: e45fcdabf37fc474f94b3c3c712d0e83, type: 3}

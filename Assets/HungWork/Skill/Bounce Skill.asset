@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e28ad2017686160478efe0f9b9d510f2, type: 3}
   m_Name: Bounce Skill
   m_EditorClassIdentifier: 
-  skillName: New Skill
+  skillName: Bounce
   icon: {fileID: 0}
   cooldown: 2
   bulletPrefab: {fileID: 3636076566325174800, guid: b4fcaf47ebf00af479439b396b164c55, type: 3}

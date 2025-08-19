@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef2eaf15a0f27b46a65d31902f9c365, type: 3}
   m_Name: Tulen Skill
   m_EditorClassIdentifier: 
-  skillName: New Skill
+  skillName: Tulen
   icon: {fileID: 0}
   cooldown: 2
   projectilePrefab: {fileID: 7509188510232892002, guid: 7cea325a958e78348a1b28e8cc26a8ae, type: 3}

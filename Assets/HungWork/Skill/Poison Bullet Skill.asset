@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62089d65bb08ae74a93d66ebbc150c9d, type: 3}
   m_Name: Poison Bullet Skill
   m_EditorClassIdentifier: 
-  skillName: New Skill
+  skillName: PoisonBullet
   icon: {fileID: 0}
   cooldown: 2
   poisonBulletPrefab: {fileID: 8866844907286518760, guid: 1f6c51be53235f949ad3f6642f49ed0c, type: 3}

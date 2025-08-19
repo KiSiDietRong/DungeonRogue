@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18d58ffd7a2b7e44b928a1e72ac57f43, type: 3}
   m_Name: Stun Ball Skill
   m_EditorClassIdentifier: 
-  skillName: New Skill
+  skillName: StunBall
   icon: {fileID: 0}
   cooldown: 2
   projectilePrefab: {fileID: 8996979003671956908, guid: e007f51f7629d264c8454b5d91dd3dd2, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4640d6b41fcfb3844893940d9f98fa5a, type: 3}
   m_Name: Following Skill
   m_EditorClassIdentifier: 
-  skillName: New Skill
+  skillName: Following
   icon: {fileID: 0}
   cooldown: 2
   bulletPrefab: {fileID: 4840669915989297835, guid: 6dcffaac31250af4280b5a2f7274be3c, type: 3}
