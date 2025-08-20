@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip lobbyMusic;
 
     [Header("Volumes")]
+    [Range(0, 1)] public float masterVolume = 1f;
     [Range(0, 1)] public float musicVolume = 1f;
     [Range(0, 1)] public float sfxVolume = 1f;
 
@@ -67,20 +68,26 @@ public class AudioManager : MonoBehaviour
         if (musicSource.clip == clip) return;
 
         musicSource.clip = clip;
-        musicSource.volume = musicVolume;
+        musicSource.volume = musicVolume * masterVolume;
         musicSource.loop = true;
         musicSource.Play();
     }
 
     public void PlaySFX(AudioClip clip)
     {
-        sfxSource.PlayOneShot(clip, sfxVolume);
+        sfxSource.PlayOneShot(clip, sfxVolume * masterVolume);
+    }
+
+    public void SetMasterVolume(float volume)
+    {
+        masterVolume = volume;
+        musicSource.volume = musicVolume * masterVolume;
     }
 
     public void SetMusicVolume(float volume)
     {
         musicVolume = volume;
-        musicSource.volume = volume;
+        musicSource.volume = volume * masterVolume;
     }
 
     public void SetSFXVolume(float volume)
