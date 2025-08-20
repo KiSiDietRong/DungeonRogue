@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Following Skill
   m_EditorClassIdentifier: 
   skillName: Following
+  skillInfo: Summon 3 spirits that follow enemy , deal damage to enemy
   icon: {fileID: 0}
-  cooldown: 2
+  cooldown: 15
   bulletPrefab: {fileID: 4840669915989297835, guid: 6dcffaac31250af4280b5a2f7274be3c, type: 3}
   speed: 8
   damage: 10

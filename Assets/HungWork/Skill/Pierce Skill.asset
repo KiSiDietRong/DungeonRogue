@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Pierce Skill
   m_EditorClassIdentifier: 
   skillName: Pierce
+  skillInfo: Fire a bullet that can be stop, deal damage to all enemy it hit
   icon: {fileID: 0}
-  cooldown: 2
+  cooldown: 20
   projectilePrefab: {fileID: 854827241456912002, guid: e45fcdabf37fc474f94b3c3c712d0e83, type: 3}
   projectileSpeed: 15
   projectileDamage: 20

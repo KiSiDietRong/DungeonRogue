@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Meteor Skill
   m_EditorClassIdentifier: 
   skillName: New Skill
+  skillInfo: Summon a Meteor deal high damage in big area to enemy inside
   icon: {fileID: 21300000, guid: cef7bb83187791340b808c67f35ed513, type: 3}
-  cooldown: 36
+  cooldown: 25
   meteorPrefab: {fileID: 7107698544903805615, guid: 8400f73018eeca24b92657da9d997915, type: 3}
   spawnHeight: 10
