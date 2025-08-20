@@ -172,7 +172,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -199,13 +199,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b7456d190254548a1fea5a9acdfb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
+  maxHP: 300
   damage: 10
-  moveSpeed: 3
-  attackRange: 2.1
-  chaseRange: 4
+  moveSpeed: 1.2
+  attackRange: 1.5
+  chaseRange: 10
   attackCooldown: 1.1
   attackTimeout: 0.1175
+  slowTime: 1
   popupOffsetRadius: 0.5
   damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
   animator: {fileID: 9182376028235193361}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6073acb5877b094ca93bd923c770731, type: 3}
   m_Name: Heal Allies Skill
   m_EditorClassIdentifier: 
-  skillName: New Skill
+  skillName: AllyHeal
   icon: {fileID: 0}
   cooldown: 20
   healRadius: 4

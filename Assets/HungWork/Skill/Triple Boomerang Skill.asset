@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3590f87dbf8675d4c960b94246051c33, type: 3}
   m_Name: Triple Boomerang Skill
   m_EditorClassIdentifier: 
-  skillName: New Skill
+  skillName: TripleBoomerang
   icon: {fileID: 0}
   cooldown: 2
   projectilePrefab: {fileID: 1006204620400292261, guid: 26f78f6d4c6b29f47b17e549d30d799f, type: 3}

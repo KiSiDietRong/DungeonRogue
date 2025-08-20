@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour
     {
         isSlowed = true;
         float originalSpeed = moveSpeed;
-        moveSpeed *= 0.5f; // giảm tốc độ 50%
+        moveSpeed = 0.3f; // giảm tốc độ 50%
 
         // Bạn có thể thêm hiệu ứng visual ở đây nếu cần (ví dụ màu player chuyển xanh)
 

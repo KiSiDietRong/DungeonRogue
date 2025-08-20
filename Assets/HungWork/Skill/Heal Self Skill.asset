@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ab9f7f7ba7ec947934cea8290d0a4f, type: 3}
   m_Name: Heal Self Skill
   m_EditorClassIdentifier: 
-  skillName: New Skill
+  skillName: HealSelf
   icon: {fileID: 0}
   cooldown: 45
   healAmount: 30

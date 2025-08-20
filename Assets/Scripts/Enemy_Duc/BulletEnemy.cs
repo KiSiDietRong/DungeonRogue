@@ -27,9 +27,9 @@ public class BulletEnemy : MonoBehaviour
         if (other.gameObject == owner) return;
 
         // Nếu trúng tường hoặc vật cản
-        if (other.CompareTag("Obstacle"))
-        {
-            Destroy(gameObject);
-        }
+        //if (other.CompareTag("Obstacle"))
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 }

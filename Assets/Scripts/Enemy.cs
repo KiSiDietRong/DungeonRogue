@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public float chaseRange = 4f;
     public float attackCooldown = 1f;
     public float attackTimeout = 1f;
+    public float slowTime = 1f;
     [SerializeField] private float popupOffsetRadius = 0.5f;
 
     [Header("References")]
@@ -45,8 +46,14 @@ public class Enemy : MonoBehaviour
 
     // Getter để truy cập trạng thái isStunned
     public bool IsStunned => isStunned;
+    public bool IsDead => isDead;
 
-    void Start()
+    protected void InvokeOnEnemyDeath()
+    {
+        OnEnemyDeath?.Invoke(this);
+    }
+
+    protected virtual void Start()
     {
         currentHP = maxHP;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -377,6 +384,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void Heal(float amount)
+    {
+        if (isDead) return;
+        currentHP = Mathf.Min(currentHP + amount, maxHP);
+        // Có thể thêm hiệu ứng hồi máu (particle, animation, popup)
+    }
 
     void Flip(float directionX)
     {

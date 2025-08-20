@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edd6a5b4f2775147b320d06bfb20805, type: 3}
   m_Name: ShieldSkill
   m_EditorClassIdentifier: 
-  skillName: New Skill
+  skillName: Shield
   icon: {fileID: 0}
   cooldown: 2
   shieldPrefab: {fileID: 0}

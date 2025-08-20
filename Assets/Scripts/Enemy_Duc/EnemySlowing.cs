@@ -24,7 +24,7 @@ public class EnemySlowing : Enemy
                     PlayerController pc = player.GetComponent<PlayerController>();
                     if (pc != null)
                     {
-                        pc.ApplySlow(1f); // bạn cần tạo hàm này trong PlayerController
+                        pc.ApplySlow(slowTime); // bạn cần tạo hàm này trong PlayerController
                     }
                 }
             }
