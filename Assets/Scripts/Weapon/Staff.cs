@@ -21,6 +21,9 @@ public class Staff : MonoBehaviour, IWeapon
 
     public void Attack()
     {
+        if (playerController != null && playerController.isInDialogue)
+            return;
+
         myAnimator.SetTrigger(ATTACK_HASH);
         GameObject newArrow = Instantiate(magicPrefab, magicSpawnPoint.position, activeWeapon.transform.rotation);
         Projectile projectile = newArrow.GetComponent<Projectile>();

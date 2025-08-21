@@ -8,6 +8,7 @@ public class DialogueNPC : MonoBehaviour, INPCInteractable
     public string[] option1Dialogue;      // "Bạn là ai?"
     public string[] orbHaveDialogue;      // Khi có orb
     public string[] orbNotHaveDialogue;   // Khi không có orb
+    public string[] nothingDialogue;
 
     private string[] currentDialogue;
     private int currentLineIndex = 0;
@@ -19,6 +20,7 @@ public class DialogueNPC : MonoBehaviour, INPCInteractable
     public GameObject choicePanel;
     public Button button1;
     public Button button2;
+    public Button button3;
 
     private PlayerController player;
     private bool isTalking = false;
@@ -49,6 +51,9 @@ public class DialogueNPC : MonoBehaviour, INPCInteractable
         isTalking = true;
         currentLineIndex = 0;
         currentDialogue = initialDialogue;
+
+        if (player != null)
+            player.isInDialogue = true;
 
         dialogueUI.SetActive(true);
         StartTyping(currentDialogue[currentLineIndex]);
@@ -112,11 +117,18 @@ public class DialogueNPC : MonoBehaviour, INPCInteractable
         dialogueUI.SetActive(false);
         choicePanel.SetActive(false);
         dialogueText.text = "";
+
+        if (player != null)
+            player.isInDialogue = false;
     }
 
     private void ShowChoices()
     {
         choicePanel.SetActive(true);
+
+        button1.gameObject.SetActive(true);
+        button2.gameObject.SetActive(true);
+        button3.gameObject.SetActive(true);
     }
 
     public void OnChooseOption1()
@@ -131,18 +143,26 @@ public class DialogueNPC : MonoBehaviour, INPCInteractable
     {
         choicePanel.SetActive(false);
 
-        //if (player != null && player.HasOrb())
-        //{
-        //    currentDialogue = orbHaveDialogue;
-        //}
-        //else
-        //{
-        //    currentDialogue = orbNotHaveDialogue;
-        //}
+        if (player != null && player.HasOrb())
+        {
+            currentDialogue = orbHaveDialogue;
+        }
+        else
+        {
+            currentDialogue = orbNotHaveDialogue;
+        }
 
         currentLineIndex = 0;
         StartTyping(currentDialogue[currentLineIndex]);
     }
+    public void OnChooseOption3()
+    {
+        choicePanel.SetActive(false);
+        currentDialogue = nothingDialogue;
+        currentLineIndex = 0;
+        StartTyping(currentDialogue[currentLineIndex]);
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

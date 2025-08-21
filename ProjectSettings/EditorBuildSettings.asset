@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 7953a877ae1519e4b82b3c886eb6d33c
   - enabled: 1
-    path: Assets/Scenes/LobbyScene.unity
-    guid: 38fc2c1f1be715d4a87afee89d585335
+    path: Assets/Scenes/Lobby_Test.unity
+    guid: c5e557217fd147846894e51b0db75958
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 1ff896d0252fbfd489481b3764d131e8
+  - enabled: 1
+    path: Assets/Scenes/LobbyScene.unity
+    guid: 38fc2c1f1be715d4a87afee89d585335
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
