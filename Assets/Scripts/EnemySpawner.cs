@@ -13,15 +13,15 @@ public class EnemySpawner : MonoBehaviour
     public int maxTurns = 2;
 
     [Header("Spawn Points")]
-    public Transform[] spawnPoints; // các điểm spawn cố định
+    public Transform[] spawnPoints; 
 
     [Header("Portal Settings")]
     public GameObject portalObject;
 
     [Header("Reward Settings")]
-    public GameObject coinPrefab; // Prefab xu
-    public int rewardCoinAmount = 20; // Số lượng xu thưởng
-    public float rewardScatterRadius = 3f; // Bán kính tỏa xu
+    public GameObject coinPrefab; 
+    public int rewardCoinAmount = 20; 
+    public float rewardScatterRadius = 3f; 
 
     private List<GameObject> currentEnemies = new List<GameObject>();
     private bool isSpawning = false;
@@ -80,7 +80,6 @@ public class EnemySpawner : MonoBehaviour
 
         GameObject currentEnemyPrefab = enemyPrefabs[currentTurn % enemyPrefabs.Length];
 
-        // Tạo bản sao danh sách spawn points để tránh trùng lặp
         List<Transform> availableSpawnPoints = new List<Transform>(spawnPoints);
 
         for (int i = 0; i < enemiesPerTurn; i++)
@@ -97,7 +96,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemy = Instantiate(currentEnemyPrefab, spawnPoint.position, Quaternion.identity);
             currentEnemies.Add(enemy);
 
-            availableSpawnPoints.RemoveAt(randomIndex); // tránh trùng lặp
+            availableSpawnPoints.RemoveAt(randomIndex); 
         }
 
         isSpawning = false;
@@ -133,16 +132,13 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < rewardCoinAmount; i++)
             {
-                // Random điểm trong vòng tròn
                 Vector2 randomOffset = Random.insideUnitCircle * rewardScatterRadius;
                 Vector3 spawnPos = center + (Vector3)randomOffset;
 
-                // Thêm một chút random xoay để tránh xu hướng chồng lên
                 Quaternion randomRot = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
 
                 GameObject coin = Instantiate(coinPrefab, spawnPos, randomRot);
 
-                // Optionally: Slight push to scatter
                 Rigidbody2D rb = coin.GetComponent<Rigidbody2D>();
                 if (rb != null)
                 {

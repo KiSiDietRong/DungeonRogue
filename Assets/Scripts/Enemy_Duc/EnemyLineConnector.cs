@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [RequireComponent(typeof(LineRenderer))]
 public class EnemyLineConnector : MonoBehaviour
 {
-    public Color lineColor = Color.white;  // Màu mặc định
+    public Color lineColor = Color.white;  
     public float lineWidth = 0.05f;
 
     private LineRenderer lineRenderer;
@@ -16,7 +16,6 @@ public class EnemyLineConnector : MonoBehaviour
         lineRenderer.startWidth = lineWidth;
         lineRenderer.endWidth = lineWidth;
 
-        // Nếu là Buffer thì line = đỏ, Healer thì line = xanh lá
         if (GetComponent<EnemyBuffer>() != null)
         {
             lineColor = Color.red;
@@ -44,7 +43,6 @@ public class EnemyLineConnector : MonoBehaviour
             return;
         }
 
-        // Tổng số điểm = 1 (enemy gốc) + số target
         lineRenderer.positionCount = targets.Count * 2;
 
         int index = 0;

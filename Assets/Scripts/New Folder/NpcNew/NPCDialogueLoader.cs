@@ -15,7 +15,7 @@ public class NPCDialogueLoader : MonoBehaviour
     void Start()
     {
         LoadDialogue();
-        Invoke("StartDialogue", 2f); // Delay 2s trước khi bắt đầu
+        Invoke("StartDialogue", 2f); 
     }
 
     void LoadDialogue()

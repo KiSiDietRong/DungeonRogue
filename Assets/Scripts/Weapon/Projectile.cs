@@ -62,7 +62,6 @@ public class Projectile : MonoBehaviour
                     (inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.RazorClaw) ? 4f : 2f) : 1f;
                 float finalDamage = weaponInfo.weaponDamage * damageMultiplier;
 
-                // Tăng 50% sát thương nếu kẻ địch bị choáng và có GiantMace
                 bool isStunned = enemy.IsStunned;
                 if (isStunned && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.GiantMace))
                 {
@@ -72,7 +71,6 @@ public class Projectile : MonoBehaviour
 
                 enemy.TakeDamage(finalDamage, transform.position, isCritical);
 
-                // Hồi HP nếu có RejuvenationGlove và đòn đánh là chí mạng
                 if (isCritical && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.RejuvenationGlove))
                 {
                     PlayerHealth playerHealth = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerHealth>();
@@ -83,7 +81,6 @@ public class Projectile : MonoBehaviour
                     }
                 }
 
-                // Gây sát thương sét ngẫu nhiên từ 3-15 nếu có VoltClaw và đòn đánh là chí mạng
                 if (isCritical && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.VoltClaw))
                 {
                     float lightningDamage = Random.Range(3f, 15f);
@@ -91,7 +88,6 @@ public class Projectile : MonoBehaviour
                     Debug.Log($"VoltClaw triggered: Dealt {lightningDamage} lightning damage to {other.name}.");
                 }
 
-                // Làm choáng kẻ địch nếu có DazeClaw và đòn đánh là chí mạng
                 if (isCritical && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.DazeClaw))
                 {
                     enemy.Stun(1f);

@@ -6,21 +6,20 @@ public class EnemyPossessor : Enemy
 {
     [Header("Possess Settings")]
     public float flySpeed = 5f;
-    public float buffMultiplier = 1.1f; // +10%
+    public float buffMultiplier = 1.1f; 
     public Color buffedColor = Color.magenta;
 
     private bool isPossessing = false;
 
     protected override void DieEnemy()
     {
-        if (isPossessing) return; // tránh gọi 2 lần
+        if (isPossessing) return;
         isPossessing = true;
 
-        // Tìm enemy khác còn sống
         Enemy[] allEnemies = FindObjectsOfType<Enemy>();
         Enemy target = allEnemies
             .Where(e => e != this && !e.IsDead)
-            .OrderBy(x => Random.value) // chọn random
+            .OrderBy(x => Random.value) 
             .FirstOrDefault();
 
         if (target != null)
@@ -29,20 +28,18 @@ public class EnemyPossessor : Enemy
         }
         else
         {
-            // Nếu không có enemy nào để nhập -> chết bình thường
             base.DieEnemy();
         }
     }
 
     private IEnumerator FlyToTargetAndPossess(Enemy target)
     {
-        // Disable collider để không va chạm
         Collider2D col = GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
         animator.ResetTrigger(Idle);
         animator.ResetTrigger(Walk);
-        animator.SetTrigger(Die); // Play anim "hồn thoát" nếu có
+        animator.SetTrigger(Die); 
 
         while (target != null && !target.IsDead)
         {
@@ -62,13 +59,11 @@ public class EnemyPossessor : Enemy
 
     private void ApplyBuff(Enemy target)
     {
-        // Tăng chỉ số
         target.maxHP *= buffMultiplier;
         target.damage *= buffMultiplier;
         target.moveSpeed *= buffMultiplier;
-        target.Heal(target.maxHP * 0.1f); // hồi thêm 10% máu ngay lập tức
+        target.Heal(target.maxHP * 0.1f); 
 
-        // Đổi màu sprite
         SpriteRenderer sr = target.GetComponent<SpriteRenderer>();
         if (sr != null)
         {

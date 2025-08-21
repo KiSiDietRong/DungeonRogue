@@ -31,7 +31,6 @@ public class LoginUI : MonoBehaviour
             return;
         }
 
-        // Kiểm tra nếu đúng username & password
         string result = userManager.Login(username, password);
         messageText.text = result;
 

@@ -43,7 +43,7 @@ public class RelicShopItem : MonoBehaviour
             InventoryManager.Instance.UpdateInventoryUI();
             InventoryManager.Instance.ApplyRelicEffect(relicData);
 
-            Destroy(gameObject); // Xóa relic khỏi shop
+            Destroy(gameObject);
         }
         else
         {

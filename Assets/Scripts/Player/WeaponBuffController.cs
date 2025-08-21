@@ -11,7 +11,6 @@ public class WeaponBuffController : MonoBehaviour
     {
         if (weaponInfo == null) return;
 
-        // Chỉ lấy damage gốc một lần duy nhất
         if (originalDamage == null || weaponInfo.weaponDamage <= 0)
             originalDamage = weaponInfo.weaponDamage;
 

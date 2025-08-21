@@ -10,11 +10,10 @@ public class ShopRelicDisplay : MonoBehaviour
     public Image iconImage;
 
     private bool playerInRange = false;
-    private int discountedCost; // Giá sau khi giảm
+    private int discountedCost; 
 
     void Start()
     {
-        // Gán dữ liệu UI
         if (relicData == null)
         {
             Debug.LogError("relicData is null in ShopRelicDisplay!");
@@ -29,7 +28,6 @@ public class ShopRelicDisplay : MonoBehaviour
         InventoryManager inv = InventoryManager.Instance;
         bool hasDiscountCard = inv != null && inv.playerInventory.Exists(relic => relic.type == RelicType.DiscountCard);
 
-        // Tính giá giảm 25% nếu có DiscountCard
         discountedCost = hasDiscountCard ? Mathf.FloorToInt(relicData.cost * 0.75f) : relicData.cost;
 
         nameText.text = relicData.relicName;
@@ -64,11 +62,9 @@ public class ShopRelicDisplay : MonoBehaviour
 
         if (inv != null && player != null && relicData != null)
         {
-            // Kiểm tra xem có DiscountCard và giá đã giảm không
             bool hasDiscountCard = inv.playerInventory.Exists(relic => relic.type == RelicType.DiscountCard);
             bool usedDiscount = hasDiscountCard && discountedCost < relicData.cost;
 
-            // Sử dụng giá giảm để kiểm tra và trừ vàng
             if (player.Gold >= discountedCost)
             {
                 player.Gold -= discountedCost;
@@ -79,16 +75,15 @@ public class ShopRelicDisplay : MonoBehaviour
                 inv.ApplyRelicEffect(relicData);
                 inv.UpdateArmorTextVisibility();
 
-                inv.AddUsedRelic(relicData); // Mark relic as used
+                inv.AddUsedRelic(relicData); 
 
-                // Xóa DiscountCard nếu đã sử dụng giá giảm
                 if (usedDiscount)
                 {
                     inv.RemoveRelic(RelicType.DiscountCard);
                     Debug.Log("DiscountCard removed after purchase.");
                 }
 
-                Destroy(gameObject); // Xoá khỏi shop
+                Destroy(gameObject); 
                 Debug.Log($"Bought relic: {relicData.relicName} for {discountedCost} gold (original: {relicData.cost}).");
             }
             else
@@ -122,7 +117,6 @@ public class ShopRelicDisplay : MonoBehaviour
         }
     }
 
-    // Hàm để cập nhật giá hiển thị khi trạng thái DiscountCard thay đổi
     public void UpdateCostDisplay()
     {
         if (relicData == null)

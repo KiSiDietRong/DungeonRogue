@@ -3,11 +3,11 @@
 public class EnemyBerserker : Enemy
 {
     [Header("Berserker Settings")]
-    public float rageThreshold = 0.2f;   // 20% máu
-    public float scaleMultiplier = 1.3f; // Tăng scale
-    public float buffMultiplier = 1.5f;  // +50% dmg, speed
+    public float rageThreshold = 0.2f;   
+    public float scaleMultiplier = 1.3f; 
+    public float buffMultiplier = 1.5f;  
 
-    private bool isEnraged = false;      // Chỉ kích hoạt 1 lần
+    private bool isEnraged = false;   
 
     protected override void Update()
     {
@@ -23,10 +23,8 @@ public class EnemyBerserker : Enemy
     {
         isEnraged = true;
 
-        // Tăng kích thước
         transform.localScale *= scaleMultiplier;
 
-        // Buff dmg + speed
         damage *= buffMultiplier;
         moveSpeed *= buffMultiplier;
 

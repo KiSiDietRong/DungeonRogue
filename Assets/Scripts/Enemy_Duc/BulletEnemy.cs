@@ -8,7 +8,7 @@ public class BulletEnemy : MonoBehaviour
 
     void Start()
     {
-        Destroy(gameObject, lifeTime); // tự huỷ sau X giây
+        Destroy(gameObject, lifeTime);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -23,10 +23,8 @@ public class BulletEnemy : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Nếu cần tránh bắn trúng chính enemy
         if (other.gameObject == owner) return;
 
-        // Nếu trúng tường hoặc vật cản
         //if (other.CompareTag("Obstacle"))
         //{
         //    Destroy(gameObject);

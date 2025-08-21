@@ -21,7 +21,6 @@ public class ScreenManager : MonoBehaviour
 
     void Start()
     {
-        // --- RESOLUTION ---
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
         int currentResolutionIndex = 0;
@@ -44,7 +43,6 @@ public class ScreenManager : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
 
-        // --- WINDOW MODE ---
         windowModeDropdown.ClearOptions();
         var wmOptions = new System.Collections.Generic.List<string>() { "Fullscreen", "Windowed", "Borderless" };
         windowModeDropdown.AddOptions(wmOptions);
@@ -53,7 +51,6 @@ public class ScreenManager : MonoBehaviour
         windowModeDropdown.RefreshShownValue();
         windowModeDropdown.onValueChanged.AddListener(SetWindowMode);
 
-        // --- CURSOR COLOR ---
         cursorColorDropdown.ClearOptions();
         var colorOptions = new System.Collections.Generic.List<string>() { "Yellow", "Red", "Green" };
         cursorColorDropdown.AddOptions(colorOptions);
@@ -61,14 +58,11 @@ public class ScreenManager : MonoBehaviour
         cursorColorDropdown.RefreshShownValue();
         cursorColorDropdown.onValueChanged.AddListener(SetCursorColor);
 
-        // --- CURSOR SIZE ---
         cursorSizeSlider.onValueChanged.AddListener(SetCursorSize);
 
-        // default cursor
         SetCursorColor(0);
     }
 
-    // ----------------- METHODS -----------------
 
     void SetResolution(int resolutionIndex)
     {
@@ -99,7 +93,7 @@ public class ScreenManager : MonoBehaviour
 
     void SetCursorSize(float value)
     {
-        cursorScale = Mathf.Lerp(0.5f, 3f, value); // scale từ 0.5x đến 3x
+        cursorScale = Mathf.Lerp(0.5f, 3f, value);
         ApplyCursor();
     }
 
@@ -113,7 +107,6 @@ public class ScreenManager : MonoBehaviour
         Cursor.SetCursor(scaled, Vector2.zero, CursorMode.Auto);
     }
 
-    // Hàm scale texture
     Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)
     {
         Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, false);

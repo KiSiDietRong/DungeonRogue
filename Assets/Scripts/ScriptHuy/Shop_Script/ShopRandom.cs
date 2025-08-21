@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShopRandom : MonoBehaviour
 {
     [Header("Relic Prefab")]
-    public List<GameObject> relicDisplayPrefab; // Prefab chứa ShopRelicDisplay, UI, Collider
+    public List<GameObject> relicDisplayPrefab; 
 
     [Header("Slot chứa item (6 bàn)")]
     public List<Transform> itemSlots;
@@ -17,7 +17,6 @@ public class ShopRandom : MonoBehaviour
 
     void SpawnShopItems()
     {
-        // Lọc prefab dựa trên relicData chưa được dùng
         List<GameObject> availablePrefabs = new List<GameObject>();
 
         foreach (GameObject prefab in relicDisplayPrefab)
@@ -55,7 +54,6 @@ public class ShopRandom : MonoBehaviour
             }
         }
 
-        // Spawn lại
         SpawnShopItems();
     }
 

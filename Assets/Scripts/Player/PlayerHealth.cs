@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI armorText;
     [SerializeField] private float archangelScytheRadius = 5f;
-    [SerializeField] private GameObject healEffectPrefab; // Prefab cho hiệu ứng Heal
+    [SerializeField] private GameObject healEffectPrefab;
 
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
     private Knockback knockback;
     private Flash flash;
     private InventoryManager inventoryManager;
-    private bool hasRevived = false; // Theo dõi xem đã hồi sinh chưa
+    private bool hasRevived = false; 
 
     private void Awake()
     {
@@ -113,7 +113,6 @@ public class PlayerHealth : MonoBehaviour
         }
         currentHealth = Mathf.Min(currentHealth + totalHeal, maxHealth);
 
-        // Tạo hiệu ứng Heal
         if (healEffectPrefab != null)
         {
             Vector3 spawnPosition = transform.position + Vector3.up * 0.5f; // Offset để hiệu ứng xuất hiện phía trên người chơi
@@ -121,7 +120,6 @@ public class PlayerHealth : MonoBehaviour
             Animator healAnimator = healEffect.GetComponent<Animator>();
             if (healAnimator != null)
             {
-                // Đảm bảo animation được phát (nếu cần)
                 healAnimator.Play("Heal", -1, 0f);
             }
             Destroy(healEffect, 1f); // Hủy sau 1 giây

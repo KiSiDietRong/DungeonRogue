@@ -16,7 +16,7 @@ public class ShopNPC : MonoBehaviour, INPCInteractable
     public Button button1;
     public Button button2;
 
-    public ShopRandom shopRandom; // Script spawn item
+    public ShopRandom shopRandom; 
     private PlayerController player;
     private bool isTalking = false;
     private bool isTyping = false;
@@ -51,7 +51,6 @@ public class ShopNPC : MonoBehaviour, INPCInteractable
         dialogueUI.SetActive(true);
         StartTyping(currentDialogue[currentLineIndex]);
 
-        // Gán sự kiện ở đây nếu cần đảm bảo chắc chắn không trùng
         button1.onClick.RemoveAllListeners();
         button2.onClick.RemoveAllListeners();
         button1.onClick.AddListener(OnChooseOption1);
@@ -110,7 +109,7 @@ public class ShopNPC : MonoBehaviour, INPCInteractable
     {
         choicePanel.SetActive(true);
         button1.GetComponentInChildren<Text>().text = "What do you selling in here ?";
-        UpdateRerollButtonUI(); // ← GỌI ở đây
+        UpdateRerollButtonUI();
     }
 
     void UpdateRerollButtonUI()

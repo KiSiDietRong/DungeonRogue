@@ -34,10 +34,8 @@ public class DamagePopup : MonoBehaviour
         damageText.color = color;
     }
 
-    // Hàm tĩnh tạo DamagePopup
     public static DamagePopup Create(Vector3 position, string text, Color color)
     {
-        // Tìm prefab DamagePopup trong Resources/DamagePopup.prefab
         GameObject prefab = Resources.Load<GameObject>("DamagePopup");
         if (prefab == null)
         {

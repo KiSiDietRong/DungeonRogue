@@ -5,13 +5,13 @@ using System.Collections.Generic;
 public class EnemyHealer : Enemy
 {
     [Header("Healing Settings")]
-    public float healAmount = 10f;         // Lượng máu hồi mỗi lần
-    public float healInterval = 2f;        // Thời gian giữa mỗi lần hồi
-    public float healRange = 999f;         // Tầm hồi (999f = cả map)
+    public float healAmount = 10f;        
+    public float healInterval = 2f;        
+    public float healRange = 999f;         
 
     [Header("Effect Settings")]
-    public GameObject healEffectPrefab;    // Prefab hiệu ứng hồi máu
-    public Color healTextColor = Color.green; // Màu chữ hiển thị HP hồi
+    public GameObject healEffectPrefab;    
+    public Color healTextColor = Color.green; 
 
     private EnemyLineConnector lineConnector;
 
@@ -74,7 +74,6 @@ public class EnemyHealer : Enemy
             }
         }
 
-        // cập nhật dây nối
         if (lineConnector != null)
         {
             lineConnector.SetTargets(healedTargets);

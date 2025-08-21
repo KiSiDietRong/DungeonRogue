@@ -13,7 +13,6 @@ public class UserManager : MonoBehaviour
         LoadUsers();
     }
 
-    // Hàm đăng ký
     public string Register(string username, string password)
     {
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
@@ -44,7 +43,6 @@ public class UserManager : MonoBehaviour
         {
             if (userDatabase[username].password == password)
             {
-                // Lưu lại trạng thái đăng nhập
                 //userDatabase[username].hasLoggedIn = true;
                 //SaveUsers();
                 return "Login Success!";

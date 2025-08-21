@@ -33,7 +33,6 @@ public class DotweenUI : MonoBehaviour
     private Vector3[] signInElementScales;
     private Vector3[] loginElementScales;
 
-    // Thêm tham chiếu đến LoginUI để gọi hàm đăng nhập
     [SerializeField] private LoginUI loginUI;
 
     void Start()
@@ -108,10 +107,8 @@ public class DotweenUI : MonoBehaviour
         HidePanel(loginPanel, loginPanelElements);
     }
 
-    // Hàm này được gọi từ button Confirm trong Unity Inspector
     public void OnConfirmLogin()
     {
-        // Gọi hàm đăng nhập từ LoginUI thay vì chuyển scene trực tiếp
         loginUI.OnLoginClick();
     }
 

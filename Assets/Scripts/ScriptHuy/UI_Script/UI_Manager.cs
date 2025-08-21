@@ -4,21 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class UI_Manager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Lobby()
     {
-        StartCoroutine(LoadSceneAfterDelay("Lobby_Test", 3f));
+        StartCoroutine(LoadSceneAfterDelay("LobbyScene", 3f));
     }
 
     private IEnumerator LoadSceneAfterDelay(string sceneName, float delay)

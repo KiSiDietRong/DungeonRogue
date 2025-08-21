@@ -45,7 +45,6 @@ public class MapController : MonoBehaviour
             return;
         }
 
-        // Tìm SpawnPoint trong scene
         GameObject found = GameObject.Find("SpawnPoint");
         if (found != null)
         {
@@ -122,7 +121,6 @@ public class MapController : MonoBehaviour
             currentMapIndex++;
             Debug.Log($"→ [Map {currentMapIndex}] đã được load: {nextMap.name}");
 
-            // Kiểm tra nếu map là battleMapPrefabs và kích hoạt hiệu ứng RecoveryRing
             if (battleMapPrefabs.Contains(nextMap))
             {
                 InventoryManager inventoryManager = InventoryManager.Instance;

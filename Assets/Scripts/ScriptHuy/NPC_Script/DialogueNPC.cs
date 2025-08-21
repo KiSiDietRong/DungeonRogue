@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 public class DialogueNPC : MonoBehaviour, INPCInteractable
 {
-    public string[] initialDialogue;      // Ví dụ: ["Xin chào người chơi"]
-    public string[] option1Dialogue;      // "Bạn là ai?"
-    public string[] orbHaveDialogue;      // Khi có orb
-    public string[] orbNotHaveDialogue;   // Khi không có orb
+    public string[] initialDialogue;      
+    public string[] option1Dialogue;      
+    public string[] orbHaveDialogue;      
+    public string[] orbNotHaveDialogue;  
     public string[] nothingDialogue;
 
     private string[] currentDialogue;

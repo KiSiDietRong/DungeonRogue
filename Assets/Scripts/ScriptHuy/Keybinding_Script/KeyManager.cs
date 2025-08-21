@@ -24,7 +24,6 @@ public class KeyManager : MonoBehaviour
     private Dictionary<string, KeyCode> keybinds = new Dictionary<string, KeyCode>();
     private Dictionary<string, Image> buttonImages = new Dictionary<string, Image>();
 
-    // Cache tất cả sprite theo tên KeyCode
     private Dictionary<string, Sprite> keySprites = new Dictionary<string, Sprite>();
 
     void Awake()
@@ -34,7 +33,6 @@ public class KeyManager : MonoBehaviour
 
     void Start()
     {
-        // Load toàn bộ sprite từ folder Resources/Sprites/Keys
         Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/Keys");
         foreach (var sprite in sprites)
         {
@@ -42,7 +40,6 @@ public class KeyManager : MonoBehaviour
                 keySprites.Add(sprite.name, sprite);
         }
 
-        // Gắn Image UI tương ứng
         buttonImages["MoveUp"] = imgUp;
         buttonImages["MoveDown"] = imgDown;
         buttonImages["MoveLeft"] = imgLeft;
@@ -54,7 +51,6 @@ public class KeyManager : MonoBehaviour
         buttonImages["Interact"] = imgInteract;
         buttonImages["Inventory"] = imgInventory;
 
-        // Gắn Button tương ứng
         btnUp.onClick.AddListener(() => StartRebinding("MoveUp"));
         btnDown.onClick.AddListener(() => StartRebinding("MoveDown"));
         btnLeft.onClick.AddListener(() => StartRebinding("MoveLeft"));
@@ -167,7 +163,6 @@ public class KeyManager : MonoBehaviour
     {
         switch (key)
         {
-            // Phím chữ
             case KeyCode.A: return "a";
             case KeyCode.B: return "b";
             case KeyCode.C: return "c";
@@ -195,7 +190,6 @@ public class KeyManager : MonoBehaviour
             case KeyCode.Y: return "y";
             case KeyCode.Z: return "z";
 
-            // Phím số hàng trên (Alpha)
             case KeyCode.Alpha0: return "0";
             case KeyCode.Alpha1: return "1";
             case KeyCode.Alpha2: return "2";
@@ -207,7 +201,6 @@ public class KeyManager : MonoBehaviour
             case KeyCode.Alpha8: return "8";
             case KeyCode.Alpha9: return "9";
 
-            // Phím chức năng
             case KeyCode.Space: return "space";
             case KeyCode.Tab: return "tab";
             case KeyCode.Escape: return "escape";
@@ -220,18 +213,15 @@ public class KeyManager : MonoBehaviour
             case KeyCode.LeftAlt: return "left-alt";
             case KeyCode.RightAlt: return "right-alt";
 
-            // Chuột
             case KeyCode.Mouse0: return "mouse-left";
             case KeyCode.Mouse1: return "mouse-right";
             case KeyCode.Mouse2: return "mouse-middle";
 
-            // Di chuyển
             case KeyCode.UpArrow: return "arrow-up";
             case KeyCode.DownArrow: return "arrow-down";
             case KeyCode.LeftArrow: return "arrow-left";
             case KeyCode.RightArrow: return "arrow-right";
 
-            // F1–F12
             case KeyCode.F1: return "f1";
             case KeyCode.F2: return "f2";
             case KeyCode.F3: return "f3";
@@ -246,7 +236,7 @@ public class KeyManager : MonoBehaviour
             case KeyCode.F12: return "f12";
 
             default:
-                return key.ToString().ToLower().Replace("_", "-"); // fallback
+                return key.ToString().ToLower().Replace("_", "-"); 
         }
     }
 

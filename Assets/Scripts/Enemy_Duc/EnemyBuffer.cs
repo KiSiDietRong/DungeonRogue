@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class EnemyBuffer : Enemy
 {
     [Header("Buff Settings")]
-    public float buffPercentage = 0.1f; // 10% buff
+    public float buffPercentage = 0.1f; 
     public Color buffColor = Color.red;
 
     private bool isBuffing = false;
@@ -33,21 +33,17 @@ public class EnemyBuffer : Enemy
         {
             if (e != this && !e.IsDead)
             {
-                // Buff chỉ số
                 e.maxHP *= (1 + buffPercentage);
                 e.damage *= (1 + buffPercentage);
                 e.moveSpeed *= (1 + buffPercentage);
 
-                // Đổi màu (nếu có SpriteRenderer)
                 SpriteRenderer sr = e.GetComponent<SpriteRenderer>();
                 if (sr != null) sr.color = buffColor;
 
-                // Thêm vào danh sách target để nối dây
                 buffedTargets.Add(e.transform);
             }
         }
 
-        // Cập nhật line connector
         if (lineConnector != null)
         {
             lineConnector.SetTargets(buffedTargets);
@@ -63,12 +59,10 @@ public class EnemyBuffer : Enemy
         {
             if (e != this && !e.IsDead)
             {
-                // Trả lại chỉ số ban đầu (giảm 10%)
                 e.maxHP /= (1 + buffPercentage);
                 e.damage /= (1 + buffPercentage);
                 e.moveSpeed /= (1 + buffPercentage);
 
-                // Trả lại màu trắng mặc định
                 SpriteRenderer sr = e.GetComponent<SpriteRenderer>();
                 if (sr != null) sr.color = Color.white;
             }
@@ -88,7 +82,6 @@ public class EnemyBuffer : Enemy
     {
         RemoveBuffFromAllEnemies();
 
-        // clear line khi chết
         if (lineConnector != null) lineConnector.SetTargets(new List<Transform>());
 
         base.DieEnemy();

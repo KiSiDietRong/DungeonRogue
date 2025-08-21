@@ -20,11 +20,10 @@ public class EnemySlowing : Enemy
                 {
                     health.TakeDamage((int)damage, transform);
 
-                    // Gây làm chậm
                     PlayerController pc = player.GetComponent<PlayerController>();
                     if (pc != null)
                     {
-                        pc.ApplySlow(slowTime); // bạn cần tạo hàm này trong PlayerController
+                        pc.ApplySlow(slowTime); 
                     }
                 }
             }

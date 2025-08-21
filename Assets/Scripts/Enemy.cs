@@ -44,7 +44,6 @@ public class Enemy : MonoBehaviour
     public delegate void EnemyDeathHandler(Enemy enemy);
     public static event EnemyDeathHandler OnEnemyDeath;
 
-    // Getter để truy cập trạng thái isStunned
     public bool IsStunned => isStunned;
     public bool IsDead => isDead;
 
@@ -119,7 +118,6 @@ public class Enemy : MonoBehaviour
         animator.ResetTrigger(Idle);
         animator.SetTrigger(Attack);
 
-        // Đợi animation "Attack" thực sự bắt đầu
         float timeout = attackTimeout;
         while (timeout > 0f)
         {
@@ -132,10 +130,8 @@ public class Enemy : MonoBehaviour
         AnimatorStateInfo attackState = animator.GetCurrentAnimatorStateInfo(0);
         float attackAnimLength = attackState.length;
 
-        // Gây damage ở khoảng giữa animation
         yield return new WaitForSeconds(attackAnimLength * 0.35f);
 
-        // ✅ Kiểm tra lại khoảng cách trước khi gây damage
         if (!isStunned && !isDead)
         {
             float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
@@ -200,7 +196,6 @@ public class Enemy : MonoBehaviour
     {
         if (!isDead && !isStunned)
         {
-            // Kiểm tra Traumatic Blow trước khi làm choáng
             InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
             if (inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.TraumaticBlow) && currentHP <= maxHP * 0.2f)
             {
@@ -219,7 +214,6 @@ public class Enemy : MonoBehaviour
         animator.SetTrigger(Idle);
         Debug.Log($"{gameObject.name} is stunned for {duration} seconds.");
 
-        // Kiểm tra ImpactCharm và gây sát thương diện rộng
         InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
         if (inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.ImpactCharm))
         {
@@ -324,7 +318,7 @@ public class Enemy : MonoBehaviour
             float distance = Vector2.Distance(transform.position, player.transform.position);
             if (distance > chaseRange && !isPatrolling)
             {
-                patrolStartPoint = transform.position; // Ghi nhớ điểm bắt đầu
+                patrolStartPoint = transform.position; 
                 StartCoroutine(PatrolRoutine());
             }
         }
@@ -345,13 +339,10 @@ public class Enemy : MonoBehaviour
                 yield break;
             }
 
-            // Tạo hướng ngẫu nhiên
             patrolDirection = Random.insideUnitCircle.normalized;
 
-            // Xác định đích đến trong giới hạn patrolRange
             Vector3 targetPosition = transform.position + (Vector3)(patrolDirection * patrolRange);
 
-            // Bật animation Walk
             animator.ResetTrigger(Idle);
             animator.SetTrigger(Walk);
 
@@ -360,7 +351,6 @@ public class Enemy : MonoBehaviour
 
             while (elapsed < moveDuration)
             {
-                // Nếu chạm vật cản thì quay hướng
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, patrolDirection, 0.2f, LayerMask.GetMask("Obstacle"));
                 if (hit.collider != null)
                 {
@@ -375,11 +365,9 @@ public class Enemy : MonoBehaviour
                 yield return null;
             }
 
-            // Sau khi di chuyển xong: bật Idle khi đứng
             animator.ResetTrigger(Walk);
             animator.SetTrigger(Idle);
 
-            // Đợi trước khi đổi hướng tiếp
             yield return new WaitForSeconds(1f);
         }
     }
@@ -388,7 +376,6 @@ public class Enemy : MonoBehaviour
     {
         if (isDead) return;
         currentHP = Mathf.Min(currentHP + amount, maxHP);
-        // Có thể thêm hiệu ứng hồi máu (particle, animation, popup)
     }
 
     void Flip(float directionX)

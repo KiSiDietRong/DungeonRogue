@@ -4,15 +4,14 @@ using System.Collections;
 public class EnemySpawnerCocoon : Enemy
 {
     [Header("Enemy Con")]
-    public GameObject childEnemyPrefab; // Prefab enemy con
-    public Transform spawnPoint; // Vị trí spawn
-    public float spawnInterval = 1f; // Thời gian giữa mỗi lần spawn
+    public GameObject childEnemyPrefab; 
+    public Transform spawnPoint; 
+    public float spawnInterval = 1f; 
 
     private bool isSpawning = true;
 
     protected override void Start()
     {
-        // ❌ Không gọi base.Start() để tránh PatrolLoop
         currentHP = maxHP;
         player = GameObject.FindGameObjectWithTag("Player");
         if (animator == null) animator = GetComponent<Animator>();
@@ -26,7 +25,6 @@ public class EnemySpawnerCocoon : Enemy
 
     protected override void Update()
     {
-        // Chỉ Idle, không di chuyển hay tấn công
         if (!isDead && animator != null)
         {
             animator.SetTrigger(Idle);
