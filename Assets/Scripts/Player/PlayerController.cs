@@ -20,12 +20,13 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastMoveDir;
     private InventoryManager inventoryManager;
 
-    private bool isDashing = false;
+    public bool isDashing = false;
     private bool canDash = true;
 
     private bool nearPortal = false;
     private Transform portalTransform;
     private bool isEnteringPortal = false;
+    private bool isSlowed = false;
 
     private bool nearNPC = false;
     private DialogueNPC currentNPC;
@@ -213,6 +214,26 @@ public class PlayerController : MonoBehaviour
         characterStat = stats;
         baseMoveSpeed = characterStat.moveSpeed;
         moveSpeed = baseMoveSpeed;
+    }
+
+    public void ApplySlow(float duration)
+    {
+        if (isSlowed) return;
+        StartCoroutine(SlowCoroutine(duration));
+    }
+
+    private IEnumerator SlowCoroutine(float duration)
+    {
+        isSlowed = true;
+        float originalSpeed = moveSpeed;
+        moveSpeed = 0.3f; // giảm tốc độ 50%
+
+        // Bạn có thể thêm hiệu ứng visual ở đây nếu cần (ví dụ màu player chuyển xanh)
+
+        yield return new WaitForSeconds(duration);
+
+        moveSpeed = originalSpeed;
+        isSlowed = false;
     }
 
     void OnDrawGizmosSelected()

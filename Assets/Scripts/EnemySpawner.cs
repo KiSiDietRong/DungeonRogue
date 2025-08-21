@@ -15,6 +15,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawn Points")]
     public Transform[] spawnPoints; // các điểm spawn cố định
 
+    [Header("Portal Settings")]
+    public GameObject portalObject;
+
     [Header("Reward Settings")]
     public GameObject coinPrefab; // Prefab xu
     public int rewardCoinAmount = 20; // Số lượng xu thưởng
@@ -60,6 +63,10 @@ public class EnemySpawner : MonoBehaviour
             else if (currentTurn >= maxTurns && !isSpawning)
             {
                 SpawnItem();
+                SpawnCoin();
+
+                if (portalObject != null)
+                    portalObject.SetActive(true);
             }
         }
     }
@@ -67,6 +74,9 @@ public class EnemySpawner : MonoBehaviour
     void SpawnNewTurn()
     {
         isSpawning = true;
+
+        if (portalObject != null)
+            portalObject.SetActive(false);
 
         GameObject currentEnemyPrefab = enemyPrefabs[currentTurn % enemyPrefabs.Length];
 
@@ -94,6 +104,24 @@ public class EnemySpawner : MonoBehaviour
     }
 
     void SpawnItem()
+    {
+        if (itemPrefab == null)
+            return;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Vector2 offset = Vector2.down;
+            var playerScript = player.GetComponent<PlayerController>();
+            if (playerScript != null && playerScript.lastMoveDirection != Vector2.zero)
+                offset = playerScript.lastMoveDirection.normalized;
+
+            Vector3 spawnPos = player.transform.position + (Vector3)(offset * 2f);
+            Instantiate(itemPrefab, spawnPos, Quaternion.identity);
+        }
+    }
+
+    void SpawnCoin()
     {
         if (coinPrefab == null)
             return;
