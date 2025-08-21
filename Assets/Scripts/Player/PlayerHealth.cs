@@ -12,7 +12,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI armorText;
     [SerializeField] private float archangelScytheRadius = 5f;
-    [SerializeField] private GameObject healEffectPrefab; // Prefab cho hiệu ứng Heal
+    [SerializeField] private GameObject healEffectPrefab; 
+    [SerializeField] private GameObject shieldEffectPrefab;
 
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
@@ -20,10 +21,11 @@ public class PlayerHealth : MonoBehaviour
     private int currentHealth;
     private float armor;
     private bool canTakeDamage = true;
+    private bool isShielded = false;
     private Knockback knockback;
     private Flash flash;
     private InventoryManager inventoryManager;
-    private bool hasRevived = false; // Theo dõi xem đã hồi sinh chưa
+    private bool hasRevived = false;
 
     private void Awake()
     {
@@ -49,7 +51,14 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damageAmount, Transform hitTransform)
     {
-        if (!canTakeDamage || knockback.GettingKnockedBack) return;
+        if (!canTakeDamage || knockback.GettingKnockedBack || isShielded)
+        {
+            if (isShielded)
+            {
+                Debug.Log("Damage blocked by Bob's Containment Field shield.");
+            }
+            return;
+        }
 
         float remainingDamage = damageAmount;
         if (armor > 0)
@@ -89,6 +98,32 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void ActivateShield(float duration)
+    {
+        if (!isShielded)
+        {
+            isShielded = true;
+            Debug.Log($"Shield activated for {duration} seconds.");
+
+            if (shieldEffectPrefab != null)
+            {
+                Vector3 spawnPosition = transform.position;
+                GameObject shieldEffect = Instantiate(shieldEffectPrefab, spawnPosition, Quaternion.identity, transform);
+                Destroy(shieldEffect, duration);
+                Debug.Log("Shield effect instantiated and will be destroyed after duration.");
+            }
+
+            StartCoroutine(DeactivateShieldAfterDelay(duration));
+        }
+    }
+
+    private IEnumerator DeactivateShieldAfterDelay(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isShielded = false;
+        Debug.Log("Shield deactivated.");
+    }
+
     private IEnumerator ReviveRoutine()
     {
         hasRevived = true;
@@ -113,18 +148,16 @@ public class PlayerHealth : MonoBehaviour
         }
         currentHealth = Mathf.Min(currentHealth + totalHeal, maxHealth);
 
-        // Tạo hiệu ứng Heal
         if (healEffectPrefab != null)
         {
-            Vector3 spawnPosition = transform.position + Vector3.up * 0.5f; // Offset để hiệu ứng xuất hiện phía trên người chơi
+            Vector3 spawnPosition = transform.position + Vector3.up * 0.5f;
             GameObject healEffect = Instantiate(healEffectPrefab, spawnPosition, Quaternion.identity);
             Animator healAnimator = healEffect.GetComponent<Animator>();
             if (healAnimator != null)
             {
-                // Đảm bảo animation được phát (nếu cần)
                 healAnimator.Play("Heal", -1, 0f);
             }
-            Destroy(healEffect, 1f); // Hủy sau 1 giây
+            Destroy(healEffect, 1f);
             Debug.Log("Heal effect instantiated and will be destroyed after 1 second.");
         }
 

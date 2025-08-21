@@ -40,16 +40,16 @@ public class InventoryManager : MonoBehaviour
     public TextMeshProUGUI RarityText;
 
     [Header("Player Stats UI Select")]
-    public TextMeshProUGUI hpText; // Text để hiển thị HP khi select 
-    public TextMeshProUGUI dmgText; // Text để hiển thị DMG khi select
-    public TextMeshProUGUI critText; // Text để hiển thị CRIT khi select
-    public Image weaponIcon; // Icon vũ khí khi select
+    public TextMeshProUGUI hpText;
+    public TextMeshProUGUI dmgText;
+    public TextMeshProUGUI critText;
+    public Image weaponIcon;
 
     [Header("Player Stats UI Inventory")]
-    public TextMeshProUGUI inventoryHpText; // Text để hiển thị HP trong inventory
-    public TextMeshProUGUI inventoryDmgText; // Text để hiển thị DMG trong inventory
-    public TextMeshProUGUI inventoryCritText; // Text để hiển thị CRIT trong inventory
-    public Image inventoryWeaponIcon; // Icon vũ khí trong inventory
+    public TextMeshProUGUI inventoryHpText;
+    public TextMeshProUGUI inventoryDmgText;
+    public TextMeshProUGUI inventoryCritText;
+    public Image inventoryWeaponIcon;
 
     [Header("Rarity Spawn Chances (0-100)")]
     [Range(0, 100)] public int chanceCommon = 50;
@@ -74,15 +74,15 @@ public class InventoryManager : MonoBehaviour
     private Relic relicToReplace;
 
     private int titansWargearKillCount = 0;
-    private PlayerHealth playerHealth; // Tham chiếu đến PlayerHealth
-    private ActiveWeapon activeWeapon; // Tham chiếu đến ActiveWeapon
+    private PlayerHealth playerHealth;
+    private ActiveWeapon activeWeapon;
 
     void Awake()
     {
         Instance = this;
         Enemy.OnEnemyDeath += HandleEnemyDeath;
-        playerHealth = FindObjectOfType<PlayerHealth>(); // Lấy PlayerHealth
-        activeWeapon = FindObjectOfType<ActiveWeapon>(); // Lấy ActiveWeapon
+        playerHealth = FindObjectOfType<PlayerHealth>();
+        activeWeapon = FindObjectOfType<ActiveWeapon>();
     }
 
     void OnDestroy()
@@ -102,7 +102,7 @@ public class InventoryManager : MonoBehaviour
             relicSelect.SetActive(false);
             canvasActive = false;
         }
-        UpdateShopPrices(); // Cập nhật giá shop ngay khi khởi tạo
+        UpdateShopPrices();
     }
 
     void Update()
@@ -295,7 +295,7 @@ public class InventoryManager : MonoBehaviour
         }
         if (SkillSelectorManager.Instance != null)
         {
-            SkillSelectorManager.Instance.SyncSkillsWithInventory(); // Đồng bộ skill khi chọn relic
+            SkillSelectorManager.Instance.SyncSkillsWithInventory();
         }
     }
 
@@ -388,7 +388,7 @@ public class InventoryManager : MonoBehaviour
         StartCoroutine(CloseCanvasAfterDelay(1f));
         if (SkillSelectorManager.Instance != null)
         {
-            SkillSelectorManager.Instance.SyncSkillsWithInventory(); // Đồng bộ skill khi thay thế relic
+            SkillSelectorManager.Instance.SyncSkillsWithInventory();
         }
     }
 
@@ -413,7 +413,7 @@ public class InventoryManager : MonoBehaviour
         SelectRelic(0);
         if (SkillSelectorManager.Instance != null)
         {
-            SkillSelectorManager.Instance.SyncSkillsWithInventory(); // Đồng bộ skill khi mở canvas relic
+            SkillSelectorManager.Instance.SyncSkillsWithInventory();
         }
     }
 
@@ -668,7 +668,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        // Cập nhật skillSlots từ SkillSelectorManager
         if (skillSlots != null && SkillSelectorManager.Instance != null)
         {
             List<Skill> playerSkills = SkillSelectorManager.Instance.playerSkills;
@@ -689,7 +688,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        // Cập nhật skillSlotsSelect từ SkillSelectorManager
         if (skillSlotsSelect != null && SkillSelectorManager.Instance != null)
         {
             List<Skill> playerSkills = SkillSelectorManager.Instance.playerSkills;
@@ -710,7 +708,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        // Cập nhật icon vũ khí
         if (activeWeapon != null && activeWeapon.CurrentActiveWeapon != null)
         {
             WeaponInfo weaponInfo = activeWeapon.CurrentActiveWeapon.GetWeaponInfo();
@@ -761,7 +758,6 @@ public class InventoryManager : MonoBehaviour
 
     void UpdatePlayerStatsUI()
     {
-        // Cập nhật chỉ số cho canvasUI
         if (playerHealth != null)
         {
             if (hpText != null)
@@ -799,7 +795,6 @@ public class InventoryManager : MonoBehaviour
                 critText.text = "N/A";
         }
 
-        // Cập nhật chỉ số cho inventoryCanvas
         if (playerHealth != null)
         {
             if (inventoryHpText != null)
@@ -845,6 +840,12 @@ public class InventoryManager : MonoBehaviour
 
         switch (relic.type)
         {
+            case RelicType.BobsContainmentField:
+                Debug.Log("Bob's Containment Field equipped: First skill use in each room grants a 5-second shield blocking all enemy damage.");
+                break;
+            case RelicType.EmpoweredBangle:
+                Debug.Log("Empowered Bangle equipped: First skill use in each room increases weapon damage by 50% for 3 seconds.");
+                break;
             case RelicType.BonePlate:
                 if (health != null)
                 {
@@ -857,7 +858,7 @@ public class InventoryManager : MonoBehaviour
                 break;
             case RelicType.DiscountCard:
                 Debug.Log("Discount Card equipped: Shop items are 25% cheaper.");
-                UpdateShopPrices(); // Cập nhật giá shop khi thêm DiscountCard
+                UpdateShopPrices();
                 break;
             case RelicType.DoomShell:
                 Debug.Log("Doom Shell equipped: Dash deals 5-10 damage to enemies in range.");
@@ -919,7 +920,6 @@ public class InventoryManager : MonoBehaviour
             titansWargearKillCount++;
             if (titansWargearKillCount >= 4)
             {
-                // Tìm tất cả WeaponInfo trong scene hoặc từ một danh sách được quản lý
                 foreach (var projectile in FindObjectsOfType<Projectile>())
                 {
                     WeaponInfo weaponInfo = projectile.GetWeaponInfo();
@@ -929,7 +929,7 @@ public class InventoryManager : MonoBehaviour
                         Debug.Log($"Titan's Wargear triggered: Increased {weaponInfo.name} damage to {weaponInfo.weaponDamage}.");
                     }
                 }
-                titansWargearKillCount = 0; // Reset bộ đếm
+                titansWargearKillCount = 0;
                 UpdateInventoryUI();
             }
             Debug.Log($"Titan's Wargear: {titansWargearKillCount}/4 enemies killed.");
@@ -958,12 +958,12 @@ public class InventoryManager : MonoBehaviour
             UpdateArmorTextVisibility();
             if (relicType == RelicType.DiscountCard)
             {
-                UpdateShopPrices(); // Cập nhật giá shop khi xóa DiscountCard
+                UpdateShopPrices();
             }
             Debug.Log($"Removed relic: {relicToRemove.relicName}");
             if (relicType == RelicType.TitansWargear)
             {
-                titansWargearKillCount = 0; // Reset bộ đếm khi gỡ Titan's Wargear
+                titansWargearKillCount = 0;
             }
         }
     }
@@ -984,7 +984,16 @@ public class InventoryManager : MonoBehaviour
         return playerInventory.Exists(relic => relic.type == RelicType.RecoveryRing);
     }
 
-    // Hàm cập nhật giá của tất cả vật phẩm trong shop
+    public bool HasBobsContainmentField()
+    {
+        return playerInventory.Exists(relic => relic.type == RelicType.BobsContainmentField);
+    }
+
+    public bool HasEmpoweredBangle()
+    {
+        return playerInventory.Exists(relic => relic.type == RelicType.EmpoweredBangle);
+    }
+
     private void UpdateShopPrices()
     {
         ShopRelicDisplay[] shopDisplays = FindObjectsOfType<ShopRelicDisplay>();

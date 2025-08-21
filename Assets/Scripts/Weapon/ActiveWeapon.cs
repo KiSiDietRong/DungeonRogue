@@ -10,6 +10,9 @@ public class ActiveWeapon : MonoBehaviour
     private bool isAttacking = false;
     private int attackCount = 0;
     private InventoryManager inventoryManager;
+    private bool isDamageBoosted = false;
+    private float damageMultiplier = 1f;
+    [SerializeField] private GameObject damageBoostEffectPrefab; // Prefab cho hiệu ứng tăng sát thương (tùy chọn)
 
     void Awake()
     {
@@ -49,6 +52,16 @@ public class ActiveWeapon : MonoBehaviour
     {
         if (CurrentActiveWeapon != null)
         {
+            // Tạo bản sao WeaponInfo để áp dụng multiplier tạm thời
+            WeaponInfo originalInfo = CurrentActiveWeapon.GetWeaponInfo();
+            WeaponInfo modifiedInfo = ScriptableObject.CreateInstance<WeaponInfo>();
+            modifiedInfo.name = originalInfo.name;
+            modifiedInfo.weaponDamage = Mathf.RoundToInt(originalInfo.weaponDamage * (isDamageBoosted ? damageMultiplier : 1f)); // Ép kiểu float sang int
+            modifiedInfo.criticalChance = originalInfo.criticalChance;
+            modifiedInfo.weaponRange = originalInfo.weaponRange;
+            modifiedInfo.weaponCooldown = originalInfo.weaponCooldown;
+            modifiedInfo.weaponSprite = originalInfo.weaponSprite;
+
             CurrentActiveWeapon.Attack();
             attackCount++;
 
@@ -60,6 +73,34 @@ public class ActiveWeapon : MonoBehaviour
 
             StartCoroutine(AttackCooldownRoutine());
         }
+    }
+
+    public void ActivateDamageBoost(float duration, float multiplier)
+    {
+        if (!isDamageBoosted)
+        {
+            isDamageBoosted = true;
+            damageMultiplier = multiplier;
+            Debug.Log($"Damage boost activated: Weapon damage increased by {((multiplier - 1f) * 100)}% for {duration} seconds.");
+
+            if (damageBoostEffectPrefab != null)
+            {
+                Vector3 spawnPosition = transform.position;
+                GameObject boostEffect = Instantiate(damageBoostEffectPrefab, spawnPosition, Quaternion.identity, transform);
+                Destroy(boostEffect, duration);
+                Debug.Log("Damage boost effect instantiated and will be destroyed after duration.");
+            }
+
+            StartCoroutine(DeactivateDamageBoostAfterDelay(duration));
+        }
+    }
+
+    private IEnumerator DeactivateDamageBoostAfterDelay(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isDamageBoosted = false;
+        damageMultiplier = 1f;
+        Debug.Log("Damage boost deactivated.");
     }
 
     private void ApplyConduitSpikeEffect()

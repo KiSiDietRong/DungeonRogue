@@ -2,12 +2,13 @@
 
 public class SkillManager : MonoBehaviour
 {
-    public SkillState skillSlot1; // Dùng nút lăn chuột
-    public SkillState skillSlot2; // Dùng chuột phải
+    public SkillState skillSlot1;
+    public SkillState skillSlot2;
 
-    public float maxCastDistance = 5f; // Khoảng cách tối đa tung chiêu
+    public float maxCastDistance = 5f;
 
     private Camera mainCamera;
+    private bool hasUsedFirstSkillInRoom = false;
 
     void Start()
     {
@@ -20,23 +21,56 @@ public class SkillManager : MonoBehaviour
 
     void Update()
     {
-        // Nút lăn chuột (Middle Mouse Button)
-        if (Input.GetMouseButtonDown(2)) // 2 = Middle mouse button
+        if (Input.GetMouseButtonDown(2))
         {
             if (skillSlot1 != null && skillSlot1.skill != null)
             {
                 skillSlot1.Use(gameObject, GetTargetPosition());
+                TryActivateRelicEffects();
             }
         }
 
-        // Chuột phải
-        if (Input.GetMouseButtonDown(1)) // 1 = Right mouse button
+        if (Input.GetMouseButtonDown(1))
         {
             if (skillSlot2 != null && skillSlot2.skill != null)
             {
                 skillSlot2.Use(gameObject, GetTargetPosition());
+                TryActivateRelicEffects();
             }
         }
+    }
+
+    private void TryActivateRelicEffects()
+    {
+        if (!hasUsedFirstSkillInRoom)
+        {
+            InventoryManager inventoryManager = InventoryManager.Instance;
+            PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+            ActiveWeapon activeWeapon = FindObjectOfType<ActiveWeapon>();
+
+            if (inventoryManager != null)
+            {
+                if (playerHealth != null && inventoryManager.HasBobsContainmentField())
+                {
+                    playerHealth.ActivateShield(5f);
+                    Debug.Log("Bob's Containment Field triggered: Activated 5-second shield on first skill use.");
+                }
+
+                if (activeWeapon != null && inventoryManager.HasEmpoweredBangle())
+                {
+                    activeWeapon.ActivateDamageBoost(3f, 1.5f);
+                    Debug.Log("Empowered Bangle triggered: Increased weapon damage by 50% for 3 seconds on first skill use.");
+                }
+
+                hasUsedFirstSkillInRoom = true;
+            }
+        }
+    }
+
+    public void ResetFirstSkillUsage()
+    {
+        hasUsedFirstSkillInRoom = false;
+        Debug.Log("Reset first skill usage for new room.");
     }
 
     Vector3 GetTargetPosition()
