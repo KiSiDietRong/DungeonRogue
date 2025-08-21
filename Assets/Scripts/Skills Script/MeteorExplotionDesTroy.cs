@@ -14,7 +14,6 @@ public class MeteorExplotionDestroy : MonoBehaviour
         }
         else
         {
-            // fallback nếu không có Animator
             Destroy(gameObject, 1f);
         }
     }

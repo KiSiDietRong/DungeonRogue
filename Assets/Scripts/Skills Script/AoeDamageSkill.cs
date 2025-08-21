@@ -4,8 +4,8 @@
 public class AoeDamageSkill : Skill
 {
     [Header("Area Damage Settings")]
-    public GameObject areaPrefab;        // Prefab controller (AoeDamageController)
-    public GameObject effectPrefab;      // 🌟 Prefab ParticleSystem riêng cho đẹp
+    public GameObject areaPrefab;        
+    public GameObject effectPrefab;      
     public float radius = 2f;
     public float damagePerSecond = 10f;
     public float duration = 3f;
@@ -16,7 +16,6 @@ public class AoeDamageSkill : Skill
     {
         if (areaPrefab == null) return;
 
-        // Spawn AOE controller
         GameObject inst = Instantiate(areaPrefab, target, Quaternion.identity);
         AoeDamageController ctrl = inst.GetComponent<AoeDamageController>();
         if (ctrl != null)
@@ -24,11 +23,10 @@ public class AoeDamageSkill : Skill
             ctrl.Setup(this);
         }
 
-        // 🌟 Spawn hiệu ứng nếu có
         if (effectPrefab != null)
         {
             GameObject fx = Instantiate(effectPrefab, target, Quaternion.identity);
-            fx.transform.localScale = Vector3.one * radius * 2f; // scale theo bán kính
+            fx.transform.localScale = Vector3.one * radius * 2f; 
             Destroy(fx, duration + 0.2f);
         }
     }

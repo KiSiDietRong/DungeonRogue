@@ -14,7 +14,7 @@ public class StunBallController : MonoBehaviour
         stunDuration = stunTime;
         damage = dmg;
 
-        Destroy(gameObject, 5f); // tự huỷ nếu không trúng gì
+        Destroy(gameObject, 5f); 
     }
 
     void Update()
@@ -33,7 +33,7 @@ public class StunBallController : MonoBehaviour
                 enemy.Stun(stunDuration);
             }
 
-            Destroy(gameObject); // huỷ khi trúng kẻ địch
+            Destroy(gameObject); 
         }
     }
 }

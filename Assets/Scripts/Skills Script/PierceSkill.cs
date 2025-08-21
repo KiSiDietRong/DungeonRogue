@@ -3,7 +3,7 @@
 [CreateAssetMenu(menuName = "Skills/Pierce  Skill")]
 public class PierceSkill : Skill
 {
-    public GameObject projectilePrefab;   // Prefab projectile
+    public GameObject projectilePrefab;  
     public float projectileSpeed = 10f;
     public float projectileDamage = 20f;
     public float projectileLifeTime = 3f;
@@ -15,12 +15,10 @@ public class PierceSkill : Skill
         Vector3 spawnPos = user.transform.position;
         Vector3 direction = (target - spawnPos).normalized;
 
-        // Instantiate projectile
         GameObject proj = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
 
         
 
-        // Lấy controller và set tham số
         PierceBulletController controller = proj.GetComponent<PierceBulletController>();
         if (controller != null)
         {

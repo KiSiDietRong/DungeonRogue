@@ -7,14 +7,14 @@ public class allyController : MonoBehaviour
     public int damage = 20;
     public float attackCooldown = 1f;
     public float TimeAvalable = 10f;
-    public string enemyTag = "Enemy"; // <-- dùng tag thay vì layer
+    public string enemyTag = "Enemy"; 
 
     private Transform targetEnemy;
     private float lastAttackTime = 0f;
 
     void Start()
     {
-        Destroy(gameObject, TimeAvalable); // Tự hủy sau 5 giây
+        Destroy(gameObject, TimeAvalable); 
     }
 
     void Update()
@@ -47,7 +47,7 @@ public class allyController : MonoBehaviour
 
     void FindClosestEnemy()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); // <-- Tìm bằng tag
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); 
 
         float closestDistance = Mathf.Infinity;
         Transform closestEnemy = null;

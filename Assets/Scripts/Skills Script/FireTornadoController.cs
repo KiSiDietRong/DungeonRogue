@@ -35,7 +35,6 @@ public class FireTornadoController : MonoBehaviour
             return;
         }
 
-        // Quay quanh người chơi
         angle += speed * Time.deltaTime;
         float rad = angle * Mathf.Deg2Rad;
         Vector3 offset = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0) * radius;

@@ -7,7 +7,7 @@ public class SunFireSkill : Skill
 
     public override void Execute(GameObject user, Vector3 target)
     {
-        Transform firePoint = user.transform; // Hoặc 1 transform firePoint riêng nếu có
+        Transform firePoint = user.transform; 
 
         Vector2 direction = (target - firePoint.position).normalized;
 

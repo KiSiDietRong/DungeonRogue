@@ -21,10 +21,9 @@ public class ShieldController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Nếu va chạm với đạn của kẻ địch
         if (other.CompareTag("EnemyBullet"))
         {
-            Destroy(other.gameObject); // Hủy đạn
+            Destroy(other.gameObject); 
         }
     }
 }

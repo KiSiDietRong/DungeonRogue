@@ -15,7 +15,7 @@ public class BounceSkillController : MonoBehaviour
 
     private readonly HashSet<GameObject> hitTargets = new();
 
-    private float lifetime = 3f; // thời gian tự hủy
+    private float lifetime = 3f; 
 
     void Start()
     {

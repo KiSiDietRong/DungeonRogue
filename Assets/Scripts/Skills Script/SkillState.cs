@@ -9,16 +9,16 @@ public class SkillState
 
     public void SetSkill(Skill newSkill)
     {
-        skill = newSkill; // Gán skill mới
+        skill = newSkill; 
         if (skill != null)
         {
-            lastUseTime = -999f; // Reset thời gian để skill sẵn sàng sử dụng ngay
+            lastUseTime = -999f; 
         }
     }
 
     public bool IsReady()
     {
-        if (skill == null) return false; // Trả về false nếu skill chưa được gán
+        if (skill == null) return false; 
         return Time.time >= lastUseTime + skill.cooldown;
     }
 

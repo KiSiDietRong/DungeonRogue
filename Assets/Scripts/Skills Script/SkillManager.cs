@@ -2,10 +2,10 @@
 
 public class SkillManager : MonoBehaviour
 {
-    public SkillState skillSlot1; // Dùng nút lăn chuột
-    public SkillState skillSlot2; // Dùng chuột phải
+    public SkillState skillSlot1; 
+    public SkillState skillSlot2; 
 
-    public float maxCastDistance = 5f; // Khoảng cách tối đa tung chiêu
+    public float maxCastDistance = 5f; 
 
     private Camera mainCamera;
 
@@ -20,8 +20,7 @@ public class SkillManager : MonoBehaviour
 
     void Update()
     {
-        // Nút lăn chuột (Middle Mouse Button)
-        if (Input.GetMouseButtonDown(2)) // 2 = Middle mouse button
+        if (Input.GetMouseButtonDown(2)) 
         {
             if (skillSlot1 != null && skillSlot1.skill != null)
             {
@@ -29,8 +28,7 @@ public class SkillManager : MonoBehaviour
             }
         }
 
-        // Chuột phải
-        if (Input.GetMouseButtonDown(1)) // 1 = Right mouse button
+        if (Input.GetMouseButtonDown(1)) 
         {
             if (skillSlot2 != null && skillSlot2.skill != null)
             {

@@ -10,7 +10,6 @@ public class PierceBulletController : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    // Dùng để tránh đánh trùng địch nhiều lần
     private readonly System.Collections.Generic.HashSet<GameObject> hitTargets = new();
 
     public void Setup(Vector3 dir, float spd, float dmg, float lifetime, GameObject ownerObj)
@@ -34,22 +33,19 @@ public class PierceBulletController : MonoBehaviour
 
     void Update()
     {
-        // Di chuyển
         transform.position += direction * speed * Time.deltaTime;
 
-        // Xoay sprite theo hướng bay
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Không đụng với owner hoặc projectile khác
         if (other.gameObject == owner) return;
 
         if (other.CompareTag("Enemy"))
         {
-            if (hitTargets.Contains(other.gameObject)) return; // đã đánh rồi
+            if (hitTargets.Contains(other.gameObject)) return; 
 
             hitTargets.Add(other.gameObject);
 
@@ -58,10 +54,6 @@ public class PierceBulletController : MonoBehaviour
             {
                 enemy.TakeDamage(damage);
             }
-
-            // Không destroy để tiếp tục xuyên
         }
-
-        // Nếu muốn dừng ở vật cản không xuyên, có thể check thêm tag "Obstacle" rồi Destroy(this.gameObject);
     }
 }

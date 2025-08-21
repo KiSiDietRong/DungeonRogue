@@ -36,11 +36,9 @@ public class PoisonBullet : MonoBehaviour
             {
                 enemy.TakeDamage(instantDamage);
 
-                // Nếu đã có DOT → xóa để reset
                 var existingDOT = collision.GetComponent<DamageOverTime>();
                 if (existingDOT != null) Destroy(existingDOT);
 
-                // Gắn DOT mới
                 var dot = collision.gameObject.AddComponent<DamageOverTime>();
                 dot.Init(dotDamage, dotDuration);
             }

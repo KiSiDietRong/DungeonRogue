@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 
-public class Fireball : MonoBehaviour
+public class SunFire : MonoBehaviour
 {
     public float speed = 8f;
-    public int damage = 20;
+    public int instantDamage = 20;
+    public int dotDamage = 5;
+    public float dotDuration = 3f;
     public float lifetime = 3f;
 
     private Vector2 direction;
@@ -16,7 +18,6 @@ public class Fireball : MonoBehaviour
     public void SetDirection(Vector2 dir)
     {
         direction = dir.normalized;
-
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
@@ -33,11 +34,16 @@ public class Fireball : MonoBehaviour
             Enemy enemy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(instantDamage);
+
+                var existingDOT = collision.GetComponent<DamageOverTime>();
+                if (existingDOT != null) Destroy(existingDOT);
+
+                var dot = collision.gameObject.AddComponent<DamageOverTime>();
+                dot.Init(dotDamage, dotDuration);
             }
 
-            Destroy(gameObject); // Chỉ huỷ khi trúng Enemy
+            Destroy(gameObject);
         }
-        // Nếu không phải Enemy → không làm gì → Fireball bay tiếp
     }
 }

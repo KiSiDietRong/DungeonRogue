@@ -15,7 +15,6 @@ public class FollowingSkill : Skill
 
         Vector3 spawnPos = user.transform.position;
 
-        // 3 hướng cách đều nhau 120 độ
         float[] angles = { 0f, 120f, 240f };
 
         for (int i = 0; i < 3; i++)

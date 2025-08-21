@@ -2,7 +2,7 @@
 
 public class SkillPickup : MonoBehaviour
 {
-    public Skill skillToGive; // Gán ScriptableObject skill trong Inspector
+    public Skill skillToGive; 
     public GameObject eIndicatorPrefab;
 
     private GameObject eIndicatorInstance;
@@ -42,7 +42,6 @@ public class SkillPickup : MonoBehaviour
         SkillManager manager = player.GetComponent<SkillManager>();
         if (manager != null && skillToGive != null)
         {
-            // Ưu tiên slot rỗng
             if (manager.skillSlot1.skill == null)
             {
                 manager.skillSlot1.skill = skillToGive;
@@ -59,6 +58,6 @@ public class SkillPickup : MonoBehaviour
             }
         }
 
-        Destroy(gameObject); // Nhặt xong thì biến mất
+        Destroy(gameObject); 
     }
 }

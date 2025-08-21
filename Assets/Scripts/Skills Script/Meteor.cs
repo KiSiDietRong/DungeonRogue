@@ -5,7 +5,7 @@ public class Meteor : MonoBehaviour
     public float speed = 10f;
     public float damageRadius = 2f;
     public int damage = 50;
-    public string targetTag = "Enemy"; // Tag mục tiêu
+    public string targetTag = "Enemy"; 
     public GameObject explosionEffect;
     
 
@@ -29,7 +29,6 @@ public class Meteor : MonoBehaviour
 
     void Explode()
     {
-        // Lấy toàn bộ Collider2D trong bán kính, không dùng layer
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, damageRadius);
         foreach (Collider2D hit in hits)
         {
@@ -43,13 +42,11 @@ public class Meteor : MonoBehaviour
             }
         }
 
-        // FX nổ (nếu có)
         if (explosionEffect != null)
         {
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
         }
 
-        // Tự hủy dù trúng hay không
         Destroy(gameObject);
     }
 

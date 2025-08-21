@@ -8,7 +8,7 @@ public class TulenSkill : Skill
     public float projectileSpeed = 10f;
     public float projectileLifetime = 3f;
     public int damage = 10;
-    public float spreadAngle = 15f; // G�c l?ch tr�i/ph?i
+    public float spreadAngle = 15f; 
 
     public override void Execute(GameObject user, Vector3 target)
     {
@@ -16,10 +16,9 @@ public class TulenSkill : Skill
 
         Vector3 direction = (target - user.transform.position).normalized;
 
-        // G�c gi?a 3 tia
-        FireProjectile(user.transform.position, Quaternion.Euler(0, 0, 0) * direction); // Tia gi?a
-        FireProjectile(user.transform.position, Quaternion.Euler(0, 0, spreadAngle) * direction); // Tia ph?i
-        FireProjectile(user.transform.position, Quaternion.Euler(0, 0, -spreadAngle) * direction); // Tia tr�i
+        FireProjectile(user.transform.position, Quaternion.Euler(0, 0, 0) * direction); 
+        FireProjectile(user.transform.position, Quaternion.Euler(0, 0, spreadAngle) * direction); 
+        FireProjectile(user.transform.position, Quaternion.Euler(0, 0, -spreadAngle) * direction); 
     }
 
     private void FireProjectile(Vector3 startPos, Vector3 dir)

@@ -5,7 +5,7 @@ public class BlackHoleController : MonoBehaviour
     public float pullForce = 5f;
     public float radius = 5f;
     public float duration = 3f;
-    public string enemyTag = "Enemy"; // <-- chỉ hút enemy có tag này
+    public string enemyTag = "Enemy"; 
 
     private float timer;
 
@@ -23,7 +23,6 @@ public class BlackHoleController : MonoBehaviour
             return;
         }
 
-        // Hút enemy trong vùng có tag đúng
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (var hit in hits)
         {
@@ -40,7 +39,6 @@ public class BlackHoleController : MonoBehaviour
 
     void OnDestroy()
     {
-        // Dừng hút khi skill biến mất
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);
         foreach (var hit in hits)
         {

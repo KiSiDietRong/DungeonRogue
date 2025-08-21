@@ -115,14 +115,14 @@ public class PlayerHealth : MonoBehaviour
 
         if (healEffectPrefab != null)
         {
-            Vector3 spawnPosition = transform.position + Vector3.up * 0.5f; // Offset để hiệu ứng xuất hiện phía trên người chơi
+            Vector3 spawnPosition = transform.position + Vector3.up * 0.5f; 
             GameObject healEffect = Instantiate(healEffectPrefab, spawnPosition, Quaternion.identity);
             Animator healAnimator = healEffect.GetComponent<Animator>();
             if (healAnimator != null)
             {
                 healAnimator.Play("Heal", -1, 0f);
             }
-            Destroy(healEffect, 1f); // Hủy sau 1 giây
+            Destroy(healEffect, 1f); 
             Debug.Log("Heal effect instantiated and will be destroyed after 1 second.");
         }
 

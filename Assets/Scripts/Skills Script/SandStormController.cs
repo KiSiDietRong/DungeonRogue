@@ -13,7 +13,6 @@ public class SandStormController : MonoBehaviour
 
     void Start()
     {
-        // Xóa zone sau thời gian tồn tại
         Destroy(gameObject, zoneLifetime);
     }
 
@@ -36,7 +35,6 @@ public class SandStormController : MonoBehaviour
             }
         }
 
-        // Nếu enemy đã ra khỏi zone -> trả tốc về bình thường sau slowDuration
         for (int i = enemiesInZone.Count - 1; i >= 0; i--)
         {
             if (!currentEnemies.Contains(enemiesInZone[i]))
