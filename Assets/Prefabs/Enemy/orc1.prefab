@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2081532903909235807}
   - component: {fileID: 3813934879345947343}
   - component: {fileID: 188398947896095573}
+  - component: {fileID: 4768794890922885444}
   - component: {fileID: -8197097026615593155}
   - component: {fileID: -8292746760158031667}
   m_Layer: 0
@@ -158,7 +159,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.125, y: 1.09375}
+  m_Size: {x: 1.1, y: 1.1}
   m_EdgeRadius: 0
 --- !u!50 &188398947896095573
 Rigidbody2D:
@@ -168,11 +169,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3882813494643140639}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -187,6 +188,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4768794890922885444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3882813494643140639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd89e3a4d87263844896d125fc5cecd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  damage: 10
+  moveSpeed: 3
+  attackRange: 1.5
+  chaseRange: 6
+  attackCooldown: 1.1
+  attackTimeout: 0.1175
+  slowTime: 3
+  popupOffsetRadius: 0.5
+  damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
+  animator: {fileID: 2081532903909235807}
+  stunEffect: {fileID: 0}
+  lastDamageSource: 
 --- !u!114 &-8197097026615593155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,9 +228,11 @@ MonoBehaviour:
   maxHP: 100
   damage: 10
   moveSpeed: 3
-  attackRange: 2
-  chaseRange: 4
-  attackCooldown: 2
+  attackRange: 1.5
+  chaseRange: 6
+  attackCooldown: 1.1
+  attackTimeout: 0.1175
+  slowTime: 1
   popupOffsetRadius: 0.5
   damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
   animator: {fileID: 2081532903909235807}

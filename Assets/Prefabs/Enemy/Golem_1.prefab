@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1951241495650203127}
   - component: {fileID: 1840201429703186896}
   - component: {fileID: -6713681487326687009}
+  - component: {fileID: 3042050943929973685}
   - component: {fileID: -4633673972490868516}
   - component: {fileID: 4714918500486867268}
   m_Layer: 0
@@ -168,11 +169,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5780378137067516410}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000000
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -187,7 +188,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-4633673972490868516
+--- !u!114 &3042050943929973685
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,15 +197,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 5780378137067516410}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48485ab2bb670de4ca4a8d12e6c52164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  damage: 10
+  moveSpeed: 3
+  attackRange: 2.1
+  chaseRange: 4
+  attackCooldown: 1.1
+  attackTimeout: 0.1175
+  slowTime: 1
+  popupOffsetRadius: 0.5
+  damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
+  animator: {fileID: 1951241495650203127}
+  stunEffect: {fileID: 0}
+  lastDamageSource: 
+  miniEnemyPrefab: {fileID: 5780378137067516410, guid: c79b564a989c9114a8bf6f36dcd5baf7, type: 3}
+  numberOfMinis: 3
+--- !u!114 &-4633673972490868516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5780378137067516410}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90b7456d190254548a1fea5a9acdfb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
   damage: 10
   moveSpeed: 3
-  attackRange: 2
-  chaseRange: 4
-  attackCooldown: 2
+  attackRange: 1.5
+  chaseRange: 6
+  attackCooldown: 1.1
+  attackTimeout: 0.1175
+  slowTime: 1
   popupOffsetRadius: 0.5
   damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
   animator: {fileID: 1951241495650203127}

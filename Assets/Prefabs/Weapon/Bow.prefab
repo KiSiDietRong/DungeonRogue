@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 2764131399265250575}
   - component: {fileID: 6463691402361668025}
   - component: {fileID: 4545909351483820152}
+  - component: {fileID: 8603002765252786007}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -158,3 +159,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8603002765252786007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8842486141469082065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5a643302de28d4fac961d452dd2135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterStat: {fileID: 11400000, guid: 61c1a6f6660a4ab4c93fc674199766c5, type: 2}
+  weaponPrefab: {fileID: 8842486141469082065}

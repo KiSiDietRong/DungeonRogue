@@ -33,6 +33,16 @@ public class ActiveWeapon : MonoBehaviour
         CurrentActiveWeapon = currentWeaponObj.GetComponent<IWeapon>();
 
         timeBetweenAttacks = CurrentActiveWeapon.GetWeaponInfo().weaponCooldown;
+
+        ClassChanger statHolder = currentWeaponObj.GetComponent<ClassChanger>();
+        if (statHolder != null && statHolder.characterStat != null)
+        {
+            PlayerHealth playerHealth = GetComponentInParent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.InitFromStats(statHolder.characterStat);
+            }
+        }
     }
 
     private void Attack()

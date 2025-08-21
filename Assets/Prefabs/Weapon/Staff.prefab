@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 8914973624470933567}
   - component: {fileID: 7945978135754631174}
   - component: {fileID: 6436562867866221540}
+  - component: {fileID: -2788812240364645397}
   m_Layer: 0
   m_Name: Staff
   m_TagString: Untagged
@@ -158,3 +159,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2788812240364645397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7652181508068198463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5a643302de28d4fac961d452dd2135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterStat: {fileID: 11400000, guid: 3b838c3beab8df54f9f13c07788e6789, type: 2}
+  weaponPrefab: {fileID: 7652181508068198463}
