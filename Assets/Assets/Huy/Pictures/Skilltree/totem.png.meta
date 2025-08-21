@@ -497,7 +497,22 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      totem_0: -4075904309749126048
+      totem_1: -131542613483042244
+      totem_10: 3803130192567749616
+      totem_11: 7906879570536414349
+      totem_12: -8622739410765992769
+      totem_13: 4084388778594845952
+      totem_14: 7425471307602287546
+      totem_2: 2625550160176913500
+      totem_3: -5808961178615454402
+      totem_4: -6450486023892543692
+      totem_5: -697218652660270934
+      totem_6: 2965502592722388323
+      totem_7: -2389621225857172209
+      totem_8: -5995498936668451232
+      totem_9: 1898474386743228899
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

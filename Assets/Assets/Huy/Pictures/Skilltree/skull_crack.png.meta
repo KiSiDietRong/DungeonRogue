@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      skull_crack_0: 8357692475779602037
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

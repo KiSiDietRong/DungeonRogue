@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sword_with_flames_0: 1631115565710625762
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

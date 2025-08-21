@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      amber_0: 6296370363887097069
+      amber_1: 5566367082080063458
+      amber_2: -2759615226192084395
+      amber_3: 7500633856153824014
+      amber_4: -3212905372025487024
+      amber_5: -753637550641034752
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      halfheart_sword_0: 5367458889665375478
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
