@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections.Generic;
 using DG.Tweening;
-using UnityEngine.UI;
+using System.Collections;
 
 public class MapController : MonoBehaviour
 {
@@ -16,15 +16,15 @@ public class MapController : MonoBehaviour
     [Header("Prefab Map Miniboss")]
     public GameObject minibossMapPrefab;
 
+    [Header("Prefab Map Shop")]
+    public GameObject shopMapPrefab;
+
     [Header("Vị trí spawn map (tự động tìm theo tên 'SpawnPoint')")]
     private Transform spawnPoint;
 
     [Header("Transition Settings")]
     public RectTransform transitionPanel;
     public float transitionDuration = 1f;
-
-    [Header("Prefab Map Shop")]
-    public GameObject shopMapPrefab;
 
     private Queue<GameObject> mapQueue = new Queue<GameObject>();
     private int currentMapIndex = 0;
@@ -121,6 +121,18 @@ public class MapController : MonoBehaviour
             currentMapInstance = Instantiate(nextMap, spawnPoint.position, Quaternion.identity);
             currentMapIndex++;
             Debug.Log($"→ [Map {currentMapIndex}] đã được load: {nextMap.name}");
+
+            // Kiểm tra nếu map là battleMapPrefabs và kích hoạt hiệu ứng RecoveryRing
+            if (battleMapPrefabs.Contains(nextMap))
+            {
+                InventoryManager inventoryManager = InventoryManager.Instance;
+                PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+                if (inventoryManager != null && playerHealth != null && inventoryManager.HasRecoveryRing())
+                {
+                    playerHealth.Heal(1);
+                    Debug.Log("Recovery Ring triggered: Healed 1 HP on entering battle map.");
+                }
+            }
         }
         else
         {

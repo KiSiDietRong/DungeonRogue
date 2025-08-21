@@ -15,39 +15,41 @@ public class InventoryManager : MonoBehaviour
     private Relic[] currentRelicChoices = new Relic[4];
 
     [Header("Inventory")]
-    public Image[] inventorySlots;
+    public Image[] inventorySlotsSelect;
     public Image[] inventoryCanvasSlots;
     public List<Relic> playerInventory = new List<Relic>();
+    public Image[] skillSlots;
+    public Image[] skillSlotsSelect;
 
     [Header("UI Panel")]
-    public GameObject canvasUI;
-    public GameObject inventoryCanvas;
+    public GameObject relicSelect;
+    public GameObject inventory;
 
-    [Header("Relic Tooltip")]
+    [Header("Relic Infor Select")]
     public GameObject relicTooltipPanel;
     public TextMeshProUGUI tooltipNameText;
     public Image tooltipIcon;
     public TextMeshProUGUI tooltipEffectText;
     public TextMeshProUGUI tooltipRarityText;
 
-    [Header("Relic Infor")]
+    [Header("Relic Infor Inventory")]
     public GameObject inforRelic;
     public TextMeshProUGUI NameText;
     public Image Icon;
     public TextMeshProUGUI EffectText;
     public TextMeshProUGUI RarityText;
 
-    [Header("Player Stats UI")]
-    public TextMeshProUGUI hpText; // Text để hiển thị HP
-    public TextMeshProUGUI dmgText; // Text để hiển thị DMG
-    public TextMeshProUGUI critText; // Text để hiển thị CRIT
-    public Image weaponIcon;
+    [Header("Player Stats UI Select")]
+    public TextMeshProUGUI hpText; // Text để hiển thị HP khi select 
+    public TextMeshProUGUI dmgText; // Text để hiển thị DMG khi select
+    public TextMeshProUGUI critText; // Text để hiển thị CRIT khi select
+    public Image weaponIcon; // Icon vũ khí khi select
 
-    [Header("Player Stats UI (inventoryCanvas)")]
-    public TextMeshProUGUI inventoryHpText; // Text trong inventoryCanvas
-    public TextMeshProUGUI inventoryDmgText; // Text trong inventoryCanvas
-    public TextMeshProUGUI inventoryCritText; // Text trong inventoryCanvas
-    public Image inventoryWeaponIcon;
+    [Header("Player Stats UI Inventory")]
+    public TextMeshProUGUI inventoryHpText; // Text để hiển thị HP trong inventory
+    public TextMeshProUGUI inventoryDmgText; // Text để hiển thị DMG trong inventory
+    public TextMeshProUGUI inventoryCritText; // Text để hiển thị CRIT trong inventory
+    public Image inventoryWeaponIcon; // Icon vũ khí trong inventory
 
     [Header("Rarity Spawn Chances (0-100)")]
     [Range(0, 100)] public int chanceCommon = 50;
@@ -90,16 +92,17 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
-        if (inventoryCanvas != null)
+        if (inventory != null)
         {
-            inventoryCanvas.SetActive(false);
+            inventory.SetActive(false);
             inventoryCanvasActive = false;
         }
-        if (canvasUI != null)
+        if (relicSelect != null)
         {
-            canvasUI.SetActive(false);
+            relicSelect.SetActive(false);
             canvasActive = false;
         }
+        UpdateShopPrices(); // Cập nhật giá shop ngay khi khởi tạo
     }
 
     void Update()
@@ -116,8 +119,8 @@ public class InventoryManager : MonoBehaviour
                 RestoreAllRelicsAlpha();
                 SelectRelic(selectedRelicIndex);
 
-                for (int i = 0; i < inventorySlots.Length; i++)
-                    inventorySlots[i].transform.DOScale(Vector3.one, 0.2f);
+                for (int i = 0; i < inventorySlotsSelect.Length; i++)
+                    inventorySlotsSelect[i].transform.DOScale(Vector3.one, 0.2f);
                 return;
             }
             HandleReplaceInput();
@@ -139,7 +142,7 @@ public class InventoryManager : MonoBehaviour
             if (inventoryOnlyView)
             {
                 inventoryOnlyView = false;
-                canvasUI.SetActive(true);
+                relicSelect.SetActive(true);
                 relicSelected = false;
                 relicConfirming = true;
                 pendingRelicChoose = true;
@@ -238,7 +241,7 @@ public class InventoryManager : MonoBehaviour
             }
 
             relicTooltipPanel.SetActive(true);
-            relicTooltipPanel.transform.position = position + new Vector3(310f, 50); // lệch chút sang phải
+            relicTooltipPanel.transform.position = position + new Vector3(310f, 50);
         }
 
         if (index >= 0 && index < playerInventory.Count)
@@ -258,7 +261,7 @@ public class InventoryManager : MonoBehaviour
             }
 
             inforRelic.SetActive(true);
-            inforRelic.transform.position = position + new Vector3(310f, 50); // lệch chút sang phải
+            inforRelic.transform.position = position + new Vector3(310f, 50);
         }
     }
 
@@ -270,7 +273,7 @@ public class InventoryManager : MonoBehaviour
 
     void HandleRelicSelection(Relic relic)
     {
-        if (playerInventory.Count < inventorySlots.Length)
+        if (playerInventory.Count < inventorySlotsSelect.Length)
         {
             playerInventory.Add(relic);
             usedRelics.Add(relic);
@@ -289,6 +292,10 @@ public class InventoryManager : MonoBehaviour
             waitingForReplace = true;
             selectedReplaceIndex = 0;
             ChangeReplaceSelection(0);
+        }
+        if (SkillSelectorManager.Instance != null)
+        {
+            SkillSelectorManager.Instance.SyncSkillsWithInventory(); // Đồng bộ skill khi chọn relic
         }
     }
 
@@ -317,9 +324,9 @@ public class InventoryManager : MonoBehaviour
         else if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePos = Input.mousePosition;
-            for (int i = 0; i < inventorySlots.Length; i++)
+            for (int i = 0; i < inventorySlotsSelect.Length; i++)
             {
-                if (RectTransformUtility.RectangleContainsScreenPoint(inventorySlots[i].rectTransform, mousePos))
+                if (RectTransformUtility.RectangleContainsScreenPoint(inventorySlotsSelect[i].rectTransform, mousePos))
                 {
                     if (i == selectedReplaceIndex && (clickOnce || relicConfirming))
                     {
@@ -343,9 +350,9 @@ public class InventoryManager : MonoBehaviour
 
     void ChangeReplaceSelection(int index)
     {
-        inventorySlots[selectedReplaceIndex].transform.DOScale(Vector3.one, 0.2f);
+        inventorySlotsSelect[selectedReplaceIndex].transform.DOScale(Vector3.one, 0.2f);
         selectedReplaceIndex = index;
-        inventorySlots[selectedReplaceIndex].transform.DOScale(Vector3.one * 1.2f, 0.2f);
+        inventorySlotsSelect[selectedReplaceIndex].transform.DOScale(Vector3.one * 1.2f, 0.2f);
         clickOnce = false;
     }
 
@@ -353,16 +360,25 @@ public class InventoryManager : MonoBehaviour
     {
         if (selectedReplaceIndex >= 0 && selectedReplaceIndex < playerInventory.Count)
         {
+            Relic oldRelic = playerInventory[selectedReplaceIndex];
             playerInventory[selectedReplaceIndex] = relicToReplace;
+            usedRelics.Add(relicToReplace);
+            UpdateInventoryUI();
+            ApplyRelicEffect(relicToReplace);
+            UpdateArmorTextVisibility();
+            if (oldRelic.type == RelicType.DiscountCard)
+            {
+                UpdateShopPrices();
+            }
         }
         else
         {
             playerInventory.Add(relicToReplace);
+            usedRelics.Add(relicToReplace);
+            UpdateInventoryUI();
+            ApplyRelicEffect(relicToReplace);
+            UpdateArmorTextVisibility();
         }
-        usedRelics.Add(relicToReplace);
-        UpdateInventoryUI();
-        ApplyRelicEffect(relicToReplace);
-        UpdateArmorTextVisibility();
         waitingForReplace = false;
         clickOnce = false;
         isPickingRelic = false;
@@ -370,17 +386,21 @@ public class InventoryManager : MonoBehaviour
         relicConfirming = false;
         pendingRelicChoose = false;
         StartCoroutine(CloseCanvasAfterDelay(1f));
+        if (SkillSelectorManager.Instance != null)
+        {
+            SkillSelectorManager.Instance.SyncSkillsWithInventory(); // Đồng bộ skill khi thay thế relic
+        }
     }
 
     public void OpenCanvas()
     {
-        if (inventoryCanvas != null)
+        if (inventory != null)
         {
-            inventoryCanvas.SetActive(false);
+            inventory.SetActive(false);
             inventoryCanvasActive = false;
         }
 
-        canvasUI.SetActive(true);
+        relicSelect.SetActive(true);
         canvasActive = true;
         isPickingRelic = true;
         relicSelected = false;
@@ -391,20 +411,24 @@ public class InventoryManager : MonoBehaviour
         ShowRandomRelics();
         UpdateInventoryUI();
         SelectRelic(0);
+        if (SkillSelectorManager.Instance != null)
+        {
+            SkillSelectorManager.Instance.SyncSkillsWithInventory(); // Đồng bộ skill khi mở canvas relic
+        }
     }
 
     public void ToggleInventoryOnlyUI()
     {
-        if (canvasUI != null)
+        if (relicSelect != null)
         {
-            canvasUI.SetActive(false);
+            relicSelect.SetActive(false);
             canvasActive = false;
         }
 
-        if (inventoryCanvas != null)
+        if (inventory != null)
         {
-            bool active = !inventoryCanvas.activeSelf;
-            inventoryCanvas.SetActive(active);
+            bool active = !inventory.activeSelf;
+            inventory.SetActive(active);
             inventoryCanvasActive = active;
             inventoryOnlyView = active;
             relicSelected = false;
@@ -594,7 +618,7 @@ public class InventoryManager : MonoBehaviour
 
     void CloseCanvasImmediate()
     {
-        canvasUI.SetActive(false);
+        relicSelect.SetActive(false);
         relicTooltipPanel.SetActive(false);
         inforRelic.SetActive(false);
         canvasActive = false;
@@ -606,21 +630,21 @@ public class InventoryManager : MonoBehaviour
 
     public void UpdateInventoryUI()
     {
-        if (inventorySlots != null)
+        if (inventorySlotsSelect != null)
         {
-            for (int i = 0; i < inventorySlots.Length; i++)
+            for (int i = 0; i < inventorySlotsSelect.Length; i++)
             {
-                inventorySlots[i].transform.DOScale(Vector3.one, 0.1f);
+                inventorySlotsSelect[i].transform.DOScale(Vector3.one, 0.1f);
 
                 if (i < playerInventory.Count)
                 {
-                    inventorySlots[i].sprite = playerInventory[i].icon;
-                    inventorySlots[i].color = Color.white;
+                    inventorySlotsSelect[i].sprite = playerInventory[i].icon;
+                    inventorySlotsSelect[i].color = Color.white;
                 }
                 else
                 {
-                    inventorySlots[i].sprite = null;
-                    inventorySlots[i].color = new Color(0, 0, 0, 0);
+                    inventorySlotsSelect[i].sprite = null;
+                    inventorySlotsSelect[i].color = new Color(0, 0, 0, 0);
                 }
             }
         }
@@ -643,6 +667,49 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
+
+        // Cập nhật skillSlots từ SkillSelectorManager
+        if (skillSlots != null && SkillSelectorManager.Instance != null)
+        {
+            List<Skill> playerSkills = SkillSelectorManager.Instance.playerSkills;
+            for (int i = 0; i < skillSlots.Length; i++)
+            {
+                skillSlots[i].transform.DOScale(Vector3.one, 0.1f);
+
+                if (i < playerSkills.Count)
+                {
+                    skillSlots[i].sprite = playerSkills[i].icon;
+                    skillSlots[i].color = Color.white;
+                }
+                else
+                {
+                    skillSlots[i].sprite = null;
+                    skillSlots[i].color = new Color(0, 0, 0, 0);
+                }
+            }
+        }
+
+        // Cập nhật skillSlotsSelect từ SkillSelectorManager
+        if (skillSlotsSelect != null && SkillSelectorManager.Instance != null)
+        {
+            List<Skill> playerSkills = SkillSelectorManager.Instance.playerSkills;
+            for (int i = 0; i < skillSlotsSelect.Length; i++)
+            {
+                skillSlotsSelect[i].transform.DOScale(Vector3.one, 0.1f);
+
+                if (i < playerSkills.Count)
+                {
+                    skillSlotsSelect[i].sprite = playerSkills[i].icon;
+                    skillSlotsSelect[i].color = Color.white;
+                }
+                else
+                {
+                    skillSlotsSelect[i].sprite = null;
+                    skillSlotsSelect[i].color = new Color(0, 0, 0, 0);
+                }
+            }
+        }
+
         // Cập nhật icon vũ khí
         if (activeWeapon != null && activeWeapon.CurrentActiveWeapon != null)
         {
@@ -788,6 +855,10 @@ public class InventoryManager : MonoBehaviour
             case RelicType.ConduitSpike:
                 Debug.Log("Conduit Spike equipped: Every 3rd attack will deal 4-10 damage to 2 nearest enemies.");
                 break;
+            case RelicType.DiscountCard:
+                Debug.Log("Discount Card equipped: Shop items are 25% cheaper.");
+                UpdateShopPrices(); // Cập nhật giá shop khi thêm DiscountCard
+                break;
             case RelicType.DoomShell:
                 Debug.Log("Doom Shell equipped: Dash deals 5-10 damage to enemies in range.");
                 break;
@@ -823,6 +894,9 @@ public class InventoryManager : MonoBehaviour
                 break;
             case RelicType.TraumaticBlow:
                 Debug.Log("Traumatic Blow equipped: Instantly defeat enemies with less than 20% HP when stunned.");
+                break;
+            case RelicType.RecoveryRing:
+                Debug.Log("Recovery Ring equipped: Heal 1 HP when entering a new battle map.");
                 break;
         }
         UpdateInventoryUI();
@@ -882,6 +956,10 @@ public class InventoryManager : MonoBehaviour
             usedRelics.Add(relicToRemove);
             UpdateInventoryUI();
             UpdateArmorTextVisibility();
+            if (relicType == RelicType.DiscountCard)
+            {
+                UpdateShopPrices(); // Cập nhật giá shop khi xóa DiscountCard
+            }
             Debug.Log($"Removed relic: {relicToRemove.relicName}");
             if (relicType == RelicType.TitansWargear)
             {
@@ -899,5 +977,26 @@ public class InventoryManager : MonoBehaviour
     {
         if (!usedRelics.Contains(relic))
             usedRelics.Add(relic);
+    }
+
+    public bool HasRecoveryRing()
+    {
+        return playerInventory.Exists(relic => relic.type == RelicType.RecoveryRing);
+    }
+
+    // Hàm cập nhật giá của tất cả vật phẩm trong shop
+    private void UpdateShopPrices()
+    {
+        ShopRelicDisplay[] shopDisplays = FindObjectsOfType<ShopRelicDisplay>();
+        if (shopDisplays.Length == 0)
+        {
+            Debug.LogWarning("No ShopRelicDisplay found in scene!");
+            return;
+        }
+        foreach (ShopRelicDisplay display in shopDisplays)
+        {
+            display.UpdateCostDisplay();
+        }
+        Debug.Log("Shop prices updated due to DiscountCard status change.");
     }
 }

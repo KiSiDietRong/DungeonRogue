@@ -10,24 +10,39 @@ public class ShopRelicDisplay : MonoBehaviour
     public Image iconImage;
 
     private bool playerInRange = false;
+    private int discountedCost; // Giá sau khi giảm
 
     void Start()
     {
         // Gán dữ liệu UI
-        if (relicData != null)
+        if (relicData == null)
         {
-            nameText.text = relicData.relicName;
-            effectText.text = relicData.effectDescription;
-            rarityText.text = relicData.rarity;
-            costText.text = relicData.cost.ToString();
-            iconImage.sprite = relicData.icon;
+            Debug.LogError("relicData is null in ShopRelicDisplay!");
+            return;
+        }
+        if (costText == null)
+        {
+            Debug.LogError("costText is null in ShopRelicDisplay!");
+            return;
+        }
 
-            switch (relicData.rarityType)
-            {
-                case Rarity.Common: rarityText.color = Color.white; break;
-                case Rarity.Epic: rarityText.color = new Color(0.6f, 0.2f, 1f); break;
-                case Rarity.Legendary: rarityText.color = Color.yellow; break;
-            }
+        InventoryManager inv = InventoryManager.Instance;
+        bool hasDiscountCard = inv != null && inv.playerInventory.Exists(relic => relic.type == RelicType.DiscountCard);
+
+        // Tính giá giảm 25% nếu có DiscountCard
+        discountedCost = hasDiscountCard ? Mathf.FloorToInt(relicData.cost * 0.75f) : relicData.cost;
+
+        nameText.text = relicData.relicName;
+        effectText.text = relicData.effectDescription;
+        rarityText.text = relicData.rarity;
+        costText.text = hasDiscountCard ? $"{relicData.cost} → {discountedCost}" : $"{discountedCost}";
+        iconImage.sprite = relicData.icon;
+
+        switch (relicData.rarityType)
+        {
+            case Rarity.Common: rarityText.color = Color.white; break;
+            case Rarity.Epic: rarityText.color = new Color(0.6f, 0.2f, 1f); break;
+            case Rarity.Legendary: rarityText.color = Color.yellow; break;
         }
 
         infoCanvas.alpha = 0f;
@@ -45,13 +60,18 @@ public class ShopRelicDisplay : MonoBehaviour
     void BuyRelic()
     {
         InventoryManager inv = InventoryManager.Instance;
-        PlayerController player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        PlayerController player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerController>();
 
         if (inv != null && player != null && relicData != null)
         {
-            if (player.Gold >= relicData.cost)
+            // Kiểm tra xem có DiscountCard và giá đã giảm không
+            bool hasDiscountCard = inv.playerInventory.Exists(relic => relic.type == RelicType.DiscountCard);
+            bool usedDiscount = hasDiscountCard && discountedCost < relicData.cost;
+
+            // Sử dụng giá giảm để kiểm tra và trừ vàng
+            if (player.Gold >= discountedCost)
             {
-                player.Gold -= relicData.cost;
+                player.Gold -= discountedCost;
                 player.UpdateGoldUI();
 
                 inv.playerInventory.Add(relicData);
@@ -60,15 +80,27 @@ public class ShopRelicDisplay : MonoBehaviour
                 inv.UpdateArmorTextVisibility();
 
                 inv.AddUsedRelic(relicData); // Mark relic as used
+
+                // Xóa DiscountCard nếu đã sử dụng giá giảm
+                if (usedDiscount)
+                {
+                    inv.RemoveRelic(RelicType.DiscountCard);
+                    Debug.Log("DiscountCard removed after purchase.");
+                }
+
                 Destroy(gameObject); // Xoá khỏi shop
+                Debug.Log($"Bought relic: {relicData.relicName} for {discountedCost} gold (original: {relicData.cost}).");
             }
             else
             {
-                Debug.Log("Not enough gold to buy this relic.");
+                Debug.Log($"Not enough gold to buy {relicData.relicName}. Need {discountedCost}, have {player.Gold}.");
             }
         }
+        else
+        {
+            Debug.LogError("Cannot buy relic: InventoryManager, PlayerController, or relicData is null.");
+        }
     }
-
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -88,5 +120,25 @@ public class ShopRelicDisplay : MonoBehaviour
             infoCanvas.alpha = 0f;
             infoCanvas.gameObject.SetActive(false);
         }
+    }
+
+    // Hàm để cập nhật giá hiển thị khi trạng thái DiscountCard thay đổi
+    public void UpdateCostDisplay()
+    {
+        if (relicData == null)
+        {
+            Debug.LogError("relicData is null in UpdateCostDisplay!");
+            return;
+        }
+        if (costText == null)
+        {
+            Debug.LogError("costText is null in UpdateCostDisplay!");
+            return;
+        }
+
+        InventoryManager inv = InventoryManager.Instance;
+        bool hasDiscountCard = inv != null && inv.playerInventory.Exists(relic => relic.type == RelicType.DiscountCard);
+        discountedCost = hasDiscountCard ? Mathf.FloorToInt(relicData.cost * 0.75f) : relicData.cost;
+        costText.text = hasDiscountCard ? $"{relicData.cost} → {discountedCost}" : $"{discountedCost}";
     }
 }
