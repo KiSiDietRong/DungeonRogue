@@ -30,9 +30,14 @@ public class PlayerController : MonoBehaviour
     private bool nearNPC = false;
     private DialogueNPC currentNPC;
     private INPCInteractable currentNPCs;
+    public bool isInDialogue = false;
+
+    public bool isSkillTreeOpen = false;
 
     public bool hasOrb = false;
     public int Gold = 500;
+    public int Amber = 200;
+    public Text amberText;
     public Text goldText;
 
     private float baseMoveSpeed;
@@ -41,6 +46,7 @@ public class PlayerController : MonoBehaviour
     public bool FacingLeft { get { return facingLeft; } set { facingLeft = value; } }
     private bool facingLeft = false;
     internal Vector2 lastMoveDirection;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -59,6 +65,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (isInDialogue || isSkillTreeOpen)
+        {
+            return;
+        }
+
         HandleInput();
         UpdateFacingDirection();
         UpdateAnimator();
@@ -81,7 +92,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+        if (!isInDialogue && !isSkillTreeOpen)
+        {
+            rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+        }
     }
 
     private IEnumerator MoveToPortalAndEnter()
@@ -119,6 +133,12 @@ public class PlayerController : MonoBehaviour
     {
         if (goldText != null)
             goldText.text = $"{Gold}";
+    }
+
+    public void UpdateAmberUI()
+    {
+        if (amberText != null)
+            amberText.text = $"{Amber}";
     }
 
     private void HandleInput()
@@ -200,5 +220,4 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, doomShellRadius);
     }
-
 }

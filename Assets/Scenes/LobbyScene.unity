@@ -20137,7 +20137,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 141, y: 104}
+  m_AnchoredPosition: {x: 523, y: 227}
   m_SizeDelta: {x: 238.2616, y: 38.7708}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &724108763
@@ -22647,6 +22647,8 @@ MonoBehaviour:
   lobbyMusic: {fileID: 8300000, guid: c06a7f0990607894395c036525c984cc, type: 3}
   musicVolume: 0.3
   sfxVolume: 0.5
+  swordSwingSFX: {fileID: 8300000, guid: 1fd0b0c91068971439a0098a686e3ac4, type: 3}
+  swordHitSFX: {fileID: 8300000, guid: 6be00a413a905ce44a77349f3ac6933d, type: 3}
 --- !u!4 &1032267362
 Transform:
   m_ObjectHideFlags: 0

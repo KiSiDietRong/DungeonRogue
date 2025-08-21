@@ -2550,7 +2550,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Exit
+  m_Text: Logout
 --- !u!222 &640947105
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3592,7 +3592,7 @@ GameObject:
   - component: {fileID: 927846468}
   - component: {fileID: 927846467}
   m_Layer: 5
-  m_Name: Exit
+  m_Name: Logout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

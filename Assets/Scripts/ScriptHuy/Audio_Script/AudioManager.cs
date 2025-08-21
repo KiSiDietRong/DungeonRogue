@@ -18,6 +18,10 @@ public class AudioManager : MonoBehaviour
     [Range(0, 1)] public float musicVolume = 1f;
     [Range(0, 1)] public float sfxVolume = 1f;
 
+    [Header("Sword SFX")]
+    public AudioClip swordSwingSFX;
+    public AudioClip swordHitSFX;
+
     private void Awake()
     {
         // Singleton
