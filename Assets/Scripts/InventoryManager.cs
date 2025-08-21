@@ -16,10 +16,38 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Inventory")]
     public Image[] inventorySlots;
+    public Image[] inventoryCanvasSlots;
     public List<Relic> playerInventory = new List<Relic>();
 
     [Header("UI Panel")]
     public GameObject canvasUI;
+    public GameObject inventoryCanvas;
+
+    [Header("Relic Tooltip")]
+    public GameObject relicTooltipPanel;
+    public TextMeshProUGUI tooltipNameText;
+    public Image tooltipIcon;
+    public TextMeshProUGUI tooltipEffectText;
+    public TextMeshProUGUI tooltipRarityText;
+
+    [Header("Relic Infor")]
+    public GameObject inforRelic;
+    public TextMeshProUGUI NameText;
+    public Image Icon;
+    public TextMeshProUGUI EffectText;
+    public TextMeshProUGUI RarityText;
+
+    [Header("Player Stats UI")]
+    public TextMeshProUGUI hpText; // Text để hiển thị HP
+    public TextMeshProUGUI dmgText; // Text để hiển thị DMG
+    public TextMeshProUGUI critText; // Text để hiển thị CRIT
+    public Image weaponIcon;
+
+    [Header("Player Stats UI (inventoryCanvas)")]
+    public TextMeshProUGUI inventoryHpText; // Text trong inventoryCanvas
+    public TextMeshProUGUI inventoryDmgText; // Text trong inventoryCanvas
+    public TextMeshProUGUI inventoryCritText; // Text trong inventoryCanvas
+    public Image inventoryWeaponIcon;
 
     [Header("Rarity Spawn Chances (0-100)")]
     [Range(0, 100)] public int chanceCommon = 50;
@@ -29,6 +57,7 @@ public class InventoryManager : MonoBehaviour
     private int selectedRelicIndex = 0;
     private int activeRelicCount = 0;
     private bool canvasActive = false;
+    private bool inventoryCanvasActive = false;
     private bool relicSelected = false;
     private bool inventoryOnlyView = false;
     private bool isPickingRelic = false;
@@ -42,17 +71,35 @@ public class InventoryManager : MonoBehaviour
     private bool pendingRelicChoose = false;
     private Relic relicToReplace;
 
-    private int titansWargearKillCount = 0; // Đếm số kẻ địch bị tiêu diệt cho Titan's Wargear
+    private int titansWargearKillCount = 0;
+    private PlayerHealth playerHealth; // Tham chiếu đến PlayerHealth
+    private ActiveWeapon activeWeapon; // Tham chiếu đến ActiveWeapon
 
     void Awake()
     {
         Instance = this;
         Enemy.OnEnemyDeath += HandleEnemyDeath;
+        playerHealth = FindObjectOfType<PlayerHealth>(); // Lấy PlayerHealth
+        activeWeapon = FindObjectOfType<ActiveWeapon>(); // Lấy ActiveWeapon
     }
 
     void OnDestroy()
     {
         Enemy.OnEnemyDeath -= HandleEnemyDeath;
+    }
+
+    void Start()
+    {
+        if (inventoryCanvas != null)
+        {
+            inventoryCanvas.SetActive(false);
+            inventoryCanvasActive = false;
+        }
+        if (canvasUI != null)
+        {
+            canvasUI.SetActive(false);
+            canvasActive = false;
+        }
     }
 
     void Update()
@@ -172,6 +219,55 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void ShowRelicTooltip(int index, Vector3 position)
+    {
+        if (index >= 0 && index < playerInventory.Count)
+        {
+            Relic relic = playerInventory[index];
+
+            tooltipNameText.text = relic.relicName;
+            tooltipIcon.sprite = relic.icon;
+            tooltipEffectText.text = relic.effectDescription;
+            tooltipRarityText.text = relic.rarity;
+
+            switch (relic.rarityType)
+            {
+                case Rarity.Common: tooltipRarityText.color = Color.white; break;
+                case Rarity.Epic: tooltipRarityText.color = new Color(0.6f, 0.2f, 1f); break;
+                case Rarity.Legendary: tooltipRarityText.color = Color.yellow; break;
+            }
+
+            relicTooltipPanel.SetActive(true);
+            relicTooltipPanel.transform.position = position + new Vector3(310f, 50); // lệch chút sang phải
+        }
+
+        if (index >= 0 && index < playerInventory.Count)
+        {
+            Relic relic = playerInventory[index];
+
+            NameText.text = relic.relicName;
+            Icon.sprite = relic.icon;
+            EffectText.text = relic.effectDescription;
+            RarityText.text = relic.rarity;
+
+            switch (relic.rarityType)
+            {
+                case Rarity.Common: RarityText.color = Color.white; break;
+                case Rarity.Epic: RarityText.color = new Color(0.6f, 0.2f, 1f); break;
+                case Rarity.Legendary: RarityText.color = Color.yellow; break;
+            }
+
+            inforRelic.SetActive(true);
+            inforRelic.transform.position = position + new Vector3(310f, 50); // lệch chút sang phải
+        }
+    }
+
+    public void HideRelicTooltip()
+    {
+        relicTooltipPanel.SetActive(false);
+        inforRelic.SetActive(false);
+    }
+
     void HandleRelicSelection(Relic relic)
     {
         if (playerInventory.Count < inventorySlots.Length)
@@ -278,6 +374,12 @@ public class InventoryManager : MonoBehaviour
 
     public void OpenCanvas()
     {
+        if (inventoryCanvas != null)
+        {
+            inventoryCanvas.SetActive(false);
+            inventoryCanvasActive = false;
+        }
+
         canvasUI.SetActive(true);
         canvasActive = true;
         isPickingRelic = true;
@@ -293,23 +395,32 @@ public class InventoryManager : MonoBehaviour
 
     public void ToggleInventoryOnlyUI()
     {
-        bool active = !canvasUI.activeSelf;
-        canvasUI.SetActive(active);
-        canvasActive = active;
-        inventoryOnlyView = active;
-        relicSelected = false;
-        UpdateInventoryUI();
-        UpdateArmorTextVisibility();
-
-        foreach (var btn in relicButtons)
+        if (canvasUI != null)
         {
-            btn.gameObject.SetActive(false);
+            canvasUI.SetActive(false);
+            canvasActive = false;
+        }
+
+        if (inventoryCanvas != null)
+        {
+            bool active = !inventoryCanvas.activeSelf;
+            inventoryCanvas.SetActive(active);
+            inventoryCanvasActive = active;
+            inventoryOnlyView = active;
+            relicSelected = false;
+            UpdateInventoryUI();
+            UpdateArmorTextVisibility();
+
+            foreach (var btn in relicButtons)
+            {
+                btn.gameObject.SetActive(false);
+            }
         }
     }
 
     public bool IsCanvasActive()
     {
-        return canvasActive;
+        return canvasActive || inventoryCanvasActive;
     }
 
     void ShowRandomRelics()
@@ -484,6 +595,8 @@ public class InventoryManager : MonoBehaviour
     void CloseCanvasImmediate()
     {
         canvasUI.SetActive(false);
+        relicTooltipPanel.SetActive(false);
+        inforRelic.SetActive(false);
         canvasActive = false;
         isPickingRelic = false;
         relicSelected = false;
@@ -491,26 +604,174 @@ public class InventoryManager : MonoBehaviour
         pendingRelicChoose = false;
     }
 
-    void UpdateInventoryUI()
+    public void UpdateInventoryUI()
     {
-        for (int i = 0; i < inventorySlots.Length; i++)
+        if (inventorySlots != null)
         {
-            inventorySlots[i].transform.DOScale(Vector3.one, 0.1f);
-
-            if (i < playerInventory.Count)
+            for (int i = 0; i < inventorySlots.Length; i++)
             {
-                inventorySlots[i].sprite = playerInventory[i].icon;
-                inventorySlots[i].color = Color.white;
+                inventorySlots[i].transform.DOScale(Vector3.one, 0.1f);
+
+                if (i < playerInventory.Count)
+                {
+                    inventorySlots[i].sprite = playerInventory[i].icon;
+                    inventorySlots[i].color = Color.white;
+                }
+                else
+                {
+                    inventorySlots[i].sprite = null;
+                    inventorySlots[i].color = new Color(0, 0, 0, 0);
+                }
+            }
+        }
+
+        if (inventoryCanvasSlots != null)
+        {
+            for (int i = 0; i < inventoryCanvasSlots.Length; i++)
+            {
+                inventoryCanvasSlots[i].transform.DOScale(Vector3.one, 0.1f);
+
+                if (i < playerInventory.Count)
+                {
+                    inventoryCanvasSlots[i].sprite = playerInventory[i].icon;
+                    inventoryCanvasSlots[i].color = Color.white;
+                }
+                else
+                {
+                    inventoryCanvasSlots[i].sprite = null;
+                    inventoryCanvasSlots[i].color = new Color(0, 0, 0, 0);
+                }
+            }
+        }
+        // Cập nhật icon vũ khí
+        if (activeWeapon != null && activeWeapon.CurrentActiveWeapon != null)
+        {
+            WeaponInfo weaponInfo = activeWeapon.CurrentActiveWeapon.GetWeaponInfo();
+            if (weaponInfo != null && weaponInfo.weaponSprite != null)
+            {
+                if (weaponIcon != null)
+                {
+                    weaponIcon.sprite = weaponInfo.weaponSprite;
+                    weaponIcon.color = Color.white;
+                }
+                if (inventoryWeaponIcon != null)
+                {
+                    inventoryWeaponIcon.sprite = weaponInfo.weaponSprite;
+                    inventoryWeaponIcon.color = Color.white;
+                }
             }
             else
             {
-                inventorySlots[i].sprite = null;
-                inventorySlots[i].color = new Color(0, 0, 0, 0);
+                if (weaponIcon != null)
+                {
+                    weaponIcon.sprite = null;
+                    weaponIcon.color = new Color(0, 0, 0, 0);
+                }
+                if (inventoryWeaponIcon != null)
+                {
+                    inventoryWeaponIcon.sprite = null;
+                    inventoryWeaponIcon.color = new Color(0, 0, 0, 0);
+                }
+                Debug.LogWarning("WeaponInfo or weaponSprite is null in ActiveWeapon!");
             }
+        }
+        else
+        {
+            if (weaponIcon != null)
+            {
+                weaponIcon.sprite = null;
+                weaponIcon.color = new Color(0, 0, 0, 0);
+            }
+            if (inventoryWeaponIcon != null)
+            {
+                inventoryWeaponIcon.sprite = null;
+                inventoryWeaponIcon.color = new Color(0, 0, 0, 0);
+            }
+            Debug.LogWarning("ActiveWeapon or CurrentActiveWeapon is null!");
+        }
+        UpdatePlayerStatsUI();
+    }
+
+    void UpdatePlayerStatsUI()
+    {
+        // Cập nhật chỉ số cho canvasUI
+        if (playerHealth != null)
+        {
+            if (hpText != null)
+                hpText.text = $"{playerHealth.CurrentHealth}/{playerHealth.MaxHealth}";
+        }
+        else
+        {
+            if (hpText != null)
+                hpText.text = "N/A";
+        }
+
+        if (activeWeapon != null && activeWeapon.CurrentActiveWeapon != null)
+        {
+            WeaponInfo weaponInfo = activeWeapon.CurrentActiveWeapon.GetWeaponInfo();
+            if (weaponInfo != null)
+            {
+                if (dmgText != null)
+                    dmgText.text = $"{weaponInfo.weaponDamage}";
+                if (critText != null)
+                    critText.text = $"{(weaponInfo.criticalChance * 100)}%";
+            }
+            else
+            {
+                if (dmgText != null)
+                    dmgText.text = "N/A";
+                if (critText != null)
+                    critText.text = "N/A";
+            }
+        }
+        else
+        {
+            if (dmgText != null)
+                dmgText.text = "N/A";
+            if (critText != null)
+                critText.text = "N/A";
+        }
+
+        // Cập nhật chỉ số cho inventoryCanvas
+        if (playerHealth != null)
+        {
+            if (inventoryHpText != null)
+                inventoryHpText.text = $"{playerHealth.CurrentHealth}/{playerHealth.MaxHealth}";
+        }
+        else
+        {
+            if (inventoryHpText != null)
+                inventoryHpText.text = "N/A";
+        }
+
+        if (activeWeapon != null && activeWeapon.CurrentActiveWeapon != null)
+        {
+            WeaponInfo weaponInfo = activeWeapon.CurrentActiveWeapon.GetWeaponInfo();
+            if (weaponInfo != null)
+            {
+                if (inventoryDmgText != null)
+                    inventoryDmgText.text = $"{weaponInfo.weaponDamage}";
+                if (inventoryCritText != null)
+                    inventoryCritText.text = $"{(weaponInfo.criticalChance * 100)}%";
+            }
+            else
+            {
+                if (inventoryDmgText != null)
+                    inventoryDmgText.text = "N/A";
+                if (inventoryCritText != null)
+                    inventoryCritText.text = "N/A";
+            }
+        }
+        else
+        {
+            if (inventoryDmgText != null)
+                inventoryDmgText.text = "N/A";
+            if (inventoryCritText != null)
+                inventoryCritText.text = "N/A";
         }
     }
 
-    void ApplyRelicEffect(Relic relic)
+    public void ApplyRelicEffect(Relic relic)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerHealth health = player.GetComponent<PlayerHealth>();
@@ -564,6 +825,7 @@ public class InventoryManager : MonoBehaviour
                 Debug.Log("Traumatic Blow equipped: Instantly defeat enemies with less than 20% HP when stunned.");
                 break;
         }
+        UpdateInventoryUI();
     }
 
     void HandleEnemyDeath(Enemy enemy)
@@ -594,12 +856,13 @@ public class InventoryManager : MonoBehaviour
                     }
                 }
                 titansWargearKillCount = 0; // Reset bộ đếm
+                UpdateInventoryUI();
             }
             Debug.Log($"Titan's Wargear: {titansWargearKillCount}/4 enemies killed.");
         }
     }
 
-    void UpdateArmorTextVisibility()
+    public void UpdateArmorTextVisibility()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerHealth health = player.GetComponent<PlayerHealth>();
@@ -625,5 +888,16 @@ public class InventoryManager : MonoBehaviour
                 titansWargearKillCount = 0; // Reset bộ đếm khi gỡ Titan's Wargear
             }
         }
+    }
+
+    public bool IsRelicUsed(Relic relic)
+    {
+        return usedRelics.Contains(relic);
+    }
+
+    public void AddUsedRelic(Relic relic)
+    {
+        if (!usedRelics.Contains(relic))
+            usedRelics.Add(relic);
     }
 }

@@ -6,61 +6,85 @@ public class SettingManager : MonoBehaviour
     [Header("Tab Buttons")]
     public Button soundButton;
     public Button controlButton;
+    public Button screenButton;
+    
 
     [Header("Sound UI")]
     public GameObject soundSlider;
     public GameObject sfxSlider;
+    public GameObject mainSlider;
     public GameObject mainText;
     public GameObject sfxText;
+    public GameObject soundText;
 
     [Header("Keybind UI")]
-    public GameObject keybindGroup; // group các UI về keybind
+    public GameObject keybindGroup;
+
+    [Header("Screen UI")]
+    public GameObject screenGroup;
 
     [Header("Panels")]
     public GameObject blackPanel;
 
     void Start()
     {
-        // Gán sự kiện cho các nút
         soundButton.onClick.AddListener(ShowSoundSettings);
         controlButton.onClick.AddListener(ShowKeybindSettings);
+        screenButton.onClick.AddListener(ShowScreenSettings);
 
-        // Khi mở setting, mặc định là sound
         ShowSoundSettings();
     }
 
     public void ShowSoundSettings()
     {
-        // Bật UI Sound
+        mainSlider.SetActive(true);
         soundSlider.SetActive(true);
         sfxSlider.SetActive(true);
         mainText.SetActive(true);
         sfxText.SetActive(true);
+        soundText.SetActive(true);
 
-        // Ẩn UI Keybind
         keybindGroup.SetActive(false);
+        screenGroup.SetActive(false);
 
-        // Vô hiệu hóa nút sound, bật lại control
         soundButton.interactable = false;
         controlButton.interactable = true;
+        screenButton.interactable = true;
     }
 
     public void ShowKeybindSettings()
     {
-        // Ẩn UI Sound
+        mainSlider.SetActive(false);
         soundSlider.SetActive(false);
         sfxSlider.SetActive(false);
         mainText.SetActive(false);
         sfxText.SetActive(false);
+        soundText.SetActive(false);
 
-        // Bật UI Keybind
         keybindGroup.SetActive(true);
+        screenGroup.SetActive(false);
 
-        // Vô hiệu hóa nút control, bật lại sound
         soundButton.interactable = true;
         controlButton.interactable = false;
+        screenButton.interactable = true;
     }
+    public void ShowScreenSettings() 
+    {
+        mainSlider.SetActive(false);
+        soundSlider.SetActive(false);
+        sfxSlider.SetActive(false);
+        mainText.SetActive(false);
+        sfxText.SetActive(false);
+        soundText.SetActive(false);
 
+        keybindGroup.SetActive(false);
+
+        screenGroup.SetActive(true);
+
+        soundButton.interactable = true;
+        controlButton.interactable = true;
+        screenButton.interactable = false;
+    }
     public void CloseSetting()
     {
         blackPanel.SetActive(false);

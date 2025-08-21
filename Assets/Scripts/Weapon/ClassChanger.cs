@@ -19,14 +19,14 @@ public class ClassChanger : MonoBehaviour
             //    controller.InitFromStats(characterStat);
 
             var health = player.GetComponent<PlayerHealth>();
-            //if (health != null)
-            //    health.InitFromStats(characterStat);
+            if (health != null)
+                health.InitFromStats(characterStat);
 
             var activeWeapon = player.GetComponentInChildren<ActiveWeapon>();
             if (activeWeapon != null)
                 activeWeapon.SetActiveWeapon(weaponPrefab);
 
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 

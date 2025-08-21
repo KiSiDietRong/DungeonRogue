@@ -16,13 +16,13 @@ public class SlashAnim : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
-        {
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (enemy != null && weaponInfo != null)
-            {
-                enemy.TakeDamage(weaponInfo.weaponDamage);
-            }
-        }
+        //if (other.CompareTag("Enemy"))
+        //{
+        //    Enemy enemy = other.GetComponent<Enemy>();
+        //    if (enemy != null && weaponInfo != null)
+        //    {
+        //        enemy.TakeDamage(weaponInfo.weaponDamage);
+        //    }
+        //}
     }
 }

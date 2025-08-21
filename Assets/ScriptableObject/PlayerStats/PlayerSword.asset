@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerSword
   m_EditorClassIdentifier: 
   className: Sword
-  maxHealth: 30
+  maxHealth: 80
   skillDamage: 0
   moveSpeed: 5

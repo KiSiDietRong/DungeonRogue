@@ -20,11 +20,11 @@ public class DamagePopup : MonoBehaviour
     public void Setup(int damageAmount, bool isCritical)
     {
         damageText.text = damageAmount.ToString();
-        damageText.color = isCritical ? Color.red : Color.white;
+        damageText.color = isCritical ? Color.red : Color.red;
 
         if (isCritical)
         {
-            damageText.fontSize += 5;
+            damageText.fontSize += 15;
         }
     }
 }
