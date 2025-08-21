@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fireball Skill
   m_EditorClassIdentifier: 
   skillName: FireBall
-  icon: {fileID: 0}
-  cooldown: 2
+  skillInfo: 'Throw a fireball , deal damage to enemy get hit '
+  icon: {fileID: -5239030493526086239, guid: 3039f9f9b10e63b45835da1095ce746e, type: 3}
+  cooldown: 10
   fireballPrefab: {fileID: 6098165078004752004, guid: c2c79a83dd990ac469d8da928b56845c, type: 3}

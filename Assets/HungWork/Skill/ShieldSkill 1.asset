@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ShieldSkill 1
   m_EditorClassIdentifier: 
   skillName: Shield
+  skillInfo: Skill Info
   icon: {fileID: 0}
-  cooldown: 2
-  shieldPrefab: {fileID: 0}
+  cooldown: 30
+  shieldPrefab: {fileID: 1664323678930793427, guid: d20f91232a514c94baecd3c711bdce98, type: 3}
   duration: 5

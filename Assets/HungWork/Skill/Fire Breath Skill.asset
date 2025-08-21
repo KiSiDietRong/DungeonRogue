@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Fire Breath Skill
   m_EditorClassIdentifier: 
   skillName: FireBreath
+  skillInfo: Spit a big fire , deal big damage to enemy inside
   icon: {fileID: 0}
-  cooldown: 5
+  cooldown: 20
   flamePrefab: {fileID: 1192623941287497063, guid: 28019f6265c85b64180a6f97442d77a9, type: 3}
   duration: 3
   damagePerSecond: 10

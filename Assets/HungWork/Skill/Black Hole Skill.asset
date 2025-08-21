@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Black Hole Skill
   m_EditorClassIdentifier: 
   skillName: BlackHole
+  skillInfo: 'Summon a Blackhole pull enemy in to it core '
   icon: {fileID: 0}
-  cooldown: 2
+  cooldown: 25
   blackHolePrefab: {fileID: 6605300842755207369, guid: 41fa4567fd9871249b28f6f207c7b215, type: 3}

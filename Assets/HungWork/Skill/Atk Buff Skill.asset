@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Atk Buff Skill
   m_EditorClassIdentifier: 
   skillName: Atk Buff
+  skillInfo: Increase player ATK by 50% for 5 second
   icon: {fileID: 0}
-  cooldown: 2
+  cooldown: 15
   buffDuration: 5
   damageMultiplier: 1.5
