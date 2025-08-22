@@ -9,6 +9,8 @@ public class SkillManager : MonoBehaviour
 
     private Camera mainCamera;
     private bool hasUsedFirstSkillInRoom = false;
+    private bool isFieryImbuementActive = false;
+    private int fieryImbuementAttackCount = 0;
 
     void Start()
     {
@@ -65,12 +67,39 @@ public class SkillManager : MonoBehaviour
                 hasUsedFirstSkillInRoom = true;
             }
         }
+
+        InventoryManager inventory = FindObjectOfType<InventoryManager>();
+        if (inventory != null && inventory.playerInventory.Exists(relic => relic.type == RelicType.FieryImbuement))
+        {
+            isFieryImbuementActive = true;
+            fieryImbuementAttackCount = 7;
+            Debug.Log("Fiery Imbuement triggered: Next 7 attacks will apply burn effect.");
+        }
     }
 
     public void ResetFirstSkillUsage()
     {
         hasUsedFirstSkillInRoom = false;
         Debug.Log("Reset first skill usage for new room.");
+    }
+
+    public bool IsFieryImbuementActive()
+    {
+        return isFieryImbuementActive;
+    }
+
+    public void ConsumeFieryImbuementAttack()
+    {
+        if (isFieryImbuementActive)
+        {
+            fieryImbuementAttackCount--;
+            Debug.Log($"Fiery Imbuement: {fieryImbuementAttackCount} attacks remaining.");
+            if (fieryImbuementAttackCount <= 0)
+            {
+                isFieryImbuementActive = false;
+                Debug.Log("Fiery Imbuement deactivated: No attacks remaining.");
+            }
+        }
     }
 
     Vector3 GetTargetPosition()

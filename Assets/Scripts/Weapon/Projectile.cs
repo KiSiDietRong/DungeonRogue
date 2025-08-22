@@ -22,6 +22,12 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         startPosition = transform.position;
+
+        ActiveWeapon activeWeapon = FindObjectOfType<ActiveWeapon>();
+        if (activeWeapon != null && activeWeapon.IsDamageBoosted)
+        {
+            ActivateDamageBoost(3f);
+        }
     }
 
     private void Update()
@@ -121,11 +127,18 @@ public class Projectile : MonoBehaviour
                     Debug.Log($"VoltClaw triggered: Dealt {lightningDamage} lightning damage to {other.name}.");
                 }
 
-                // Làm choáng kẻ địch nếu có DazeClaw và đòn đánh là chí mạng
                 if (isCritical && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.DazeClaw))
                 {
                     enemy.Stun(1f);
                     Debug.Log($"DazeClaw triggered: Stunned {other.name} for 1 second.");
+                }
+
+                SkillManager skillManager = FindObjectOfType<SkillManager>();
+                if (skillManager != null && skillManager.IsFieryImbuementActive())
+                {
+                    enemy.ApplyBurnEffect();
+                    skillManager.ConsumeFieryImbuementAttack();
+                    Debug.Log($"Fiery Imbuement: Applied burn effect to {other.name}.");
                 }
             }
             Destroy(gameObject);

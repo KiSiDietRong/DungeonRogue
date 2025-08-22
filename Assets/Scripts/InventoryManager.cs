@@ -899,6 +899,9 @@ public class InventoryManager : MonoBehaviour
             case RelicType.RecoveryRing:
                 Debug.Log("Recovery Ring equipped: Heal 1 HP when entering a new battle map.");
                 break;
+            case RelicType.FieryImbuement:
+                Debug.Log("Fiery Imbuement equipped: Using a skill causes the next 7 attacks to apply a burn effect for 3 seconds.");
+                break;
         }
         UpdateInventoryUI();
     }
@@ -992,6 +995,11 @@ public class InventoryManager : MonoBehaviour
     public bool HasEmpoweredBangle()
     {
         return playerInventory.Exists(relic => relic.type == RelicType.EmpoweredBangle);
+    }
+
+    public bool HasFieryImbuement()
+    {
+        return playerInventory.Exists(relic => relic.type == RelicType.FieryImbuement);
     }
 
     private void UpdateShopPrices()

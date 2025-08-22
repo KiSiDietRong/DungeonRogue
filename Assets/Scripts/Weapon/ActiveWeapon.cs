@@ -12,7 +12,9 @@ public class ActiveWeapon : MonoBehaviour
     private InventoryManager inventoryManager;
     private bool isDamageBoosted = false;
     private float damageMultiplier = 1f;
-    [SerializeField] private GameObject damageBoostEffectPrefab; // Prefab cho hiệu ứng tăng sát thương (tùy chọn)
+    [SerializeField] private GameObject damageBoostEffectPrefab;
+    public bool IsDamageBoosted => isDamageBoosted;
+    public float CurrentDamageMultiplier => damageMultiplier;
 
     void Awake()
     {
@@ -83,12 +85,16 @@ public class ActiveWeapon : MonoBehaviour
             damageMultiplier = multiplier;
             Debug.Log($"Damage boost activated: Weapon damage increased by {((multiplier - 1f) * 100)}% for {duration} seconds.");
 
+            foreach (var projectile in FindObjectsOfType<Projectile>())
+            {
+                projectile.ActivateDamageBoost(duration);
+            }
+
             if (damageBoostEffectPrefab != null)
             {
                 Vector3 spawnPosition = transform.position;
                 GameObject boostEffect = Instantiate(damageBoostEffectPrefab, spawnPosition, Quaternion.identity, transform);
                 Destroy(boostEffect, duration);
-                Debug.Log("Damage boost effect instantiated and will be destroyed after duration.");
             }
 
             StartCoroutine(DeactivateDamageBoostAfterDelay(duration));
