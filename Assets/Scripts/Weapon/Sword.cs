@@ -24,6 +24,11 @@ public class Sword : MonoBehaviour, IWeapon
     }
     public void Attack()
     {
+        if (playerController != null && playerController.isInDialogue)
+            return;
+
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.swordSwingSFX);
+
         myAnimator.SetTrigger("Attack");
         weaponCollder.gameObject.SetActive(true);
         slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);

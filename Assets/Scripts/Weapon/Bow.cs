@@ -21,6 +21,9 @@ public class Bow : MonoBehaviour, IWeapon
 
     public void Attack()
     {
+        if (playerController != null && playerController.isInDialogue)
+            return;
+
         myAnimator.SetTrigger(FIRE_HASH);
         GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, activeWeapon.transform.rotation);
         Projectile projectile = newArrow.GetComponent<Projectile>();
