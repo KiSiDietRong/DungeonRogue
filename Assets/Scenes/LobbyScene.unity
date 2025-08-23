@@ -608,7 +608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 591879954bacc944399dc90329084873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  masterSlider: {fileID: 310090961}
+  masterSlider: {fileID: 0}
   musicSlider: {fileID: 310090960}
   sfxSlider: {fileID: 310090959}
 --- !u!4 &202447863
@@ -1190,17 +1190,6 @@ MonoBehaviour:
 --- !u!114 &310090960 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2979253557571741820, guid: 76a6529c7614f14489a98a58e334c7a6, type: 3}
-  m_PrefabInstance: {fileID: 310090957}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &310090961 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2048332045466236133, guid: 76a6529c7614f14489a98a58e334c7a6, type: 3}
   m_PrefabInstance: {fileID: 310090957}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -18727,6 +18716,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6082306277026765894, guid: f445ffb615489cd4786c9486112bf04c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8726319067589930509, guid: f445ffb615489cd4786c9486112bf04c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8726319067589930509, guid: f445ffb615489cd4786c9486112bf04c, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -41269,12 +41266,14 @@ MonoBehaviour:
   - sorry, but you don't have any relic orb.
   - come back when you have it. i will unlock more relics when you bring it to me,
     adventure
+  nothingDialogue: []
   dialogueUI: {fileID: 849908345}
   dialogueText: {fileID: 463052799}
   pressFText: {fileID: 900691614}
   choicePanel: {fileID: 762356493}
   button1: {fileID: 1305425503}
   button2: {fileID: 482420701}
+  button3: {fileID: 0}
   typingSpeed: 0.05
 --- !u!61 &1784434374
 BoxCollider2D:
@@ -41518,12 +41517,14 @@ MonoBehaviour:
   - i don't see any skills tablet. you can obtain it when defeat some elite enemies.
   - or maybe it can drop by miniboss or boss.
   - you have to find it by yourself, adventure.
+  nothingDialogue: []
   dialogueUI: {fileID: 708916578}
   dialogueText: {fileID: 747896313}
   pressFText: {fileID: 724108761}
   choicePanel: {fileID: 1238607080}
   button1: {fileID: 194750887}
   button2: {fileID: 974990996}
+  button3: {fileID: 0}
   typingSpeed: 0.05
 --- !u!61 &1850103052
 BoxCollider2D:
@@ -42308,7 +42309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6471076029404631311, guid: 00380ad0d5ae36c4c95aa25725125dcb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9125364075535071243, guid: 00380ad0d5ae36c4c95aa25725125dcb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

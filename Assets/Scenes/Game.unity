@@ -383,6 +383,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1225708480354736715, guid: b1157abdd2a0c8846818c96d419a9043, type: 3}
+      propertyPath: lobbyMap
+      value: 
+      objectReference: {fileID: 5114885921950526108, guid: b1157abdd2a0c8846818c96d419a9043, type: 3}
+    - target: {fileID: 1225708480354736715, guid: b1157abdd2a0c8846818c96d419a9043, type: 3}
+      propertyPath: transitionPanel
+      value: 
+      objectReference: {fileID: 21153957}
     - target: {fileID: 1303323381008896338, guid: b1157abdd2a0c8846818c96d419a9043, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -423,6 +431,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1377809745468217117, guid: b1157abdd2a0c8846818c96d419a9043, type: 3}
+      propertyPath: mapManager
+      value: 
+      objectReference: {fileID: 1703754983}
     - target: {fileID: 2225252140715426832, guid: b1157abdd2a0c8846818c96d419a9043, type: 3}
       propertyPath: m_ChunkCullingBounds.x
       value: 1.6875
@@ -435,11 +447,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    - target: {fileID: 5114885921950526108, guid: b1157abdd2a0c8846818c96d419a9043, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3580988959309101329, guid: b1157abdd2a0c8846818c96d419a9043, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 5012088234599636794, guid: b1157abdd2a0c8846818c96d419a9043, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1157abdd2a0c8846818c96d419a9043, type: 3}
+--- !u!1 &1482151378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5114885921950526108, guid: b1157abdd2a0c8846818c96d419a9043, type: 3}
+  m_PrefabInstance: {fileID: 1482151377}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1703754982
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a70c31a80b43154f9f3e172331af820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lobbyMap: {fileID: 0}
+  lobbyMap: {fileID: 1482151378}
   battleMapPrefabs:
   - {fileID: 1670923884671803775, guid: 9fc9971287b5aff418e345e757b5b5a7, type: 3}
   - {fileID: 906112064537754709, guid: 819c12282f9c85f4d8bad9f8c2520426, type: 3}
@@ -496,9 +519,9 @@ MonoBehaviour:
   - {fileID: 9036345353725838275, guid: a65d3409f1a78934e922813a1473df37, type: 3}
   - {fileID: 1751750577042436229, guid: e3d7be07c656e704298ca38358d0b81b, type: 3}
   minibossMapPrefab: {fileID: 8598118627149614867, guid: 5841fc6ceeac53144b3329f05642f104, type: 3}
+  shopMapPrefab: {fileID: 1751750577042436229, guid: e3d7be07c656e704298ca38358d0b81b, type: 3}
   transitionPanel: {fileID: 21153957}
   transitionDuration: 1
-  shopMapPrefab: {fileID: 1751750577042436229, guid: e3d7be07c656e704298ca38358d0b81b, type: 3}
 --- !u!4 &1703754984
 Transform:
   m_ObjectHideFlags: 0

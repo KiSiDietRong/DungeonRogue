@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private bool nearNPC = false;
     private DialogueNPC currentNPC;
     private INPCInteractable currentNPCs;
+    public bool isInDialogue = false;
 
     public bool hasOrb = false;
     public int Gold = 500;
@@ -68,6 +69,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (isInDialogue)
+        {
+            return;
+        }
+
         HandleInput();
         UpdateFacingDirection();
         UpdateAnimator();
@@ -90,7 +96,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+        if (!isInDialogue)
+        {
+            rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
+        }
     }
 
     private IEnumerator MoveToPortalAndEnter()
