@@ -176,4 +176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterStat: {fileID: 11400000, guid: 3b838c3beab8df54f9f13c07788e6789, type: 2}
-  weaponPrefab: {fileID: 7652181508068198463, guid: 0fc3e2552269cab409440ed2b1781e13, type: 3}
+  weaponInfo: {fileID: 0}
+  weaponInfoPanel: {fileID: 0}
+  hpText: {fileID: 0}
+  dmgText: {fileID: 0}
+  critText: {fileID: 0}

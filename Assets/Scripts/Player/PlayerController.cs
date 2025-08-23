@@ -42,8 +42,18 @@ public class PlayerController : MonoBehaviour
     public bool FacingLeft { get { return facingLeft; } set { facingLeft = value; } }
     private bool facingLeft = false;
     internal Vector2 lastMoveDirection;
+
+    public static PlayerController Instance;
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         Knockback = GetComponent<Knockback>();
@@ -54,8 +64,6 @@ public class PlayerController : MonoBehaviour
             baseMoveSpeed = 5f;
             moveSpeed = baseMoveSpeed;
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
@@ -175,6 +183,7 @@ public class PlayerController : MonoBehaviour
     private void ApplyDoomShellEffect()
     {
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, doomShellRadius);
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
         foreach (var enemy in enemies)
         {
             if (enemy.CompareTag("Enemy"))
@@ -184,6 +193,10 @@ public class PlayerController : MonoBehaviour
                 {
                     int damage = Random.Range(5, 11);
                     enemyScript.TakeDamage(damage, enemy.transform.position, false);
+                    if (playerHealth != null)
+                    {
+                        playerHealth.AddDamageDealt(damage);
+                    }
                 }
             }
         }
@@ -206,9 +219,7 @@ public class PlayerController : MonoBehaviour
     {
         isSlowed = true;
         float originalSpeed = moveSpeed;
-        moveSpeed = 0.3f; // giảm tốc độ 50%
-
-        // Bạn có thể thêm hiệu ứng visual ở đây nếu cần (ví dụ màu player chuyển xanh)
+        moveSpeed = 0.3f;
 
         yield return new WaitForSeconds(duration);
 

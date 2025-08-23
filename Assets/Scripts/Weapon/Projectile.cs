@@ -10,9 +10,12 @@ public class Projectile : MonoBehaviour
     private float damageBoostEndTime = 0f;
     [SerializeField] private GameObject damageBoostEffectPrefab;
 
+    private PlayerHealth playerHealth;
+
     private void Awake()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
+        playerHealth = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerHealth>();
         if (inventoryManager == null)
         {
             Debug.LogError("InventoryManager not found in scene!");
@@ -108,6 +111,11 @@ public class Projectile : MonoBehaviour
                     Debug.Log($"GiantMace triggered: Increased damage by 50% to {finalDamage} on stunned enemy {other.name}.");
                 }
 
+                if (playerHealth != null)
+                {
+                    playerHealth.AddDamageDealt((int)finalDamage);
+                }
+
                 enemy.TakeDamage(finalDamage, transform.position, isCritical);
 
                 if (isCritical && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.RejuvenationGlove))
@@ -124,6 +132,10 @@ public class Projectile : MonoBehaviour
                 {
                     float lightningDamage = Random.Range(3f, 15f);
                     enemy.TakeDamage(lightningDamage, transform.position, false);
+                    if (playerHealth != null)
+                    {
+                        playerHealth.AddDamageDealt((int)lightningDamage);
+                    }
                     Debug.Log($"VoltClaw triggered: Dealt {lightningDamage} lightning damage to {other.name}.");
                 }
 

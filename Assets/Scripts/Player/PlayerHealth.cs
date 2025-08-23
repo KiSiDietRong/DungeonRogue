@@ -15,6 +15,22 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject healEffectPrefab; 
     [SerializeField] private GameObject shieldEffectPrefab;
 
+    [Header("Game Over UI")]
+    [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private TextMeshProUGUI timePlayedText;
+    [SerializeField] private TextMeshProUGUI killedByText;
+    [SerializeField] private TextMeshProUGUI enemyKilledText;
+    [SerializeField] private TextMeshProUGUI damageDealtText;
+    [SerializeField] private TextMeshProUGUI damageTakenText;
+
+    private float playStartTime;
+    private int totalDamageDealt = 0;
+    private int totalDamageTaken = 0;
+    private int totalEnemyKilled = 0;
+    private string killedByEnemyName = "";
+
+    private SpriteRenderer spriteRenderer;
+
     public int CurrentHealth => currentHealth;
     public int MaxHealth => maxHealth;
 
@@ -36,15 +52,22 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.LogError("InventoryManager not found in scene!");
         }
+        Enemy.OnEnemyDeath += OnEnemyDeathHandler;
     }
 
     private void Start()
     {
         currentHealth = maxHealth;
         armor = 0;
+        playStartTime = Time.time;
+        spriteRenderer = GetComponent<SpriteRenderer>();
         if (armorText != null)
         {
             armorText.gameObject.SetActive(false);
+        }
+        if (gameOverCanvas != null)
+        {
+            gameOverCanvas.SetActive(false);
         }
         UpdateHealthUI();
     }
@@ -68,6 +91,8 @@ public class PlayerHealth : MonoBehaviour
             remainingDamage -= armorReduction;
         }
 
+        totalDamageTaken += damageAmount;
+
         currentHealth = Mathf.Max(0, currentHealth - (int)remainingDamage);
         canTakeDamage = false;
 
@@ -87,15 +112,59 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            killedByEnemyName = hitTransform != null ? hitTransform.name : "Unknown Enemy";
             if (inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.SpiritShelter) && !hasRevived)
             {
                 StartCoroutine(ReviveRoutine());
             }
             else
             {
-                Die();
+                StartCoroutine(DieRoutine());
             }
         }
+    }
+
+    public void AddEnemyKilled() => totalEnemyKilled++;
+    public void AddDamageDealt(int amount) => totalDamageDealt += amount;
+
+    private IEnumerator DieRoutine()
+    {
+        Debug.Log("Player has died!");
+
+        float duration = 1f;
+        float elapsed = 0f;
+        Color startColor = spriteRenderer.color;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, elapsed / duration);
+            spriteRenderer.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+            yield return null;
+        }
+
+        if (spriteRenderer != null) spriteRenderer.enabled = false;
+
+        yield return new WaitForSecondsRealtime(0.2f);
+
+        ShowGameOverCanvas();
+    }
+
+    private void ShowGameOverCanvas()
+    {
+        if (gameOverCanvas != null)
+        {
+            gameOverCanvas.SetActive(true);
+
+            float playTime = Time.time - playStartTime;
+            System.TimeSpan ts = System.TimeSpan.FromSeconds(playTime);
+
+            if (timePlayedText != null) timePlayedText.text = $"Run Time: {ts:mm\\:ss}";
+            if (killedByText != null) killedByText.text = $"Defeated By: {killedByEnemyName}";
+            if (enemyKilledText != null) enemyKilledText.text = $"{totalEnemyKilled}";
+            if (damageDealtText != null) damageDealtText.text = $"{totalDamageDealt}";
+            if (damageTakenText != null) damageTakenText.text = $"{totalDamageTaken}";
+        }
+        Time.timeScale = 0f;
     }
 
     public void ActivateShield(float duration)
@@ -173,6 +242,7 @@ public class PlayerHealth : MonoBehaviour
                     if (enemy != null)
                     {
                         enemy.TakeDamage(scytheDamage, enemy.transform.position, false);
+                        AddDamageDealt((int)scytheDamage);
                         Debug.Log($"ArchangelsScythe triggered: Dealt {scytheDamage} damage to {enemyCollider.name}.");
                     }
                 }
@@ -233,8 +303,40 @@ public class PlayerHealth : MonoBehaviour
         canTakeDamage = true;
     }
 
-    private void Die()
+    private void OnDestroy()
     {
-        Debug.Log("Player has died!");
+        Enemy.OnEnemyDeath -= OnEnemyDeathHandler;
+    }
+
+    private void OnEnemyDeathHandler(Enemy enemy)
+    {
+        AddEnemyKilled();
+    }
+
+    public void ResetPlayer()
+    {
+        currentHealth = maxHealth;
+
+        armor = 0;
+
+        totalDamageDealt = 0;
+        totalDamageTaken = 0;
+        totalEnemyKilled = 0;
+        killedByEnemyName = "";
+
+        hasRevived = false;
+        canTakeDamage = true;
+        isShielded = false;
+
+        playStartTime = Time.time;
+
+        UpdateHealthUI();
+
+        if (armorText != null)
+        {
+            armorText.gameObject.SetActive(false);
+        }
+
+        Debug.Log("Player state has been reset.");
     }
 }
