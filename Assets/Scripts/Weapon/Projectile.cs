@@ -155,5 +155,52 @@ public class Projectile : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        else if (other.CompareTag("Boss"))
+        {
+            BossController boss = other.GetComponent<BossController>();
+            if (boss != null && weaponInfo != null)
+            {
+                bool isCritical = Random.value <= weaponInfo.criticalChance;
+                float damageMultiplier = isCritical ?
+                    (inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.RazorClaw) ? 4f : 2f) : 1f;
+
+                if (isDamageBoosted && Time.time <= damageBoostEndTime)
+                {
+                    damageMultiplier *= 1.5f;
+                    Debug.Log($"Empowered Bangle triggered: Increased damage by 50% to {weaponInfo.weaponDamage * damageMultiplier}.");
+                }
+
+                float finalDamage = weaponInfo.weaponDamage * damageMultiplier;
+
+                if (playerHealth != null)
+                {
+                    playerHealth.AddDamageDealt((int)finalDamage);
+                }
+
+                boss.TakeDamage(finalDamage, transform.position, isCritical);
+
+                if (isCritical && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.RejuvenationGlove))
+                {
+                    PlayerHealth playerHealth = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerHealth>();
+                    if (playerHealth != null)
+                    {
+                        playerHealth.Heal(1);
+                        Debug.Log("Rejuvenation Glove triggered: Player healed 1 HP on critical hit.");
+                    }
+                }
+
+                if (isCritical && inventoryManager != null && inventoryManager.playerInventory.Exists(relic => relic.type == RelicType.VoltClaw))
+                {
+                    float lightningDamage = Random.Range(3f, 15f);
+                    boss.TakeDamage(lightningDamage, transform.position, false);
+                    if (playerHealth != null)
+                    {
+                        playerHealth.AddDamageDealt((int)lightningDamage);
+                    }
+                    Debug.Log($"VoltClaw triggered: Dealt {lightningDamage} lightning damage to {other.name}.");
+                }
+            }
+            Destroy(gameObject);
+        }
     }
 }
