@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
+using System.Collections.Generic;
 
 public class ScreenManager : MonoBehaviour
 {
@@ -13,120 +15,120 @@ public class ScreenManager : MonoBehaviour
     [Header("Cursor Sprites")]
     public Texture2D yellowCursor;
     public Texture2D redCursor;
-    public Texture2D greenCursor;
+    public Texture2D blueCursor;
 
-    private Resolution[] resolutions;
-    private Texture2D currentCursor;
-    private float cursorScale = 1f;
+    private Resolution[] availableResolutions;
+    private FullScreenMode currentMode = FullScreenMode.Windowed;
+
+    private Texture2D CursorTexture;
 
     void Start()
     {
-        // --- RESOLUTION ---
-        resolutions = Screen.resolutions;
+        SetupResolutions();
+        SetupWindowModes();
+        SetupCursorOptions();
+    }
+
+    // ==== RESOLUTION ====
+    void SetupResolutions()
+    {
+        // Lấy độ phân giải 16:9, loại bỏ trùng lặp (chỉ giữ width x height duy nhất)
+        availableResolutions = Screen.resolutions
+            .Where(r => Mathf.Approximately((float)r.width / r.height, 16f / 9f))
+            .GroupBy(r => new { r.width, r.height }) // group theo width, height
+            .Select(g => g.First())                  // lấy 1 cái duy nhất
+            .OrderBy(r => r.width)
+            .ToArray();
+
         resolutionDropdown.ClearOptions();
-        int currentResolutionIndex = 0;
 
-        var options = new System.Collections.Generic.List<string>();
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + " x " + resolutions[i].height;
-            if (!options.Contains(option)) options.Add(option);
-
-            if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
-            {
-                currentResolutionIndex = i;
-            }
-        }
+        var options = availableResolutions
+            .Select(r => r.width + " x " + r.height)
+            .ToList();
 
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
+
+        // Chọn mặc định = current resolution
+        int currentIndex = System.Array.FindIndex(availableResolutions,
+            r => r.width == Screen.currentResolution.width && r.height == Screen.currentResolution.height);
+
+        if (currentIndex < 0) currentIndex = options.Count - 1;
+
+        resolutionDropdown.value = currentIndex;
         resolutionDropdown.RefreshShownValue();
+
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
+    }
 
-        // --- WINDOW MODE ---
+    void SetResolution(int index)
+    {
+        Resolution res = availableResolutions[index];
+        Screen.SetResolution(res.width, res.height, currentMode);
+    }
+
+    // ==== WINDOW MODE ====
+    void SetupWindowModes()
+    {
         windowModeDropdown.ClearOptions();
-        var wmOptions = new System.Collections.Generic.List<string>() { "Fullscreen", "Windowed", "Borderless" };
-        windowModeDropdown.AddOptions(wmOptions);
-        windowModeDropdown.value = Screen.fullScreenMode == FullScreenMode.FullScreenWindow ? 0 :
-                                   Screen.fullScreenMode == FullScreenMode.Windowed ? 1 : 2;
+        // BỎ borderless -> chỉ giữ Fullscreen và Windowed
+        windowModeDropdown.AddOptions(new List<string>() { "Fullscreen", "Windowed" });
+
+        windowModeDropdown.value = 1; // default Windowed
         windowModeDropdown.RefreshShownValue();
+
         windowModeDropdown.onValueChanged.AddListener(SetWindowMode);
+    }
 
-        // --- CURSOR COLOR ---
+    void SetWindowMode(int index)
+    {
+        switch (index)
+        {
+            case 0: currentMode = FullScreenMode.ExclusiveFullScreen; break;
+            case 1: currentMode = FullScreenMode.Windowed; break;
+        }
+
+        // reset lại theo resolution đang chọn
+        SetResolution(resolutionDropdown.value);
+    }
+
+    // ==== CURSOR SCALE & COLOR ====
+    void SetupCursorOptions()
+    {
         cursorColorDropdown.ClearOptions();
-        var colorOptions = new System.Collections.Generic.List<string>() { "Yellow", "Red", "Green" };
-        cursorColorDropdown.AddOptions(colorOptions);
-        cursorColorDropdown.value = 0;
-        cursorColorDropdown.RefreshShownValue();
-        cursorColorDropdown.onValueChanged.AddListener(SetCursorColor);
+        cursorColorDropdown.AddOptions(new List<string>() { "Yellow", "Red", "Blue" });
 
-        // --- CURSOR SIZE ---
+        cursorColorDropdown.onValueChanged.AddListener(SetCursorColor);
         cursorSizeSlider.onValueChanged.AddListener(SetCursorSize);
 
-        // default cursor
-        SetCursorColor(0);
+        // mặc định màu vàng
+        SetCursor(yellowCursor, Vector2.zero, CursorMode.Auto);
     }
 
-    // ----------------- METHODS -----------------
-
-    void SetResolution(int resolutionIndex)
+    void SetCursorColor(int index)
     {
-        Resolution res = resolutions[resolutionIndex];
-        Screen.SetResolution(res.width, res.height, Screen.fullScreenMode);
+        Texture2D tex = yellowCursor;
+        if (index == 1) tex = redCursor;
+        else if (index == 2) tex = blueCursor;
+
+        SetCursor(tex, Vector2.zero, CursorMode.Auto);
     }
 
-    void SetWindowMode(int modeIndex)
+    void SetCursorSize(float scale)
     {
-        switch (modeIndex)
-        {
-            case 0: Screen.fullScreenMode = FullScreenMode.FullScreenWindow; break;
-            case 1: Screen.fullScreenMode = FullScreenMode.Windowed; break;
-            case 2: Screen.fullScreenMode = FullScreenMode.MaximizedWindow; break;
-        }
+        if (CursorTexture == null) return;
+
+        int newW = Mathf.RoundToInt(CursorTexture.width * scale);
+        int newH = Mathf.RoundToInt(CursorTexture.height * scale);
+
+        Texture2D scaled = new Texture2D(newW, newH);
+        Graphics.ConvertTexture(CursorTexture, scaled);
+
+        SetCursor(scaled, Vector2.zero, CursorMode.Auto);
     }
 
-    void SetCursorColor(int colorIndex)
+    private void SetCursor(Texture2D tex, Vector2 hotspot, CursorMode mode)
     {
-        switch (colorIndex)
-        {
-            case 0: currentCursor = yellowCursor; break;
-            case 1: currentCursor = redCursor; break;
-            case 2: currentCursor = greenCursor; break;
-        }
-        ApplyCursor();
-    }
-
-    void SetCursorSize(float value)
-    {
-        cursorScale = Mathf.Lerp(0.5f, 3f, value); // scale từ 0.5x đến 3x
-        ApplyCursor();
-    }
-
-    void ApplyCursor()
-    {
-        if (currentCursor == null) return;
-
-        int size = Mathf.RoundToInt(currentCursor.width * cursorScale);
-        Texture2D scaled = ScaleTexture(currentCursor, size, size);
-
-        Cursor.SetCursor(scaled, Vector2.zero, CursorMode.Auto);
-    }
-
-    // Hàm scale texture
-    Texture2D ScaleTexture(Texture2D source, int targetWidth, int targetHeight)
-    {
-        Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, false);
-        Color[] rpixels = result.GetPixels(0);
-        float incX = (1.0f / targetWidth);
-        float incY = (1.0f / targetHeight);
-        for (int px = 0; px < rpixels.Length; px++)
-        {
-            rpixels[px] = source.GetPixelBilinear(incX * (px % targetWidth),
-                                                  incY * (px / targetWidth));
-        }
-        result.SetPixels(rpixels, 0);
-        result.Apply();
-        return result;
+        CursorTexture = tex;
+        Cursor.SetCursor(tex, hotspot, mode);
     }
 }
