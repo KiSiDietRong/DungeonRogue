@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 
-public class BulletEnemy : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
-    public float damage = 10f;
-    public GameObject owner;
-    public float lifeTime = 5f;
+    public float speed = 5f;
+    public float damage = 20f;
 
-    void Start()
+    void Update()
     {
-        Destroy(gameObject, lifeTime); // tự huỷ sau X giây
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        Destroy(gameObject, 3f);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -22,9 +22,6 @@ public class BulletEnemy : MonoBehaviour
             }
             Destroy(gameObject);
         }
-
-        // Nếu cần tránh bắn trúng chính enemy
-        if (other.gameObject == owner) return;
 
         if (other.CompareTag("Shield"))
         {
