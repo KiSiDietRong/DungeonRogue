@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Heal Allies Skill
   m_EditorClassIdentifier: 
   skillName: AllyHeal
+  skillInfo: Heal all player nearby
   icon: {fileID: 0}
-  cooldown: 20
+  cooldown: 30
   healRadius: 4
   healAmount: 10

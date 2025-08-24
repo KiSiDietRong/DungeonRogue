@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Stun Ball Skill
   m_EditorClassIdentifier: 
   skillName: StunBall
+  skillInfo: Throw a stone and stun enemy
   icon: {fileID: 0}
-  cooldown: 2
+  cooldown: 15
   projectilePrefab: {fileID: 8996979003671956908, guid: e007f51f7629d264c8454b5d91dd3dd2, type: 3}
   projectileSpeed: 10
   stunDuration: 2

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Heal Self Skill
   m_EditorClassIdentifier: 
   skillName: HealSelf
+  skillInfo: Heal big amount of HP for player use this
   icon: {fileID: 0}
   cooldown: 45
   healAmount: 30

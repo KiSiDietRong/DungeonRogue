@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Sun Fire Skill
   m_EditorClassIdentifier: 
   skillName: SunFire
+  skillInfo: Fire a big fireball , deal big damage and deal over time damage
   icon: {fileID: 0}
-  cooldown: 2
+  cooldown: 15
   SunFirePrefab: {fileID: 5886329066044875530, guid: 7ae8c9a49c63781438829b08ff431716, type: 3}
