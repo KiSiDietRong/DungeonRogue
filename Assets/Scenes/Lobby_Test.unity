@@ -1143,6 +1143,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soul (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 731111507772515024, guid: f392a8667581d6147a2bc5aa31fa502c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5664708356776131780, guid: f392a8667581d6147a2bc5aa31fa502c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.653907
@@ -6330,6 +6334,10 @@ PrefabInstance:
     - target: {fileID: 731111507772515024, guid: f392a8667581d6147a2bc5aa31fa502c, type: 3}
       propertyPath: m_Name
       value: Soul
+      objectReference: {fileID: 0}
+    - target: {fileID: 731111507772515024, guid: f392a8667581d6147a2bc5aa31fa502c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5664708356776131780, guid: f392a8667581d6147a2bc5aa31fa502c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13656,6 +13664,10 @@ PrefabInstance:
     - target: {fileID: 731111507772515024, guid: f392a8667581d6147a2bc5aa31fa502c, type: 3}
       propertyPath: m_Name
       value: Soul (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 731111507772515024, guid: f392a8667581d6147a2bc5aa31fa502c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5664708356776131780, guid: f392a8667581d6147a2bc5aa31fa502c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -40454,6 +40466,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soul (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 731111507772515024, guid: f392a8667581d6147a2bc5aa31fa502c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5664708356776131780, guid: f392a8667581d6147a2bc5aa31fa502c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.78679
@@ -45483,7 +45499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 0
-  isLocked: 1
+  isLocked: 0
   lockOverlay: {fileID: 0}
 --- !u!114 &7783995152982782785
 MonoBehaviour:
