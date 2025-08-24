@@ -65,8 +65,6 @@ public class EnemyHealer : Enemy
                         Destroy(effect, 1f);
                     }
 
-                    DamagePopup.Create(e.transform.position + Vector3.up * 1.2f, $"+{healAmount}", healTextColor);
-
                     healedTargets.Add(e.transform);
 
                     Debug.Log($"{gameObject.name} healed {e.gameObject.name} for {healAmount} HP");

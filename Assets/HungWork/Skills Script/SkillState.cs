@@ -30,4 +30,10 @@ public class SkillState
             lastUseTime = Time.time;
         }
     }
+    public float GetRemainingCooldown()
+    {
+        if (skill == null) return 0f;
+        float remain = (lastUseTime + skill.cooldown) - Time.time;
+        return Mathf.Max(remain, 0f);
+    }
 }
