@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
 
     public bool hasOrb = false;
     public int Gold = 500;
+    public int Souls = 0;
+    public Text soulText;
     public Text goldText;
 
     private float baseMoveSpeed;
@@ -137,6 +139,18 @@ public class PlayerController : MonoBehaviour
     {
         if (goldText != null)
             goldText.text = $"{Gold}";
+    }
+
+    public void UpdateSoulUI()
+    {
+        if (soulText != null)
+            soulText.text = $"{Souls}";
+    }
+
+    public void AddSouls(int amount)
+    {
+        Souls += amount;
+        UpdateSoulUI();
     }
 
     private void HandleInput()

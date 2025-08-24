@@ -23,7 +23,15 @@ public class ClassChanger : MonoBehaviour
 
     void Update()
     {
-        if (playerInZone && Input.GetKeyDown(KeyCode.E))
+        if (!playerInZone) return;
+
+        WeaponLock lockController = GetComponent<WeaponLock>();
+        if (lockController != null && lockController.isLocked)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player == null) return;
@@ -37,6 +45,7 @@ public class ClassChanger : MonoBehaviour
                 activeWeapon.SetActiveWeapon(weaponInfo.weaponPrefab);
         }
     }
+
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -60,12 +69,20 @@ public class ClassChanger : MonoBehaviour
     {
         if (weaponInfoPanel == null || weaponInfo == null || characterStat == null) return;
 
+        WeaponLock lockController = GetComponent<WeaponLock>();
+        if (lockController != null && lockController.isLocked)
+        {
+            weaponInfoPanel.SetActive(false);
+            return;
+        }
+
         hpText.text = "HP: " + characterStat.maxHealth;
         dmgText.text = "DMG: " + weaponInfo.weaponDamage;
         critText.text = "Crit: " + (weaponInfo.criticalChance * 100f) + "%";
 
         weaponInfoPanel.SetActive(true);
     }
+
 
     void HideWeaponInfo()
     {
