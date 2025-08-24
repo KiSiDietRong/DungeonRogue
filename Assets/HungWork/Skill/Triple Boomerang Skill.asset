@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: TripleBoomerang
   skillInfo: Throw 3 boomerang that can pierce enemy and fly back to player
-  icon: {fileID: 0}
+  icon: {fileID: 7663917863788033536, guid: 01e08694d35639346947b30e7deccb34, type: 3}
   cooldown: 15
   projectilePrefab: {fileID: 1006204620400292261, guid: 26f78f6d4c6b29f47b17e549d30d799f, type: 3}
   projectileSpeed: 5

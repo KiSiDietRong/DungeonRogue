@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: FireTornado
   skillInfo: Summon 3 tornada spin around player , deal damage to enemy get hit
-  icon: {fileID: 0}
+  icon: {fileID: -2918463753768964346, guid: 11be9d486709b504da392eb3dd40954b, type: 3}
   cooldown: 20
   fireballPrefab: {fileID: 1780598333246159346, guid: 0110690ed53e01241810716f8b3b6d41, type: 3}
   fireballCount: 3
