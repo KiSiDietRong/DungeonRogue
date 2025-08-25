@@ -31,24 +31,24 @@ public class WeaponLock : MonoBehaviour
 
     void Update()
     {
-        if (isLocked && player != null)
-        {
-            switch (weaponType)
-            {
-                case WeaponType.Staff:
-                    if (player.Souls >= 400)
-                    {
-                        UnlockWeapon();
-                    }
-                    break;
-                case WeaponType.Bow:
-                    if (player.Souls >= 600)
-                    {
-                        UnlockWeapon();
-                    }
-                    break;
-            }
-        }
+        //if (isLocked && player != null)
+        //{
+        //    switch (weaponType)
+        //    {
+        //        case WeaponType.Staff:
+        //            if (player.Souls >= 400)
+        //            {
+        //                UnlockWeapon();
+        //            }
+        //            break;
+        //        case WeaponType.Bow:
+        //            if (player.Souls >= 600)
+        //            {
+        //                UnlockWeapon();
+        //            }
+        //            break;
+        //    }
+        //}
 
         if (classChanger != null)
             classChanger.enabled = !isLocked;
@@ -62,7 +62,10 @@ public class WeaponLock : MonoBehaviour
 
     public void UnlockWeapon()
     {
+        if (!isLocked) return;
+
         isLocked = false;
+        Debug.Log($"{weaponType} unlocked!");
         UpdateLockState();
 
         if (floatTween != null)
@@ -70,4 +73,37 @@ public class WeaponLock : MonoBehaviour
             floatTween.StartFloating();
         }
     }
+
+
+    public void CheckForUnlock()
+    {
+        if (!isLocked)
+            return;
+
+        if (player == null)
+        {
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+                player = playerObj.GetComponent<PlayerController>();
+        }
+
+        if (player == null)
+        {
+            Debug.LogWarning("Player not found in CheckForUnlock!");
+            return;
+        }
+
+        switch (weaponType)
+        {
+            case WeaponType.Staff:
+                if (player.Souls >= 400)
+                    UnlockWeapon();
+                break;
+            case WeaponType.Bow:
+                if (player.Souls >= 600)
+                    UnlockWeapon();
+                break;
+        }
+    }
+
 }

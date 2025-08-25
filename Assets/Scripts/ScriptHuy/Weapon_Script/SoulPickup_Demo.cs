@@ -12,8 +12,16 @@ public class SoulPickup_Demo : MonoBehaviour
             if (player != null)
             {
                 player.AddSouls(soulAmount);
-                Destroy(gameObject); 
+
+                WeaponLock[] allWeaponLocks = FindObjectsOfType<WeaponLock>();
+                foreach (var weapon in allWeaponLocks)
+                {
+                    weapon.CheckForUnlock();
+                }
+
+                Destroy(gameObject);
             }
         }
     }
+
 }
