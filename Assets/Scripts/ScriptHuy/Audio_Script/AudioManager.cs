@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip logSceneMusic;
     public AudioClip mainMenuMusic;
     public AudioClip lobbyMusic;
+    public AudioClip gameMusic;
 
     [Header("Volumes")]
     [Range(0, 1)] public float masterVolume = 1f;
@@ -61,6 +62,9 @@ public class AudioManager : MonoBehaviour
                 break;
             case "LobbyScene":
                 PlayMusic(lobbyMusic);
+                break;
+            case "Game":
+                PlayMusic(gameMusic);
                 break;
             default:
                 break;
