@@ -4,8 +4,11 @@ public class SkillManager : MonoBehaviour
 {
     public SkillState skillSlot1;
     public SkillState skillSlot2;
-
     public float maxCastDistance = 5f;
+
+    [Header("UI Controllers")]
+    public SkillUIController skillUIController1; // Gán trong Inspector
+    public SkillUIController skillUIController2; // Gán trong Inspector
 
     private Camera mainCamera;
     private bool hasUsedFirstSkillInRoom = false;
@@ -15,10 +18,9 @@ public class SkillManager : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
-        if (skillSlot1 == null || skillSlot2 == null)
-        {
-            Debug.LogWarning("Skill slots in SkillManager are not assigned. Please ensure they are initialized.");
-        }
+        // Cập nhật UI ban đầu
+        if (skillSlot1 != null && skillUIController1 != null) skillUIController1.Setup(skillSlot1);
+        if (skillSlot2 != null && skillUIController2 != null) skillUIController2.Setup(skillSlot2);
     }
 
     void Update()
@@ -42,6 +44,23 @@ public class SkillManager : MonoBehaviour
         }
     }
 
+    // Gán skill mới và cập nhật UI
+    public void AssignSkill(Skill newSkill, int slotIndex)
+    {
+        if (newSkill == null) return;
+
+        if (slotIndex == 1 && skillSlot1 != null)
+        {
+            skillSlot1.SetSkill(newSkill);
+            if (skillUIController1 != null) skillUIController1.Setup(skillSlot1);
+        }
+        else if (slotIndex == 2 && skillSlot2 != null)
+        {
+            skillSlot2.SetSkill(newSkill);
+            if (skillUIController2 != null) skillUIController2.Setup(skillSlot2);
+        }
+    }
+
     private void TryActivateRelicEffects()
     {
         if (!hasUsedFirstSkillInRoom)
@@ -55,13 +74,11 @@ public class SkillManager : MonoBehaviour
                 if (playerHealth != null && inventoryManager.HasBobsContainmentField())
                 {
                     playerHealth.ActivateShield(5f);
-                    Debug.Log("Bob's Containment Field triggered: Activated 5-second shield on first skill use.");
                 }
 
                 if (activeWeapon != null && inventoryManager.HasEmpoweredBangle())
                 {
                     activeWeapon.ActivateDamageBoost(3f, 1.5f);
-                    Debug.Log("Empowered Bangle triggered: Increased weapon damage by 50% for 3 seconds on first skill use.");
                 }
 
                 hasUsedFirstSkillInRoom = true;
@@ -73,14 +90,12 @@ public class SkillManager : MonoBehaviour
         {
             isFieryImbuementActive = true;
             fieryImbuementAttackCount = 7;
-            Debug.Log("Fiery Imbuement triggered: Next 7 attacks will apply burn effect.");
         }
     }
 
     public void ResetFirstSkillUsage()
     {
         hasUsedFirstSkillInRoom = false;
-        Debug.Log("Reset first skill usage for new room.");
     }
 
     public bool IsFieryImbuementActive()
@@ -93,11 +108,9 @@ public class SkillManager : MonoBehaviour
         if (isFieryImbuementActive)
         {
             fieryImbuementAttackCount--;
-            Debug.Log($"Fiery Imbuement: {fieryImbuementAttackCount} attacks remaining.");
             if (fieryImbuementAttackCount <= 0)
             {
                 isFieryImbuementActive = false;
-                Debug.Log("Fiery Imbuement deactivated: No attacks remaining.");
             }
         }
     }

@@ -12,18 +12,19 @@ public class SkillUIController : MonoBehaviour
     private SkillState linkedSkill;
 
     /// <summary>
-    /// Gọi 1 lần khi bind skill vào ô UI.
+    /// Gọi khi bind skill vào ô UI.
     /// </summary>
     public void Setup(SkillState state)
     {
         linkedSkill = state;
 
-        if (linkedSkill != null && linkedSkill.skill != null)
+        // Gán sprite cho iconImage
+        if (linkedSkill != null && linkedSkill.skill != null && iconImage != null && linkedSkill.skill.icon != null)
         {
-            if (iconImage) iconImage.sprite = linkedSkill.skill.icon;
+            iconImage.sprite = linkedSkill.skill.icon; // Gán sprite
         }
 
-        // clear UI
+        // Reset UI
         if (cooldownMask) cooldownMask.fillAmount = 0f;
         if (cooldownText) cooldownText.text = "";
     }
