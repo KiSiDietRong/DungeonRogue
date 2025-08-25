@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: SummonAlly
   skillInfo: Summon a mighty knight to fight with you
-  icon: {fileID: 0}
+  icon: {fileID: 9195429442136017236, guid: c65d8153d951f3c47bdf46cb51f797e2, type: 3}
   cooldown: 15
   allyPrefab: {fileID: 5308686346303129901, guid: 5e61c435ab705934ba1f1581b8c063c5, type: 3}
