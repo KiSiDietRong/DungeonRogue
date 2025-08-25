@@ -84,6 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aaaf378f5e0d6a43a636b845c34dac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageBoostEffectPrefab: {fileID: 0}
 --- !u!114 &4394389428206266505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2523,6 +2524,7 @@ GameObject:
   - component: {fileID: 3494647126101521790}
   - component: {fileID: 7942451001291477639}
   - component: {fileID: 3448345429812892080}
+  - component: {fileID: 6602587409726138889}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2594,7 +2596,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 1
   m_Sprite: {fileID: -7311420964283918615, guid: 84117af41f0817a4fb72fbda5db23462, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2640,7 +2642,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3308409861397390488}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -2670,7 +2672,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.375}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.2}
+    pivot: {x: 0.5, y: 0.05}
     oldSize: {x: 0.875, y: 1.25}
     newSize: {x: 0.875, y: 1.25}
     adaptiveTilingThreshold: 0.5
@@ -2722,8 +2724,11 @@ MonoBehaviour:
   rb: {fileID: 8720703565809137646}
   animator: {fileID: 2452742095167915544}
   isDashing: 0
+  isInDialogue: 0
   hasOrb: 0
   Gold: 500
+  Souls: 0
+  soulText: {fileID: 0}
   goldText: {fileID: 0}
 --- !u!114 &5047106027558754053
 MonoBehaviour:
@@ -2745,6 +2750,13 @@ MonoBehaviour:
   armorText: {fileID: 3581073241141366695}
   archangelScytheRadius: 5
   healEffectPrefab: {fileID: 2797672074278520200, guid: 6345d2f48b01fb24a8c247d655a27df7, type: 3}
+  shieldEffectPrefab: {fileID: 0}
+  gameOverCanvas: {fileID: 0}
+  timePlayedText: {fileID: 0}
+  killedByText: {fileID: 0}
+  enemyKilledText: {fileID: 0}
+  damageDealtText: {fileID: 0}
+  damageTakenText: {fileID: 0}
 --- !u!114 &1271208192290154615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2805,6 +2817,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponInfo: {fileID: 11400000, guid: 37e51db6e8fde594d9c66cc20c3c70ec, type: 2}
+--- !u!70 &6602587409726138889
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3308409861397390488}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.0000000047984834, y: 0.20974746}
+  m_Size: {x: 0.8750001, y: 0.54449624}
+  m_Direction: 1
 --- !u!1 &3601118694047972971
 GameObject:
   m_ObjectHideFlags: 0
