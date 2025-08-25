@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 22
   weaponInfo: {fileID: 11400000, guid: 737e2d706e3fe804587b1babb5fb11ea, type: 2}
+  damageBoostEffectPrefab: {fileID: 0}
 --- !u!1 &5979997551160766206
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +208,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 1
   m_Sprite: {fileID: 712035800519618848, guid: 7ab97096e49573b419c7f7cc81ff3b9b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -270,7 +271,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterStat: {fileID: 11400000, guid: 4746a42c179d8fa4f970204f9958d1fb, type: 2}
-  weaponPrefab: {fileID: 5979997551160766206}
+  weaponInfo: {fileID: 0}
+  weaponInfoPanel: {fileID: 0}
+  hpText: {fileID: 0}
+  dmgText: {fileID: 0}
+  critText: {fileID: 0}
 --- !u!1 &8285793668310420230
 GameObject:
   m_ObjectHideFlags: 0

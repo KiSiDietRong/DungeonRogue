@@ -486,8 +486,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 7407764592755678218}
+  m_Children: []
   m_Father: {fileID: 7108355822207928518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -815,8 +814,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 2496629473066052021}
+  m_Children: []
   m_Father: {fileID: 4565782601320859492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1353,14 +1351,14 @@ RectTransform:
   m_GameObject: {fileID: 845100286625061767}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7692308, y: 0.7692308, z: 0.7692308}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 8525736614334756948}
+  m_Father: {fileID: 7108355822207928518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 35, y: 65}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8230377600235930417
@@ -2410,14 +2408,14 @@ RectTransform:
   m_GameObject: {fileID: 1714222569228567856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7692308, y: 0.7692308, z: 0.7692308}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 4694571613643592714}
+  m_Father: {fileID: 4565782601320859492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -355, y: 65}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1915219294956475818
@@ -3543,8 +3541,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 4002845553866993003}
+  m_Children: []
   m_Father: {fileID: 6325965882161818402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4220,8 +4217,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 8421176594647130323}
+  m_Children: []
   m_Father: {fileID: 7108355822207928518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4437,7 +4433,9 @@ RectTransform:
   - {fileID: 8718073736278658041}
   - {fileID: 5078369835819697592}
   - {fileID: 1510292840720980144}
+  - {fileID: 4420951970888181880}
   - {fileID: 8742039587614758649}
+  - {fileID: 4002845553866993003}
   - {fileID: 1411193867572372084}
   - {fileID: 4758435900382828882}
   - {fileID: 4112565464103421821}
@@ -4753,8 +4751,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 182345636270190326}
+  m_Children: []
   m_Father: {fileID: 4565782601320859492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4856,14 +4853,14 @@ MonoBehaviour:
     rarity: Legendary
     cost: 300
   - relicName: Bone Plate
-    icon: {fileID: 7014766379041316662, guid: a6a106fc78e0dfc4bb598a9a6695de69, type: 3}
+    icon: {fileID: 7014766379041316662, guid: f4ab39c6b2255db45b9d21dbb3f13a44, type: 3}
     effectDescription: Gain 15 Armor. Whenever you Defeat an enemy, you gain 1 Armor
     type: 1
     rarityType: 0
     rarity: Common
     cost: 75
   - relicName: Conduit Spike
-    icon: {fileID: -7607162871873315079, guid: 98ce4268ac19f454a91279213e947fa7, type: 3}
+    icon: {fileID: -7607162871873315079, guid: b360cb722f1938f4fbb9864941f2b949, type: 3}
     effectDescription: Your 3rd Hit releases Chain Lightning, damaging up to 2 additional
       enemies
     type: 2
@@ -4878,7 +4875,7 @@ MonoBehaviour:
     rarity: Epic
     cost: 0
   - relicName: Doom Shell
-    icon: {fileID: -913084555821057342, guid: 82b8b993b4040b942b8b96f2f81dcace, type: 3}
+    icon: {fileID: -913084555821057342, guid: ffc944b20e252c44899360d00d5f9093, type: 3}
     effectDescription: Whenever you Roll, summon the Doom Shell to deal Damage to
       enemies around you
     type: 4
@@ -4907,21 +4904,21 @@ MonoBehaviour:
     rarity: Epic
     cost: 225
   - relicName: Razor Claw
-    icon: {fileID: 921490273531421432, guid: 73879a06919eba945853424257b5e630, type: 3}
+    icon: {fileID: 921490273531421432, guid: 5a41bfcb30172094ebb09be5d78c17a3, type: 3}
     effectDescription: Your Crits now deal Double Damage
     type: 8
     rarityType: 2
     rarity: Legendary
     cost: 300
   - relicName: Spirit Shelter
-    icon: {fileID: 3238346730402424435, guid: 1fed53e21bc020448a66781c4d30ec35, type: 3}
+    icon: {fileID: 3238346730402424435, guid: 04434e1ff7338c941ad38c6aeb372249, type: 3}
     effectDescription: Upon Death, you Revive with Full HP and this relic is destroyed
     type: 9
     rarityType: 2
     rarity: Legendary
     cost: 300
   - relicName: Archangel's Scythe
-    icon: {fileID: -7935739384863357725, guid: 4f0f0680e3d8ceb4e81383b513f791ed, type: 3}
+    icon: {fileID: -7935739384863357725, guid: 002e055f63294314dae441ab850c9b12, type: 3}
     effectDescription: Whenever you Heal, nearby enemies take Damage
     type: 10
     rarityType: 1
@@ -4957,7 +4954,7 @@ MonoBehaviour:
     rarity: Epic
     cost: 200
   - relicName: Daze Claw
-    icon: {fileID: 4655904553945650273, guid: ea75fe271c29417448a544761e48dff3, type: 3}
+    icon: {fileID: 4655904553945650273, guid: cff446c08c5d0f14298d1f01c9388174, type: 3}
     effectDescription: Whenever you Crit, you deal bonus Stun
     type: 15
     rarityType: 1
@@ -4978,7 +4975,7 @@ MonoBehaviour:
     rarity: Epic
     cost: 150
   - relicName: Giant Mace
-    icon: {fileID: -8290962017994717108, guid: b7fe4333df1fe25479e4c4297ff48d1d, type: 3}
+    icon: {fileID: -8290962017994717108, guid: 8b740c524508e99499ece98572bf1d94, type: 3}
     effectDescription: You deal bonus Damage against Stunned enemies
     type: 18
     rarityType: 0
@@ -5008,7 +5005,7 @@ MonoBehaviour:
     rarity: Epic
     cost: 150
   - relicName: Impact Charm
-    icon: {fileID: 4055647755703962533, guid: ed7a6f911637da042b397e82bfd00993, type: 3}
+    icon: {fileID: 4055647755703962533, guid: 7bfc5304521812243961bcea398ecbba, type: 3}
     effectDescription: Whenever you Stun an enemy, deal AoE Damage around it
     type: 22
     rarityType: 0
@@ -5022,7 +5019,7 @@ MonoBehaviour:
     rarity: Common
     cost: 75
   - relicName: Juicy Opal
-    icon: {fileID: -3732437063118705323, guid: fc14f59deeec0df438f62a0cfa4c2d1b, type: 3}
+    icon: {fileID: -3732437063118705323, guid: 2e20ad66d0547f0489061b469cd0da33, type: 3}
     effectDescription: Your Healing is Increased
     type: 24
     rarityType: 0
@@ -5051,7 +5048,7 @@ MonoBehaviour:
     rarity: Legendary
     cost: 300
   - relicName: Traumatic Blow
-    icon: {fileID: 4797422397178903023, guid: 4ac0c2f8395d96f4691318ced2b59555, type: 3}
+    icon: {fileID: 4797422397178903023, guid: bfe0ba5bbf7a5b54da1ac68345e2edb6, type: 3}
     effectDescription: Whenever you Stun a non-Boss enemy below 20% HP, they are
       Instantly Defeated
     type: 28
@@ -5059,7 +5056,7 @@ MonoBehaviour:
     rarity: Legendary
     cost: 300
   - relicName: Volt Claw
-    icon: {fileID: -3768042465453161151, guid: 2e2fb34d65507124f973769964612d52, type: 3}
+    icon: {fileID: -3768042465453161151, guid: 8510dc21b8f7d484d844c74b8154b352, type: 3}
     effectDescription: Whenever you Crit, you conjure a Lightning Bolt that damages
       enemies
     type: 29
@@ -8931,7 +8928,9 @@ RectTransform:
   - {fileID: 3542852771717100122}
   - {fileID: 4539709577926260668}
   - {fileID: 5039612204962287207}
+  - {fileID: 2496629473066052021}
   - {fileID: 8054939774097751237}
+  - {fileID: 182345636270190326}
   - {fileID: 4694571613643592714}
   - {fileID: 685551712599694444}
   - {fileID: 3203032181802705885}
@@ -10453,8 +10452,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 4420951970888181880}
+  m_Children: []
   m_Father: {fileID: 6325965882161818402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -12279,14 +12277,14 @@ RectTransform:
   m_GameObject: {fileID: 6999567649937679450}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7692308, y: 0.7692308, z: 0.7692308}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1411193867572372084}
+  m_Father: {fileID: 6325965882161818402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -355, y: 65}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4218190842038701575
@@ -13606,14 +13604,14 @@ RectTransform:
   m_GameObject: {fileID: 7485738797235917952}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7692308, y: 0.7692308, z: 0.7692308}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 5737835403234082469}
+  m_Father: {fileID: 7108355822207928518}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 190, y: 65}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2893765972948141571
@@ -15252,7 +15250,9 @@ RectTransform:
   - {fileID: 4432090789798077966}
   - {fileID: 9133412320509574271}
   - {fileID: 4399718064866791361}
+  - {fileID: 7407764592755678218}
   - {fileID: 8525736614334756948}
+  - {fileID: 8421176594647130323}
   - {fileID: 5737835403234082469}
   - {fileID: 6093426427657239530}
   - {fileID: 2804037462534518229}
@@ -16843,14 +16843,14 @@ RectTransform:
   m_GameObject: {fileID: 8976577856829525243}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7692308, y: 0.7692308, z: 0.7692308}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 8054939774097751237}
+  m_Father: {fileID: 4565782601320859492}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -510, y: 65}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5195316927883257108
@@ -16918,14 +16918,14 @@ RectTransform:
   m_GameObject: {fileID: 9078108421922471295}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7692308, y: 0.7692308, z: 0.7692308}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 8742039587614758649}
+  m_Father: {fileID: 6325965882161818402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -510, y: 65}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6007558032652483938

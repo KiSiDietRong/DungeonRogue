@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7309254314831504577, guid: da02cc5b91d702d41b005353a00e6ec3, type: 3}
   m_Color: {r: 0, g: 0.46066666, b: 1, a: 1}
   m_FlipX: 0
@@ -168,3 +168,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 22
   weaponInfo: {fileID: 11400000, guid: e81da1eadf58a834482ce51b43904fdd, type: 2}
+  damageBoostEffectPrefab: {fileID: 0}

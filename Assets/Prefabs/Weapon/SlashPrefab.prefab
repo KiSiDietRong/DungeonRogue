@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 1
   m_Sprite: {fileID: -7229220149124856631, guid: 0bbbed8104452594a8bb505db76f19ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 22
   weaponInfo: {fileID: 11400000, guid: 737e2d706e3fe804587b1babb5fb11ea, type: 2}
+  damageBoostEffectPrefab: {fileID: 0}
 --- !u!70 &1645301442179579623
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

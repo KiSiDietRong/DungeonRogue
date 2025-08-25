@@ -110,7 +110,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 1
   m_Sprite: {fileID: -5940781818166149764, guid: e09029d58a468634db8c3210d99e925a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -172,4 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterStat: {fileID: 11400000, guid: 3b838c3beab8df54f9f13c07788e6789, type: 2}
-  weaponPrefab: {fileID: 7652181508068198463}
+  weaponInfo: {fileID: 0}
+  weaponInfoPanel: {fileID: 0}
+  hpText: {fileID: 0}
+  dmgText: {fileID: 0}
+  critText: {fileID: 0}
