@@ -63,7 +63,7 @@ public class InventoryManager : MonoBehaviour
     private bool relicSelected = false;
     private bool inventoryOnlyView = false;
     private bool isPickingRelic = false;
-    private HashSet<Relic> usedRelics = new HashSet<Relic>();
+    public HashSet<Relic> usedRelics = new HashSet<Relic>();
 
     private bool waitingForReplace = false;
     private int selectedReplaceIndex = 0;
@@ -1002,7 +1002,7 @@ public class InventoryManager : MonoBehaviour
         return playerInventory.Exists(relic => relic.type == RelicType.FieryImbuement);
     }
 
-    private void UpdateShopPrices()
+    public void UpdateShopPrices()
     {
         ShopRelicDisplay[] shopDisplays = FindObjectsOfType<ShopRelicDisplay>();
         if (shopDisplays.Length == 0)
