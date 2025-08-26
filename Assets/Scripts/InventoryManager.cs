@@ -668,9 +668,11 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        if (skillSlots != null && SkillSelectorManager.Instance != null)
+        if (skillSlots != null)
         {
-            List<Skill> playerSkills = SkillSelectorManager.Instance.playerSkills;
+            var playerSkills = (SkillSelectorManager.Instance != null)
+         ? SkillSelectorManager.Instance.playerSkills
+         : new List<Skill>();
             for (int i = 0; i < skillSlots.Length; i++)
             {
                 skillSlots[i].transform.DOScale(Vector3.one, 0.1f);
@@ -688,9 +690,11 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        if (skillSlotsSelect != null && SkillSelectorManager.Instance != null)
+        if (skillSlotsSelect != null)
         {
-            List<Skill> playerSkills = SkillSelectorManager.Instance.playerSkills;
+            var playerSkills = (SkillSelectorManager.Instance != null)
+        ? SkillSelectorManager.Instance.playerSkills
+        : new List<Skill>();
             for (int i = 0; i < skillSlotsSelect.Length; i++)
             {
                 skillSlotsSelect[i].transform.DOScale(Vector3.one, 0.1f);
@@ -1015,5 +1019,32 @@ public class InventoryManager : MonoBehaviour
             display.UpdateCostDisplay();
         }
         Debug.Log("Shop prices updated due to DiscountCard status change.");
+    }
+
+    public void ResetAll()
+    {
+        playerInventory.Clear();
+        usedRelics.Clear();
+        UpdateShopPrices();
+        UpdateArmorTextVisibility();
+        UpdateInventoryUI();
+        if (SkillSelectorManager.Instance != null)
+            SkillSelectorManager.Instance.HardResetSkills();
+    }
+
+    public void HardResetRelics()
+    {
+        playerInventory.Clear();
+        usedRelics.Clear();
+        UpdateShopPrices();
+        UpdateArmorTextVisibility();
+        UpdateInventoryUI();
+    }
+
+    public void SyncWithSkillSelector()
+    {
+        if (SkillSelectorManager.Instance != null)
+            SkillSelectorManager.Instance.UpdateUI();
+        UpdateInventoryUI();
     }
 }

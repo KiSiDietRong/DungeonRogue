@@ -196,6 +196,8 @@ public class SkillSelectorManager : MonoBehaviour
             usedSkills.Add(skill);
             AssignSkillToManager(playerSkills.Count - 1);
             UpdateUI();
+            if (InventoryManager.Instance != null)
+                InventoryManager.Instance.UpdateInventoryUI();
             skillSelected = true;
             StartCoroutine(CloseCanvasAfterDelay(1f));
         }
@@ -268,6 +270,8 @@ public class SkillSelectorManager : MonoBehaviour
             usedSkills.Add(skillToReplace);
             AssignSkillToManager(selectedReplaceIndex);
             UpdateUI();
+            if (InventoryManager.Instance != null)
+                InventoryManager.Instance.UpdateInventoryUI();
         }
         waitingForReplace = false;
         clickOnce = false;
@@ -529,5 +533,39 @@ public class SkillSelectorManager : MonoBehaviour
         {
             InventoryManager.Instance.UpdateInventoryUI(); 
         }
+        UpdateUI();
+    }
+
+    public void ResetAllSkills()
+    {
+        playerSkills.Clear();
+        usedSkills.Clear();
+        if (skillManager != null)
+        {
+            if (skillManager.skillSlot1 != null) skillManager.skillSlot1.SetSkill(null);
+            if (skillManager.skillSlot2 != null) skillManager.skillSlot2.SetSkill(null);
+        }
+        UpdateUI();
+        if (InventoryManager.Instance != null)
+            InventoryManager.Instance.HardResetRelics();
+    }
+
+    public void HardResetSkills()
+    {
+        playerSkills.Clear();
+        usedSkills.Clear();
+        if (skillManager != null)
+        {
+            if (skillManager.skillSlot1 != null) skillManager.skillSlot1.SetSkill(null);
+            if (skillManager.skillSlot2 != null) skillManager.skillSlot2.SetSkill(null);
+        }
+        UpdateUI();
+    }
+
+    public void SyncWithInventory()
+    {
+        if (InventoryManager.Instance != null)
+            InventoryManager.Instance.UpdateInventoryUI();
+        UpdateUI();
     }
 }

@@ -23,6 +23,21 @@ public class GameOverCanvas : MonoBehaviour
                     playerHealth.ResetPlayer();
                 }
             }
+            var inv = FindObjectOfType<InventoryManager>();
+            if (inv != null) inv.ResetAll();
+
+            var ssm = FindObjectOfType<SkillSelectorManager>();
+            if (ssm != null) ssm.ResetAllSkills();
+
+            var sm = FindObjectOfType<SkillManager>();
+            if (sm != null) sm.ResetRuntimeFlagsAndSlots();
+
+            var pc = player.GetComponent<PlayerController>();
+            if (pc != null) pc.ResetCurrency();
+
+            if (inv != null) inv.ResetAll();
+            if (ssm != null) ssm.ResetAllSkills();
+
             Time.timeScale = 1f;
             gameObject.SetActive(false);
             SceneManager.LoadScene("LobbyScene");
