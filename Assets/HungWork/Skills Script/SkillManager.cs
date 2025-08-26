@@ -2,6 +2,7 @@
 
 public class SkillManager : MonoBehaviour
 {
+    [Header("Skill Slots")]
     public SkillState skillSlot1;
     public SkillState skillSlot2;
 
@@ -12,9 +13,17 @@ public class SkillManager : MonoBehaviour
     private bool isFieryImbuementActive = false;
     private int fieryImbuementAttackCount = 0;
 
+    private AudioSource audioSource;
+
     void Start()
     {
         mainCamera = Camera.main;
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
         if (skillSlot1 == null || skillSlot2 == null)
         {
             Debug.LogWarning("Skill slots in SkillManager are not assigned. Please ensure they are initialized.");
@@ -23,22 +32,32 @@ public class SkillManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(2))
+        if (Input.GetMouseButtonDown(2)) // Middle mouse button
         {
             if (skillSlot1 != null && skillSlot1.skill != null)
             {
                 skillSlot1.Use(gameObject, GetTargetPosition());
+                PlaySound(skillSlot1.skill.castSound);
                 TryActivateRelicEffects();
             }
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1)) // Right mouse button
         {
             if (skillSlot2 != null && skillSlot2.skill != null)
             {
                 skillSlot2.Use(gameObject, GetTargetPosition());
+                PlaySound(skillSlot2.skill.castSound);
                 TryActivateRelicEffects();
             }
+        }
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
         }
     }
 
