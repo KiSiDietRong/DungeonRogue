@@ -32,26 +32,31 @@ public class SkillManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(2)) // Middle mouse button
+        if (Input.GetMouseButtonDown(2)) // Middle mouse
         {
             if (skillSlot1 != null && skillSlot1.skill != null)
             {
-                skillSlot1.Use(gameObject, GetTargetPosition());
-                PlaySound(skillSlot1.skill.castSound);
-                TryActivateRelicEffects();
+                if (skillSlot1.Use(gameObject, GetTargetPosition())) // chỉ khi cast thành công
+                {
+                    PlaySound(skillSlot1.skill.castSound);
+                    TryActivateRelicEffects();
+                }
             }
         }
 
-        if (Input.GetMouseButtonDown(1)) // Right mouse button
+        if (Input.GetMouseButtonDown(1)) // Right mouse
         {
             if (skillSlot2 != null && skillSlot2.skill != null)
             {
-                skillSlot2.Use(gameObject, GetTargetPosition());
-                PlaySound(skillSlot2.skill.castSound);
-                TryActivateRelicEffects();
+                if (skillSlot2.Use(gameObject, GetTargetPosition())) // chỉ khi cast thành công
+                {
+                    PlaySound(skillSlot2.skill.castSound);
+                    TryActivateRelicEffects();
+                }
             }
         }
     }
+
 
     private void PlaySound(AudioClip clip)
     {
