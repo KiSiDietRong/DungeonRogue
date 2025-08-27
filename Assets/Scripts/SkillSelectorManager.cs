@@ -52,7 +52,13 @@ public class SkillSelectorManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
         skillManager = FindObjectOfType<SkillManager>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         activeWeapon = FindObjectOfType<ActiveWeapon>();
@@ -546,8 +552,6 @@ public class SkillSelectorManager : MonoBehaviour
             if (skillManager.skillSlot2 != null) skillManager.skillSlot2.SetSkill(null);
         }
         UpdateUI();
-        if (InventoryManager.Instance != null)
-            InventoryManager.Instance.HardResetRelics();
     }
 
     public void HardResetSkills()

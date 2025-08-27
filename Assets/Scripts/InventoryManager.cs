@@ -79,7 +79,13 @@ public class InventoryManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
         Enemy.OnEnemyDeath += HandleEnemyDeath;
         playerHealth = FindObjectOfType<PlayerHealth>();
         activeWeapon = FindObjectOfType<ActiveWeapon>();
@@ -1028,8 +1034,6 @@ public class InventoryManager : MonoBehaviour
         UpdateShopPrices();
         UpdateArmorTextVisibility();
         UpdateInventoryUI();
-        if (SkillSelectorManager.Instance != null)
-            SkillSelectorManager.Instance.HardResetSkills();
     }
 
     public void HardResetRelics()
