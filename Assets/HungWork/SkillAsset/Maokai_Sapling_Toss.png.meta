@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Maokai_Sapling_Toss_0: 9195429442136017236
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

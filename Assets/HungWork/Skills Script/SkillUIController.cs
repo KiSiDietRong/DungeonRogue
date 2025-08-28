@@ -11,19 +11,37 @@ public class SkillUIController : MonoBehaviour
 
     private SkillState linkedSkill;
 
-    /// <summary>
-    /// Gọi 1 lần khi bind skill vào ô UI.
-    /// </summary>
     public void Setup(SkillState state)
     {
         linkedSkill = state;
 
-        if (linkedSkill != null && linkedSkill.skill != null)
+        if (linkedSkill == null || linkedSkill.skill == null)
         {
-            if (iconImage) iconImage.sprite = linkedSkill.skill.icon;
+            Debug.LogWarning($"[{gameObject.name}] Setup failed: SkillState or Skill is null");
+
+            // Ẩn cả khung UI nếu không có skill
+            gameObject.SetActive(false);
+            return;
         }
 
-        // clear UI
+        // Nếu có skill -> bật khung UI
+        gameObject.SetActive(true);
+
+        if (iconImage != null)
+        {
+            if (linkedSkill.skill.icon != null)
+            {
+                iconImage.sprite = linkedSkill.skill.icon;
+                iconImage.enabled = true;
+                Debug.Log($"[{gameObject.name}] Set icon for skill {linkedSkill.skill.name}");
+            }
+            else
+            {
+                iconImage.enabled = false;
+                Debug.LogWarning($"[{gameObject.name}] Skill {linkedSkill.skill.name} has no icon sprite!");
+            }
+        }
+
         if (cooldownMask) cooldownMask.fillAmount = 0f;
         if (cooldownText) cooldownText.text = "";
     }

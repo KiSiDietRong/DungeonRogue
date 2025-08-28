@@ -2,7 +2,6 @@
 
 public class SkillManager : MonoBehaviour
 {
-    [Header("Skill Slots")]
     public SkillState skillSlot1;
     public SkillState skillSlot2;
 
@@ -13,15 +12,15 @@ public class SkillManager : MonoBehaviour
     private bool isFieryImbuementActive = false;
     private int fieryImbuementAttackCount = 0;
 
-    private AudioSource audioSource;
+    private SkillHudBinder hudBinder; // Tham chiếu tới SkillHudBinder
 
     void Start()
     {
         mainCamera = Camera.main;
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
+        hudBinder = FindObjectOfType<SkillHudBinder>(); // Tìm SkillHudBinder
+        if (hudBinder == null)
         {
-            audioSource = gameObject.AddComponent<AudioSource>();
+            Debug.LogError("SkillHudBinder not found in scene!");
         }
 
         if (skillSlot1 == null || skillSlot2 == null)
@@ -30,39 +29,49 @@ public class SkillManager : MonoBehaviour
         }
     }
 
-    void Update()
+    // Hàm để thay đổi skill trong runtime
+    public void SetSkill(SkillState newSkill, int slot)
     {
-        if (Input.GetMouseButtonDown(2)) // Middle mouse
+        if (slot == 1)
         {
-            if (skillSlot1 != null && skillSlot1.skill != null)
-            {
-                if (skillSlot1.Use(gameObject, GetTargetPosition())) // chỉ khi cast thành công
-                {
-                    PlaySound(skillSlot1.skill.castSound);
-                    TryActivateRelicEffects();
-                }
-            }
+            skillSlot1 = newSkill;
+            Debug.Log($"SkillManager: Set slot1 to {(newSkill?.skill?.name ?? "null")}");
+        }
+        else if (slot == 2)
+        {
+            skillSlot2 = newSkill;
+            Debug.Log($"SkillManager: Set slot2 to {(newSkill?.skill?.name ?? "null")}");
         }
 
-        if (Input.GetMouseButtonDown(1)) // Right mouse
+        // Gọi Refresh để cập nhật UI
+        if (hudBinder != null)
         {
-            if (skillSlot2 != null && skillSlot2.skill != null)
-            {
-                if (skillSlot2.Use(gameObject, GetTargetPosition())) // chỉ khi cast thành công
-                {
-                    PlaySound(skillSlot2.skill.castSound);
-                    TryActivateRelicEffects();
-                }
-            }
+            hudBinder.Refresh();
+        }
+        else
+        {
+            Debug.LogError("Cannot refresh UI: SkillHudBinder not found!");
         }
     }
 
-
-    private void PlaySound(AudioClip clip)
+    void Update()
     {
-        if (clip != null && audioSource != null)
+        if (Input.GetMouseButtonDown(2))
         {
-            audioSource.PlayOneShot(clip);
+            if (skillSlot1 != null && skillSlot1.skill != null) // Đã sửa từ "スキルSlot1" thành "skillSlot1"
+            {
+                skillSlot1.Use(gameObject, GetTargetPosition());
+                TryActivateRelicEffects();
+            }
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (skillSlot2 != null && skillSlot2.skill != null)
+            {
+                skillSlot2.Use(gameObject, GetTargetPosition());
+                TryActivateRelicEffects();
+            }
         }
     }
 

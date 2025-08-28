@@ -9,31 +9,27 @@ public class SkillState
 
     public void SetSkill(Skill newSkill)
     {
-        skill = newSkill;
+        skill = newSkill; // Gán skill mới
         if (skill != null)
         {
-            lastUseTime = -999f; // reset => dùng ngay được
+            lastUseTime = -999f; // Reset thời gian để skill sẵn sàng sử dụng ngay
         }
     }
 
     public bool IsReady()
     {
-        if (skill == null) return false;
+        if (skill == null) return false; // Trả về false nếu skill chưa được gán
         return Time.time >= lastUseTime + skill.cooldown;
     }
 
-    // ✅ sửa: return bool để SkillManager biết có cast thành công không
-    public bool Use(GameObject user, Vector3 target)
+    public void Use(GameObject user, Vector3 target)
     {
         if (skill != null && IsReady())
         {
             skill.Execute(user, target);
             lastUseTime = Time.time;
-            return true;
         }
-        return false;
     }
-
     public float GetRemainingCooldown()
     {
         if (skill == null) return 0f;
