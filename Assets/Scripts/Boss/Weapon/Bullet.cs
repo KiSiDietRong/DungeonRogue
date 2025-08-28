@@ -4,10 +4,21 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 5f;
     public float damage = 20f;
+    private Transform player;
+    private Rigidbody2D rb;
 
-    void Update()
+    private void Start()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        rb = GetComponent<Rigidbody2D>();
+
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        Vector2 dir = (player.position - transform.position).normalized;
+
+        rb.linearVelocity = dir * speed;
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+
         Destroy(gameObject, 3f);
     }
 

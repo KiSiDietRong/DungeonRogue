@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 9135470391627470136}
   - component: {fileID: 4533537304568080204}
   - component: {fileID: -8962910348792829794}
+  - component: {fileID: -1396642199054587483}
+  - component: {fileID: 8838588336214762490}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -145,6 +147,48 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 6.09375, y: 0}
-  m_Size: {x: 18.75, y: 6.25}
+  m_Offset: {x: 7.2481422, y: 0.04273263}
+  m_Size: {x: 16.441269, y: 1.7179617}
   m_Direction: 1
+--- !u!114 &-1396642199054587483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4324917089935421069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a37b37fa3ca83f4c979dbc92fa9ee09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  activeDelay: 1
+  duration: 3
+--- !u!50 &8838588336214762490
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4324917089935421069}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

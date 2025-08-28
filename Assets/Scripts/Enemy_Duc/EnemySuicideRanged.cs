@@ -4,25 +4,27 @@ using System.Collections;
 public class EnemySuicideRanged : EnemyRanged
 {
     [Header("Suicide Explosion Settings")]
-    public float suicideDelay = 1f;     // Thời gian chạy trước khi nổ
-    public float explosionRadius = 2f;  // Bán kính nổ
-    public float explosionDamage = 10f; // Damage nổ
-    public float speedMultiplier = 2f;  // Tăng tốc khi nổ
+    public float suicideDelay = 1f;
+    public float explosionRadius = 2f;
+    public float explosionDamage = 10f;
+    public float speedMultiplier = 2f;
 
     private bool isSuiciding = false;
 
     protected override void DieEnemy()
     {
-        if (isSuiciding) return; // tránh gọi 2 lần
+        if (isSuiciding) return;
         isSuiciding = true;
 
-        // Không gọi base.DieEnemy ngay
+        StopAllCoroutines();
+        isAttacking = false;
+        projectilePrefab = null;
+
         StartCoroutine(SuicideExplosion());
     }
 
     private IEnumerator SuicideExplosion()
     {
-        // Tăng tốc độ
         moveSpeed *= speedMultiplier;
 
         float timer = suicideDelay;
@@ -37,10 +39,8 @@ public class EnemySuicideRanged : EnemyRanged
             yield return null;
         }
 
-        // Play animation Die (giả sử là anim phát nổ)
         animator.SetTrigger(Die);
 
-        // Gây sát thương AOE
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         foreach (var hit in hits)
         {
@@ -54,14 +54,12 @@ public class EnemySuicideRanged : EnemyRanged
             }
         }
 
-        // Hủy enemy sau khi anim die chạy xong
         float dieAnimLength = animator.GetCurrentAnimatorStateInfo(0).length;
         Destroy(gameObject, dieAnimLength);
     }
 
     private void OnDrawGizmosSelected()
     {
-        // Vẽ vùng nổ trong editor
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }

@@ -6,59 +6,151 @@ public class BossAI : MonoBehaviour
     private BossController boss;
     private bool isAlive = true;
 
-    [Header("Attack Settings")]
-    public float actionCooldown = 3f;  // thời gian nghỉ giữa các đòn
-    private bool canAct = true;
+    private int phase = 1;
+    private bool isInvulnerable = false;
+
+    private int shootCount = 0;
+    private float lastHP;
+    private float shieldThreshold = 70f;
+    private bool isShielding = false;
 
     void Start()
     {
         boss = GetComponent<BossController>();
-        StartCoroutine(AIBehaviour());
+        lastHP = boss.GetCurrentHealth();
+        StartCoroutine(Phase1Routine());
     }
 
-    IEnumerator AIBehaviour()
+    private void Update()
     {
-        while (isAlive)
+        if (!isAlive) return;
+
+        float hpPercent = boss.GetCurrentHealth() / boss.maxHP;
+
+        if (phase == 1 && hpPercent <= 0.6f)
         {
-            if (canAct)
+            phase = 2;
+            StopAllCoroutines();
+            StartCoroutine(EnterPhase2());
+        }
+        else if (phase == 2 && hpPercent <= 0.3f)
+        {
+            phase = 3;
+            StopAllCoroutines();
+            StartCoroutine(EnterPhase3());
+        }
+
+        if (phase == 3 && !isShielding)
+        {
+            if (lastHP - boss.GetCurrentHealth() >= shieldThreshold)
             {
-                yield return new WaitForSeconds(1f); // chờ Idle 1 giây
-                DecideAction();
-                canAct = false;
-                yield return new WaitForSeconds(actionCooldown);
-                canAct = true;
+                lastHP = boss.GetCurrentHealth();
+                StopAllCoroutines();
+                StartCoroutine(DoShieldThenResumePhase3());
             }
-            yield return null;
         }
     }
 
-    void DecideAction()
+    IEnumerator Phase1Routine()
     {
-        if (boss == null) return;
+        while (phase == 1 && isAlive)
+        {
+            boss.DoIdle();
+            yield return new WaitForSeconds(1f);
 
-        float hpPercent = (float)boss.GetCurrentHealth() / boss.currentHP;
-        int random = Random.Range(0, 100);
+            boss.DoShoot();
 
-        // Phase 1: HP > 70%
-        if (hpPercent > 0.7f)
-        {
-            if (random < 60) boss.DoShoot();
-            else boss.DoMelee();
+            boss.DoIdle();
+            yield return new WaitForSeconds(2f);
         }
-        // Phase 2: HP 40% - 70%
-        else if (hpPercent > 0.4f)
+    }
+
+    IEnumerator EnterPhase2()
+    {
+        isInvulnerable = true;
+        boss.DoGlow();
+        yield return new WaitForSeconds(2f);
+        isInvulnerable = false;
+
+        StartCoroutine(Phase2Routine());
+    }
+
+    IEnumerator Phase2Routine()
+    {
+        while (phase == 2 && isAlive)
         {
-            if (random < 40) boss.DoShoot();
-            else if (random < 70) boss.DoMelee();
-            else boss.DoShield();
+            boss.DoIdle();
+            yield return new WaitForSeconds(1f);
+
+            boss.DoLaser();
+
+            float laserDuration = 3f;
+            yield return new WaitForSeconds(laserDuration + 1f);
+
+            boss.DoIdle();
+            yield return new WaitForSeconds(2f);
         }
-        // Phase 3: HP <= 40%
-        else
+    }
+
+    IEnumerator EnterPhase3()
+    {
+        isInvulnerable = true;
+        boss.DoGlow();
+        yield return new WaitForSeconds(2f);
+        isInvulnerable = false;
+
+        lastHP = boss.GetCurrentHealth();
+        StartCoroutine(Phase3Routine());
+    }
+
+    IEnumerator Phase3Routine()
+    {
+        while (phase == 3 && isAlive)
         {
-            if (random < 30) boss.DoShoot();
-            else if (random < 60) boss.DoMelee();
-            else if (random < 85) boss.DoShield();
-            else boss.DoLaser();
+            boss.DoIdle();
+            yield return new WaitForSeconds(1f);
+
+            boss.DoShoot();
+            shootCount++;
+
+            boss.DoIdle();
+            yield return new WaitForSeconds(2f);
+
+            if (shootCount >= 3)
+            {
+                shootCount = 0;
+
+                boss.DoIdle();
+                yield return new WaitForSeconds(1f);
+
+                boss.DoLaser();
+
+                boss.DoIdle();
+                yield return new WaitForSeconds(2f);
+            }
+        }
+    }
+
+    IEnumerator DoShieldThenResumePhase3()
+    {
+        isShielding = true;
+        isInvulnerable = true;
+
+        boss.DoShield();
+        yield return new WaitForSeconds(3f);
+
+        isInvulnerable = false;
+        isShielding = false;
+
+        StartCoroutine(Phase3Routine());
+    }
+
+    public void OnBossDamaged(float damage)
+    {
+        if (isShielding)
+        {
+            boss.currentHP = Mathf.Min(boss.maxHP, boss.currentHP + damage);
+            BossHealthUI.Instance?.UpdateHealth(boss.currentHP);
         }
     }
 
@@ -67,4 +159,6 @@ public class BossAI : MonoBehaviour
         isAlive = false;
         StopAllCoroutines();
     }
+
+    public bool IsInvulnerable() => isInvulnerable;
 }

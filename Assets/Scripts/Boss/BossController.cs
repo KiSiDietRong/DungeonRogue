@@ -11,12 +11,10 @@ public class BossController : MonoBehaviour
     [Header("Attack Prefabs")]
     public GameObject bulletPrefab;
     public GameObject laserPrefab;
-    public GameObject shieldPrefab;
 
     [Header("Spawn Points")]
     public Transform firePoint;
     public Transform laserPoint;
-    public Transform shieldPoint;
 
     public GameObject damagePopupPrefab;
     protected GameObject player;
@@ -28,19 +26,27 @@ public class BossController : MonoBehaviour
     public delegate void BossDeathHandler(BossController boss);
     public static event BossDeathHandler OnBossDeath;
 
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     void Start()
     {
         currentHP = maxHP;
-        anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // =====================
-    // HỆ THỐNG NHẬN DAMAGE
-    // =====================
     public void TakeDamage(float damage, Vector3 hitPosition, bool isCritical)
     {
         if (isDead) return;
+
+        BossAI ai = GetComponent<BossAI>();
+        if (ai != null && ai.IsInvulnerable())
+        {
+            ai.OnBossDamaged(damage);
+            return;
+        }
 
         currentHP -= damage;
         BossHealthUI.Instance?.UpdateHealth(currentHP);
@@ -67,26 +73,19 @@ public class BossController : MonoBehaviour
         isDead = true;
         anim.SetTrigger("Death");
 
-        // Tắt AI
         GetComponent<BossAI>()?.OnDeath();
 
-        // Gửi event
         OnBossDeath?.Invoke(this);
 
-        // Boss không destroy ngay -> đợi anim xong
-        Destroy(gameObject, 1.5f);
+        Destroy(gameObject, 1.6f);
     }
 
-    // =====================
-    // SKILL / ANIM
-    // =====================
+    public void DoIdle() => anim.SetTrigger("Idle");
     public void DoGlow() => anim.SetTrigger("Glow");
     public void DoShoot() => anim.SetTrigger("Shoot");
-    public void DoMelee() => anim.SetTrigger("Melee");
     public void DoLaser() => anim.SetTrigger("Laser");
     public void DoShield() => anim.SetTrigger("Shield");
 
-    // Gọi trong Animation Event
     public void SpawnBullet()
     {
         if (bulletPrefab && firePoint)
@@ -97,12 +96,6 @@ public class BossController : MonoBehaviour
     {
         if (laserPrefab && laserPoint)
             Instantiate(laserPrefab, laserPoint.position, Quaternion.identity);
-    }
-
-    public void SpawnShield()
-    {
-        if (shieldPrefab && shieldPoint)
-            Instantiate(shieldPrefab, shieldPoint.position, Quaternion.identity, transform);
     }
 
     public void AttackPlayer()
