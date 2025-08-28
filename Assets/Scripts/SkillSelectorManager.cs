@@ -11,25 +11,25 @@ public class SkillSelectorManager : MonoBehaviour
 
     [Header("Skill Data")]
     public List<Skill> allSkills;
-    public Button[] skillButtons; // Buttons for skill choices, similar to relicButtons
+    public Button[] skillButtons;
     private Skill[] currentSkillChoices = new Skill[4];
 
     [Header("Shared UI Elements")]
-    public Image[] relicSlots; // 12 ô trắng để chứa relic (shared with relic selector/inventory)
-    public Image[] skillSlots; // 2 ô để chứa skill (shared)
-    public TextMeshProUGUI hpText; // Text để hiển thị HP
-    public TextMeshProUGUI dmgText; // Text để hiển thị DMG
-    public TextMeshProUGUI critText; // Text để hiển thị CRIT
-    public Image weaponIcon; // Ô trắng icon weapon
+    public Image[] relicSlots;
+    public Image[] skillSlots;
+    public TextMeshProUGUI hpText;
+    public TextMeshProUGUI dmgText;
+    public TextMeshProUGUI critText;
+    public Image weaponIcon;
 
     [Header("UI Panel")]
-    public GameObject skillCanvasUI; // Canvas for Skill Selector
+    public GameObject skillCanvasUI;
 
     [Header("Skill Tooltip")]
     public GameObject skillTooltipPanel;
     public TextMeshProUGUI tooltipNameText;
     public Image tooltipIcon;
-    public TextMeshProUGUI tooltipEffectText; // If skills have descriptions
+    public TextMeshProUGUI tooltipEffectText;
 
     private int selectedSkillIndex = 0;
     private int activeSkillCount = 0;
@@ -38,21 +38,27 @@ public class SkillSelectorManager : MonoBehaviour
     private bool skillConfirming = false;
     private bool skillLocked = false;
     private bool pendingSkillChoose = false;
-    private HashSet<Skill> usedSkills = new HashSet<Skill>();
-    public List<Skill> playerSkills = new List<Skill>(); // Thêm lại danh sách kỹ năng của người chơi
+    public HashSet<Skill> usedSkills = new HashSet<Skill>();
+    public List<Skill> playerSkills = new List<Skill>();
 
     private bool waitingForReplace = false;
     private int selectedReplaceIndex = 0;
     private bool clickOnce = false;
     private Skill skillToReplace;
 
-    private SkillManager skillManager; // Reference to SkillManager to assign skills
-    private PlayerHealth playerHealth; // Tham chiếu đến PlayerHealth
-    private ActiveWeapon activeWeapon; // Tham chiếu đến ActiveWeapon
+    public SkillManager skillManager;
+    private PlayerHealth playerHealth;
+    private ActiveWeapon activeWeapon;
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
         skillManager = FindObjectOfType<SkillManager>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         activeWeapon = FindObjectOfType<ActiveWeapon>();
@@ -69,7 +75,7 @@ public class SkillSelectorManager : MonoBehaviour
             skillCanvasUI.SetActive(false);
             skillCanvasActive = false;
         }
-        UpdateUI(); // Cập nhật UI ban đầu
+        UpdateUI();
     }
 
     void Update()
@@ -194,8 +200,10 @@ public class SkillSelectorManager : MonoBehaviour
         {
             playerSkills.Add(skill);
             usedSkills.Add(skill);
-            AssignSkillToManager(playerSkills.Count - 1); // Gán skill vào SkillManager
+            AssignSkillToManager(playerSkills.Count - 1);
             UpdateUI();
+            if (InventoryManager.Instance != null)
+                InventoryManager.Instance.UpdateInventoryUI();
             skillSelected = true;
             StartCoroutine(CloseCanvasAfterDelay(1f));
         }
@@ -266,8 +274,10 @@ public class SkillSelectorManager : MonoBehaviour
             Skill oldSkill = playerSkills[selectedReplaceIndex];
             playerSkills[selectedReplaceIndex] = skillToReplace;
             usedSkills.Add(skillToReplace);
-            AssignSkillToManager(selectedReplaceIndex); // Gán skill mới vào SkillManager
+            AssignSkillToManager(selectedReplaceIndex);
             UpdateUI();
+            if (InventoryManager.Instance != null)
+                InventoryManager.Instance.UpdateInventoryUI();
         }
         waitingForReplace = false;
         clickOnce = false;
@@ -277,7 +287,7 @@ public class SkillSelectorManager : MonoBehaviour
         StartCoroutine(CloseCanvasAfterDelay(1f));
     }
 
-    public void OpenSkillCanvas() // Call this when picking up a skill item
+    public void OpenSkillCanvas()
     {
         skillCanvasUI.SetActive(true);
         skillCanvasActive = true;
@@ -403,9 +413,8 @@ public class SkillSelectorManager : MonoBehaviour
         pendingSkillChoose = false;
     }
 
-    public void UpdateUI() // Cập nhật toàn bộ UI chung (relics, skills, stats, weapon)
+    public void UpdateUI()
     {
-        // Cập nhật relics từ InventoryManager (đồng bộ)
         if (InventoryManager.Instance != null && relicSlots != null)
         {
             List<Relic> playerInventory = InventoryManager.Instance.playerInventory;
@@ -425,8 +434,6 @@ public class SkillSelectorManager : MonoBehaviour
                 }
             }
         }
-
-        // Cập nhật skills
         if (skillSlots != null)
         {
             for (int i = 0; i < skillSlots.Length; i++)
@@ -444,7 +451,6 @@ public class SkillSelectorManager : MonoBehaviour
             }
         }
 
-        // Cập nhật icon vũ khí
         if (activeWeapon != null && activeWeapon.CurrentActiveWeapon != null)
         {
             WeaponInfo weaponInfo = activeWeapon.CurrentActiveWeapon.GetWeaponInfo();
@@ -474,7 +480,6 @@ public class SkillSelectorManager : MonoBehaviour
             }
         }
 
-        // Cập nhật chỉ số player
         if (playerHealth != null)
         {
             if (hpText != null)
@@ -536,12 +541,43 @@ public class SkillSelectorManager : MonoBehaviour
         }
     }
 
-    // Thêm phương thức để đồng bộ skill với InventoryManager
     public void SyncSkillsWithInventory()
     {
         if (InventoryManager.Instance != null)
         {
-            InventoryManager.Instance.UpdateInventoryUI(); // Cập nhật UI inventory để hiển thị skill
+            InventoryManager.Instance.UpdateInventoryUI();
         }
+        UpdateUI();
+    }
+
+    public void ResetAllSkills()
+    {
+        playerSkills.Clear();
+        usedSkills.Clear();
+        if (skillManager != null)
+        {
+            if (skillManager.skillSlot1 != null) skillManager.skillSlot1.SetSkill(null);
+            if (skillManager.skillSlot2 != null) skillManager.skillSlot2.SetSkill(null);
+        }
+        UpdateUI();
+    }
+
+    public void HardResetSkills()
+    {
+        playerSkills.Clear();
+        usedSkills.Clear();
+        if (skillManager != null)
+        {
+            if (skillManager.skillSlot1 != null) skillManager.skillSlot1.SetSkill(null);
+            if (skillManager.skillSlot2 != null) skillManager.skillSlot2.SetSkill(null);
+        }
+        UpdateUI();
+    }
+
+    public void SyncWithInventory()
+    {
+        if (InventoryManager.Instance != null)
+            InventoryManager.Instance.UpdateInventoryUI();
+        UpdateUI();
     }
 }
