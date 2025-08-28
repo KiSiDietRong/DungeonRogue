@@ -16,4 +16,5 @@ MonoBehaviour:
   skillInfo: Heal big amount of HP for player use this
   icon: {fileID: 8159904271023503302, guid: 831205bfe7942dd4bb800363ebea4d23, type: 3}
   cooldown: 45
+  castSound: {fileID: 8300000, guid: 4be7e98c95e2005479eccfb10d1fa61a, type: 3}
   healAmount: 30

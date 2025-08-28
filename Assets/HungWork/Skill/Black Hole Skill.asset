@@ -16,4 +16,5 @@ MonoBehaviour:
   skillInfo: 'Summon a Blackhole pull enemy in to it core '
   icon: {fileID: 7314085740958348144, guid: eeb46437527f03746acb0fdc15759e39, type: 3}
   cooldown: 25
+  castSound: {fileID: 8300000, guid: 0183add26d688974a92e87e3bbfb61c3, type: 3}
   blackHolePrefab: {fileID: 6605300842755207369, guid: 41fa4567fd9871249b28f6f207c7b215, type: 3}
