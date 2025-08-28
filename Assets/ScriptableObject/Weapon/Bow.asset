@@ -18,3 +18,4 @@ MonoBehaviour:
   weaponRange: 5
   criticalChance: 0.06
   weaponSprite: {fileID: -7856493677412862020, guid: 4ab209ae9073f0b4f9f927e88de2a1ed, type: 3}
+  avatarSprite: {fileID: 9062327701709877289, guid: c230a5f32d66699458204fc26d651675, type: 3}

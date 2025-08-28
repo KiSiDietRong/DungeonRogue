@@ -5,6 +5,8 @@ public class ActiveWeapon : MonoBehaviour
 {
     public IWeapon CurrentActiveWeapon { get; private set; }
 
+    private AvatarUIController avatarUIController;
+
     private GameObject currentWeaponObj;
     private float timeBetweenAttacks;
     private bool isAttacking = false;
@@ -19,6 +21,8 @@ public class ActiveWeapon : MonoBehaviour
     void Awake()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
+        avatarUIController = FindObjectOfType<AvatarUIController>();
+
     }
 
     void Update()
@@ -36,6 +40,12 @@ public class ActiveWeapon : MonoBehaviour
 
         currentWeaponObj = Instantiate(newWeaponPrefab, transform);
         CurrentActiveWeapon = currentWeaponObj.GetComponent<IWeapon>();
+
+        WeaponInfo weaponInfo = CurrentActiveWeapon.GetWeaponInfo();
+        if (weaponInfo != null && avatarUIController != null)
+        {
+            avatarUIController.UpdateAvatar(weaponInfo.avatarSprite);
+        }
 
         timeBetweenAttacks = CurrentActiveWeapon.GetWeaponInfo().weaponCooldown;
 
