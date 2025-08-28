@@ -12,12 +12,45 @@ public class SkillManager : MonoBehaviour
     private bool isFieryImbuementActive = false;
     private int fieryImbuementAttackCount = 0;
 
+    private SkillHudBinder hudBinder; // Tham chiếu tới SkillHudBinder
+
     void Start()
     {
         mainCamera = Camera.main;
+        hudBinder = FindObjectOfType<SkillHudBinder>(); // Tìm SkillHudBinder
+        if (hudBinder == null)
+        {
+            Debug.LogError("SkillHudBinder not found in scene!");
+        }
+
         if (skillSlot1 == null || skillSlot2 == null)
         {
             Debug.LogWarning("Skill slots in SkillManager are not assigned. Please ensure they are initialized.");
+        }
+    }
+
+    // Hàm để thay đổi skill trong runtime
+    public void SetSkill(SkillState newSkill, int slot)
+    {
+        if (slot == 1)
+        {
+            skillSlot1 = newSkill;
+            Debug.Log($"SkillManager: Set slot1 to {(newSkill?.skill?.name ?? "null")}");
+        }
+        else if (slot == 2)
+        {
+            skillSlot2 = newSkill;
+            Debug.Log($"SkillManager: Set slot2 to {(newSkill?.skill?.name ?? "null")}");
+        }
+
+        // Gọi Refresh để cập nhật UI
+        if (hudBinder != null)
+        {
+            hudBinder.Refresh();
+        }
+        else
+        {
+            Debug.LogError("Cannot refresh UI: SkillHudBinder not found!");
         }
     }
 
@@ -25,7 +58,7 @@ public class SkillManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(2))
         {
-            if (skillSlot1 != null && skillSlot1.skill != null)
+            if (skillSlot1 != null && skillSlot1.skill != null) // Đã sửa từ "スキルSlot1" thành "skillSlot1"
             {
                 skillSlot1.Use(gameObject, GetTargetPosition());
                 TryActivateRelicEffects();

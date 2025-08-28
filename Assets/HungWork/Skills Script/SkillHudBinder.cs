@@ -2,26 +2,49 @@
 
 public class SkillHudBinder : MonoBehaviour
 {
-    public SkillManager skillManager;       // script có skillSlot1, skillSlot2
-    public SkillUIController slot1UI;       // tham chiếu tới SkillSlotUI 1
-    public SkillUIController slot2UI;       // tham chiếu tới SkillSlotUI 2
+    public SkillManager skillManager;
+    public SkillUIController slot1UI;
+    public SkillUIController slot2UI;
 
     void Start()
     {
         if (skillManager == null) skillManager = FindAnyObjectByType<SkillManager>();
+        if (skillManager == null)
+        {
+            Debug.LogError("SkillManager not found in scene!");
+            return;
+        }
 
-        if (slot1UI != null && skillManager != null)
-            slot1UI.Setup(skillManager.skillSlot1);
-
-        if (slot2UI != null && skillManager != null)
-            slot2UI.Setup(skillManager.skillSlot2);
+        Refresh(); // Khởi tạo UI ban đầu
     }
 
-    // Nếu game của bạn có hệ chọn/bật skill mới trong runtime,
-    // có thể thêm hàm này để refresh UI khi đổi skill:
     public void Refresh()
     {
-        if (slot1UI != null) slot1UI.Setup(skillManager.skillSlot1);
-        if (slot2UI != null) slot2UI.Setup(skillManager.skillSlot2);
+        Debug.Log("SkillHudBinder.Refresh called");
+        if (skillManager == null)
+        {
+            Debug.LogError("skillManager is null in SkillHudBinder!");
+            return;
+        }
+
+        if (slot1UI != null)
+        {
+            slot1UI.Setup(skillManager.skillSlot1);
+            Debug.Log($"slot1UI updated with skill: {(skillManager.skillSlot1?.skill?.name ?? "null")}");
+        }
+        else
+        {
+            Debug.LogError("slot1UI is not assigned!");
+        }
+
+        if (slot2UI != null)
+        {
+            slot2UI.Setup(skillManager.skillSlot2);
+            Debug.Log($"slot2UI updated with skill: {(skillManager.skillSlot2?.skill?.name ?? "null")}");
+        }
+        else
+        {
+            Debug.LogError("slot2UI is not assigned!");
+        }
     }
 }

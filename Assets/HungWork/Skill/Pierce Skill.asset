@@ -16,6 +16,7 @@ MonoBehaviour:
   skillInfo: Fire a bullet that can be stop, deal damage to all enemy it hit
   icon: {fileID: -2822377946610196884, guid: 539fe43a0c7751b4d8a26278fbbeaa3a, type: 3}
   cooldown: 20
+  castSound: {fileID: 8300000, guid: 489c0616cec5f5f46bc0e4c003c83b24, type: 3}
   projectilePrefab: {fileID: 854827241456912002, guid: e45fcdabf37fc474f94b3c3c712d0e83, type: 3}
   projectileSpeed: 15
   projectileDamage: 20

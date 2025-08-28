@@ -27,7 +27,7 @@ public class TransparentDetection : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerController>() || other.GetComponent<Enemy>())
+        if (other.GetComponent<PlayerController>() || other.CompareTag("Enemy"))
         {
             StartFade(1f);
             spriteRenderer.sortingOrder = originalSortingOrder; 

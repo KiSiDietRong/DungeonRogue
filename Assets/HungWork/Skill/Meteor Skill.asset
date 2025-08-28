@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c76e70736aed34ebef049bd440f839, type: 3}
   m_Name: Meteor Skill
   m_EditorClassIdentifier: 
-  skillName: Meteor
+  skillName: Meteor Summon
   skillInfo: Summon a Meteor deal high damage in big area to enemy inside
   icon: {fileID: 21300000, guid: cef7bb83187791340b808c67f35ed513, type: 3}
   cooldown: 25

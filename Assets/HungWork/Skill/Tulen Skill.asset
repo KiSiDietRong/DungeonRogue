@@ -16,6 +16,7 @@ MonoBehaviour:
   skillInfo: Throw 3 electric ball can pierce enemy
   icon: {fileID: 0}
   cooldown: 15
+  castSound: {fileID: 8300000, guid: 32704727ce1ee1f449d50f4d910fbc1f, type: 3}
   projectilePrefab: {fileID: 7509188510232892002, guid: 7cea325a958e78348a1b28e8cc26a8ae, type: 3}
   projectileSpeed: 10
   projectileLifetime: 3
