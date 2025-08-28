@@ -259,10 +259,15 @@ public class PlayerController : MonoBehaviour
         isSlowed = false;
     }
 
+    public void ResetCurrency()
+    {
+        Gold = 0;
+        UpdateGoldUI();
+    }
+
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, doomShellRadius);
     }
-
 }

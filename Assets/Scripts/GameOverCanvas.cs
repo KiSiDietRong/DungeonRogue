@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameOverCanvas : MonoBehaviour
@@ -23,6 +23,20 @@ public class GameOverCanvas : MonoBehaviour
                     playerHealth.ResetPlayer();
                 }
             }
+            var inv = FindObjectOfType<InventoryManager>();
+            var ssm = FindObjectOfType<SkillSelectorManager>();
+            var sm = FindObjectOfType<SkillManager>();
+            var pc = player.GetComponent<PlayerController>();
+
+            if (inv != null) inv.ResetAll();          // reset relic
+            if (ssm != null) ssm.ResetAllSkills();    // reset skill
+            if (sm != null) sm.ResetRuntimeFlagsAndSlots();
+            if (pc != null) pc.ResetCurrency();
+
+            // Đồng bộ UI sau reset
+            if (inv != null) inv.UpdateInventoryUI();
+            if (ssm != null) ssm.UpdateUI();
+
             Time.timeScale = 1f;
             gameObject.SetActive(false);
             SceneManager.LoadScene("LobbyScene");

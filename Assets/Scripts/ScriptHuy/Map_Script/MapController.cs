@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using System.Collections;
+using TMPro;
 
 public class MapController : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class MapController : MonoBehaviour
     public RectTransform transitionPanel;
     public float transitionDuration = 1f;
 
+    [Header("UI")]
+    public TextMeshProUGUI roomCompleteText;
+
     private Queue<GameObject> mapQueue = new Queue<GameObject>();
     private int currentMapIndex = 0;
     private GameObject currentMapInstance;
@@ -37,11 +41,9 @@ public class MapController : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject);
             return;
         }
 
@@ -163,5 +165,19 @@ public class MapController : MonoBehaviour
         {
             Debug.Log("Chưa tiêu diệt hết enemy, không load map.");
         }
+    }
+
+    public IEnumerator ShowRoomComplete()
+    {
+        if (roomCompleteText != null)
+        {
+            roomCompleteText.gameObject.SetActive(true);
+            roomCompleteText.text = "Room Complete";
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        if (roomCompleteText != null)
+            roomCompleteText.gameObject.SetActive(false);
     }
 }

@@ -63,7 +63,7 @@ public class InventoryManager : MonoBehaviour
     private bool relicSelected = false;
     private bool inventoryOnlyView = false;
     private bool isPickingRelic = false;
-    private HashSet<Relic> usedRelics = new HashSet<Relic>();
+    public HashSet<Relic> usedRelics = new HashSet<Relic>();
 
     private bool waitingForReplace = false;
     private int selectedReplaceIndex = 0;
@@ -79,7 +79,13 @@ public class InventoryManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
         Enemy.OnEnemyDeath += HandleEnemyDeath;
         playerHealth = FindObjectOfType<PlayerHealth>();
         activeWeapon = FindObjectOfType<ActiveWeapon>();
@@ -668,9 +674,11 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        if (skillSlots != null && SkillSelectorManager.Instance != null)
+        if (skillSlots != null)
         {
-            List<Skill> playerSkills = SkillSelectorManager.Instance.playerSkills;
+            var playerSkills = (SkillSelectorManager.Instance != null)
+         ? SkillSelectorManager.Instance.playerSkills
+         : new List<Skill>();
             for (int i = 0; i < skillSlots.Length; i++)
             {
                 skillSlots[i].transform.DOScale(Vector3.one, 0.1f);
@@ -688,9 +696,11 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        if (skillSlotsSelect != null && SkillSelectorManager.Instance != null)
+        if (skillSlotsSelect != null)
         {
-            List<Skill> playerSkills = SkillSelectorManager.Instance.playerSkills;
+            var playerSkills = (SkillSelectorManager.Instance != null)
+        ? SkillSelectorManager.Instance.playerSkills
+        : new List<Skill>();
             for (int i = 0; i < skillSlotsSelect.Length; i++)
             {
                 skillSlotsSelect[i].transform.DOScale(Vector3.one, 0.1f);
@@ -1002,7 +1012,7 @@ public class InventoryManager : MonoBehaviour
         return playerInventory.Exists(relic => relic.type == RelicType.FieryImbuement);
     }
 
-    private void UpdateShopPrices()
+    public void UpdateShopPrices()
     {
         ShopRelicDisplay[] shopDisplays = FindObjectsOfType<ShopRelicDisplay>();
         if (shopDisplays.Length == 0)
@@ -1015,5 +1025,30 @@ public class InventoryManager : MonoBehaviour
             display.UpdateCostDisplay();
         }
         Debug.Log("Shop prices updated due to DiscountCard status change.");
+    }
+
+    public void ResetAll()
+    {
+        playerInventory.Clear();
+        usedRelics.Clear();
+        UpdateShopPrices();
+        UpdateArmorTextVisibility();
+        UpdateInventoryUI();
+    }
+
+    public void HardResetRelics()
+    {
+        playerInventory.Clear();
+        usedRelics.Clear();
+        UpdateShopPrices();
+        UpdateArmorTextVisibility();
+        UpdateInventoryUI();
+    }
+
+    public void SyncWithSkillSelector()
+    {
+        if (SkillSelectorManager.Instance != null)
+            SkillSelectorManager.Instance.UpdateUI();
+        UpdateInventoryUI();
     }
 }

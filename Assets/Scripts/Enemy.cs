@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
     private Vector2 patrolDirection;
     private float patrolRange = 3f;
     private Vector3 patrolStartPoint;
+    public bool isPossessed = false;
 
     protected static readonly int Idle = Animator.StringToHash("Idle");
     protected static readonly int Walk = Animator.StringToHash("Walk");
