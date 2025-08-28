@@ -263,8 +263,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2237092664218026904}
   - {fileID: 6558918375314319545}
@@ -402,10 +402,8 @@ MonoBehaviour:
   currentHP: 0
   bulletPrefab: {fileID: 4504771420433915213, guid: e5ce82b1619197143a03f15ce6f2b362, type: 3}
   laserPrefab: {fileID: 4324917089935421069, guid: f4138851564afa943a42370664ad01f6, type: 3}
-  shieldPrefab: {fileID: 0}
   firePoint: {fileID: 2237092664218026904}
   laserPoint: {fileID: 6558918375314319545}
-  shieldPoint: {fileID: 0}
   damagePopupPrefab: {fileID: 1543901237813018750, guid: 499b5aa89b7f58a47b9941a41105bd66, type: 3}
   popupOffsetRadius: 0.5
 --- !u!114 &4096129723255584738

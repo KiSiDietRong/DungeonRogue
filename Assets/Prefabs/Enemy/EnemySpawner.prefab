@@ -248,7 +248,8 @@ MonoBehaviour:
   burnEffect: {fileID: 6152189445755642739, guid: b0001f46a96872541b8a7d940f9d680c, type: 3}
   burnEffectPoint: {fileID: 1150354343476998596}
   lastDamageSource: 
-  childEnemyPrefab: {fileID: 6411672027289469659, guid: 0949545d12673c448af9feff6e5bb31f, type: 3}
+  isPossessed: 0
+  childEnemyPrefab: {fileID: 5691807117817197662, guid: cf597133b60270c4598813929e123693, type: 3}
   spawnPoint: {fileID: 4890235368688656340}
   spawnInterval: 3
 --- !u!114 &4402027196891037098

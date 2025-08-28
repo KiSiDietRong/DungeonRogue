@@ -5,23 +5,35 @@ public class EnemySpawner : MonoBehaviour
 {
     public static EnemySpawner Instance;
 
+    [System.Serializable]
+    public struct SpawnSetting
+    {
+        public GameObject enemyPrefab;
+        public int amount; // số lượng enemy loại này
+    }
+
+    [System.Serializable]
+    public class TurnSetting
+    {
+        public List<SpawnSetting> enemiesInTurn;
+    }
+
     [Header("Enemy Settings")]
-    public GameObject[] enemyPrefabs;
-    public int enemiesPerTurn = 5;
+    public TurnSetting[] turnSettings;
     public float spawnDelay = 2f;
     public GameObject itemPrefab;
     public int maxTurns = 2;
 
     [Header("Spawn Points")]
-    public Transform[] spawnPoints; // các điểm spawn cố định
+    public Transform[] spawnPoints;
 
     [Header("Portal Settings")]
     public GameObject portalObject;
 
     [Header("Reward Settings")]
-    public GameObject coinPrefab; // Prefab xu
-    public int rewardCoinAmount = 20; // Số lượng xu thưởng
-    public float rewardScatterRadius = 3f; // Bán kính tỏa xu
+    public GameObject coinPrefab;
+    public int rewardCoinAmount = 20;
+    public float rewardScatterRadius = 3f;
 
     private List<GameObject> currentEnemies = new List<GameObject>();
     private bool isSpawning = false;
@@ -34,8 +46,9 @@ public class EnemySpawner : MonoBehaviour
 
     void Start()
     {
-        if (enemyPrefabs == null || enemyPrefabs.Length < maxTurns || System.Array.Exists(enemyPrefabs, prefab => prefab == null))
+        if (turnSettings == null || turnSettings.Length < maxTurns)
         {
+            Debug.LogWarning("Chưa thiết lập đủ turnSettings cho số lượt.");
             return;
         }
 
@@ -67,6 +80,9 @@ public class EnemySpawner : MonoBehaviour
 
                 if (portalObject != null)
                     portalObject.SetActive(true);
+
+                if (MapController.Instance != null)
+                    MapController.Instance.StartCoroutine(MapController.Instance.ShowRoomComplete());
             }
         }
     }
@@ -78,26 +94,27 @@ public class EnemySpawner : MonoBehaviour
         if (portalObject != null)
             portalObject.SetActive(false);
 
-        GameObject currentEnemyPrefab = enemyPrefabs[currentTurn % enemyPrefabs.Length];
-
-        // Tạo bản sao danh sách spawn points để tránh trùng lặp
+        var setting = turnSettings[currentTurn % turnSettings.Length];
         List<Transform> availableSpawnPoints = new List<Transform>(spawnPoints);
 
-        for (int i = 0; i < enemiesPerTurn; i++)
+        foreach (var enemySetting in setting.enemiesInTurn)
         {
-            if (availableSpawnPoints.Count == 0)
+            for (int i = 0; i < enemySetting.amount; i++)
             {
-                Debug.LogWarning("Không còn đủ vị trí spawn cho số lượng enemy yêu cầu.");
-                break;
+                if (availableSpawnPoints.Count == 0)
+                {
+                    Debug.LogWarning("Không còn đủ vị trí spawn cho số lượng enemy yêu cầu.");
+                    break;
+                }
+
+                int randomIndex = Random.Range(0, availableSpawnPoints.Count);
+                Transform spawnPoint = availableSpawnPoints[randomIndex];
+
+                GameObject enemy = Instantiate(enemySetting.enemyPrefab, spawnPoint.position, Quaternion.identity);
+                currentEnemies.Add(enemy);
+
+                availableSpawnPoints.RemoveAt(randomIndex);
             }
-
-            int randomIndex = Random.Range(0, availableSpawnPoints.Count);
-            Transform spawnPoint = availableSpawnPoints[randomIndex];
-
-            GameObject enemy = Instantiate(currentEnemyPrefab, spawnPoint.position, Quaternion.identity);
-            currentEnemies.Add(enemy);
-
-            availableSpawnPoints.RemoveAt(randomIndex); // tránh trùng lặp
         }
 
         isSpawning = false;
@@ -133,16 +150,13 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < rewardCoinAmount; i++)
             {
-                // Random điểm trong vòng tròn
                 Vector2 randomOffset = Random.insideUnitCircle * rewardScatterRadius;
                 Vector3 spawnPos = center + (Vector3)randomOffset;
 
-                // Thêm một chút random xoay để tránh xu hướng chồng lên
                 Quaternion randomRot = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
 
                 GameObject coin = Instantiate(coinPrefab, spawnPos, randomRot);
 
-                // Optionally: Slight push to scatter
                 Rigidbody2D rb = coin.GetComponent<Rigidbody2D>();
                 if (rb != null)
                 {
