@@ -34,7 +34,11 @@ public class PauseManager : MonoBehaviour
 
     public void GoToMainMenu(string mainMenuSceneName)
     {
-        Time.timeScale = 1f; 
+        Time.timeScale = 1f;
+        if (PlayerController.Instance != null)
+        {
+            PlayerController.Instance.gameObject.SetActive(false);
+        }
         SceneManager.LoadScene(mainMenuSceneName);
     }
 
