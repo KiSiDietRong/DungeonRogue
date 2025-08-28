@@ -1,55 +1,41 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WeaponLock : MonoBehaviour
 {
     public enum WeaponType { Sword, Staff, Bow }
 
     public WeaponType weaponType;
+
+    public int soulRequired = 0; 
     private PlayerController player;
 
-    public bool isLocked = true; 
+    public bool isLocked = true;
     public GameObject lockOverlay;
 
     private ClassChanger classChanger;
-
     private WeaponBounce floatTween;
-
 
     void Start()
     {
         classChanger = GetComponent<ClassChanger>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-
+        player = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerController>();
         floatTween = GetComponentInChildren<WeaponBounce>();
-        if (!isLocked && floatTween != null)
+
+        if (UserDataSave.Instance != null && UserDataSave.Instance.IsWeaponUnlocked(weaponType.ToString()))
         {
-            floatTween.StartFloating();
+            isLocked = false;
         }
+
+        if (!isLocked && floatTween != null)
+            floatTween.StartFloating();
 
         UpdateLockState();
     }
 
+
+
     void Update()
     {
-        //if (isLocked && player != null)
-        //{
-        //    switch (weaponType)
-        //    {
-        //        case WeaponType.Staff:
-        //            if (player.Souls >= 400)
-        //            {
-        //                UnlockWeapon();
-        //            }
-        //            break;
-        //        case WeaponType.Bow:
-        //            if (player.Souls >= 600)
-        //            {
-        //                UnlockWeapon();
-        //            }
-        //            break;
-        //    }
-        //}
-
         if (classChanger != null)
             classChanger.enabled = !isLocked;
     }
@@ -68,10 +54,10 @@ public class WeaponLock : MonoBehaviour
         Debug.Log($"{weaponType} unlocked!");
         UpdateLockState();
 
+        UserDataSave.Instance.UnlockWeapon(weaponType.ToString());
+
         if (floatTween != null)
-        {
             floatTween.StartFloating();
-        }
     }
 
 
@@ -93,17 +79,7 @@ public class WeaponLock : MonoBehaviour
             return;
         }
 
-        switch (weaponType)
-        {
-            case WeaponType.Staff:
-                if (player.Souls >= 400)
-                    UnlockWeapon();
-                break;
-            case WeaponType.Bow:
-                if (player.Souls >= 600)
-                    UnlockWeapon();
-                break;
-        }
+        if (player.Souls >= soulRequired)
+            UnlockWeapon();
     }
-
 }

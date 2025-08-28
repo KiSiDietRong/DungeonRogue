@@ -4322,6 +4322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 2
+  soulRequired: 800
   isLocked: 1
   lockOverlay: {fileID: 0}
 --- !u!1 &382794434
@@ -4534,6 +4535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 0
+  soulRequired: 0
   isLocked: 0
   lockOverlay: {fileID: 0}
 --- !u!1 &407380437
@@ -24537,7 +24539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1339112380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25511,6 +25513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 1
+  soulRequired: 400
   isLocked: 1
   lockOverlay: {fileID: 0}
 --- !u!114 &1406746760
@@ -42020,7 +42023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1906030213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45087,7 +45090,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2921507260478117344}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf5a643302de28d4fac961d452dd2135, type: 3}
   m_Name: 
@@ -45236,7 +45239,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4706697389218689705}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf5a643302de28d4fac961d452dd2135, type: 3}
   m_Name: 
@@ -45499,6 +45502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 0
+  soulRequired: 0
   isLocked: 0
   lockOverlay: {fileID: 0}
 --- !u!114 &7783995152982782785
@@ -45725,8 +45729,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9c48451f89fd745972cacd27bf0295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 1
-  isLocked: 1
+  weaponType: 0
+  soulRequired: 0
+  isLocked: 0
   lockOverlay: {fileID: 0}
 --- !u!114 &9027721625950240656
 MonoBehaviour:
@@ -45770,8 +45775,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9c48451f89fd745972cacd27bf0295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponType: 2
-  isLocked: 1
+  weaponType: 0
+  soulRequired: 0
+  isLocked: 0
   lockOverlay: {fileID: 0}
 --- !u!114 &9117554475492604074
 MonoBehaviour:

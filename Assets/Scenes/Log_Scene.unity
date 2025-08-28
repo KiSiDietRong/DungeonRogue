@@ -4248,6 +4248,8 @@ MonoBehaviour:
   masterVolume: 1
   musicVolume: 0.3
   sfxVolume: 0.5
+  swordSwingSFX: {fileID: 0}
+  swordHitSFX: {fileID: 0}
 --- !u!4 &1679174491
 Transform:
   m_ObjectHideFlags: 0

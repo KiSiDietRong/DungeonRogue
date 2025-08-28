@@ -47,6 +47,13 @@ public class PlayerController : MonoBehaviour
     internal Vector2 lastMoveDirection;
 
     public static PlayerController Instance;
+
+    void Start()
+    {
+        Souls = UserDataSave.Instance.GetSouls();
+        UpdateSoulUI();
+    }
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -151,7 +158,9 @@ public class PlayerController : MonoBehaviour
     {
         Souls += amount;
         UpdateSoulUI();
+        UserDataSave.Instance.AddSouls(amount); 
     }
+
 
     private void HandleInput()
     {
