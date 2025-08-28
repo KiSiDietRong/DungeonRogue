@@ -315,7 +315,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: -5688739654425014672, guid: d304cfd7e4c63f14988bcbe80b9735eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -399,6 +399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 700
+  damage: 20
+  currentHP: 0
   bulletPrefab: {fileID: 4504771420433915213, guid: e5ce82b1619197143a03f15ce6f2b362, type: 3}
   laserPrefab: {fileID: 4324917089935421069, guid: f4138851564afa943a42370664ad01f6, type: 3}
   shieldPrefab: {fileID: 0}

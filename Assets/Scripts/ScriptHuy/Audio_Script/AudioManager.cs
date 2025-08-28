@@ -1,31 +1,20 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    [Header("Audio Sources")]
-    public AudioSource musicSource;
-    public AudioSource sfxSource;
+    [Header("AudioMixer")]
+    public AudioMixer masterMixer;
 
-    [Header("Audio Clips")]
-    public AudioClip logSceneMusic;
-    public AudioClip mainMenuMusic;
-    public AudioClip lobbyMusic;
+    [Header("Volume Values")]
+    [Range(0f, 1f)] public float masterVolume = 1f;
+    [Range(0f, 1f)] public float musicVolume = 1f;
+    [Range(0f, 1f)] public float sfxVolume = 1f;
 
-    [Header("Volumes")]
-    [Range(0, 1)] public float masterVolume = 1f;
-    [Range(0, 1)] public float musicVolume = 1f;
-    [Range(0, 1)] public float sfxVolume = 1f;
-
-    [Header("Sword SFX")]
-    public AudioClip swordSwingSFX;
-    public AudioClip swordHitSFX;
-
-    private void Awake()
+    void Awake()
     {
-        // Singleton
         if (Instance == null)
         {
             Instance = this;
@@ -34,68 +23,42 @@ public class AudioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            return;
         }
     }
 
-    private void Start()
+    void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-        PlayMusicForScene(SceneManager.GetActiveScene().name);
+        ApplyVolumes();
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    // Chuyển volume 0-1 sang dB để set vào mixer
+    private float ToDecibel(float linear)
     {
-        PlayMusicForScene(scene.name);
+        return Mathf.Log10(Mathf.Clamp(linear, 0.0001f, 1f)) * 20f;
     }
 
-    void PlayMusicForScene(string sceneName)
+    private void ApplyVolumes()
     {
-        switch (sceneName)
-        {
-            case "Log_Scene":
-                PlayMusic(logSceneMusic);
-                break;
-            case "MainMenu":
-                PlayMusic(mainMenuMusic);
-                break;
-            case "LobbyScene":
-                PlayMusic(lobbyMusic);
-                break;
-            default:
-                break;
-        }
+        masterMixer.SetFloat("MasterVol", ToDecibel(masterVolume));
+        masterMixer.SetFloat("MusicVol", ToDecibel(musicVolume));
+        masterMixer.SetFloat("SFXVol", ToDecibel(sfxVolume));
     }
 
-    public void PlayMusic(AudioClip clip)
+    public void SetMasterVolume(float value)
     {
-        if (musicSource.clip == clip) return;
-
-        musicSource.clip = clip;
-        musicSource.volume = musicVolume * masterVolume;
-        musicSource.loop = true;
-        musicSource.Play();
+        masterVolume = value;
+        masterMixer.SetFloat("MasterVol", ToDecibel(value));
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void SetMusicVolume(float value)
     {
-        sfxSource.PlayOneShot(clip, sfxVolume * masterVolume);
+        musicVolume = value;
+        masterMixer.SetFloat("MusicVol", ToDecibel(value));
     }
 
-    public void SetMasterVolume(float volume)
+    public void SetSFXVolume(float value)
     {
-        masterVolume = volume;
-        musicSource.volume = musicVolume * masterVolume;
-    }
-
-    public void SetMusicVolume(float volume)
-    {
-        musicVolume = volume;
-        musicSource.volume = volume * masterVolume;
-    }
-
-    public void SetSFXVolume(float volume)
-    {
-        sfxVolume = volume;
+        sfxVolume = value;
+        masterMixer.SetFloat("SFXVol", ToDecibel(value));
     }
 }

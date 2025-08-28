@@ -44061,6 +44061,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4089176599073549504}
     m_Modifications:
+    - target: {fileID: 1691351253276093371, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2017625755498126014, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
       propertyPath: m_Name
       value: GrassBush2 (4)
@@ -44255,6 +44259,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4089176599073549504}
     m_Modifications:
+    - target: {fileID: 1691351253276093371, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2017625755498126014, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
       propertyPath: m_Name
       value: GrassBush2 (6)
@@ -44449,6 +44457,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4089176599073549504}
     m_Modifications:
+    - target: {fileID: 1691351253276093371, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2017625755498126014, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
       propertyPath: m_Name
       value: GrassBush2 (1)
@@ -44639,6 +44651,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4089176599073549504}
     m_Modifications:
+    - target: {fileID: 1691351253276093371, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2017625755498126014, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
       propertyPath: m_Name
       value: GrassBush2 (2)
@@ -44807,6 +44823,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4569106676948059572, guid: 823f942a7ee9d514eb8f78ec0bbd8ac1, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44868,6 +44888,10 @@ PrefabInstance:
     - target: {fileID: 2673301311759424069, guid: 1fd3b746d1891974bb995190b8d5cb69, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6182547003863959558, guid: 1fd3b746d1891974bb995190b8d5cb69, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -44931,6 +44955,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6182547003863959558, guid: 1fd3b746d1891974bb995190b8d5cb69, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -44993,6 +45021,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4569106676948059572, guid: 823f942a7ee9d514eb8f78ec0bbd8ac1, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45011,6 +45043,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4089176599073549504}
     m_Modifications:
+    - target: {fileID: 1691351253276093371, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2017625755498126014, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
       propertyPath: m_Name
       value: GrassBush2
@@ -45245,6 +45281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mushroom
       objectReference: {fileID: 0}
+    - target: {fileID: 4569106676948059572, guid: 823f942a7ee9d514eb8f78ec0bbd8ac1, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45307,6 +45347,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6182547003863959558, guid: 1fd3b746d1891974bb995190b8d5cb69, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45368,6 +45412,10 @@ PrefabInstance:
     - target: {fileID: 1316803826711671288, guid: 823f942a7ee9d514eb8f78ec0bbd8ac1, type: 3}
       propertyPath: m_Name
       value: Mushroom (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569106676948059572, guid: 823f942a7ee9d514eb8f78ec0bbd8ac1, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -45449,6 +45497,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4089176599073549504}
     m_Modifications:
+    - target: {fileID: 1691351253276093371, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2017625755498126014, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
       propertyPath: m_Name
       value: GrassBush2 (5)
@@ -45573,6 +45625,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4089176599073549504}
     m_Modifications:
+    - target: {fileID: 1691351253276093371, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2017625755498126014, guid: ad28bf1a923e1ab419f6ebe810158039, type: 3}
       propertyPath: m_Name
       value: GrassBush2 (3)
