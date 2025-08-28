@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ae0f26441135940ae542797725e2fb, type: 3}
   m_Name: Sun Fire Skill
   m_EditorClassIdentifier: 
-  skillName: SunFire
+  skillName: Ember Fire
   skillInfo: Fire a big fireball , deal big damage and deal over time damage
-  icon: {fileID: 6389212338218450810, guid: 8bff893ef279e4e4cab8a57a60a158e5, type: 3}
+  icon: {fileID: 890866493920452574, guid: bcb50acf7c386414989180cd229301b8, type: 3}
   cooldown: 15
+  castSound: {fileID: 8300000, guid: a2c3c54b567ff354b9ea3e0a5f05125d, type: 3}
   SunFirePrefab: {fileID: 5886329066044875530, guid: 7ae8c9a49c63781438829b08ff431716, type: 3}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: HealSelf
   skillInfo: Heal big amount of HP for player use this
-  icon: {fileID: 8159904271023503302, guid: 831205bfe7942dd4bb800363ebea4d23, type: 3}
+  icon: {fileID: -731290855245137834, guid: 307ee99cbd298574387aec11c2e02370, type: 3}
   cooldown: 45
   castSound: {fileID: 8300000, guid: 4be7e98c95e2005479eccfb10d1fa61a, type: 3}
   healAmount: 30

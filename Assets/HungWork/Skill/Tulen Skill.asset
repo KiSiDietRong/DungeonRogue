@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef2eaf15a0f27b46a65d31902f9c365, type: 3}
   m_Name: Tulen Skill
   m_EditorClassIdentifier: 
-  skillName: Tulen
+  skillName: Holy Ball
   skillInfo: Throw 3 electric ball can pierce enemy
   icon: {fileID: 0}
   cooldown: 15
