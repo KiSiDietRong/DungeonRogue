@@ -16,4 +16,5 @@ MonoBehaviour:
   skillInfo: Fire a poison ball , deal poison damage and over time damage
   icon: {fileID: -2055241072565463894, guid: 0ab8de4f678050d4c916b6634154dd6a, type: 3}
   cooldown: 20
+  castSound: {fileID: 8300000, guid: 3f229d5b8315921468e5893dc51e3ffc, type: 3}
   poisonBulletPrefab: {fileID: 8866844907286518760, guid: 1f6c51be53235f949ad3f6642f49ed0c, type: 3}

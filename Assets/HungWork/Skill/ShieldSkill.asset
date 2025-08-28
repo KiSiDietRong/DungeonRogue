@@ -16,5 +16,6 @@ MonoBehaviour:
   skillInfo: Create a Shield around player , block all bullet from enemy
   icon: {fileID: -961947940015638366, guid: dd173665ba1fe11488ccbb602deecd3c, type: 3}
   cooldown: 30
+  castSound: {fileID: 8300000, guid: e7f5071e9c64ce3489dd383f10a5a07f, type: 3}
   shieldPrefab: {fileID: 1664323678930793427, guid: d20f91232a514c94baecd3c711bdce98, type: 3}
   duration: 5

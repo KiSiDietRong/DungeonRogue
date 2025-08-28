@@ -16,5 +16,6 @@ MonoBehaviour:
   skillInfo: Increase player ATK by 50% for 5 second
   icon: {fileID: 3931126059888416075, guid: 6c1d442d61cd0b044aad2f70a922eeda, type: 3}
   cooldown: 15
+  castSound: {fileID: 8300000, guid: ab6309850134ede40a06e0f57e03c43e, type: 3}
   buffDuration: 5
   damageMultiplier: 1.5

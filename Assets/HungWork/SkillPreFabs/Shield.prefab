@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3392864024390924257}
   - component: {fileID: 8079530323406244281}
   - component: {fileID: 2254824261229144143}
-  - component: {fileID: 410268473027832918}
+  - component: {fileID: -5844877273955584293}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Shield
@@ -125,7 +125,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.0117711, y: 0}
   m_Radius: 0.65302247
---- !u!114 &410268473027832918
+--- !u!114 &-5844877273955584293
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -517,14 +517,22 @@ public class SkillSelectorManager : MonoBehaviour
     {
         if (skillManager != null)
         {
-            if (index == 0 && skillManager.skillSlot1 != null)
+            if (index >= 0 && index < playerSkills.Count)
             {
-                skillManager.skillSlot1.SetSkill(playerSkills[index]); // Gán skill vào slot 1
+                Skill selectedSkill = playerSkills[index];
+                SkillState newSkillState = new SkillState();
+                newSkillState.skill = selectedSkill; // Gán skill vào SkillState
+                skillManager.SetSkill(newSkillState, index + 1); // Gán vào slot 1 hoặc 2
+                Debug.Log($"Assigned skill {selectedSkill.skillName} to slot {index + 1} in SkillManager");
             }
-            else if (index == 1 && skillManager.skillSlot2 != null)
+            else
             {
-                skillManager.skillSlot2.SetSkill(playerSkills[index]); // Gán skill vào slot 2
+                Debug.LogError($"Invalid skill index {index} in AssignSkillToManager");
             }
+        }
+        else
+        {
+            Debug.LogError("SkillManager is null in SkillSelectorManager!");
         }
     }
 
