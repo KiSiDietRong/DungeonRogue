@@ -18,7 +18,7 @@ public class UI_Manager : MonoBehaviour
 
     public void Lobby()
     {
-        StartCoroutine(LoadSceneAfterDelay("LobbyScene", 3f));
+        StartCoroutine(LoadSceneAfterDelay("LobbyScene", 1f));
     }
 
     private IEnumerator LoadSceneAfterDelay(string sceneName, float delay)
