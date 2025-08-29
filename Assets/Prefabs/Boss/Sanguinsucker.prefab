@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 4096129723255584738}
   - component: {fileID: 4106514935465542842}
   m_Layer: 0
-  m_Name: Boss
+  m_Name: Sanguinsucker
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

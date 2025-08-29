@@ -224,12 +224,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdc3104f440e36746b097d634afd0446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 4361069812288752118, guid: 4201bdeb2ebfac94eaa29393cd54145b, type: 3}
-  - {fileID: 7643097881682972804, guid: ec30c51fbb02fc94a8f1bd22f82762ba, type: 3}
-  enemiesPerTurn: 8
-  spawnDelay: 2
-  itemPrefab: {fileID: 0}
+  turnSettings:
+  - enemiesInTurn:
+    - enemyPrefab: {fileID: 791473436726184860, guid: 72bde390695b19e4bb1b58fadaa39564, type: 3}
+      amount: 1
+    - enemyPrefab: {fileID: 5691807117817197662, guid: cf597133b60270c4598813929e123693, type: 3}
+      amount: 3
+  - enemiesInTurn:
+    - enemyPrefab: {fileID: 791473436726184860, guid: 72bde390695b19e4bb1b58fadaa39564, type: 3}
+      amount: 2
+    - enemyPrefab: {fileID: 5691807117817197662, guid: cf597133b60270c4598813929e123693, type: 3}
+      amount: 4
+  spawnDelay: 1
+  itemPrefab: {fileID: 1415895771180847141, guid: 5014fcb06f54e4e4c9d08530f8985316, type: 3}
   maxTurns: 2
   spawnPoints:
   - {fileID: 8667878836938554411}

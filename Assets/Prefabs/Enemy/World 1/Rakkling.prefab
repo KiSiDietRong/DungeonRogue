@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: -4426436604865538541}
   - component: {fileID: 4287953373755979986}
   m_Layer: 0
-  m_Name: Slime2
+  m_Name: Rakkling
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,8 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b7456d190254548a1fea5a9acdfb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
-  damage: 10
+  maxHP: 8
+  damage: 5
   moveSpeed: 3
   attackRange: 1.5
   chaseRange: 6
@@ -247,6 +247,7 @@ MonoBehaviour:
   burnEffect: {fileID: 6152189445755642739, guid: b0001f46a96872541b8a7d940f9d680c, type: 3}
   burnEffectPoint: {fileID: 6413195369993950537}
   lastDamageSource: 
+  isPossessed: 0
 --- !u!114 &-4426436604865538541
 MonoBehaviour:
   m_ObjectHideFlags: 0

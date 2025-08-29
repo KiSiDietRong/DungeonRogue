@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: -8078291971640693107}
   - component: {fileID: -3545417645550379537}
   m_Layer: 0
-  m_Name: Golem_2
+  m_Name: Golem
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -320,8 +320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b7456d190254548a1fea5a9acdfb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 300
-  damage: 10
+  maxHP: 150
+  damage: 8
   moveSpeed: 1.2
   attackRange: 1.5
   chaseRange: 10
@@ -335,6 +335,7 @@ MonoBehaviour:
   burnEffect: {fileID: 6152189445755642739, guid: b0001f46a96872541b8a7d940f9d680c, type: 3}
   burnEffectPoint: {fileID: 3611491632183077364}
   lastDamageSource: 
+  isPossessed: 0
 --- !u!114 &-8078291971640693107
 MonoBehaviour:
   m_ObjectHideFlags: 0

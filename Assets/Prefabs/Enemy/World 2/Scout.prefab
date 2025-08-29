@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 776451973953215388}
   - component: {fileID: 3192136531186754234}
   m_Layer: 0
-  m_Name: Fire
+  m_Name: Scout
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,7 +183,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6020884434425061718}
   - {fileID: 2611429074610908642}
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6824397f048cc4fa05f0a83c5971f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 100
+  maxHP: 65
   damage: 10
   moveSpeed: 3
   attackRange: 4
@@ -358,6 +358,7 @@ MonoBehaviour:
   burnEffect: {fileID: 6152189445755642739, guid: b0001f46a96872541b8a7d940f9d680c, type: 3}
   burnEffectPoint: {fileID: 2611429074610908642}
   lastDamageSource: 
+  isPossessed: 0
   projectilePrefab: {fileID: 8192773851287048681, guid: 1008c4a7b7eddb24abf5e8e6d1bcb3d4, type: 3}
   firePoint: {fileID: 9161954311361115580}
   preferredDistance: 4
@@ -392,6 +393,7 @@ MonoBehaviour:
   burnEffect: {fileID: 0}
   burnEffectPoint: {fileID: 0}
   lastDamageSource: 
+  isPossessed: 0
   projectilePrefab: {fileID: 8192773851287048681, guid: 1008c4a7b7eddb24abf5e8e6d1bcb3d4, type: 3}
   firePoint: {fileID: 9161954311361115580}
   preferredDistance: 4

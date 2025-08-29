@@ -116,7 +116,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -6188768998144020764, guid: 1bc2262f8057c0f4da883282ad76ffe7, type: 3}
-  m_Color: {r: 1, g: 0.33773577, b: 0.33773577, a: 1}
+  m_Color: {r: 0.26226407, g: 1, b: 0.9477262, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -239,6 +239,7 @@ MonoBehaviour:
   burnEffect: {fileID: 6152189445755642739, guid: b0001f46a96872541b8a7d940f9d680c, type: 3}
   burnEffectPoint: {fileID: 2628375874432653442}
   lastDamageSource: 
+  isPossessed: 0
   explosionRadius: 1.2
   explosionDamage: 10
 --- !u!114 &-5247516880016664270
@@ -268,6 +269,7 @@ MonoBehaviour:
   burnEffect: {fileID: 0}
   burnEffectPoint: {fileID: 0}
   lastDamageSource: 
+  isPossessed: 0
 --- !u!114 &4621764093667667217
 MonoBehaviour:
   m_ObjectHideFlags: 0

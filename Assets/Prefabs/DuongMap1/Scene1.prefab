@@ -67002,9 +67002,9 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 7698792461852046447, guid: 72839d8cf4015aa4fabfd0c04e4cc779, type: 3}
       amount: 1
     - enemyPrefab: {fileID: 5691807117817197662, guid: cf597133b60270c4598813929e123693, type: 3}
-      amount: 3
+      amount: 2
   spawnDelay: 2
-  itemPrefab: {fileID: 1415895771180847141, guid: 5014fcb06f54e4e4c9d08530f8985316, type: 3}
+  itemPrefab: {fileID: 0}
   maxTurns: 1
   spawnPoints:
   - {fileID: 744103067716652370}
@@ -67018,7 +67018,7 @@ MonoBehaviour:
   - {fileID: 6888602719241249637}
   portalObject: {fileID: 425529514467808081}
   coinPrefab: {fileID: 6170564188838350909, guid: ed85c9782e587784a9c17897ccdef728, type: 3}
-  rewardCoinAmount: 30
+  rewardCoinAmount: 10
   rewardScatterRadius: 3
 --- !u!1 &5350869557740896981
 GameObject:

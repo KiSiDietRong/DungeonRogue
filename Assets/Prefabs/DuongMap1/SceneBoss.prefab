@@ -75541,9 +75541,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdc3104f440e36746b097d634afd0446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
-  - {fileID: 4222149911608471457, guid: b080889f2fb1d1045a49a5376b0ea43b, type: 3}
-  enemiesPerTurn: 1
+  turnSettings:
+  - enemiesInTurn:
+    - enemyPrefab: {fileID: 4222149911608471457, guid: b080889f2fb1d1045a49a5376b0ea43b, type: 3}
+      amount: 1
   spawnDelay: 2
   itemPrefab: {fileID: 0}
   maxTurns: 1
@@ -75551,7 +75552,7 @@ MonoBehaviour:
   - {fileID: 219580539292834000}
   portalObject: {fileID: 509394736110465805}
   coinPrefab: {fileID: 6170564188838350909, guid: ed85c9782e587784a9c17897ccdef728, type: 3}
-  rewardCoinAmount: 25
+  rewardCoinAmount: 30
   rewardScatterRadius: 3
 --- !u!1 &6195411186905766139
 GameObject:

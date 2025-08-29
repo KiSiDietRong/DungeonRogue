@@ -69207,13 +69207,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnSettings:
   - enemiesInTurn:
-    - enemyPrefab: {fileID: 5691807117817197662, guid: cf597133b60270c4598813929e123693, type: 3}
-      amount: 4
+    - enemyPrefab: {fileID: 7698792461852046447, guid: 72839d8cf4015aa4fabfd0c04e4cc779, type: 3}
+      amount: 1
     - enemyPrefab: {fileID: 5691807117817197662, guid: cf597133b60270c4598813929e123693, type: 3}
       amount: 4
   spawnDelay: 2
-  itemPrefab: {fileID: 4032903364693731886, guid: 216dc77882a30cd4f9647c9361afb264, type: 3}
-  maxTurns: 2
+  itemPrefab: {fileID: 0}
+  maxTurns: 1
   spawnPoints:
   - {fileID: 8298411324837205588}
   - {fileID: 796023297001070459}
