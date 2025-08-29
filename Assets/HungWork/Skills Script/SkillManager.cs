@@ -164,4 +164,14 @@ public class SkillManager : MonoBehaviour
             return playerPos + direction.normalized * maxCastDistance;
         }
     }
+
+    public void ResetRuntimeFlagsAndSlots()
+    {
+        hasUsedFirstSkillInRoom = false;
+        isFieryImbuementActive = false;
+        fieryImbuementAttackCount = 0;
+
+        if (skillSlot1 != null) skillSlot1.SetSkill(null);
+        if (skillSlot2 != null) skillSlot2.SetSkill(null);
+    }
 }
