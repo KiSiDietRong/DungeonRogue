@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62089d65bb08ae74a93d66ebbc150c9d, type: 3}
   m_Name: Poison Bullet Skill
   m_EditorClassIdentifier: 
-  skillName: PoisonBullet
+  skillName: Phantom Spear
   skillInfo: Fire a poison ball , deal poison damage and over time damage
   icon: {fileID: -2055241072565463894, guid: 0ab8de4f678050d4c916b6634154dd6a, type: 3}
   cooldown: 20

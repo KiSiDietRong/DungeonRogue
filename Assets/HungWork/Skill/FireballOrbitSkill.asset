@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018da7618f5a11f448d03578f9c9db34, type: 3}
   m_Name: FireballOrbitSkill
   m_EditorClassIdentifier: 
-  skillName: FireTornado
+  skillName: StormArmor
   skillInfo: Summon 3 tornada spin around player , deal damage to enemy get hit
   icon: {fileID: -2918463753768964346, guid: 11be9d486709b504da392eb3dd40954b, type: 3}
   cooldown: 20
-  castSound: {fileID: 8300000, guid: a83c5e8ef246f4d42809a89f0096616a, type: 3}
+  castSound: {fileID: 8300000, guid: ba12f13e656779a4cb8aa184172c6d95, type: 3}
   fireballPrefab: {fileID: 1780598333246159346, guid: 0110690ed53e01241810716f8b3b6d41, type: 3}
   fireballCount: 3
   orbitRadius: 2

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bfae6abf3f5d2641831d4b4acc86c61, type: 3}
   m_Name: Black Hole Skill
   m_EditorClassIdentifier: 
-  skillName: BlackHole
+  skillName: Gravity well
   skillInfo: 'Summon a Blackhole pull enemy in to it core '
   icon: {fileID: 7314085740958348144, guid: eeb46437527f03746acb0fdc15759e39, type: 3}
   cooldown: 25

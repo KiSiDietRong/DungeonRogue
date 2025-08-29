@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e28ad2017686160478efe0f9b9d510f2, type: 3}
   m_Name: Bounce Skill
   m_EditorClassIdentifier: 
-  skillName: Bounce
+  skillName: Chakram
   skillInfo: Fire a Bullet that bounce between enemy
-  icon: {fileID: 9208366288851495736, guid: 89d325e39379bc54a893e77035a74b83, type: 3}
+  icon: {fileID: 1065975291880618004, guid: 51d9050dc7424634982b1216a51a6351, type: 3}
   cooldown: 20
   castSound: {fileID: 8300000, guid: 489c0616cec5f5f46bc0e4c003c83b24, type: 3}
   bulletPrefab: {fileID: 3636076566325174800, guid: b4fcaf47ebf00af479439b396b164c55, type: 3}

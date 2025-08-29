@@ -219,6 +219,7 @@ MonoBehaviour:
   burnEffect: {fileID: 6152189445755642739, guid: b0001f46a96872541b8a7d940f9d680c, type: 3}
   burnEffectPoint: {fileID: 1452324238298280180}
   lastDamageSource: 
+  isPossessed: 0
   projectilePrefab: {fileID: 7606029479178449270, guid: b0e14251a37fcbf4886a881f1f2c4e0f, type: 3}
   firePoint: {fileID: 1141406627812367209}
   preferredDistance: 5
@@ -249,6 +250,7 @@ MonoBehaviour:
   burnEffect: {fileID: 6152189445755642739, guid: b0001f46a96872541b8a7d940f9d680c, type: 3}
   burnEffectPoint: {fileID: 0}
   lastDamageSource: 
+  isPossessed: 0
 --- !u!114 &4848455140712073794
 MonoBehaviour:
   m_ObjectHideFlags: 0

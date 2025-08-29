@@ -306,6 +306,7 @@ MonoBehaviour:
   burnEffect: {fileID: 6152189445755642739, guid: b0001f46a96872541b8a7d940f9d680c, type: 3}
   burnEffectPoint: {fileID: 4027006016034307954}
   lastDamageSource: 
+  isPossessed: 0
   buffPercentage: 0.1
   buffColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &7352226131532974275

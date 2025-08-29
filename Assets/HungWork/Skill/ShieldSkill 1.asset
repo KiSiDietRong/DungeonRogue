@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Shield
   skillInfo: Skill Info
-  icon: {fileID: 0}
+  icon: {fileID: 7396526022376297723, guid: 1908e8a0004084d43886cb547cada8e4, type: 3}
   cooldown: 30
   castSound: {fileID: 8300000, guid: e7f5071e9c64ce3489dd383f10a5a07f, type: 3}
   shieldPrefab: {fileID: 1664323678930793427, guid: d20f91232a514c94baecd3c711bdce98, type: 3}

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed9cf700631bfe4292e78006a218513, type: 3}
   m_Name: Summon Ally Skill
   m_EditorClassIdentifier: 
-  skillName: SummonAlly
+  skillName: Warrior wisp
   skillInfo: Summon a mighty knight to fight with you
   icon: {fileID: 9195429442136017236, guid: c65d8153d951f3c47bdf46cb51f797e2, type: 3}
   cooldown: 15
+  castSound: {fileID: 0}
   allyPrefab: {fileID: 5308686346303129901, guid: 5e61c435ab705934ba1f1581b8c063c5, type: 3}

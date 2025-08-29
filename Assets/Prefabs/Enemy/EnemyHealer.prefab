@@ -219,6 +219,7 @@ MonoBehaviour:
   burnEffect: {fileID: 6152189445755642739, guid: b0001f46a96872541b8a7d940f9d680c, type: 3}
   burnEffectPoint: {fileID: 3410114486473586954}
   lastDamageSource: 
+  isPossessed: 0
   healAmount: 10
   healInterval: 3
   healRange: 999

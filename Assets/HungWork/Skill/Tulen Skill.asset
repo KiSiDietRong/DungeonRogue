@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: LightningBolt
   skillInfo: Throw 3 electric ball can pierce enemy
-  icon: {fileID: 0}
+  icon: {fileID: 9208366288851495736, guid: 89d325e39379bc54a893e77035a74b83, type: 3}
   cooldown: 15
   castSound: {fileID: 8300000, guid: 32704727ce1ee1f449d50f4d910fbc1f, type: 3}
   projectilePrefab: {fileID: 7509188510232892002, guid: 7cea325a958e78348a1b28e8cc26a8ae, type: 3}

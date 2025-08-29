@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a536bf875722c5440a9fb3f69e3d6994, type: 3}
   m_Name: Fireball Skill
   m_EditorClassIdentifier: 
-  skillName: FireBall
+  skillName: Quasar orb
   skillInfo: 'Throw a fireball , deal damage to enemy get hit '
   icon: {fileID: -5239030493526086239, guid: 3039f9f9b10e63b45835da1095ce746e, type: 3}
   cooldown: 0
-  castSound: {fileID: 8300000, guid: 73746b72d2d0d2f4683796ea622bb96b, type: 3}
+  castSound: {fileID: 8300000, guid: a2c3c54b567ff354b9ea3e0a5f05125d, type: 3}
   fireballPrefab: {fileID: 6098165078004752004, guid: c2c79a83dd990ac469d8da928b56845c, type: 3}
