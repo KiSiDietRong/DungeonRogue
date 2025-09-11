@@ -1255,7 +1255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lobbyMap: {fileID: 1482151378}
   battleMapPrefabs:
-  - {fileID: 1670923884671803775, guid: 9fc9971287b5aff418e345e757b5b5a7, type: 3}
+  - {fileID: 1751750577042436229, guid: e3d7be07c656e704298ca38358d0b81b, type: 3}
   - {fileID: 906112064537754709, guid: 819c12282f9c85f4d8bad9f8c2520426, type: 3}
   - {fileID: 1548537350064823448, guid: 57eafba90720f02449a3c2096672bb43, type: 3}
   - {fileID: 3706089826609431494, guid: c11693c9167d4eb478942923bd0fda17, type: 3}

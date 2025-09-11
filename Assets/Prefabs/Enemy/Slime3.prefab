@@ -206,7 +206,7 @@ MonoBehaviour:
   damage: 10
   moveSpeed: 3
   attackRange: 1.5
-  chaseRange: 6
+  chaseRange: 12
   attackCooldown: 1.1
   attackTimeout: 0.1175
   slowTime: 1
@@ -217,6 +217,7 @@ MonoBehaviour:
   burnEffect: {fileID: 6152189445755642739, guid: b0001f46a96872541b8a7d940f9d680c, type: 3}
   burnEffectPoint: {fileID: 1182546235890905585}
   lastDamageSource: 
+  isPossessed: 0
 --- !u!114 &2088693505683879791
 MonoBehaviour:
   m_ObjectHideFlags: 0
